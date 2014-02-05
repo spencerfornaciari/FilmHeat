@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3683493BBB7C48629F3A1C9C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FF12FEB14B24765906F06AA /* libPods.a */; };
 		8949F730188DDD090069E9D4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8949F72F188DDD090069E9D4 /* Foundation.framework */; };
 		8949F732188DDD090069E9D4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8949F731188DDD090069E9D4 /* CoreGraphics.framework */; };
 		8949F734188DDD090069E9D4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8949F733188DDD090069E9D4 /* UIKit.framework */; };
@@ -46,6 +47,7 @@
 		89A6F6C4189C7D49002E1A21 /* ShowtimeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 89A6F6C3189C7D49002E1A21 /* ShowtimeModel.m */; };
 		89BC654D18A2F97000B27385 /* Sad_Face@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 89BC654C18A2F97000B27385 /* Sad_Face@2x.png */; };
 		89BC654F18A2F99100B27385 /* Sad_Face.png in Resources */ = {isa = PBXBuildFile; fileRef = 89BC654E18A2F99100B27385 /* Sad_Face.png */; };
+		89BC655518A3008D00B27385 /* SFMCTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 89BC655418A3008D00B27385 /* SFMCTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +61,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		12C9E41BD7F84C05A7D9B4A2 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		6FF12FEB14B24765906F06AA /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		8949F72C188DDD090069E9D4 /* FilmHeat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FilmHeat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8949F72F188DDD090069E9D4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		8949F731188DDD090069E9D4 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -113,6 +117,8 @@
 		89A6F6C3189C7D49002E1A21 /* ShowtimeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowtimeModel.m; sourceTree = "<group>"; };
 		89BC654C18A2F97000B27385 /* Sad_Face@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Sad_Face@2x.png"; sourceTree = "<group>"; };
 		89BC654E18A2F99100B27385 /* Sad_Face.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Sad_Face.png; sourceTree = "<group>"; };
+		89BC655318A3008D00B27385 /* SFMCTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SFMCTableViewCell.h; path = ../SFMCTableViewCell.h; sourceTree = "<group>"; };
+		89BC655418A3008D00B27385 /* SFMCTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SFMCTableViewCell.m; path = ../SFMCTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +131,7 @@
 				895B49C91895E04F001874D5 /* MapKit.framework in Frameworks */,
 				8949F734188DDD090069E9D4 /* UIKit.framework in Frameworks */,
 				8949F730188DDD090069E9D4 /* Foundation.framework in Frameworks */,
+				3683493BBB7C48629F3A1C9C /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -149,6 +156,7 @@
 				8949F75D188DDD090069E9D4 /* FilmHeatTests */,
 				8949F72E188DDD090069E9D4 /* Frameworks */,
 				8949F72D188DDD090069E9D4 /* Products */,
+				12C9E41BD7F84C05A7D9B4A2 /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -170,6 +178,7 @@
 				8949F733188DDD090069E9D4 /* UIKit.framework */,
 				8949F735188DDD090069E9D4 /* CoreData.framework */,
 				8949F756188DDD090069E9D4 /* XCTest.framework */,
+				6FF12FEB14B24765906F06AA /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -246,6 +255,8 @@
 		8949F777188DF2980069E9D4 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				89BC655318A3008D00B27385 /* SFMCTableViewCell.h */,
+				89BC655418A3008D00B27385 /* SFMCTableViewCell.m */,
 				898F4CBC189082A90060E847 /* SFFilmTableViewCell.h */,
 				898F4CBD189082A90060E847 /* SFFilmTableViewCell.m */,
 			);
@@ -290,9 +301,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8949F767188DDD090069E9D4 /* Build configuration list for PBXNativeTarget "FilmHeat" */;
 			buildPhases = (
+				B8B519FA7F744F23B90BDCB5 /* Check Pods Manifest.lock */,
 				8949F728188DDD090069E9D4 /* Sources */,
 				8949F729188DDD090069E9D4 /* Frameworks */,
 				8949F72A188DDD090069E9D4 /* Resources */,
+				76EF98E3B7AE4B319E679E31 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -393,6 +406,39 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		76EF98E3B7AE4B319E679E31 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B8B519FA7F744F23B90BDCB5 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		8949F728188DDD090069E9D4 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -408,6 +454,7 @@
 				898F4CBE189082A90060E847 /* SFFilmTableViewCell.m in Sources */,
 				8949F772188DE1460069E9D4 /* SFTabBarController.m in Sources */,
 				89A6F6C4189C7D49002E1A21 /* ShowtimeModel.m in Sources */,
+				89BC655518A3008D00B27385 /* SFMCTableViewCell.m in Sources */,
 				8949F742188DDD090069E9D4 /* SFAppDelegate.m in Sources */,
 				897EB4DB1899CEAB007D43F3 /* SFScrollViewController.m in Sources */,
 				89A6F6C1189C7967002E1A21 /* SFMapViewController.m in Sources */,
@@ -536,6 +583,7 @@
 		};
 		8949F768188DDD090069E9D4 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 12C9E41BD7F84C05A7D9B4A2 /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -549,6 +597,7 @@
 		};
 		8949F769188DDD090069E9D4 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 12C9E41BD7F84C05A7D9B4A2 /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;

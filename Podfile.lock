@@ -1,0 +1,10 @@
+PODS:
+  - MCSwipeTableViewCell (2.1.0)
+
+DEPENDENCIES:
+  - MCSwipeTableViewCell (~> 2.1.0)
+
+SPEC CHECKSUMS:
+  MCSwipeTableViewCell: 4a26851568843d15340eeca00210c219aa9f76d5
+
+COCOAPODS: 0.29.0

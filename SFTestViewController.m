@@ -74,36 +74,16 @@
     _wantToSeeItPath = [filmHeatPath stringByAppendingPathComponent:WANT_TO_FILE];
     _dontWantToSeeItPath = [filmHeatPath stringByAppendingPathComponent:DONT_WANT_IT_FILE];
 
-
-    for (int i=0; i<5; i++) {
-        [self.theaterController.wantedArray addObject:self.theaterController.rottenTomatoesArray[i]];
-        //self.theaterController.wantedArray[i].hasSeen = TRUE;
-        //        NSLog(@"%@", [self.wantedArray[i] title]);
-        
-       [self.theaterController.seenItArray addObject:self.theaterController.rottenTomatoesArray[i]];
-        [self.theaterController.noInterestArray addObject:self.theaterController.rottenTomatoesArray[i]];
-
-//        NSLog(@"%@", [self.seenItArray[i] title]);
-    }
+    //Add items to other arrays for testing
+//    for (int i=0; i<5; i++) {
+//        [self.theaterController.wantedArray addObject:self.theaterController.rottenTomatoesArray[i]];
+//        [self.theaterController.seenItArray addObject:self.theaterController.rottenTomatoesArray[i]];
+//        [self.theaterController.noInterestArray addObject:self.theaterController.rottenTomatoesArray[i]];
+//    }
     
     NSLog(@"Wanted: %d", self.theaterController.wantedArray.count);
     NSLog(@"Seen It: %d", self.theaterController.seenItArray.count);
     NSLog(@"Seen It: %d", self.theaterController.noInterestArray.count);
-
-    
-    for (FilmModel *film in self.theaterController.seenItArray) {
-        //NSLog(@"%@", film.posterImage);
-    }
-//    UISwipeGestureRecognizer *recognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeFrom)];
-//    //There is a direction property on UISwipeGestureRecognizer. You can set that to both right and left swipes
-//    recognizer.direction  =  UISwipeGestureRecognizerDirectionRight | UISwipeGestureRecognizerDirectionLeft;
-//    [self.theaterTableView addGestureRecognizer:recognizer];
-
-//    UITapGestureRecognizer* tapBackground = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard:)];
-//    [tapBackground setNumberOfTapsRequired:1];
-//    [self.view addGestureRecognizer:tapBackground];
-    
-	// Do any additional setup after loading the view.
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -361,6 +341,10 @@
 
 -(void)selectedFilm:(FilmModel *)film
 {
+    if (self.segmentOutlet.selectedSegmentIndex == 0) {
+        film.hasSeen = TRUE;
+    }
+    
     currentFilm = film;
     [self performSegueWithIdentifier:@"detailModal" sender:nil];
 }
@@ -376,20 +360,5 @@
     //NSLog(@"Did End");
     [_segmentOutlet setUserInteractionEnabled:YES];
 }
-
--(BOOL)doesSeenItArrayExist
-{
-    NSURL *documentsURL = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
-    
-    NSString *seenItPath = [documentsURL path];
-    seenItPath = [seenItPath stringByAppendingPathComponent:@"seenItArray"];
-    
-    if (![[NSFileManager defaultManager] fileExistsAtPath:seenItPath]) {
-        return FALSE;
-    } else {
-        return TRUE;
-    }
-}
-
 
 @end
