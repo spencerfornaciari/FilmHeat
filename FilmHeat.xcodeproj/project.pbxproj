@@ -44,6 +44,8 @@
 		898F4CBE189082A90060E847 /* SFFilmTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 898F4CBD189082A90060E847 /* SFFilmTableViewCell.m */; };
 		89A6F6C1189C7967002E1A21 /* SFMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89A6F6C0189C7967002E1A21 /* SFMapViewController.m */; };
 		89A6F6C4189C7D49002E1A21 /* ShowtimeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 89A6F6C3189C7D49002E1A21 /* ShowtimeModel.m */; };
+		89BC654D18A2F97000B27385 /* Sad_Face@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 89BC654C18A2F97000B27385 /* Sad_Face@2x.png */; };
+		89BC654F18A2F99100B27385 /* Sad_Face.png in Resources */ = {isa = PBXBuildFile; fileRef = 89BC654E18A2F99100B27385 /* Sad_Face.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -109,6 +111,8 @@
 		89A6F6C0189C7967002E1A21 /* SFMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SFMapViewController.m; path = ../SFMapViewController.m; sourceTree = "<group>"; };
 		89A6F6C2189C7D49002E1A21 /* ShowtimeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowtimeModel.h; sourceTree = "<group>"; };
 		89A6F6C3189C7D49002E1A21 /* ShowtimeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowtimeModel.m; sourceTree = "<group>"; };
+		89BC654C18A2F97000B27385 /* Sad_Face@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Sad_Face@2x.png"; sourceTree = "<group>"; };
+		89BC654E18A2F99100B27385 /* Sad_Face.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Sad_Face.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -264,6 +268,8 @@
 		894DFACC18A0722000806267 /* Media */ = {
 			isa = PBXGroup;
 			children = (
+				89BC654E18A2F99100B27385 /* Sad_Face.png */,
+				89BC654C18A2F97000B27385 /* Sad_Face@2x.png */,
 				894DFADB18A176DB00806267 /* List.png */,
 				894DFAD918A176CA00806267 /* List@2x.png */,
 				894DFAD718A1769F00806267 /* Checkbox@2x.png */,
@@ -368,9 +374,11 @@
 				894DFADC18A176DB00806267 /* List.png in Resources */,
 				8949F750188DDD090069E9D4 /* Images.xcassets in Resources */,
 				894DFAD018A0724400806267 /* Horizontal_Slider.png in Resources */,
+				89BC654F18A2F99100B27385 /* Sad_Face.png in Resources */,
 				8949F73C188DDD090069E9D4 /* InfoPlist.strings in Resources */,
 				897EB57C189B3060007D43F3 /* Movies@2x.png in Resources */,
 				8949F745188DDD090069E9D4 /* Main.storyboard in Resources */,
+				89BC654D18A2F97000B27385 /* Sad_Face@2x.png in Resources */,
 				894DFAD818A1769F00806267 /* Checkbox@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

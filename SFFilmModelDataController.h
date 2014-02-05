@@ -27,12 +27,12 @@
 
 @property (nonatomic, unsafe_unretained) id<SFFilmModelDataControllerDelegate>delegate;
 
-@property (nonatomic) NSMutableArray *rottenTomatoesArray, *seenItArray, *wantedArray;
+@property (nonatomic) NSMutableArray *rottenTomatoesArray, *seenItArray, *wantedArray, *noInterestArray;
 @property (nonatomic, strong) NSOperationQueue *downloadQueue;
 @property (nonatomic) SFMovieDetailViewController *detailController;
 @property (nonatomic, readwrite) NSInteger selectedSegment;
 @property (nonatomic, weak) UITableView *tableView;
-@property (nonatomic) NSString *seenItPath, *wantedPath;
+@property (nonatomic) NSString *seenItPath, *wantedPath, *noInterestPath;
 
 - (void)populateFilmData:(NSString *)zipCode;
 

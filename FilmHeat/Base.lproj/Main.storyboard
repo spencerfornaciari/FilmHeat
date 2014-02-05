@@ -248,6 +248,7 @@
                                                 <segment title="" image="Checkbox.png"/>
                                                 <segment title="" image="Movies.png"/>
                                                 <segment title="" image="List.png"/>
+                                                <segment title="" image="Sad_Face.png"/>
                                             </segments>
                                             <connections>
                                                 <action selector="selectedIndex:" destination="6bk-xU-MH5" eventType="valueChanged" id="qBT-wq-iNx"/>
@@ -672,6 +673,7 @@
         <image name="Horizontal_Slider.png" width="24" height="23"/>
         <image name="List.png" width="27" height="23"/>
         <image name="Movies.png" width="23" height="22"/>
+        <image name="Sad_Face.png" width="24" height="24"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

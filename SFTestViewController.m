@@ -20,7 +20,7 @@
 
 @property (nonatomic) NSMutableArray *testArray;
 
-@property (nonatomic) NSString *seenItPath, *wantToSeeItPath;
+@property (nonatomic) NSString *seenItPath, *wantToSeeItPath, *dontWantToSeeItPath;
 
 
 @property (strong, nonatomic) NSMutableArray *strongArray;
@@ -72,6 +72,7 @@
     _seenItPath = [filmHeatPath stringByAppendingPathComponent:SEEN_IT_FILE];
     NSLog(@"%@", _seenItPath);
     _wantToSeeItPath = [filmHeatPath stringByAppendingPathComponent:WANT_TO_FILE];
+    _dontWantToSeeItPath = [filmHeatPath stringByAppendingPathComponent:DONT_WANT_IT_FILE];
 
 
     for (int i=0; i<5; i++) {
@@ -80,11 +81,15 @@
         //        NSLog(@"%@", [self.wantedArray[i] title]);
         
        [self.theaterController.seenItArray addObject:self.theaterController.rottenTomatoesArray[i]];
+        [self.theaterController.noInterestArray addObject:self.theaterController.rottenTomatoesArray[i]];
+
 //        NSLog(@"%@", [self.seenItArray[i] title]);
     }
     
     NSLog(@"Wanted: %d", self.theaterController.wantedArray.count);
     NSLog(@"Seen It: %d", self.theaterController.seenItArray.count);
+    NSLog(@"Seen It: %d", self.theaterController.noInterestArray.count);
+
     
     for (FilmModel *film in self.theaterController.seenItArray) {
         //NSLog(@"%@", film.posterImage);
@@ -114,6 +119,10 @@
         //self.segmentOutlet.enabled = FALSE;
         [self.segmentOutlet setEnabled:NO forSegmentAtIndex:2];
     }
+    
+    if (self.theaterController.noInterestArray.count == 0) {
+        [self.segmentOutlet setEnabled:NO forSegmentAtIndex:3];
+    }
 
     
 //    if (self.segmentOutlet.selectedSegmentIndex == 0) {
@@ -129,6 +138,7 @@
     
     [NSKeyedArchiver archiveRootObject:self.theaterController.seenItArray toFile:_seenItPath];
     [NSKeyedArchiver archiveRootObject:self.theaterController.wantedArray toFile:_wantToSeeItPath];
+    [NSKeyedArchiver archiveRootObject:self.theaterController.noInterestArray toFile:_dontWantToSeeItPath];
 
 }
 
@@ -160,7 +170,10 @@
         
        // [self.theaterTableView reloadData];
         
+    } else if (self.segmentOutlet.selectedSegmentIndex == 3){
+        self.segmentOutlet.tintColor = [UIColor grayColor];
     }
+    
     
     [self.theaterController setSelectedSegment:_segmentOutlet.selectedSegmentIndex];
 }

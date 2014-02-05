@@ -28,6 +28,7 @@
     NSString *filmHeatPath = [documentsURL path];
     self.seenItPath = [filmHeatPath stringByAppendingPathComponent:SEEN_IT_FILE];
     self.wantedPath = [filmHeatPath stringByAppendingPathComponent:WANT_TO_FILE];
+    self.noInterestPath = [filmHeatPath stringByAppendingPathComponent:DONT_WANT_IT_FILE];
     
     if ([self doesArrayExist:SEEN_IT_FILE]) {
         self.seenItArray = [NSKeyedUnarchiver unarchiveObjectWithFile:self.seenItPath];
@@ -39,6 +40,12 @@
         self.wantedArray = [NSKeyedUnarchiver unarchiveObjectWithFile:self.wantedPath];
     } else {
         self.wantedArray = [NSMutableArray new];
+    }
+
+    if ([self doesArrayExist:DONT_WANT_IT_FILE]) {
+        self.noInterestArray = [NSKeyedUnarchiver unarchiveObjectWithFile:self.noInterestPath];
+    } else {
+        self.noInterestArray = [NSMutableArray new];
     }
     
     NSDateFormatter *apiDateFormatter = [NSDateFormatter new];
@@ -174,6 +181,8 @@
             return self.rottenTomatoesArray.count;
         case 2: // Want To See It
             return self.wantedArray.count;
+        case 3:
+            return self.noInterestArray.count;
     }
 
     return 0;
@@ -194,6 +203,9 @@
             break;
         case 2: // Want To See It
             [cell setFilm:[self.wantedArray objectAtIndex:indexPath.row]];
+            break;
+        case 3:
+            [cell setFilm:[self.noInterestArray objectAtIndex:indexPath.row]];
             break;
     }
     
