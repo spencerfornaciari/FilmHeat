@@ -30,23 +30,7 @@
 {
     _film = film;
     
-    self.filmTitle.text = film.title;    
-    
-//    if ([film.runtime isEqualToNumber:@0]) {
-//        self.filmMPAARating.text = @"NL";
-//    } else {
-//        self.filmMPAARating.text = [film.runtime stringValue];
-//    }
-    
-    
-    
-//    if (![film.mpaaRating isEqualToString:@"NR"]) {
-//        self.filmMPAARating.text = @"NR";
-//    } else {
-//        //self.filmMPAARating.text = film.mpaaRating;
-//        NSLog(@"%@", film.mpaaRating);
-//    }
-//    //self.ratingVariance.textColor = [UIColor whiteColor];
+    self.filmTitle.text = film.title;
     
     if (!film.posterImage) {
         self.filmThumbnailPoster.image = [UIImage imageNamed:@"Movies.png"];

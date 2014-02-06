@@ -10,22 +10,34 @@
 
 @implementation SFMCTableViewCell
 
-- (id)initWithFrame:(CGRect)frame
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
-    self = [super initWithFrame:frame];
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
     }
     return self;
 }
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
-    // Drawing code
+    [super setSelected:selected animated:animated];
+    
+    // Configure the view for the selected state
 }
-*/
+
+//- (void)setFilm:(FilmModel *)film
+//{
+//    _film = film;
+//    
+//    self.filmTitle.text = film.title;
+//    
+//    if (!film.posterImage) {
+//        self.filmThumbnailPoster.image = [UIImage imageNamed:@"Movies.png"];
+//        [film downloadPoster];
+//    } else {
+//        self.filmThumbnailPoster.image = film.posterImage;
+//    }
+//}
 
 @end

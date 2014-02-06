@@ -91,16 +91,11 @@
             film.mpaaRating = @"NR";
         }
         
-//        if ([self doesSeenItArrayExist]) {
-//            NSArray *ratingCheck = [NSKeyedUnarchiver unarchiveObjectWithFile:self.seenItPath];
-//            for (FilmModel *check in ratingCheck) {
-//                if ([check.title isEqualToString:film.title]) {
-//                    film.myRating = check.myRating;
-//                } else {
-//                    film.myRating = [[NSNumber numberWithInt:75] stringValue];
-//                }
-//            }
-//        }
+        BOOL doesExist = [self doesFilmExist:film];
+        
+        
+        
+
         
 //        film.mpaaRating = [dictionary valueForKeyPath:@"ratings.code"];
 //        NSLog(@"%@", film.mpaaRating);
@@ -134,11 +129,12 @@
 //            if ([self.seenItArray containsObject:film.title]) {
 //                NSLog(@"Got it!");
 //            } else {
-                [rottenInstance addObject:film];
 //            }
 //        }
         
-        
+        if (!doesExist) {
+            [rottenInstance addObject:film];
+        }
        
     }
     
@@ -169,6 +165,22 @@
     
     _rottenTomatoesArray = rottenInstance;
     [self.tableView reloadData];
+}
+
+#pragma mark - Checking if the film already exists
+
+- (BOOL)doesFilmExist:(FilmModel *)film
+{
+    if ([self doesArrayExist:SEEN_IT_FILE]) {
+        NSArray *ratingCheck = [NSKeyedUnarchiver unarchiveObjectWithFile:self.seenItPath];
+        for (FilmModel *check in ratingCheck) {
+            if ([check.title isEqualToString:film.title]) {
+                return YES;
+            }
+        }
+    }
+    return NO;
+    
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

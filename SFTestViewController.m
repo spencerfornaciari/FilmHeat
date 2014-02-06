@@ -22,7 +22,6 @@
 
 @property (nonatomic) NSString *seenItPath, *wantToSeeItPath, *dontWantToSeeItPath;
 
-
 @property (strong, nonatomic) NSMutableArray *strongArray;
 
 - (IBAction)buttonAction:(id)sender;
