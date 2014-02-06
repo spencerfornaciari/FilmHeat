@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "FilmModel.h"
 #import "ShowtimeModel.h"
-#import "SFFilmTableViewCell.h"
+#import "SFMCTableViewCell.h"
 #import "SFMovieDetailViewController.h"
 
 @protocol SFFilmModelDataControllerDelegate <NSObject>

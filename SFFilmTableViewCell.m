@@ -26,18 +26,18 @@
     // Configure the view for the selected state
 }
 
-- (void)setFilm:(FilmModel *)film
-{
-    _film = film;
-    
-    self.filmTitle.text = film.title;
-    
-    if (!film.posterImage) {
-        self.filmThumbnailPoster.image = [UIImage imageNamed:@"Movies.png"];
-        [film downloadPoster];
-    } else {
-        self.filmThumbnailPoster.image = film.posterImage;
-    }
-}
+//- (void)setFilm:(FilmModel *)film
+//{
+//    _film = film;
+//    
+//    self.filmTitle.text = film.title;
+//    
+//    if (!film.posterImage) {
+//        self.filmThumbnailPoster.image = [UIImage imageNamed:@"Movies.png"];
+//        [film downloadPoster];
+//    } else {
+//        self.filmThumbnailPoster.image = film.posterImage;
+//    }
+//}
 
 @end
