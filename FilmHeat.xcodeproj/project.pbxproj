@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		3683493BBB7C48629F3A1C9C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FF12FEB14B24765906F06AA /* libPods.a */; };
+		8931CF5718A44A4200A4CFBC /* SFTheaterTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8931CF5618A44A4200A4CFBC /* SFTheaterTableViewController.m */; };
+		8931CF5A18A44AA800A4CFBC /* SFBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8931CF5918A44AA800A4CFBC /* SFBaseViewController.m */; };
+		8931CF5D18A44B0D00A4CFBC /* SFSeenTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8931CF5C18A44B0D00A4CFBC /* SFSeenTableViewController.m */; };
+		8931CF6018A44B1C00A4CFBC /* SFWantedTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8931CF5F18A44B1C00A4CFBC /* SFWantedTableViewController.m */; };
 		8949F730188DDD090069E9D4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8949F72F188DDD090069E9D4 /* Foundation.framework */; };
 		8949F732188DDD090069E9D4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8949F731188DDD090069E9D4 /* CoreGraphics.framework */; };
 		8949F734188DDD090069E9D4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8949F733188DDD090069E9D4 /* UIKit.framework */; };
@@ -63,6 +67,14 @@
 /* Begin PBXFileReference section */
 		12C9E41BD7F84C05A7D9B4A2 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		6FF12FEB14B24765906F06AA /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		8931CF5518A44A4200A4CFBC /* SFTheaterTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SFTheaterTableViewController.h; path = ../SFTheaterTableViewController.h; sourceTree = "<group>"; };
+		8931CF5618A44A4200A4CFBC /* SFTheaterTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SFTheaterTableViewController.m; path = ../SFTheaterTableViewController.m; sourceTree = "<group>"; };
+		8931CF5818A44AA800A4CFBC /* SFBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SFBaseViewController.h; path = ../SFBaseViewController.h; sourceTree = "<group>"; };
+		8931CF5918A44AA800A4CFBC /* SFBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SFBaseViewController.m; path = ../SFBaseViewController.m; sourceTree = "<group>"; };
+		8931CF5B18A44B0D00A4CFBC /* SFSeenTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SFSeenTableViewController.h; path = ../SFSeenTableViewController.h; sourceTree = "<group>"; };
+		8931CF5C18A44B0D00A4CFBC /* SFSeenTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SFSeenTableViewController.m; path = ../SFSeenTableViewController.m; sourceTree = "<group>"; };
+		8931CF5E18A44B1C00A4CFBC /* SFWantedTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SFWantedTableViewController.h; path = ../SFWantedTableViewController.h; sourceTree = "<group>"; };
+		8931CF5F18A44B1C00A4CFBC /* SFWantedTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SFWantedTableViewController.m; path = ../SFWantedTableViewController.m; sourceTree = "<group>"; };
 		8949F72C188DDD090069E9D4 /* FilmHeat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FilmHeat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8949F72F188DDD090069E9D4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		8949F731188DDD090069E9D4 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -186,6 +198,14 @@
 		8949F737188DDD090069E9D4 /* FilmHeat */ = {
 			isa = PBXGroup;
 			children = (
+				8931CF5E18A44B1C00A4CFBC /* SFWantedTableViewController.h */,
+				8931CF5F18A44B1C00A4CFBC /* SFWantedTableViewController.m */,
+				8931CF5B18A44B0D00A4CFBC /* SFSeenTableViewController.h */,
+				8931CF5C18A44B0D00A4CFBC /* SFSeenTableViewController.m */,
+				8931CF5818A44AA800A4CFBC /* SFBaseViewController.h */,
+				8931CF5918A44AA800A4CFBC /* SFBaseViewController.m */,
+				8931CF5518A44A4200A4CFBC /* SFTheaterTableViewController.h */,
+				8931CF5618A44A4200A4CFBC /* SFTheaterTableViewController.m */,
 				897EB573189B2DD0007D43F3 /* SFTestViewController.h */,
 				894DFACC18A0722000806267 /* Media */,
 				894DFAC918A0681000806267 /* SFCustomizeViewController.h */,
@@ -447,14 +467,18 @@
 				898F4CBB189080D20060E847 /* SFFilmModelDataController.m in Sources */,
 				894DFACB18A0681100806267 /* SFCustomizeViewController.m in Sources */,
 				8949F77B188DF3040069E9D4 /* SFFilmDataController.m in Sources */,
+				8931CF5718A44A4200A4CFBC /* SFTheaterTableViewController.m in Sources */,
 				894DFAC818A0516A00806267 /* SFMovieDetailViewController.m in Sources */,
+				8931CF5D18A44B0D00A4CFBC /* SFSeenTableViewController.m in Sources */,
 				8949F748188DDD090069E9D4 /* FilmHeat.xcdatamodeld in Sources */,
 				8949F73E188DDD090069E9D4 /* main.m in Sources */,
 				897EB575189B2DD0007D43F3 /* SFTestViewController.m in Sources */,
 				898F4CBE189082A90060E847 /* SFFilmTableViewCell.m in Sources */,
 				8949F772188DE1460069E9D4 /* SFTabBarController.m in Sources */,
+				8931CF6018A44B1C00A4CFBC /* SFWantedTableViewController.m in Sources */,
 				89A6F6C4189C7D49002E1A21 /* ShowtimeModel.m in Sources */,
 				89BC655518A3008D00B27385 /* SFMCTableViewCell.m in Sources */,
+				8931CF5A18A44AA800A4CFBC /* SFBaseViewController.m in Sources */,
 				8949F742188DDD090069E9D4 /* SFAppDelegate.m in Sources */,
 				897EB4DB1899CEAB007D43F3 /* SFScrollViewController.m in Sources */,
 				89A6F6C1189C7967002E1A21 /* SFMapViewController.m in Sources */,

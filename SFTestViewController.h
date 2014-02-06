@@ -10,7 +10,8 @@
 #import "SFFilmModelDataController.h"
 #import "FilmModel.h"
 #import "UIColor+SFFilmHeatColors.h"
+#import <MapKit/MapKit.h>
 
-@interface SFTestViewController : UIViewController <UISearchBarDelegate, UIActionSheetDelegate, SFFilmModelDataControllerDelegate>
+@interface SFTestViewController : UIViewController <UISearchBarDelegate, UIActionSheetDelegate, SFFilmModelDataControllerDelegate, CLLocationManagerDelegate>
 
 @end

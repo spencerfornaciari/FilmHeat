@@ -367,6 +367,7 @@
     [self.delegate scrollViewDidEndDecelerating:scrollView];
 }
 
+
 -(BOOL)doesArrayExist:(NSString *)arrayNameString
 {
     NSURL *documentsURL = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
@@ -389,8 +390,11 @@
     [self.seenItArray addObject:array[indexPath.row]];
     [NSKeyedArchiver archiveRootObject:self.seenItArray toFile:_seenItPath];
     [array removeObjectAtIndex:indexPath.row];
+    [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     [self.delegate enableSegment:0];
-    [self.tableView reloadData];
+    //[self.tableView reloadData];
+    
+
 }
 
 -(void)addToWantedList:(MCSwipeTableViewCell *)cell selectedArray:(NSMutableArray *)array
@@ -399,8 +403,8 @@
     [self.wantedArray addObject:array[indexPath.row]];
     [NSKeyedArchiver archiveRootObject:self.wantedArray toFile:_wantedPath];
     [array removeObjectAtIndex:indexPath.row];
+    [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     [self.delegate enableSegment:2];
-    [self.tableView reloadData];
 }
 
 -(void)addToNoInterestList:(MCSwipeTableViewCell *)cell selectedArray:(NSMutableArray *)array
@@ -409,15 +413,14 @@
     [self.noInterestArray addObject:array[indexPath.row]];
     [NSKeyedArchiver archiveRootObject:self.noInterestArray toFile:_noInterestPath];
     [array removeObjectAtIndex:indexPath.row];
-    
+    [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+
     if (self.noInterestArray.count > 0) {
         [self.delegate enableSegment:3];
     } else {
         [self.delegate disableSegment:3];
     }
     [self.delegate enableSegment:3];
-    [self.tableView reloadData];
-    //[self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
 }
 
 

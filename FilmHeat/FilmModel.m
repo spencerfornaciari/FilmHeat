@@ -56,6 +56,7 @@
     
     [_downloadQueue addOperationWithBlock:^{
         NSURL *posterURL = [NSURL URLWithString:self.thumbnailPoster];
+        NSLog(@"%@", posterURL);
         NSData *posterData = [NSData dataWithContentsOfURL:posterURL];
         self.posterImage = [UIImage imageWithData:posterData];
         

@@ -13,6 +13,11 @@
     FilmModel *currentFilm;
 }
 
+@property (strong, nonatomic) CLLocationManager *locationManager;
+@property (strong, nonatomic) CLLocation *location;
+@property (strong, nonatomic) CLPlacemark *placemark;
+@property (strong, nonatomic) NSString *zipCode;
+
 @property (strong, nonatomic) IBOutlet UISegmentedControl *segmentOutlet;
 @property (weak, nonatomic) IBOutlet UITableView *theaterTableView;
 @property (strong, nonatomic) SFFilmModelDataController *theaterController;
@@ -42,6 +47,16 @@
     self.theaterController.tableView = self.theaterTableView;
     self.theaterController.selectedSegment = 1;
     
+    //Declare CLLocation Manager
+    self.locationManager = [[CLLocationManager alloc] init];
+    self.locationManager.delegate = self;
+    [self.locationManager setDistanceFilter:kCLDistanceFilterNone];
+    [self.locationManager setDesiredAccuracy:kCLLocationAccuracyKilometer];
+    [self.locationManager startUpdatingLocation];
+    
+    self.location = [[CLLocation alloc] init];
+    NSLog(@"ZipCode: %@", self.zipCode);
+    
     [self.theaterController populateFilmData:@"98121"];
     
     _strongArray = [NSMutableArray new];
@@ -65,6 +80,8 @@
 //        [self.theaterController.seenItArray addObject:self.theaterController.rottenTomatoesArray[i]];
 //        [self.theaterController.noInterestArray addObject:self.theaterController.rottenTomatoesArray[i]];
 //    }
+    
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -92,6 +109,22 @@
     [NSKeyedArchiver archiveRootObject:self.theaterController.wantedArray toFile:_wantToSeeItPath];
     [NSKeyedArchiver archiveRootObject:self.theaterController.noInterestArray toFile:_dontWantToSeeItPath];
 
+}
+
+-(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
+{
+    self.location = locations[0];
+    
+    CLGeocoder *geocoder = [CLGeocoder new];
+    
+    [geocoder reverseGeocodeLocation:self.location completionHandler:^(NSArray *placemarks, NSError *error) {
+        self.placemark = placemarks[0];
+        self.zipCode = [placemarks[0] postalCode];
+       // NSLog(@"%@", self.placemark.postalCode);
+        [self.locationManager stopUpdatingLocation];
+        //[self.theaterController populateFilmData:self.zipCode];
+
+    }];
 }
 
 #pragma mark - UISegmented Controller Methods
@@ -380,7 +413,7 @@
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     //NSLog(@"Did Scroll");
-    [_segmentOutlet setUserInteractionEnabled:NO];
+    [_segmentOutlet setUserInteractionEnabled:YES];
     //self.segmentOutlet.selectedSegmentIndex = 1;
 }
 

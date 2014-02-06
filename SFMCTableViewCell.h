@@ -12,6 +12,9 @@
 
 @interface SFMCTableViewCell : MCSwipeTableViewCell
 
+@property (weak, nonatomic) FilmModel *film;
+
+
 @property (strong, nonatomic) IBOutlet UILabel *filmTitle;
 @property (strong, nonatomic) IBOutlet UIImageView *filmThumbnailPoster;
 @property (strong, nonatomic) IBOutlet UILabel *filmMPAARating;

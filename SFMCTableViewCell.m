@@ -28,13 +28,13 @@
 
 - (void)setFilm:(FilmModel *)film
 {
-    //_film = film;
+    _film = film;
     
     self.filmTitle.text = film.title;
     
     if (!film.posterImage) {
         self.filmThumbnailPoster.image = [UIImage imageNamed:@"Movies.png"];
-        [film downloadPoster];
+        //[film downloadPoster];
     } else {
         self.filmThumbnailPoster.image = film.posterImage;
     }
