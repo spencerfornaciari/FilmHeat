@@ -10,4 +10,20 @@
 
 @implementation UIColor (SFFilmHeatColors)
 
++ (UIColor *)seenItColor{
+    return [UIColor redColor];
+}
+
++ (UIColor *)theaterColor{
+    return [UIColor blueColor];
+}
+
++ (UIColor *)wantedColor{
+    return [UIColor purpleColor];
+}
+
++ (UIColor *)noInterestColor{
+    return [UIColor grayColor];
+}
+
 @end

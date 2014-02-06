@@ -10,4 +10,9 @@
 
 @interface UIColor (SFFilmHeatColors)
 
++ (UIColor *)seenItColor;
++ (UIColor *)theaterColor;
++ (UIColor *)wantedColor;
++ (UIColor *)noInterestColor;
+
 @end

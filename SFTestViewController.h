@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "SFFilmModelDataController.h"
 #import "FilmModel.h"
+#import "UIColor+SFFilmHeatColors.h"
 
 @interface SFTestViewController : UIViewController <UISearchBarDelegate, UIActionSheetDelegate, SFFilmModelDataControllerDelegate>
 

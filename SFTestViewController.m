@@ -18,10 +18,7 @@
 @property (strong, nonatomic) SFFilmModelDataController *theaterController;
 @property (weak, nonatomic) IBOutlet UISearchBar *theaterSearchBar;
 
-@property (nonatomic) NSMutableArray *testArray;
-
 @property (nonatomic) NSString *seenItPath, *wantToSeeItPath, *dontWantToSeeItPath;
-
 @property (strong, nonatomic) NSMutableArray *strongArray;
 
 - (IBAction)buttonAction:(id)sender;
@@ -29,7 +26,6 @@
 @end
 
 @implementation SFTestViewController
-
 
 - (void)viewDidLoad
 {
@@ -47,7 +43,6 @@
     self.theaterController.selectedSegment = 1;
     
     [self.theaterController populateFilmData:@"98121"];
-    
     
     _strongArray = [NSMutableArray new];
     
@@ -70,25 +65,18 @@
 //        [self.theaterController.seenItArray addObject:self.theaterController.rottenTomatoesArray[i]];
 //        [self.theaterController.noInterestArray addObject:self.theaterController.rottenTomatoesArray[i]];
 //    }
-    
-    NSLog(@"Wanted: %d", self.theaterController.wantedArray.count);
-    NSLog(@"Seen It: %d", self.theaterController.seenItArray.count);
-    NSLog(@"Seen It: %d", self.theaterController.noInterestArray.count);
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     
     if (self.theaterController.seenItArray.count == 0) {
-        //self.segmentOutlet.enabled = FALSE;
         [self.segmentOutlet setEnabled:NO forSegmentAtIndex:0];
     } else if (self.theaterController.seenItArray.count > 0) {
         [self.segmentOutlet setEnabled:YES forSegmentAtIndex:0];
     }
 
-    
     if (self.theaterController.wantedArray.count == 0) {
-        //self.segmentOutlet.enabled = FALSE;
         [self.segmentOutlet setEnabled:NO forSegmentAtIndex:2];
     } else {
         [self.segmentOutlet setEnabled:YES forSegmentAtIndex:2];
@@ -99,18 +87,6 @@
     } else {
         [self.segmentOutlet setEnabled:YES forSegmentAtIndex:3];
     }
-
-    
-//    if (self.segmentOutlet.selectedSegmentIndex == 0) {
-//        if (self.theaterController.seenItArray.count == 0) {
-//            self.segmentOutlet.enabled = FALSE;
-//        }
-//    } else if (self.segmentOutlet.selectedSegmentIndex == 1) {
-//        self.segmentOutlet.tintColor = [UIColor blueColor];
-//        
-//    } else if(self.segmentOutlet.selectedSegmentIndex == 2)
-//    {
-//            }
     
     [NSKeyedArchiver archiveRootObject:self.theaterController.seenItArray toFile:_seenItPath];
     [NSKeyedArchiver archiveRootObject:self.theaterController.wantedArray toFile:_wantToSeeItPath];
@@ -127,27 +103,18 @@
 
     if (self.segmentOutlet.selectedSegmentIndex == 0) {
         [self.view endEditing:YES];
-        self.segmentOutlet.tintColor = [UIColor redColor];
-
-        
+        self.segmentOutlet.tintColor = [UIColor seenItColor];
     } else if (self.segmentOutlet.selectedSegmentIndex == 1) {
         [self.view endEditing:YES];
-        self.segmentOutlet.tintColor = [UIColor blueColor];
-
+        self.segmentOutlet.tintColor = [UIColor theaterColor];
         
-    } else if(self.segmentOutlet.selectedSegmentIndex == 2)
-    {
+    } else if(self.segmentOutlet.selectedSegmentIndex == 2) {
         [self.view endEditing:YES];
-        self.segmentOutlet.tintColor = [UIColor orangeColor];
-//        self.theaterController.rottenTomatoesArray = _strongArray;
-//
-//        NSSortDescriptor *nameSorter = [NSSortDescriptor sortDescriptorWithKey:@"ratingVariance" ascending:YES];
-//        self.theaterController.rottenTomatoesArray = [NSMutableArray arrayWithArray:[self.theaterController.rottenTomatoesArray sortedArrayUsingDescriptors:@[nameSorter]]];
-        
-       // [self.theaterTableView reloadData];
+        self.segmentOutlet.tintColor = [UIColor wantedColor];
         
     } else if (self.segmentOutlet.selectedSegmentIndex == 3){
-        self.segmentOutlet.tintColor = [UIColor grayColor];
+        [self.view endEditing:YES];
+        self.segmentOutlet.tintColor = [UIColor noInterestColor];
     }
     
     

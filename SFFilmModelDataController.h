@@ -11,6 +11,7 @@
 #import "ShowtimeModel.h"
 #import "SFMCTableViewCell.h"
 #import "SFMovieDetailViewController.h"
+#import "UIColor+SFFilmHeatColors.h"
 
 @protocol SFFilmModelDataControllerDelegate <NSObject>
 
