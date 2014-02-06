@@ -9,13 +9,15 @@
 #import <Foundation/Foundation.h>
 #import "FilmModel.h"
 #import "ShowtimeModel.h"
-#import "SFFilmTableViewCell.h"
+#import "SFMCTableViewCell.h"
 #import "SFMovieDetailViewController.h"
 
 @protocol SFFilmModelDataControllerDelegate <NSObject>
 
 @required
 -(void)selectedFilm:(FilmModel *)film;
+-(void)enableSegment:(NSInteger)segment;
+-(void)disableSegment:(NSInteger)segment;
 
 @optional
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView;

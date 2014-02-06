@@ -34,18 +34,23 @@
         self.seenItArray = [NSKeyedUnarchiver unarchiveObjectWithFile:self.seenItPath];
     } else {
         self.seenItArray = [NSMutableArray new];
+        NSLog(@"Created Seen");
+
     }
     
     if ([self doesArrayExist:WANT_TO_FILE]) {
         self.wantedArray = [NSKeyedUnarchiver unarchiveObjectWithFile:self.wantedPath];
     } else {
         self.wantedArray = [NSMutableArray new];
+        NSLog(@"Created Want");
+
     }
 
     if ([self doesArrayExist:DONT_WANT_IT_FILE]) {
         self.noInterestArray = [NSKeyedUnarchiver unarchiveObjectWithFile:self.noInterestPath];
     } else {
         self.noInterestArray = [NSMutableArray new];
+        NSLog(@"Created No Interest");
     }
     
     NSDateFormatter *apiDateFormatter = [NSDateFormatter new];
@@ -179,6 +184,25 @@
             }
         }
     }
+    
+    if ([self doesArrayExist:WANT_TO_FILE]) {
+        NSArray *ratingCheck = [NSKeyedUnarchiver unarchiveObjectWithFile:self.wantedPath];
+        for (FilmModel *check in ratingCheck) {
+            if ([check.title isEqualToString:film.title]) {
+                return YES;
+            }
+        }
+    }
+    
+    if ([self doesArrayExist:DONT_WANT_IT_FILE]) {
+        NSArray *ratingCheck = [NSKeyedUnarchiver unarchiveObjectWithFile:self.noInterestPath];
+        for (FilmModel *check in ratingCheck) {
+            if ([check.title isEqualToString:film.title]) {
+                return YES;
+            }
+        }
+    }
+    
     return NO;
     
 }
@@ -203,28 +227,85 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    SFFilmTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    SFMCTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     
-    // Configure the cell...    
+    // Configure the cell...
+    
+    if (!cell) {
+        cell = [[SFMCTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"Cell"];
+        
+        // Remove inset of iOS 7 separators.
+        if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
+            cell.separatorInset = UIEdgeInsetsZero;
+        }
+        
+        [cell setSelectionStyle:UITableViewCellSelectionStyleGray];
+        
+        // Setting the background color of the cell.
+        //cell.contentView.backgroundColor = [UIColor whiteColor];
+    }
+    
+    NSMutableArray *selectedArray = [NSMutableArray new];
+    
     switch (_selectedSegment) {
         case 0: // Seen It
             [cell setFilm:[self.seenItArray objectAtIndex:indexPath.row]];
+            selectedArray = self.seenItArray;
             break;
         case 1: // All Movies
             [cell setFilm:[self.rottenTomatoesArray objectAtIndex:indexPath.row]];
+            selectedArray = self.rottenTomatoesArray;
             break;
         case 2: // Want To See It
             [cell setFilm:[self.wantedArray objectAtIndex:indexPath.row]];
+            selectedArray = self.wantedArray;
             break;
         case 3:
             [cell setFilm:[self.noInterestArray objectAtIndex:indexPath.row]];
+            selectedArray = self.noInterestArray;
             break;
     }
+    
+    // Configuring the views and colors.
+    UIView *checkView = [self viewWithImageName:@"Checkbox"];
+    UIView *crossView = [self viewWithImageName:@"List"];
+    UIView *clockView = [self viewWithImageName:@"Sad_Face"];
+    UIView *listView = [self viewWithImageName:@"Movies"];
+    
+    // Setting the default inactive state color to the tableView background color.
+    [cell setDefaultColor:self.tableView.backgroundView.backgroundColor];
+    
+    // Adding gestures per state basis.
+    [cell setSwipeGestureWithView:checkView color:[UIColor redColor] mode:MCSwipeTableViewCellModeSwitch state:MCSwipeTableViewCellState1 completionBlock:^(MCSwipeTableViewCell *cell, MCSwipeTableViewCellState state, MCSwipeTableViewCellMode mode) {
+        NSLog(@"Did swipe \"Checkbox\" cell");
+        [self addToSeenItList:cell selectedArray:selectedArray];
+    }];
+    
+    [cell setSwipeGestureWithView:crossView color:[UIColor orangeColor] mode:MCSwipeTableViewCellModeSwitch state:MCSwipeTableViewCellState2 completionBlock:^(MCSwipeTableViewCell *cell, MCSwipeTableViewCellState state, MCSwipeTableViewCellMode mode) {
+        NSLog(@"Did swipe \"List\" cell");
+        [self addToWantedList:cell selectedArray:selectedArray];
+    }];
+    
+    [cell setSwipeGestureWithView:clockView color:[UIColor grayColor] mode:MCSwipeTableViewCellModeSwitch state:MCSwipeTableViewCellState3 completionBlock:^(MCSwipeTableViewCell *cell, MCSwipeTableViewCellState state, MCSwipeTableViewCellMode mode) {
+        NSLog(@"Did swipe \"Sad_Face\" cell");
+        [self addToNoInterestList:cell selectedArray:selectedArray];
+    }];
+    
+    [cell setSwipeGestureWithView:listView color:[UIColor blueColor] mode:MCSwipeTableViewCellModeSwitch state:MCSwipeTableViewCellState4 completionBlock:^(MCSwipeTableViewCell *cell, MCSwipeTableViewCellState state, MCSwipeTableViewCellMode mode) {
+        NSLog(@"Did swipe \"Movies\" cell");
+        
+        //[self deleteCell:cell];
+    }];
     
     return cell;
 }
 
-
+- (UIView *)viewWithImageName:(NSString *)imageName {
+    UIImage *image = [UIImage imageNamed:imageName];
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+    imageView.contentMode = UIViewContentModeCenter;
+    return imageView;
+}
 
 - (void)setSelectedSegment:(NSInteger)selectedSegment
 {    
@@ -236,35 +317,16 @@
 {
     if (_selectedSegment == 0) {
         [self.delegate selectedFilm:self.seenItArray[indexPath.row]];
-    } else if (_selectedSegment == 1) {
+    } else if (_selectedSegment == 1)
+    {
         [self.delegate selectedFilm:self.rottenTomatoesArray[indexPath.row]];
-    } else if (_selectedSegment)
+    } else if (_selectedSegment == 2)
     {
         [self.delegate selectedFilm:self.wantedArray[indexPath.row]];
+    } else if (_selectedSegment == 3)
+    {
+        [self.delegate selectedFilm:self.noInterestArray[indexPath.row]];
     }
-//    if ([self doesSeenItArrayExist]) {
-//        //[self.delegate selectedFilm:self.seenItArray[indexPath.row]];
-//        NSLog(@"TRUE");
-//        [self.delegate selectedFilm:self.rottenTomatoesArray[indexPath.row]];
-//    } else {
-//        [self.delegate selectedFilm:self.rottenTomatoesArray[indexPath.row]];
-//
-//    }
-    //[self.delegate selectedFilm:self.rottenTomatoesArray[indexPath.row]];
-    
-//    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-//        NSDictionary *repoDict = _searchResults[indexPath.row];
-//        self.detailViewController.detailItem = repoDict;
-//    }
-    
-  //  [myArray addObject:self.rottenTomatoesArray[indexPath.row]];
-  //  NSLog(@"%@", [self.rottenTomatoesArray[indexPath.row] title]);
-  //  [self.rottenTomatoesArray removeObjectAtIndex:indexPath.row];
-    
-    //[[NSNotificationCenter defaultCenter] postNotificationName:@"reload" object:nil userInfo:nil];
-     //[[NSNotificationCenter defaultCenter] postNotificationName:@"DownloadedImage" object:nil userInfo:@{@"user": self}];
-    //[self.rottenTomatoesArray ]
-    //
     
 }
 
@@ -291,36 +353,6 @@
 //    
 //}
 
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return TRUE;
-}
-
-
-
-
-- (UITableViewCellEditingStyle)tableView:(UITableView *)aTableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Detemine if it's in editing mode
-//    if (self.editing)
-//    {
-//        return UITableViewCellEditingStyleDelete;
-//    }
-    
-    return UITableViewCellEditingStyleNone;
-}
-
-- (void)addSwipeViewTo:(SFFilmTableViewCell *)cell direction:(UISwipeGestureRecognizerDirection)direction
-{
-
-    [UIView animateWithDuration:.2 animations:^{
-        cell.frame = CGRectMake(direction == UISwipeGestureRecognizerDirectionRight ? cell.frame.size.width : -cell.frame.size.width, cell.frame.origin.y, cell.frame.size.width, cell.frame.size.height);
-    } completion:^(BOOL finished) {
-        
-    }];
-
-}
-
 #pragma mark - ScrollViewDelegate
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
@@ -343,12 +375,50 @@
     documentsPath = [documentsPath stringByAppendingPathComponent:arrayNameString];
     
     if (![[NSFileManager defaultManager] fileExistsAtPath:documentsPath]) {
-        NSLog(@"FALSE");
+        //NSLog(@"FALSE");
         return FALSE;
     } else {
-        NSLog(@"TRUE");
+        //NSLog(@"TRUE");
         return TRUE;
     }
 }
+
+-(void)addToSeenItList:(MCSwipeTableViewCell *)cell selectedArray:(NSMutableArray *)array
+{
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+    [self.seenItArray addObject:array[indexPath.row]];
+    [NSKeyedArchiver archiveRootObject:self.seenItArray toFile:_seenItPath];
+    [array removeObjectAtIndex:indexPath.row];
+    [self.delegate enableSegment:0];
+    [self.tableView reloadData];
+}
+
+-(void)addToWantedList:(MCSwipeTableViewCell *)cell selectedArray:(NSMutableArray *)array
+{
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+    [self.wantedArray addObject:array[indexPath.row]];
+    [NSKeyedArchiver archiveRootObject:self.wantedArray toFile:_wantedPath];
+    [array removeObjectAtIndex:indexPath.row];
+    [self.delegate enableSegment:2];
+    [self.tableView reloadData];
+}
+
+-(void)addToNoInterestList:(MCSwipeTableViewCell *)cell selectedArray:(NSMutableArray *)array
+{
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+    [self.noInterestArray addObject:array[indexPath.row]];
+    [NSKeyedArchiver archiveRootObject:self.noInterestArray toFile:_noInterestPath];
+    [array removeObjectAtIndex:indexPath.row];
+    
+    if (self.noInterestArray.count > 0) {
+        [self.delegate enableSegment:3];
+    } else {
+        [self.delegate disableSegment:3];
+    }
+    [self.delegate enableSegment:3];
+    [self.tableView reloadData];
+    //[self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+}
+
 
 @end

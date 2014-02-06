@@ -17,6 +17,6 @@
 @property (strong, nonatomic) IBOutlet UIImageView *filmThumbnailPoster;
 @property (strong, nonatomic) IBOutlet UILabel *filmMPAARating;
 
-- (void)setFilm:(FilmModel *)film;
+//- (void)setFilm:(FilmModel *)film;
 
 @end
