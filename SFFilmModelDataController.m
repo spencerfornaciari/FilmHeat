@@ -34,18 +34,23 @@
         self.seenItArray = [NSKeyedUnarchiver unarchiveObjectWithFile:self.seenItPath];
     } else {
         self.seenItArray = [NSMutableArray new];
+        NSLog(@"Created Seen");
+
     }
     
     if ([self doesArrayExist:WANT_TO_FILE]) {
         self.wantedArray = [NSKeyedUnarchiver unarchiveObjectWithFile:self.wantedPath];
     } else {
         self.wantedArray = [NSMutableArray new];
+        NSLog(@"Created Want");
+
     }
 
     if ([self doesArrayExist:DONT_WANT_IT_FILE]) {
         self.noInterestArray = [NSKeyedUnarchiver unarchiveObjectWithFile:self.noInterestPath];
     } else {
         self.noInterestArray = [NSMutableArray new];
+        NSLog(@"Created No Interest");
     }
     
     NSDateFormatter *apiDateFormatter = [NSDateFormatter new];
@@ -237,53 +242,53 @@
         [cell setSelectionStyle:UITableViewCellSelectionStyleGray];
         
         // Setting the background color of the cell.
-        cell.contentView.backgroundColor = [UIColor whiteColor];
+        //cell.contentView.backgroundColor = [UIColor whiteColor];
     }
+    
+    NSMutableArray *selectedArray = [NSMutableArray new];
     
     switch (_selectedSegment) {
         case 0: // Seen It
             [cell setFilm:[self.seenItArray objectAtIndex:indexPath.row]];
+            selectedArray = self.seenItArray;
             break;
         case 1: // All Movies
             [cell setFilm:[self.rottenTomatoesArray objectAtIndex:indexPath.row]];
+            selectedArray = self.rottenTomatoesArray;
             break;
         case 2: // Want To See It
             [cell setFilm:[self.wantedArray objectAtIndex:indexPath.row]];
+            selectedArray = self.wantedArray;
             break;
         case 3:
             [cell setFilm:[self.noInterestArray objectAtIndex:indexPath.row]];
+            selectedArray = self.noInterestArray;
             break;
     }
     
     // Configuring the views and colors.
     UIView *checkView = [self viewWithImageName:@"Checkbox"];
-    
     UIView *crossView = [self viewWithImageName:@"List"];
-    
     UIView *clockView = [self viewWithImageName:@"Sad_Face"];
-    
     UIView *listView = [self viewWithImageName:@"Movies"];
     
     // Setting the default inactive state color to the tableView background color.
     [cell setDefaultColor:self.tableView.backgroundView.backgroundColor];
     
-//    [cell.textLabel setText:@"Switch Mode Cell"];
-//    [cell.detailTextLabel setText:@"Swipe to switch"];
-    
     // Adding gestures per state basis.
     [cell setSwipeGestureWithView:checkView color:[UIColor redColor] mode:MCSwipeTableViewCellModeSwitch state:MCSwipeTableViewCellState1 completionBlock:^(MCSwipeTableViewCell *cell, MCSwipeTableViewCellState state, MCSwipeTableViewCellMode mode) {
         NSLog(@"Did swipe \"Checkbox\" cell");
-        [self addToSeenItList:cell];
+        [self addToSeenItList:cell selectedArray:selectedArray];
     }];
     
     [cell setSwipeGestureWithView:crossView color:[UIColor orangeColor] mode:MCSwipeTableViewCellModeSwitch state:MCSwipeTableViewCellState2 completionBlock:^(MCSwipeTableViewCell *cell, MCSwipeTableViewCellState state, MCSwipeTableViewCellMode mode) {
         NSLog(@"Did swipe \"List\" cell");
-        [self addToWantedList:cell];
+        [self addToWantedList:cell selectedArray:selectedArray];
     }];
     
     [cell setSwipeGestureWithView:clockView color:[UIColor grayColor] mode:MCSwipeTableViewCellModeSwitch state:MCSwipeTableViewCellState3 completionBlock:^(MCSwipeTableViewCell *cell, MCSwipeTableViewCellState state, MCSwipeTableViewCellMode mode) {
         NSLog(@"Did swipe \"Sad_Face\" cell");
-        [self addToNoInterestList:cell];
+        [self addToNoInterestList:cell selectedArray:selectedArray];
     }];
     
     [cell setSwipeGestureWithView:listView color:[UIColor blueColor] mode:MCSwipeTableViewCellModeSwitch state:MCSwipeTableViewCellState4 completionBlock:^(MCSwipeTableViewCell *cell, MCSwipeTableViewCellState state, MCSwipeTableViewCellMode mode) {
@@ -312,7 +317,8 @@
 {
     if (_selectedSegment == 0) {
         [self.delegate selectedFilm:self.seenItArray[indexPath.row]];
-    } else if (_selectedSegment == 1) {
+    } else if (_selectedSegment == 1)
+    {
         [self.delegate selectedFilm:self.rottenTomatoesArray[indexPath.row]];
     } else if (_selectedSegment == 2)
     {
@@ -399,40 +405,38 @@
     documentsPath = [documentsPath stringByAppendingPathComponent:arrayNameString];
     
     if (![[NSFileManager defaultManager] fileExistsAtPath:documentsPath]) {
-        NSLog(@"FALSE");
+        //NSLog(@"FALSE");
         return FALSE;
     } else {
-        NSLog(@"TRUE");
+        //NSLog(@"TRUE");
         return TRUE;
     }
 }
 
--(void)addToSeenItList:(MCSwipeTableViewCell *)cell
+-(void)addToSeenItList:(MCSwipeTableViewCell *)cell selectedArray:(NSMutableArray *)array
 {
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-    [self.seenItArray addObject:self.rottenTomatoesArray[indexPath.row]];
+    [self.seenItArray addObject:array[indexPath.row]];
     [NSKeyedArchiver archiveRootObject:self.seenItArray toFile:_seenItPath];
-    [self.rottenTomatoesArray removeObjectAtIndex:indexPath.row];
+    [array removeObjectAtIndex:indexPath.row];
     [self.tableView reloadData];
-    //[self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
 }
 
--(void)addToWantedList:(MCSwipeTableViewCell *)cell
+-(void)addToWantedList:(MCSwipeTableViewCell *)cell selectedArray:(NSMutableArray *)array
 {
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-    [self.wantedArray addObject:self.rottenTomatoesArray[indexPath.row]];
+    [self.wantedArray addObject:array[indexPath.row]];
     [NSKeyedArchiver archiveRootObject:self.wantedArray toFile:_wantedPath];
-    [self.rottenTomatoesArray removeObjectAtIndex:indexPath.row];
+    [array removeObjectAtIndex:indexPath.row];
     [self.tableView reloadData];
-    //[self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
 }
 
--(void)addToNoInterestList:(MCSwipeTableViewCell *)cell
+-(void)addToNoInterestList:(MCSwipeTableViewCell *)cell selectedArray:(NSMutableArray *)array
 {
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-    [self.noInterestArray addObject:self.rottenTomatoesArray[indexPath.row]];
+    [self.noInterestArray addObject:array[indexPath.row]];
     [NSKeyedArchiver archiveRootObject:self.noInterestArray toFile:_noInterestPath];
-    [self.rottenTomatoesArray removeObjectAtIndex:indexPath.row];
+    [array removeObjectAtIndex:indexPath.row];
     [self.tableView reloadData];
     //[self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
 }
