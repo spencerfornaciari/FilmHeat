@@ -57,8 +57,6 @@
     self.location = [[CLLocation alloc] init];
     NSLog(@"ZipCode: %@", self.zipCode);
     
-    [self.theaterController populateFilmData:@"98121"];
-    
     _strongArray = [NSMutableArray new];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -75,11 +73,11 @@
     _dontWantToSeeItPath = [filmHeatPath stringByAppendingPathComponent:DONT_WANT_IT_FILE];
 
     //Add items to other arrays for testing
-//    for (int i=0; i<5; i++) {
-//        [self.theaterController.wantedArray addObject:self.theaterController.rottenTomatoesArray[i]];
-//        [self.theaterController.seenItArray addObject:self.theaterController.rottenTomatoesArray[i]];
-//        [self.theaterController.noInterestArray addObject:self.theaterController.rottenTomatoesArray[i]];
-//    }
+    for (int i=0; i<5; i++) {
+        [self.theaterController.wantedArray addObject:self.theaterController.rottenTomatoesArray[i]];
+        [self.theaterController.seenItArray addObject:self.theaterController.rottenTomatoesArray[i]];
+        [self.theaterController.noInterestArray addObject:self.theaterController.rottenTomatoesArray[i]];
+    }
     
     
 }
@@ -120,10 +118,11 @@
     [geocoder reverseGeocodeLocation:self.location completionHandler:^(NSArray *placemarks, NSError *error) {
         self.placemark = placemarks[0];
         self.zipCode = [placemarks[0] postalCode];
-       // NSLog(@"%@", self.placemark.postalCode);
+        NSLog(@"%@", self.placemark.postalCode);
         [self.locationManager stopUpdatingLocation];
-        //[self.theaterController populateFilmData:self.zipCode];
-
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            [self.theaterController populateFilmData:self.zipCode];
+        }];
     }];
 }
 

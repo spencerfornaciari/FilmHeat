@@ -85,15 +85,26 @@
         
         //Set the film's MPAA rating
         
-        NSString *rating = [NSString stringWithFormat:@"%@", [dictionary valueForKeyPath:@"ratings.code"]];
+        NSArray *ratingArray = [dictionary valueForKeyPath:@"ratings"];
+        NSDictionary *ratingDictinary = ratingArray[0];
+        //NSLog(@"%@", ratingArray);
+      
+        NSString *rating = [ratingDictinary objectForKey:@"code"];
+        
+        //NSLog(@"%@: %@", film.title, rating);
+        
+      //  NSString *rating = ratingDictionary[@"code"];
+       // NSLog(@"Rating: %@", rating);
         
         if (rating) {
-            film.mpaaRating = [dictionary valueForKeyPath:@"ratings.code"];
+            film.mpaaRating = rating;
             //NSLog(@"TRUE");
-            //NSLog(@"%@", [dictionary valueForKeyPath:@"ratings.code"]);
+           NSLog(@"%@: %@", film.title, film.mpaaRating);
         } else {
             //NSLog(@"FALSE");
             film.mpaaRating = @"NR";
+            NSLog(@"%@: %@", film.title, film.mpaaRating);
+
         }
         
         BOOL doesExist = [self doesFilmExist:film];

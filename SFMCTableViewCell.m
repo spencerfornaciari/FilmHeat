@@ -32,6 +32,8 @@
     
     self.filmTitle.text = film.title;
     
+    self.filmMPAARating.text = film.mpaaRating;
+    
     if (!film.posterImage) {
         self.filmThumbnailPoster.image = [UIImage imageNamed:@"Movies.png"];
         //[film downloadPoster];
