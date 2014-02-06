@@ -16,6 +16,8 @@
 
 @required
 -(void)selectedFilm:(FilmModel *)film;
+-(void)enableSegment:(NSInteger)segment;
+-(void)disableSegment:(NSInteger)segment;
 
 @optional
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView;

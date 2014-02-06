@@ -49,7 +49,7 @@
     [self.theaterController populateFilmData:@"98121"];
     
     
-    _strongArray = [NSMutableArray arrayWithArray: self.theaterController.rottenTomatoesArray];
+    _strongArray = [NSMutableArray new];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(reloadTable:)
@@ -82,16 +82,22 @@
     if (self.theaterController.seenItArray.count == 0) {
         //self.segmentOutlet.enabled = FALSE;
         [self.segmentOutlet setEnabled:NO forSegmentAtIndex:0];
+    } else if (self.theaterController.seenItArray.count > 0) {
+        [self.segmentOutlet setEnabled:YES forSegmentAtIndex:0];
     }
 
     
     if (self.theaterController.wantedArray.count == 0) {
         //self.segmentOutlet.enabled = FALSE;
         [self.segmentOutlet setEnabled:NO forSegmentAtIndex:2];
+    } else {
+        [self.segmentOutlet setEnabled:YES forSegmentAtIndex:2];
     }
     
     if (self.theaterController.noInterestArray.count == 0) {
         [self.segmentOutlet setEnabled:NO forSegmentAtIndex:3];
+    } else {
+        [self.segmentOutlet setEnabled:YES forSegmentAtIndex:3];
     }
 
     
@@ -157,38 +163,66 @@
 #pragma mark - UIActionSheet Methods
 
 - (IBAction)buttonAction:(id)sender {
-    NSLog(@"Bar button");
-    
-    UIActionSheet *action = [[UIActionSheet alloc] initWithTitle:@"Test Sheet" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Test 1", @"Test 2", nil];
+    UIActionSheet *action = [[UIActionSheet alloc] initWithTitle:@"Test Sheet" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"A-Z", @"Z-A", @"Date (Newest)", @"Date (Oldest)", nil];
     [action showInView:self.view];
 }
 
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
+
+    if (self.segmentOutlet.selectedSegmentIndex == 0) {
+        self.theaterController.seenItArray = [self sortSelection:buttonIndex withArray:self.theaterController.seenItArray];
+        [self.theaterTableView reloadData];
+    } else if (self.segmentOutlet.selectedSegmentIndex == 1){
+        self.theaterController.rottenTomatoesArray = [self sortSelection:buttonIndex withArray:self.theaterController.rottenTomatoesArray];
+        [self.theaterTableView reloadData];
+    } else if (self.segmentOutlet.selectedSegmentIndex == 2){
+        self.theaterController.wantedArray = [self sortSelection:buttonIndex withArray:self.theaterController.wantedArray];
+        [self.theaterTableView reloadData];
+    } else if (self.segmentOutlet.selectedSegmentIndex == 3){
+        self.theaterController.noInterestArray = [self sortSelection:buttonIndex withArray:self.theaterController.noInterestArray];
+        [self.theaterTableView reloadData];
+    }
+}
+
+-(NSMutableArray *)sortSelection:(NSInteger)buttonIndex withArray:(NSMutableArray *)arrayToSort
+{
     switch (buttonIndex)
     {
         case 0:
         {
-            self.theaterController.rottenTomatoesArray = _strongArray;
+            NSLog(@"A-Z");
             NSSortDescriptor *nameSorter = [NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES];
-            self.theaterController.rottenTomatoesArray = [NSMutableArray arrayWithArray:[self.theaterController.rottenTomatoesArray sortedArrayUsingDescriptors:@[nameSorter]]];
-            
-            [self.theaterTableView reloadData];
+            arrayToSort = [NSMutableArray arrayWithArray:[arrayToSort sortedArrayUsingDescriptors:@[nameSorter]]];
         }
             break;
             
         case 1:
         {
-            self.theaterController.rottenTomatoesArray = _strongArray;
-            
+            NSLog(@"Z-A");
             NSSortDescriptor *nameSorter = [NSSortDescriptor sortDescriptorWithKey:@"title" ascending:NO];
-            self.theaterController.rottenTomatoesArray = [NSMutableArray arrayWithArray:[self.theaterController.rottenTomatoesArray sortedArrayUsingDescriptors:@[nameSorter]]];
-            
-            [self.theaterTableView reloadData];
+            arrayToSort = [NSMutableArray arrayWithArray:[arrayToSort sortedArrayUsingDescriptors:@[nameSorter]]];
         }
             break;
-
+            
+        case 2:
+        {
+            NSLog(@"Date");
+            NSSortDescriptor *nameSorter = [NSSortDescriptor sortDescriptorWithKey:@"releaseDate" ascending:NO];
+            arrayToSort = [NSMutableArray arrayWithArray:[arrayToSort sortedArrayUsingDescriptors:@[nameSorter]]];
+        }
+            break;
+            
+        case 3:
+        {
+            NSLog(@"Date");
+            NSSortDescriptor *nameSorter = [NSSortDescriptor sortDescriptorWithKey:@"releaseDate" ascending:YES];
+            arrayToSort = [NSMutableArray arrayWithArray:[arrayToSort sortedArrayUsingDescriptors:@[nameSorter]]];
+        }
+            break;
     }
+    
+    return arrayToSort;
 }
 
 #pragma mark - Dynamically search text as user enters it
@@ -196,6 +230,16 @@
 - (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar
 {
     NSLog(@"Search Bar Should Begin Editing");
+    if (self.segmentOutlet.selectedSegmentIndex == 0) {
+        _strongArray = [self.theaterController.seenItArray copy];
+    } else if (self.segmentOutlet.selectedSegmentIndex == 1){
+        _strongArray = [self.theaterController.rottenTomatoesArray copy];
+    } else if (self.segmentOutlet.selectedSegmentIndex == 2){
+        _strongArray = [self.theaterController.wantedArray copy];
+    } else if (self.segmentOutlet.selectedSegmentIndex == 3){
+        _strongArray = [self.theaterController.noInterestArray copy];
+    }
+    
     [self.theaterTableView setUserInteractionEnabled:NO];
     
     return YES;
@@ -203,7 +247,6 @@
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
-    searchBar.text = @"";
     [searchBar resignFirstResponder];
 }
 
@@ -215,35 +258,53 @@
     return YES;
 }
 
-
 //Updates as user enters text
 -(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
+    
     if (self.segmentOutlet.selectedSegmentIndex == 0) {
-    //    <#statements#>
+        self.theaterController.seenItArray = [self searchWithArray:self.theaterController.seenItArray textToSearch:searchText];
+        [self.theaterTableView reloadData];
+    } else if (self.segmentOutlet.selectedSegmentIndex == 1){
+        self.theaterController.rottenTomatoesArray = [self searchWithArray:self.theaterController.rottenTomatoesArray textToSearch:searchText];
+        [self.theaterTableView reloadData];
+    } else if (self.segmentOutlet.selectedSegmentIndex == 2){
+        self.theaterController.wantedArray = [self searchWithArray:self.theaterController.wantedArray textToSearch:searchText];
+        [self.theaterTableView reloadData];
+    } else if (self.segmentOutlet.selectedSegmentIndex == 3){
+        self.theaterController.noInterestArray = [self searchWithArray:self.theaterController.noInterestArray textToSearch:searchText];
+        [self.theaterTableView reloadData];
     }
     
-    NSMutableArray *searchArray = [NSMutableArray new];
-    self.theaterController.rottenTomatoesArray = _strongArray;
+}
+
+-(NSMutableArray *)searchWithArray:(NSMutableArray *)arrayToSearch textToSearch:(NSString *)searchText
+{
+//    NSMutableArray *strongArray
+    NSMutableArray *finalResults = [NSMutableArray new];
+    //_strongArray = [arrayToSearch copy];
     
     NSLog(@"%@", searchText);
     
-    for (FilmModel *model in self.theaterController.rottenTomatoesArray)
+    for (FilmModel *model in arrayToSearch)
     {
         NSString *string = [model.title uppercaseString];
         if ([string hasPrefix:[searchText uppercaseString]])
         {
-            [searchArray addObject:model];
+            [finalResults addObject:model];
         }
     }
     
+    NSLog(@"%d", finalResults.count);
+    
     if (searchText.length == 0) {
-        self.theaterController.rottenTomatoesArray = _strongArray;
+        arrayToSearch = _strongArray;
     } else {
-        self.theaterController.rottenTomatoesArray = searchArray;
+        arrayToSearch = finalResults;
     }
     
-    [self.theaterTableView reloadData];
+    return arrayToSearch;
+
 }
 
 - (void)searchArray:(NSMutableArray *)searchedArray
@@ -329,6 +390,16 @@
     }
 }
 
+-(void)enableSegment:(NSInteger)segment
+{
+    [self.segmentOutlet setEnabled:YES forSegmentAtIndex:segment];
+}
+
+-(void)disableSegment:(NSInteger)segment
+{
+    [self.segmentOutlet setEnabled:NO forSegmentAtIndex:segment];
+}
+
 -(void)selectedFilm:(FilmModel *)film
 {
     if (self.segmentOutlet.selectedSegmentIndex == 0) {
@@ -343,6 +414,7 @@
 {
     //NSLog(@"Did Scroll");
     [_segmentOutlet setUserInteractionEnabled:NO];
+    //self.segmentOutlet.selectedSegmentIndex = 1;
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView

@@ -353,36 +353,6 @@
 //    
 //}
 
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return TRUE;
-}
-
-
-
-
-- (UITableViewCellEditingStyle)tableView:(UITableView *)aTableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Detemine if it's in editing mode
-//    if (self.editing)
-//    {
-//        return UITableViewCellEditingStyleDelete;
-//    }
-    
-    return UITableViewCellEditingStyleNone;
-}
-
-//- (void)addSwipeViewTo:(SFFilmTableViewCell *)cell direction:(UISwipeGestureRecognizerDirection)direction
-//{
-//
-//    [UIView animateWithDuration:.2 animations:^{
-//        cell.frame = CGRectMake(direction == UISwipeGestureRecognizerDirectionRight ? cell.frame.size.width : -cell.frame.size.width, cell.frame.origin.y, cell.frame.size.width, cell.frame.size.height);
-//    } completion:^(BOOL finished) {
-//        
-//    }];
-//
-//}
-
 #pragma mark - ScrollViewDelegate
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
@@ -419,6 +389,7 @@
     [self.seenItArray addObject:array[indexPath.row]];
     [NSKeyedArchiver archiveRootObject:self.seenItArray toFile:_seenItPath];
     [array removeObjectAtIndex:indexPath.row];
+    [self.delegate enableSegment:0];
     [self.tableView reloadData];
 }
 
@@ -428,6 +399,7 @@
     [self.wantedArray addObject:array[indexPath.row]];
     [NSKeyedArchiver archiveRootObject:self.wantedArray toFile:_wantedPath];
     [array removeObjectAtIndex:indexPath.row];
+    [self.delegate enableSegment:2];
     [self.tableView reloadData];
 }
 
@@ -437,6 +409,13 @@
     [self.noInterestArray addObject:array[indexPath.row]];
     [NSKeyedArchiver archiveRootObject:self.noInterestArray toFile:_noInterestPath];
     [array removeObjectAtIndex:indexPath.row];
+    
+    if (self.noInterestArray.count > 0) {
+        [self.delegate enableSegment:3];
+    } else {
+        [self.delegate disableSegment:3];
+    }
+    [self.delegate enableSegment:3];
     [self.tableView reloadData];
     //[self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
 }

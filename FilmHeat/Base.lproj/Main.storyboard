@@ -318,7 +318,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="AOh-Df-MK9"/>
-                                    <barButtonItem title="Item" id="UD0-lw-rOi">
+                                    <barButtonItem title="Sort" id="UD0-lw-rOi">
                                         <connections>
                                             <action selector="buttonAction:" destination="6bk-xU-MH5" id="Bzl-sY-zfQ"/>
                                         </connections>
