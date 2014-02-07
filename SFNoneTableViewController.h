@@ -8,9 +8,18 @@
 
 #import <UIKit/UIKit.h>
 #import "FilmModel.h"
+#import "SFMCTableViewCell.h"
 #import "UIColor+SFFilmHeatColors.h"
 
+@protocol SFNoneTableViewControllerDelegate <NSObject>
+
+-(void)passFilmFromNone:(FilmModel *)film forIndex:(NSInteger)index;
+
+@end
+
 @interface SFNoneTableViewController : UITableViewController
+
+@property (nonatomic, unsafe_unretained) id<SFNoneTableViewControllerDelegate> delegate;
 
 @property (nonatomic, strong) NSMutableArray *noneArray;
 

@@ -24,6 +24,9 @@
 
 @property (nonatomic, strong) UIViewController *currentViewController;
 
+@property (nonatomic) NSString *seenItPath, *wantToSeeItPath, *dontWantToSeeItPath;
+
+
 @end
 
 @implementation SFBaseViewController
@@ -43,6 +46,13 @@
     
     self.segmentOutlet.selectedSegmentIndex = 1;
     
+    NSURL *documentsURL = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+    
+    NSString *filmHeatPath = [documentsURL path];
+    _seenItPath = [filmHeatPath stringByAppendingPathComponent:SEEN_IT_FILE];
+    _wantToSeeItPath = [filmHeatPath stringByAppendingPathComponent:WANT_TO_FILE];
+    _dontWantToSeeItPath = [filmHeatPath stringByAppendingPathComponent:DONT_WANT_IT_FILE];
+    
     
     self.seenController = [self.storyboard instantiateViewControllerWithIdentifier:@"SeenView"];
     self.theaterController = [self.storyboard instantiateViewControllerWithIdentifier:@"TheaterView"];
@@ -51,6 +61,9 @@
 
     
     self.theaterController.delegate = self;
+    self.seenController.delegate = self;
+    self.wantedController.delegate = self;
+    self.noneController.delegate = self;
     
     self.currentViewController = self.theaterController;
 
@@ -136,6 +149,9 @@
         }
         
         [self.seenController.seenArray addObject:film];
+        [NSKeyedArchiver archiveRootObject:self.seenController.seenArray toFile:_seenItPath];
+
+        
     } else if (index == 2) {
         if (!self.wantedController.wantedArray)
         {
@@ -143,6 +159,9 @@
         }
     
         [self.wantedController.wantedArray addObject:film];
+        
+        [NSKeyedArchiver archiveRootObject:self.wantedController.wantedArray toFile:_wantToSeeItPath];
+
     } else if (index == 3) {
         if (!self.noneController.noneArray)
         {
@@ -150,6 +169,9 @@
         }
         
         [self.noneController.noneArray addObject:film];
+        
+        [NSKeyedArchiver archiveRootObject:self.noneController.noneArray toFile:_dontWantToSeeItPath];
+
     }
 }
 
@@ -169,6 +191,8 @@
         }
         
         [self.wantedController.wantedArray addObject:film];
+        [NSKeyedArchiver archiveRootObject:self.wantedController.wantedArray toFile:_wantToSeeItPath];
+
     } else if (index == 3) {
         if (!self.noneController.noneArray)
         {
@@ -176,7 +200,130 @@
         }
         
         [self.noneController.noneArray addObject:film];
+        [NSKeyedArchiver archiveRootObject:self.noneController.noneArray toFile:_dontWantToSeeItPath];
+
     }
 }
+
+-(void)passFilmFromWanted:(FilmModel *)film forIndex:(NSInteger)index
+{
+    if (index == 0) {
+        if (!self.seenController.seenArray)
+        {
+            self.seenController.seenArray = [NSMutableArray new];
+        }
+        
+        [self.seenController.seenArray addObject:film];
+        [NSKeyedArchiver archiveRootObject:self.seenController.seenArray toFile:_seenItPath];
+
+    } else if (index == 1) {
+        if (!self.theaterController.theaterArray)
+        {
+            self.theaterController.theaterArray = [NSMutableArray new];
+        }
+        
+        [self.theaterController.theaterArray addObject:film];
+    } else if (index == 3) {
+        if (!self.noneController.noneArray)
+        {
+            self.noneController.noneArray = [NSMutableArray new];
+        }
+        
+        [self.noneController.noneArray addObject:film];
+        [NSKeyedArchiver archiveRootObject:self.noneController.noneArray toFile:_dontWantToSeeItPath];
+
+    }
+}
+
+-(void)passFilmFromNone:(FilmModel *)film forIndex:(NSInteger)index
+{
+    if (index == 0) {
+        if (!self.seenController.seenArray)
+        {
+            self.seenController.seenArray = [NSMutableArray new];
+        }
+        
+        [self.seenController.seenArray addObject:film];
+        [NSKeyedArchiver archiveRootObject:self.seenController.seenArray toFile:_seenItPath];
+        
+    } else if (index == 1) {
+        if (!self.theaterController.theaterArray)
+        {
+            self.theaterController.theaterArray = [NSMutableArray new];
+        }
+        
+        [self.theaterController.theaterArray addObject:film];
+    } else if (index == 2) {
+        if (!self.wantedController.wantedArray)
+        {
+            self.wantedController.wantedArray = [NSMutableArray new];
+        }
+        
+        [self.wantedController.wantedArray addObject:film];
+        [NSKeyedArchiver archiveRootObject:self.wantedController.wantedArray toFile:_wantToSeeItPath];
+    }
+}
+
+#pragma mark - Sort
+
+- (IBAction)buttonAction:(id)sender {
+    UIActionSheet *action = [[UIActionSheet alloc] initWithTitle:@"Test Sheet" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"A-Z", @"Z-A", @"Date (Newest)", @"Date (Oldest)", nil];
+    [action showInView:self.view];
+}
+
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    
+    if (self.segmentOutlet.selectedSegmentIndex == 0) {
+        self.seenController.seenArray = [self sortSelection:buttonIndex withArray:self.seenController.seenArray];
+        [self.seenController.tableView reloadData];
+    } else if (self.segmentOutlet.selectedSegmentIndex == 1){
+        self.theaterController.theaterArray = [self sortSelection:buttonIndex withArray:self.theaterController.theaterArray];
+        [self.theaterController.tableView reloadData];
+    } else if (self.segmentOutlet.selectedSegmentIndex == 2){
+        self.wantedController.wantedArray = [self sortSelection:buttonIndex withArray:self.wantedController.wantedArray];
+        [self.wantedController.tableView reloadData];
+    } else if (self.segmentOutlet.selectedSegmentIndex == 3){
+        self.noneController.noneArray = [self sortSelection:buttonIndex withArray:self.noneController.noneArray];
+        [self.noneController.tableView reloadData];
+    }
+}
+
+-(NSMutableArray *)sortSelection:(NSInteger)buttonIndex withArray:(NSMutableArray *)arrayToSort
+{
+    switch (buttonIndex)
+    {
+        case 0:
+        {
+            NSSortDescriptor *nameSorter = [NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES];
+            arrayToSort = [NSMutableArray arrayWithArray:[arrayToSort sortedArrayUsingDescriptors:@[nameSorter]]];
+        }
+            break;
+            
+        case 1:
+        {
+            NSSortDescriptor *nameSorter = [NSSortDescriptor sortDescriptorWithKey:@"title" ascending:NO];
+            arrayToSort = [NSMutableArray arrayWithArray:[arrayToSort sortedArrayUsingDescriptors:@[nameSorter]]];
+        }
+            break;
+            
+        case 2:
+        {
+            NSSortDescriptor *nameSorter = [NSSortDescriptor sortDescriptorWithKey:@"releaseDate" ascending:NO];
+            arrayToSort = [NSMutableArray arrayWithArray:[arrayToSort sortedArrayUsingDescriptors:@[nameSorter]]];
+        }
+            break;
+            
+        case 3:
+        {
+            NSSortDescriptor *nameSorter = [NSSortDescriptor sortDescriptorWithKey:@"releaseDate" ascending:YES];
+            arrayToSort = [NSMutableArray arrayWithArray:[arrayToSort sortedArrayUsingDescriptors:@[nameSorter]]];
+        }
+            break;
+    }
+    
+    return arrayToSort;
+}
+
 
 @end

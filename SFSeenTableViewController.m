@@ -10,6 +10,7 @@
 
 @interface SFSeenTableViewController ()
 
+@property (nonatomic) NSString *seenItPath;
 
 @end
 
@@ -29,6 +30,16 @@
     [super viewDidLoad];
     
     self.view.backgroundColor = [UIColor redColor];
+    
+    NSURL *documentsURL = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+    NSString *filmHeatPath = [documentsURL path];
+    _seenItPath = [filmHeatPath stringByAppendingPathComponent:SEEN_IT_FILE];
+    
+    if ([self doesArrayExist:SEEN_IT_FILE]) {
+        self.seenArray = [NSKeyedUnarchiver unarchiveObjectWithFile:_seenItPath];
+    } else {
+        self.seenArray= [NSMutableArray new];        
+    }
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -39,12 +50,9 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    [self.tableView reloadData];
-}
+    [NSKeyedArchiver archiveRootObject:self.seenArray toFile:_seenItPath];
 
--(void)viewDidAppear:(BOOL)animated
-{
-       NSLog(@"%d", self.seenArray.count);
+    [self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -104,7 +112,7 @@
     [cell setSwipeGestureWithView:checkView color:[UIColor seenItColor] mode:MCSwipeTableViewCellModeSwitch state:MCSwipeTableViewCellState1 completionBlock:^(MCSwipeTableViewCell *cell, MCSwipeTableViewCellState state, MCSwipeTableViewCellMode mode) {
         NSLog(@"Did swipe \"Checkbox\" cell");
         NSLog(@"%d", indexPath.row);
-        [self deleteCell:cell forIndex:0];
+        //[self deleteCell:cell forIndex:0];
         
         // [self addToSeenItList:cell selectedArray:selectedArray];
     }];
@@ -112,6 +120,7 @@
     [cell setSwipeGestureWithView:crossView color:[UIColor wantedColor] mode:MCSwipeTableViewCellModeSwitch state:MCSwipeTableViewCellState2 completionBlock:^(MCSwipeTableViewCell *cell, MCSwipeTableViewCellState state, MCSwipeTableViewCellMode mode) {
         NSLog(@"Did swipe \"List\" cell");
         [self deleteCell:cell forIndex:2];
+        
         //        [self.delegate passFilmFromTheater:self.theaterArray[indexPath.row] forIndex:2];
         //        [self.theaterArray removeObjectAtIndex:indexPath.row];
         //        [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
@@ -140,12 +149,27 @@
 
 -(void)deleteCell:(UITableViewCell *)cell forIndex:(NSInteger)index
 {
-    
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-    
     [self.delegate passFilmFromSeen:self.seenArray[indexPath.row] forIndex:index];
     [self.seenArray removeObjectAtIndex:indexPath.row];
     [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+
+}
+
+-(BOOL)doesArrayExist:(NSString *)arrayNameString
+{
+    NSURL *documentsURL = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+    
+    NSString *documentsPath = [documentsURL path];
+    documentsPath = [documentsPath stringByAppendingPathComponent:arrayNameString];
+    
+    if (![[NSFileManager defaultManager] fileExistsAtPath:documentsPath]) {
+        NSLog(@"FALSE");
+        return FALSE;
+    } else {
+        //NSLog(@"TRUE");
+        return TRUE;
+    }
 }
 
 @end

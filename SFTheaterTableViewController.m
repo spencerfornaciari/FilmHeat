@@ -144,7 +144,6 @@
 {
    
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-    
     [self.delegate passFilmFromTheater:self.theaterArray[indexPath.row] forIndex:index];
     [self.theaterArray removeObjectAtIndex:indexPath.row];
     [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
