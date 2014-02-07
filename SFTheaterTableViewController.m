@@ -34,9 +34,6 @@
 {
     [super viewDidLoad];
 
-    
-    self.view.backgroundColor = [UIColor blueColor];
-    
 //    self.theaterArray = [NSMutableArray new];
 //    self.controller = [SFFilmModelDataController new];
     

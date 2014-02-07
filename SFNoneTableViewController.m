@@ -30,9 +30,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    self.view.backgroundColor = [UIColor grayColor];
-    
+        
     NSURL *documentsURL = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
     NSString *filmHeatPath = [documentsURL path];
     _nonePath = [filmHeatPath stringByAppendingPathComponent:DONT_WANT_IT_FILE];
