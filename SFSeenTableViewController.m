@@ -7,10 +7,12 @@
 //
 
 #import "SFSeenTableViewController.h"
+#import "SFMovieDetailViewController.h"
 
 @interface SFSeenTableViewController ()
 
 @property (nonatomic) NSString *seenItPath;
+@property (nonatomic) FilmModel *currentFilm;
 
 @end
 
@@ -169,6 +171,21 @@
     } else {
         //NSLog(@"TRUE");
         return TRUE;
+    }
+}
+
+#pragma mark - Segue Navigation
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    self.currentFilm = self.seenArray[indexPath.row];
+    [self performSegueWithIdentifier:@"detailModal" sender:nil];
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.destinationViewController isKindOfClass:[SFMovieDetailViewController class]]) {
+        [(SFMovieDetailViewController *)segue.destinationViewController setFilm:self.currentFilm];
     }
 }
 

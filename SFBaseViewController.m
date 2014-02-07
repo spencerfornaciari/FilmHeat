@@ -7,9 +7,14 @@
 //
 
 #import "SFBaseViewController.h"
+#import "SFFilmModelDataController.h"
 
 
 @interface SFBaseViewController ()
+
+@property (strong, nonatomic) CLLocationManager *locationManager;
+@property (strong, nonatomic) CLLocation *location;
+@property (strong, nonatomic) NSString *zipCode;
 
 @property (nonatomic, strong) SFSeenTableViewController *seenController;
 @property (nonatomic, strong) SFTheaterTableViewController *theaterController;
@@ -17,6 +22,7 @@
 @property (nonatomic, strong) SFNoneTableViewController *noneController;
 @property (strong, nonatomic) NSMutableArray *strongArray;
 
+@property (nonatomic, strong) SFFilmModelDataController *controller;
 
 @property (nonatomic, strong) NSArray *childVCArray;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentOutlet;
@@ -49,6 +55,17 @@
 {
     [super viewDidLoad];
     
+    //Declare CLLocation Manager
+    self.locationManager = [[CLLocationManager alloc] init];
+    self.locationManager.delegate = self;
+    [self.locationManager setDistanceFilter:kCLDistanceFilterNone];
+    [self.locationManager setDesiredAccuracy:kCLLocationAccuracyKilometer];
+    [self.locationManager startUpdatingLocation];
+    
+    self.location = [[CLLocation alloc] init];
+    
+    _strongArray = [NSMutableArray new];
+    
     self.segmentOutlet.selectedSegmentIndex = 1;
     
     NSURL *documentsURL = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
@@ -74,6 +91,11 @@
     self.childVCArray = @[self.seenController, self.theaterController, self.wantedController, self.noneController];
     
     [self setupFirstView];
+    
+    self.theaterController.theaterArray = [NSMutableArray new];
+    self.controller = [SFFilmModelDataController new];
+
+
 	// Do any additional setup after loading the view.
 }
 
@@ -85,6 +107,8 @@
     [self.currentViewController didMoveToParentViewController:self];
     
 }
+
+
 - (void)clearContainerView
 {
     
@@ -117,6 +141,31 @@
 
     NSLog(@"%d", self.seenController.seenArray.count);
 }
+
+#pragma mark - Using GPS to look up user location
+
+-(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
+{
+    self.location = locations[0];
+    
+    CLGeocoder *geocoder = [CLGeocoder new];
+    
+    [geocoder reverseGeocodeLocation:self.location completionHandler:^(NSArray *placemarks, NSError *error) {
+        self.zipCode = [placemarks[0] postalCode];
+        [[NSUserDefaults standardUserDefaults] setObject:self.zipCode forKey:@"defaultZipCode"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        [self.locationManager stopUpdatingLocation];
+        [self.controller populateFilmData:self.zipCode];
+        
+        NSLog(@"%@", self.zipCode);
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            NSLog(@"%@", self.controller.rottenTomatoesArray);
+            self.theaterController.theaterArray = self.controller.rottenTomatoesArray;
+            [self.theaterController.tableView reloadData];
+        }];
+    }];
+}
+
 
 - (void)didReceiveMemoryWarning
 {

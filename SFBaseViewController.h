@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MapKit/MapKit.h>
 #import "SFTheaterTableViewController.h"
 #import "SFSeenTableViewController.h"
 #import "SFWantedTableViewController.h"
 #import "SFNoneTableViewController.h"
 
-@interface SFBaseViewController : UIViewController <SFTheaterTableViewControllerDelegate, SFSeenTableViewControllerDelegate, SFWantedTableViewControllerDelegate, SFNoneTableViewControllerDelegate, UIActionSheetDelegate, UISearchBarDelegate>
+@interface SFBaseViewController : UIViewController <SFTheaterTableViewControllerDelegate, SFSeenTableViewControllerDelegate, SFWantedTableViewControllerDelegate, SFNoneTableViewControllerDelegate, UIActionSheetDelegate, UISearchBarDelegate, CLLocationManagerDelegate>
 
 @end

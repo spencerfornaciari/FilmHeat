@@ -8,11 +8,14 @@
 
 #import "SFTheaterTableViewController.h"
 #import "SFFilmModelDataController.h"
+#import "SFMovieDetailViewController.h"
 #import "SFMCTableViewCell.h"
 
 @interface SFTheaterTableViewController ()
 
 @property (nonatomic, strong) SFFilmModelDataController *controller;
+
+@property (nonatomic) FilmModel *currentFilm;
 
 @end
 
@@ -34,13 +37,13 @@
     
     self.view.backgroundColor = [UIColor blueColor];
     
-    self.theaterArray = [NSMutableArray new];
-    self.controller = [SFFilmModelDataController new];
+//    self.theaterArray = [NSMutableArray new];
+//    self.controller = [SFFilmModelDataController new];
     
-    [self.controller populateFilmData:@"98121"];
-    
-    self.theaterArray = self.controller.rottenTomatoesArray;
-    
+//    [self.controller populateFilmData:@"98121"];
+//    
+//    self.theaterArray = self.controller.rottenTomatoesArray;
+//    
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(reloadTable:)
                                                  name:@"reload"
@@ -162,5 +165,21 @@
     
     [self.tableView reloadRowsAtIndexPaths:@[row] withRowAnimation:UITableViewRowAnimationNone];
 }
+
+#pragma mark - Segue Navigation
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    self.currentFilm = self.theaterArray[indexPath.row];
+    [self performSegueWithIdentifier:@"detailModal" sender:nil];
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.destinationViewController isKindOfClass:[SFMovieDetailViewController class]]) {
+        [(SFMovieDetailViewController *)segue.destinationViewController setFilm:self.currentFilm];
+    }
+}
+
 
 @end
