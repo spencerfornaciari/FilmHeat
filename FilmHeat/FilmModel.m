@@ -31,6 +31,7 @@
         self.releaseDate = [decoder decodeObjectForKey:@"releaseDate"];
         self.synopsis = [decoder decodeObjectForKey:@"synopsis"];
         self.myRating = [decoder decodeObjectForKey:@"myRating"];
+        self.posterImagePath = [decoder decodeObjectForKey:@"posterImagePath"];
         
         return self;
     }
@@ -48,6 +49,7 @@
     [encoder encodeObject:self.releaseDate forKey:@"releaseDate"];
     [encoder encodeObject:self.synopsis forKey:@"synopsis"];
     [encoder encodeObject:self.myRating forKey:@"myRating"];
+    [encoder encodeObject:self.posterImagePath forKey:@"posterImagePath"];
 }
 
 -(void)downloadPoster
@@ -56,13 +58,14 @@
     
     [_downloadQueue addOperationWithBlock:^{
         NSURL *posterURL = [NSURL URLWithString:self.thumbnailPoster];
-        NSLog(@"%@", posterURL);
+        //NSLog(@"%@", posterURL);
         NSData *posterData = [NSData dataWithContentsOfURL:posterURL];
         self.posterImage = [UIImage imageWithData:posterData];
         
         posterData = UIImageJPEGRepresentation(self.posterImage, 0.5);
         
          NSString *posterLocation = [NSString stringWithFormat:@"%@/%@.jpg", [self documentsDirectoryPath], self.title];
+        self.posterImagePath = posterLocation;
          NSLog(@"%@", posterLocation);
          
          [posterData writeToFile:posterLocation atomically:YES];

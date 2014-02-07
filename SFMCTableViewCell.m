@@ -34,15 +34,26 @@
     
     self.filmMPAARating.text = film.mpaaRating;
     
-    UIImage *image = [UIImage imageWithContentsOfFile:[NSData dataWithContentsOfFile:film.posterImagePath]];
+    //UIImage *image = [UIImage imageWithContentsOfFile:[NSData dataWithContentsOfFile:film.posterImagePath]];
+//    
+//    if (image) {
+////        self.filmThumbnailPoster.image = image;
+//        NSLog(@"%@: TRUE", film.title);
+//    }
     
-    if (!image) {
-        self.filmThumbnailPoster.image = [UIImage imageNamed:@"Movies.png"];
-        //[film downloadPoster];
-       // NSLog(@"%@", film.thumbnailPoster);
-    } else {
-        self.filmThumbnailPoster.image = image;
-    }
+//    else {
+//        if (!film.isDownloading) {
+//            [film downloadPoster];
+//        }
+//    }
+    
+//    if (!image) {
+//        self.filmThumbnailPoster.image = [UIImage imageNamed:@"Movies.png"];
+//        //[film downloadPoster];
+//       // NSLog(@"%@", film.thumbnailPoster);
+//    } else {
+//        self.filmThumbnailPoster.image = image;
+//    }
 }
 
 

@@ -14,6 +14,7 @@
 @interface SFTheaterTableViewController ()
 
 @property (nonatomic, strong) SFFilmModelDataController *controller;
+@property (nonatomic, strong) NSOperationQueue *downloadQueue;
 
 @property (nonatomic) FilmModel *currentFilm;
 
@@ -38,6 +39,7 @@
 //    self.controller = [SFFilmModelDataController new];
     
 //    [self.controller populateFilmData:@"98121"];
+    self.downloadQueue = [NSOperationQueue new];
 //    
 //    self.theaterArray = self.controller.rottenTomatoesArray;
 //    
@@ -78,6 +80,10 @@
     SFMCTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     // Configure the cell...
     
+    cell.imageView.image = nil;
+    
+    FilmModel *film = self.theaterArray[indexPath.row];
+    
     if (!cell) {
         cell = [[SFMCTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"Cell"];
         
@@ -96,6 +102,15 @@
     selectedArray = self.theaterArray;
 
     [cell setFilm:[selectedArray objectAtIndex:indexPath.row]];
+    
+    [self checkForFilmImage:film];
+    
+    if (!film.posterImage && !film.isDownloading) {
+        film.isDownloading = TRUE;
+        [self downloadPosterAtIndex:indexPath.row];
+    } else {
+        cell.imageView.image = film.posterImage;
+    }
     
     // Configuring the views and colors.
     UIView *checkView = [self viewWithImageName:@"Checkbox"];
@@ -154,14 +169,6 @@
     [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
 }
 
-- (void)reloadTable:(NSNotification *)note
-{
-    FilmModel *model = [note.userInfo objectForKey:@"film"];
-    NSInteger modelRow = [self.theaterArray indexOfObject:model];
-    NSIndexPath *row = [NSIndexPath indexPathForRow:modelRow inSection:0];
-    
-    [self.tableView reloadRowsAtIndexPaths:@[row] withRowAnimation:UITableViewRowAnimationNone];
-}
 
 #pragma mark - Segue Navigation
 
@@ -178,5 +185,78 @@
     }
 }
 
+- (void)reloadTable:(NSNotification *)note
+{
+    FilmModel *model = [note.userInfo objectForKey:@"film"];
+    NSInteger modelRow = [self.theaterArray indexOfObject:model];
+    NSIndexPath *row = [NSIndexPath indexPathForRow:modelRow inSection:0];
+    
+    [self.tableView reloadRowsAtIndexPaths:@[row] withRowAnimation:UITableViewRowAnimationNone];
+}
+
+-(void)downloadPosterAtIndex:(NSInteger)index
+{
+    FilmModel *film = self.theaterArray[index];
+    NSURL *posterURL = [NSURL URLWithString:film.thumbnailPoster];
+    
+    [_downloadQueue addOperationWithBlock:^{
+        
+        NSError *error;
+        NSData *posterData = [NSData dataWithContentsOfURL:posterURL options:NSDataReadingMappedIfSafe error:&error];
+        
+        
+        if (error) {
+            film.isDownloading = NO;
+        } else {
+            //film.posterImagePath = posterLocation;
+            
+        
+            film.posterImage = [UIImage imageWithData:posterData];
+            posterData = UIImageJPEGRepresentation(film.posterImage, 0.5);
+            
+            //NSString *posterLocation = [NSString stringWithFormat:@"%@/%@.jpg", [self documentsDirectoryPath], [film.title stringByReplacingOccurrencesOfString:@":" withString:@" "]];
+            //film.posterImagePath  = posterLocation;
+                //film.posterImagePath = [NSString stringWithString:posterLocation];
+            
+            //[codeFellowJPGData writeToFile:codeFellowJPGPath atomically:YES];
+
+            NSLog(@"%@", film.posterImagePath);
+            
+            
+        }
+        
+        NSIndexPath *indexPath = [NSIndexPath indexPathForItem:index inSection:0];
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+            
+        }];
+        
+        
+        
+       //NSLog(@"%@", posterLocation);
+        
+//        film.posterImagePath = posterLocation;
+        //NSLog(@"%@", film.posterImagePath);
+        
+//        [posterData writeToFile:posterLocation atomically:YES];
+
+    }];
+    
+}
+
+- (NSString *)documentsDirectoryPath
+{
+    NSURL *documentsURL = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+    return [documentsURL path];
+}
+
+- (void)checkForFilmImage:(FilmModel *)film
+{
+    UIImage *image = [UIImage imageWithContentsOfFile:[NSData dataWithContentsOfFile:film.posterImagePath]];
+    
+    if (image) {
+        film.posterImage = image;
+    }
+}
 
 @end

@@ -80,6 +80,10 @@
     SFMCTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     // Configure the cell...
     
+    cell.imageView.image = nil;
+    
+    FilmModel *film = self.seenArray[indexPath.row];
+    
     if (!cell) {
         cell = [[SFMCTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"Cell"];
         
@@ -98,6 +102,10 @@
     selectedArray = self.seenArray;
     
     [cell setFilm:[selectedArray objectAtIndex:indexPath.row]];
+    
+    if (film.posterImage) {
+        cell.imageView.image = film.posterImage;
+    }
     
     // Configuring the views and colors.
     UIView *checkView = [self viewWithImageName:@"Checkbox"];
@@ -177,6 +185,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     self.currentFilm = self.seenArray[indexPath.row];
+    self.currentFilm.hasSeen = TRUE;
     [self performSegueWithIdentifier:@"detailModal" sender:nil];
 }
 

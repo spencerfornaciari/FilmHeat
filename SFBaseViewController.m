@@ -96,6 +96,7 @@
     self.controller = [SFFilmModelDataController new];
 
 
+    
 	// Do any additional setup after loading the view.
 }
 
@@ -495,9 +496,6 @@
     } else {
        return finalResults;
     }
-    
-   // return arrayToSearch;
-    
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
@@ -510,6 +508,8 @@
 {
     [self.view endEditing:YES];
 }
+
+
 
 
 @end

@@ -34,10 +34,12 @@
     self.zipCodeTextField.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"defaultZipCode"];
     
     if ([[NSUserDefaults standardUserDefaults] integerForKey:@"distanceThreshold"]) {
-        float flo = [[NSUserDefaults standardUserDefaults] integerForKey:@"distanceThreshold"] / 20.f;
-        self.distanceThresholdSliderOutlet.value = flo;
-        int threshold = [self.distanceThresholdSliderOutlet value] * 20;
-        self.distanceThresholdLabel.text = [[NSNumber numberWithInt:threshold] stringValue];
+        int threshold = [[NSUserDefaults standardUserDefaults] integerForKey:@"distanceThreshold"];
+        self.distanceThresholdSliderOutlet.value = threshold / 5.f;
+        NSLog(@"%d", threshold);
+        //int threshold = [self.distanceThresholdSliderOutlet value] * 20;
+        [self setRatingThresholdLabel:threshold];
+        //self.distanceThresholdLabel.text = [[NSNumber numberWithInt:threshold] stringValue];
     }
     
     if ([[NSUserDefaults standardUserDefaults] integerForKey:@"criticThreshold"]) {
@@ -68,10 +70,29 @@
 }
 
 - (IBAction)distanceThresholdSliderAction:(id)sender {
-    int threshold = [self.distanceThresholdSliderOutlet value] * 20;
-    self.distanceThresholdLabel.text = [[NSNumber numberWithInt:threshold] stringValue];
+    int threshold = [self.distanceThresholdSliderOutlet value] * 5;
+    NSLog(@"Second: %d", threshold);
+    [self setRatingThresholdLabel:threshold];
+    //self.distanceThresholdLabel.text = [[NSNumber numberWithInt:threshold] stringValue];
     [[NSUserDefaults standardUserDefaults] setInteger:threshold forKey:@"distanceThreshold"];
     [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+-(void)setRatingThresholdLabel:(NSInteger)index
+{
+    if (index == 5) {
+        self.distanceThresholdLabel.text = @"NC-17";
+    } else if (index == 4) {
+        self.distanceThresholdLabel.text = @"R";
+    }else if (index == 3) {
+        self.distanceThresholdLabel.text = @"PG-13";
+    } else if (index == 2) {
+        self.distanceThresholdLabel.text = @"PG";
+    } else if (index == 1) {
+        self.distanceThresholdLabel.text = @"G";
+    } else {
+        self.distanceThresholdLabel.text = @"NR";
+    }
 }
 
 - (IBAction)criticsRatingThresholdSliderAction:(id)sender {
