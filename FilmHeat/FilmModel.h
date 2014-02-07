@@ -20,6 +20,7 @@
 @property (strong, nonatomic) NSNumber *runtime;
 @property (strong, nonatomic) NSString *synopsis;
 @property (strong, nonatomic) NSString *mpaaRating;
+@property (strong, nonatomic) NSNumber *ratingValue;
 @property (strong, nonatomic) NSNumber *releaseYear;
 @property (strong, nonatomic) NSDate *releaseDate;
 @property (nonatomic) NSArray *genres;

@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "FilmModel.h"
-#import "ShowtimeModel.h"
+#import "Constants.h"
 #import "SFMCTableViewCell.h"
 #import "SFMovieDetailViewController.h"
 #import "UIColor+SFFilmHeatColors.h"

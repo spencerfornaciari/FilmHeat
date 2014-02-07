@@ -9,11 +9,7 @@
 #import "SFFilmModelDataController.h"
 #import "SFMovieDetailViewController.h"
 
-//#define ROTTEN_TOMATOES_API_KEY @"sxqdwkta4vvwcggqmm5ggja7"
-#define TMS_API_KEY @"7f4sgppp533ecxvutkaqg243"
-
 @interface SFFilmModelDataController () <UIScrollViewDelegate>
-
 
 @end
 
@@ -26,13 +22,13 @@
     NSURL *documentsURL = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
     
     NSString *filmHeatPath = [documentsURL path];
-    self.seenItPath = [filmHeatPath stringByAppendingPathComponent:SEEN_IT_FILE];
-    self.wantedPath = [filmHeatPath stringByAppendingPathComponent:WANT_TO_FILE];
-    self.noInterestPath = [filmHeatPath stringByAppendingPathComponent:DONT_WANT_IT_FILE];
+    self.seenItPath = [filmHeatPath stringByAppendingPathComponent:kSEEN_IT_FILE];
+    self.wantedPath = [filmHeatPath stringByAppendingPathComponent:kWANT_TO_FILE];
+    self.noInterestPath = [filmHeatPath stringByAppendingPathComponent:kDONT_WANT_IT_FILE];
     
     //self.seenItArray = [NSMutableArray new];
     
-    if ([self doesArrayExist:SEEN_IT_FILE]) {
+    if ([self doesArrayExist:kSEEN_IT_FILE]) {
         self.seenItArray = [NSKeyedUnarchiver unarchiveObjectWithFile:self.seenItPath];
         NSLog(@"Seen it Array: %d", self.seenItArray.count);
         NSLog(@"SEEN IT");
@@ -42,7 +38,7 @@
 
     }
     
-    if ([self doesArrayExist:WANT_TO_FILE]) {
+    if ([self doesArrayExist:kWANT_TO_FILE]) {
         self.wantedArray = [NSKeyedUnarchiver unarchiveObjectWithFile:self.wantedPath];
         NSLog(@"WANT IT");
     } else {
@@ -51,7 +47,7 @@
 
     }
 
-    if ([self doesArrayExist:DONT_WANT_IT_FILE]) {
+    if ([self doesArrayExist:kDONT_WANT_IT_FILE]) {
         self.noInterestArray = [NSKeyedUnarchiver unarchiveObjectWithFile:self.noInterestPath];
         NSLog(@"NO INTEREST");
     } else {
@@ -63,7 +59,7 @@
     [apiDateFormatter setDateFormat:@"yyyy-MM-dd"];
     NSString *apiDateString = [apiDateFormatter stringFromDate:[NSDate date]];
     
-    NSString *tmsString = [NSString stringWithFormat:@"http://data.tmsapi.com/v1/movies/showings?startDate=%@&zip=%@&imageSize=Sm&imageText=false&api_key=%@", apiDateString, zipCode, TMS_API_KEY];
+    NSString *tmsString = [NSString stringWithFormat:@"http://data.tmsapi.com/v1/movies/showings?startDate=%@&zip=%@&imageSize=Sm&imageText=false&api_key=%@", apiDateString, zipCode, kTMS_API_KEY];
     
     NSURL *tmsURL = [NSURL URLWithString:tmsString];
     
@@ -98,13 +94,15 @@
 
         if (rating) {
             film.mpaaRating = rating;
+            film.ratingValue = [NSNumber numberWithInt:[self setRatingValue:film.mpaaRating]];
         } else {
             film.mpaaRating = @"NR";
+            film.ratingValue = [NSNumber numberWithInt:0];
         }
         
         //Grab the URL for the thumbnail of the film's poster
         NSString *poster = [dictionary valueForKeyPath:@"preferredImage.uri"];
-        film.thumbnailPoster = [NSString stringWithFormat:@"http://developer.tmsimg.com/%@?api_key=%@", poster, TMS_API_KEY];
+        film.thumbnailPoster = [NSString stringWithFormat:@"http://developer.tmsimg.com/%@?api_key=%@", poster, kTMS_API_KEY];
         //NSLog(@"%@", film.thumbnailPoster);
 
         film.genres = [dictionary valueForKey:@"genres"];
@@ -123,11 +121,26 @@
     [self.tableView reloadData];
 }
 
+-(NSInteger)setRatingValue:(NSString *)mpaaRating
+{
+    if ([mpaaRating isEqualToString:@"G"]) {
+        return 1;
+    } else if ([mpaaRating isEqualToString:@"PG"]){
+        return 2;
+    } else if ([mpaaRating isEqualToString:@"PG-13"]) {
+        return 3;
+    } else if ([mpaaRating isEqualToString:@"R"]) {
+        return 4;
+    } else {
+        return 5;
+    }
+}
+
 #pragma mark - Checking if the film already exists
 
 - (BOOL)doesFilmExist:(FilmModel *)film
 {
-    if ([self doesArrayExist:SEEN_IT_FILE]) {
+    if ([self doesArrayExist:kSEEN_IT_FILE]) {
         NSArray *ratingCheck = [NSKeyedUnarchiver unarchiveObjectWithFile:self.seenItPath];
         for (FilmModel *check in ratingCheck) {
             if ([check.title isEqualToString:film.title]) {
@@ -136,7 +149,7 @@
         }
     }
     
-    if ([self doesArrayExist:WANT_TO_FILE]) {
+    if ([self doesArrayExist:kWANT_TO_FILE]) {
         NSArray *ratingCheck = [NSKeyedUnarchiver unarchiveObjectWithFile:self.wantedPath];
         for (FilmModel *check in ratingCheck) {
             if ([check.title isEqualToString:film.title]) {
@@ -145,7 +158,7 @@
         }
     }
     
-    if ([self doesArrayExist:DONT_WANT_IT_FILE]) {
+    if ([self doesArrayExist:kDONT_WANT_IT_FILE]) {
         NSArray *ratingCheck = [NSKeyedUnarchiver unarchiveObjectWithFile:self.noInterestPath];
         for (FilmModel *check in ratingCheck) {
             if ([check.title isEqualToString:film.title]) {

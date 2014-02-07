@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "SFFilmModelDataController.h"
 #import "FilmModel.h"
+#import "Constants.h"
 #import "UIColor+SFFilmHeatColors.h"
 #import <MapKit/MapKit.h>
 

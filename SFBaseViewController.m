@@ -71,9 +71,9 @@
     NSURL *documentsURL = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
     
     NSString *filmHeatPath = [documentsURL path];
-    _seenItPath = [filmHeatPath stringByAppendingPathComponent:SEEN_IT_FILE];
-    _wantToSeeItPath = [filmHeatPath stringByAppendingPathComponent:WANT_TO_FILE];
-    _dontWantToSeeItPath = [filmHeatPath stringByAppendingPathComponent:DONT_WANT_IT_FILE];
+    _seenItPath = [filmHeatPath stringByAppendingPathComponent:kSEEN_IT_FILE];
+    _wantToSeeItPath = [filmHeatPath stringByAppendingPathComponent:kWANT_TO_FILE];
+    _dontWantToSeeItPath = [filmHeatPath stringByAppendingPathComponent:kDONT_WANT_IT_FILE];
     
     self.seenController = [self.storyboard instantiateViewControllerWithIdentifier:@"SeenView"];
     self.theaterController = [self.storyboard instantiateViewControllerWithIdentifier:@"TheaterView"];
@@ -93,6 +93,7 @@
     [self setupFirstView];
     
     self.theaterController.theaterArray = [NSMutableArray new];
+    self.theaterController.strongArray = [NSMutableArray new];
     self.controller = [SFFilmModelDataController new];
 
 
@@ -139,8 +140,6 @@
 //    } else {
 //        [self.segmentOutlet setEnabled:YES forSegmentAtIndex:3];
 //    }
-
-    NSLog(@"%d", self.seenController.seenArray.count);
 }
 
 #pragma mark - Using GPS to look up user location
@@ -160,8 +159,8 @@
         
         NSLog(@"%@", self.zipCode);
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-            NSLog(@"%@", self.controller.rottenTomatoesArray);
             self.theaterController.theaterArray = self.controller.rottenTomatoesArray;
+            self.theaterController.strongArray = self.theaterController.theaterArray;
             [self.theaterController.tableView reloadData];
         }];
     }];

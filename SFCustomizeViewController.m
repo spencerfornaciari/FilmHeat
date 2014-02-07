@@ -33,8 +33,8 @@
     self.gpsButton.tintColor = [UIColor whiteColor];
     self.zipCodeTextField.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"defaultZipCode"];
     
-    if ([[NSUserDefaults standardUserDefaults] integerForKey:@"distanceThreshold"]) {
-        int threshold = [[NSUserDefaults standardUserDefaults] integerForKey:@"distanceThreshold"];
+    if ([[NSUserDefaults standardUserDefaults] integerForKey:@"mpaaRatingThreshold"]) {
+        int threshold = [[NSUserDefaults standardUserDefaults] integerForKey:@"mpaaRatingThreshold"];
         self.distanceThresholdSliderOutlet.value = threshold / 5.f;
         [self setRatingThresholdLabel:threshold];
     }
@@ -66,11 +66,10 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)distanceThresholdSliderAction:(id)sender {
+- (IBAction)mpaaRatingThresholdSliderAction:(id)sender {
     int threshold = [self.distanceThresholdSliderOutlet value] * 5;
-    NSLog(@"Second: %d", threshold);
     [self setRatingThresholdLabel:threshold];
-    [[NSUserDefaults standardUserDefaults] setInteger:threshold forKey:@"distanceThreshold"];
+    [[NSUserDefaults standardUserDefaults] setInteger:threshold forKey:@"mpaaRatingThreshold"];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 

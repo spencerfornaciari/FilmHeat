@@ -55,6 +55,27 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    NSMutableArray *ratingArray = [NSMutableArray new];
+    
+    NSLog(@"Strong Count:%d", self.strongArray.count);
+    
+    for (FilmModel *film in [self.strongArray copy]) {
+        
+        if ([film.ratingValue integerValue] >= [[NSUserDefaults standardUserDefaults] integerForKey:@"mpaaRatingThreshold"])
+        {
+//            NSLog(@"Threshold Value: %ld", (long)[[NSUserDefaults standardUserDefaults] integerForKey:@"mpaaRatingThreshold"]);
+//            NSLog(@"Rating Value: %@", film.ratingValue);
+//            NSLog(@"%@: %@", film.title, film.mpaaRating);
+            [ratingArray addObject:film];
+        }
+    }
+    
+    NSLog(@"%@", ratingArray);
+     
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -264,9 +285,9 @@
 
 - (void)checkForFilmImage:(FilmModel *)film
 {
-    NSLog(@"File: %@", film.posterImagePath);
+    //NSLog(@"File: %@", film.posterImagePath);
     NSString *string = [NSString stringWithFormat:@"%@/%@.jpg", [self documentsDirectoryPath], [film.title stringByReplacingOccurrencesOfString:@":" withString:@""]];
-    NSLog(@"String: %@", string);
+   // NSLog(@"String: %@", string);
     
     NSError *error;
     //NSData *data = [NSData dataWithContentsOfFile:string options:NSDataReadingMapped error:&error];

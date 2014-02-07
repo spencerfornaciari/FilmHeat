@@ -33,9 +33,9 @@
         
     NSURL *documentsURL = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
     NSString *filmHeatPath = [documentsURL path];
-    _nonePath = [filmHeatPath stringByAppendingPathComponent:DONT_WANT_IT_FILE];
+    _nonePath = [filmHeatPath stringByAppendingPathComponent:kDONT_WANT_IT_FILE];
     
-    if ([self doesArrayExist:DONT_WANT_IT_FILE]) {
+    if ([self doesArrayExist:kDONT_WANT_IT_FILE]) {
         self.noneArray = [NSKeyedUnarchiver unarchiveObjectWithFile:_nonePath];
     } else {
         self.noneArray = [NSMutableArray new];

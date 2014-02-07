@@ -67,9 +67,9 @@
     NSURL *documentsURL = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
     
     NSString *filmHeatPath = [documentsURL path];
-    _seenItPath = [filmHeatPath stringByAppendingPathComponent:SEEN_IT_FILE];
-    _wantToSeeItPath = [filmHeatPath stringByAppendingPathComponent:WANT_TO_FILE];
-    _dontWantToSeeItPath = [filmHeatPath stringByAppendingPathComponent:DONT_WANT_IT_FILE];
+    _seenItPath = [filmHeatPath stringByAppendingPathComponent:kSEEN_IT_FILE];
+    _wantToSeeItPath = [filmHeatPath stringByAppendingPathComponent:kWANT_TO_FILE];
+    _dontWantToSeeItPath = [filmHeatPath stringByAppendingPathComponent:kDONT_WANT_IT_FILE];
 
     //Add items to other arrays for testing
 //    for (int i=0; i<5; i++) {

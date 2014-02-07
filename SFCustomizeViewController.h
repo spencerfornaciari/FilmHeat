@@ -27,7 +27,7 @@
 
 - (IBAction)gpsButtonAction:(id)sender;
 
-- (IBAction)distanceThresholdSliderAction:(id)sender;
+- (IBAction)mpaaRatingThresholdSliderAction:(id)sender;
 - (IBAction)criticsRatingThresholdSliderAction:(id)sender;
 - (IBAction)audienceRatingThresholdSliderAction:(id)sender;
 

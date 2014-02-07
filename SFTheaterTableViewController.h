@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "FilmModel.h"
+#import "Constants.h"
 #import "UIColor+SFFilmHeatColors.h"
 
 @protocol SFTheaterTableViewControllerDelegate <NSObject>
@@ -21,7 +22,6 @@
 @property (nonatomic, unsafe_unretained) id<SFTheaterTableViewControllerDelegate> delegate;
 
 @property (nonatomic, strong) NSMutableArray *theaterArray;
-
-
+@property (nonatomic, retain) NSMutableArray *strongArray;
 
 @end

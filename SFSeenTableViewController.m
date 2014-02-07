@@ -33,9 +33,9 @@
         
     NSURL *documentsURL = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
     NSString *filmHeatPath = [documentsURL path];
-    _seenItPath = [filmHeatPath stringByAppendingPathComponent:SEEN_IT_FILE];
+    _seenItPath = [filmHeatPath stringByAppendingPathComponent:kSEEN_IT_FILE];
     
-    if ([self doesArrayExist:SEEN_IT_FILE]) {
+    if ([self doesArrayExist:kSEEN_IT_FILE]) {
         self.seenArray = [NSKeyedUnarchiver unarchiveObjectWithFile:_seenItPath];
     } else {
         self.seenArray= [NSMutableArray new];        
