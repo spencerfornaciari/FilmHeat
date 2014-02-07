@@ -36,10 +36,7 @@
     if ([[NSUserDefaults standardUserDefaults] integerForKey:@"distanceThreshold"]) {
         int threshold = [[NSUserDefaults standardUserDefaults] integerForKey:@"distanceThreshold"];
         self.distanceThresholdSliderOutlet.value = threshold / 5.f;
-        NSLog(@"%d", threshold);
-        //int threshold = [self.distanceThresholdSliderOutlet value] * 20;
         [self setRatingThresholdLabel:threshold];
-        //self.distanceThresholdLabel.text = [[NSNumber numberWithInt:threshold] stringValue];
     }
     
     if ([[NSUserDefaults standardUserDefaults] integerForKey:@"criticThreshold"]) {
@@ -73,7 +70,6 @@
     int threshold = [self.distanceThresholdSliderOutlet value] * 5;
     NSLog(@"Second: %d", threshold);
     [self setRatingThresholdLabel:threshold];
-    //self.distanceThresholdLabel.text = [[NSNumber numberWithInt:threshold] stringValue];
     [[NSUserDefaults standardUserDefaults] setInteger:threshold forKey:@"distanceThreshold"];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }

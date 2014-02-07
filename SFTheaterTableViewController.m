@@ -108,8 +108,13 @@
     if (!film.posterImage && !film.isDownloading) {
         film.isDownloading = TRUE;
         [self downloadPosterAtIndex:indexPath.row];
+        
+        cell.filmThumbnailPoster.image = [UIImage imageNamed:@"Movies"];
+        [cell.filmThumbnailPoster setContentMode:UIViewContentModeScaleAspectFit];
+        
     } else {
-        cell.imageView.image = film.posterImage;
+        cell.filmThumbnailPoster.image = film.posterImage;
+    
     }
     
     // Configuring the views and colors.
@@ -198,6 +203,7 @@
 {
     FilmModel *film = self.theaterArray[index];
     NSURL *posterURL = [NSURL URLWithString:film.thumbnailPoster];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForItem:index inSection:0];
     
     [_downloadQueue addOperationWithBlock:^{
         
@@ -206,26 +212,32 @@
         
         
         if (error) {
-            film.isDownloading = NO;
+            //film.isDownloading = NO;
         } else {
-            //film.posterImagePath = posterLocation;
             
         
             film.posterImage = [UIImage imageWithData:posterData];
             posterData = UIImageJPEGRepresentation(film.posterImage, 0.5);
             
-            //NSString *posterLocation = [NSString stringWithFormat:@"%@/%@.jpg", [self documentsDirectoryPath], [film.title stringByReplacingOccurrencesOfString:@":" withString:@" "]];
-            //film.posterImagePath  = posterLocation;
+            NSString *posterLocation = [NSString stringWithFormat:@"%@/%@.jpg", [self documentsDirectoryPath], [film.title stringByReplacingOccurrencesOfString:@":" withString:@""]];
+            film.posterFilePath = posterLocation;
                 //film.posterImagePath = [NSString stringWithString:posterLocation];
+            NSLog(@"%@", film.posterFilePath);
+            //NSLog(@"%@", posterData);
             
-            //[codeFellowJPGData writeToFile:codeFellowJPGPath atomically:YES];
-
-            NSLog(@"%@", film.posterImagePath);
+            [posterData writeToFile:film.posterFilePath atomically:YES];
+            
+            
+            NSLog(@"%hhd", [self doesFileExist:film.posterFilePath]);
+//            if (film.posterFilePath) {
+//                NSLog(@"%@", film.posterFilePath);
+//            } else {
+//                NSLog(@"TRUE");
+//            }
             
             
         }
         
-        NSIndexPath *indexPath = [NSIndexPath indexPathForItem:index inSection:0];
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
             [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
             
@@ -238,7 +250,7 @@
 //        film.posterImagePath = posterLocation;
         //NSLog(@"%@", film.posterImagePath);
         
-//        [posterData writeToFile:posterLocation atomically:YES];
+//
 
     }];
     
@@ -252,10 +264,43 @@
 
 - (void)checkForFilmImage:(FilmModel *)film
 {
-    UIImage *image = [UIImage imageWithContentsOfFile:[NSData dataWithContentsOfFile:film.posterImagePath]];
+    NSLog(@"File: %@", film.posterImagePath);
+    NSString *string = [NSString stringWithFormat:@"%@/%@.jpg", [self documentsDirectoryPath], [film.title stringByReplacingOccurrencesOfString:@":" withString:@""]];
+    NSLog(@"String: %@", string);
     
-    if (image) {
-        film.posterImage = image;
+    NSError *error;
+    //NSData *data = [NSData dataWithContentsOfFile:string options:NSDataReadingMapped error:&error];
+    
+    UIImage *image2 = [UIImage imageWithContentsOfFile:string];
+    
+    if (error) {
+        NSLog(@"%@", error);
+    } else {
+            }
+    
+    //UIImage *image = [UIImage imageWithContentsOfFile:[NSData dataWithContentsOfFile:film.posterImagePath]];
+    //NSLog(@"Does It Exists?: %hhd", [self doesFileExist:image2]);
+
+    
+    if (image2) {
+        //NSLog(@"%@", image);
+        film.posterImage = image2;
+    }
+}
+
+-(BOOL)doesFileExist:(NSString *)stringName
+{
+    //NSURL *documentsURL = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+    
+    //NSString *documentsPath = [documentsURL path];
+    //documentsPath = [documentsPath stringByAppendingPathComponent:stringName];
+    
+    if (![[NSFileManager defaultManager] fileExistsAtPath:stringName]) {
+        //NSLog(@"FALSE");
+        return FALSE;
+    } else {
+        //NSLog(@"TRUE");
+        return TRUE;
     }
 }
 

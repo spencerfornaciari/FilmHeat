@@ -122,23 +122,23 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    if ([[NSKeyedUnarchiver unarchiveObjectWithFile:_seenItPath] count] == 0) {
-        [self.segmentOutlet setEnabled:NO forSegmentAtIndex:0];
-    } else  {
-        [self.segmentOutlet setEnabled:YES forSegmentAtIndex:0];
-    }
-
-    if ([[NSKeyedUnarchiver unarchiveObjectWithFile:_wantToSeeItPath] count] == 0) {
-        [self.segmentOutlet setEnabled:NO forSegmentAtIndex:2];
-    } else {
-        [self.segmentOutlet setEnabled:YES forSegmentAtIndex:2];
-    }
-    
-    if ([[NSKeyedUnarchiver unarchiveObjectWithFile:_dontWantToSeeItPath] count] == 0) {
-        [self.segmentOutlet setEnabled:NO forSegmentAtIndex:3];
-    } else {
-        [self.segmentOutlet setEnabled:YES forSegmentAtIndex:3];
-    }
+//    if ([[NSKeyedUnarchiver unarchiveObjectWithFile:_seenItPath] count] == 0) {
+//        [self.segmentOutlet setEnabled:NO forSegmentAtIndex:0];
+//    } else  {
+//        [self.segmentOutlet setEnabled:YES forSegmentAtIndex:0];
+//    }
+//
+//    if ([[NSKeyedUnarchiver unarchiveObjectWithFile:_wantToSeeItPath] count] == 0) {
+//        [self.segmentOutlet setEnabled:NO forSegmentAtIndex:2];
+//    } else {
+//        [self.segmentOutlet setEnabled:YES forSegmentAtIndex:2];
+//    }
+//    
+//    if ([[NSKeyedUnarchiver unarchiveObjectWithFile:_dontWantToSeeItPath] count] == 0) {
+//        [self.segmentOutlet setEnabled:NO forSegmentAtIndex:3];
+//    } else {
+//        [self.segmentOutlet setEnabled:YES forSegmentAtIndex:3];
+//    }
 
     NSLog(@"%d", self.seenController.seenArray.count);
 }
@@ -179,6 +179,16 @@
 //    [self clearContainerView];
     
     NSLog(@"%ld",(long)self.segmentOutlet.selectedSegmentIndex);
+    
+    if (self.segmentOutlet.selectedSegmentIndex == 0) {
+        self.segmentOutlet.tintColor = [UIColor seenItColor];
+    } else if (self.segmentOutlet.selectedSegmentIndex == 1) {
+        self.segmentOutlet.tintColor = [UIColor theaterColor];
+    } else if(self.segmentOutlet.selectedSegmentIndex == 2) {
+        self.segmentOutlet.tintColor = [UIColor wantedColor];
+    } else if (self.segmentOutlet.selectedSegmentIndex == 3){
+        self.segmentOutlet.tintColor = [UIColor noInterestColor];
+    }
     
     [self cycleFromViewController:self.currentViewController toViewController:self.childVCArray[sender.selectedSegmentIndex]];
 
@@ -362,7 +372,6 @@
 
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    
     if (self.segmentOutlet.selectedSegmentIndex == 0) {
         self.seenController.seenArray = [self sortSelection:buttonIndex withArray:self.seenController.seenArray];
         [self.seenController.tableView reloadData];
@@ -475,7 +484,6 @@
 
 -(NSMutableArray *)searchWithArray:(NSMutableArray *)arrayToSearch textToSearch:(NSString *)searchText
 {
-    //    NSMutableArray *strongArray
     NSMutableArray *finalResults = [NSMutableArray new];
     
     NSLog(@"%@", searchText);

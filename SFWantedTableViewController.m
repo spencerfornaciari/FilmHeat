@@ -80,6 +80,10 @@
     SFMCTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     // Configure the cell...
     
+    cell.imageView.image = nil;
+    
+    FilmModel *film = self.wantedArray[indexPath.row];
+    
     if (!cell) {
         cell = [[SFMCTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"Cell"];
         
@@ -98,6 +102,15 @@
     selectedArray = self.wantedArray;
     
     [cell setFilm:[selectedArray objectAtIndex:indexPath.row]];
+    
+    [self checkForFilmImage:film];
+    
+    if (film.posterImage) {
+        cell.filmThumbnailPoster.image = film.posterImage;
+    } else {
+        cell.filmThumbnailPoster.image = [UIImage imageNamed:@"Movies"];
+        [cell.filmThumbnailPoster setContentMode:UIViewContentModeScaleAspectFit];
+    }
     
     // Configuring the views and colors.
     UIView *checkView = [self viewWithImageName:@"Checkbox"];
@@ -184,6 +197,26 @@
 {
     if ([segue.destinationViewController isKindOfClass:[SFMovieDetailViewController class]]) {
         [(SFMovieDetailViewController *)segue.destinationViewController setFilm:self.currentFilm];
+    }
+}
+
+
+- (NSString *)documentsDirectoryPath
+{
+    NSURL *documentsURL = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+    return [documentsURL path];
+}
+
+- (void)checkForFilmImage:(FilmModel *)film
+{
+    NSLog(@"%@", film.posterImagePath);
+    NSString *string = [NSString stringWithFormat:@"%@/%@.jpg", [self documentsDirectoryPath], [film.title stringByReplacingOccurrencesOfString:@":" withString:@""]];
+    NSLog(@"String: %@", string);
+    UIImage *image = [UIImage imageWithContentsOfFile:string];
+    
+    if (image) {
+        NSLog(@"%@", image);
+        film.posterImage = image;
     }
 }
 

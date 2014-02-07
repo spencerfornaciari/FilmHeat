@@ -31,7 +31,7 @@
         self.releaseDate = [decoder decodeObjectForKey:@"releaseDate"];
         self.synopsis = [decoder decodeObjectForKey:@"synopsis"];
         self.myRating = [decoder decodeObjectForKey:@"myRating"];
-        self.posterImagePath = [decoder decodeObjectForKey:@"posterImagePath"];
+        self.posterImagePath = [decoder decodeObjectForKey:@"posterFilePath"];
         
         return self;
     }
@@ -49,7 +49,7 @@
     [encoder encodeObject:self.releaseDate forKey:@"releaseDate"];
     [encoder encodeObject:self.synopsis forKey:@"synopsis"];
     [encoder encodeObject:self.myRating forKey:@"myRating"];
-    [encoder encodeObject:self.posterImagePath forKey:@"posterImagePath"];
+    [encoder encodeObject:self.posterImagePath forKey:@"posterFilePath"];
 }
 
 -(void)downloadPoster
