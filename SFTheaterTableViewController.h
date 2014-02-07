@@ -7,7 +7,21 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FilmModel.h"
+#import "UIColor+SFFilmHeatColors.h"
+
+@protocol SFTheaterTableViewControllerDelegate <NSObject>
+
+-(void)passFilmFromTheater:(FilmModel *)film forIndex:(NSInteger)index;
+
+@end
 
 @interface SFTheaterTableViewController : UITableViewController
+
+@property (nonatomic, unsafe_unretained) id<SFTheaterTableViewControllerDelegate> delegate;
+
+@property (nonatomic, strong) NSMutableArray *theaterArray;
+
+
 
 @end

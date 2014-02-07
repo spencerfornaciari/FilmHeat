@@ -7,7 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FilmModel.h"
+#import "UIColor+SFFilmHeatColors.h"
+
+@protocol SFWantedTableViewControllerDelegate <NSObject>
+
+-(void)passFilmFromWanted:(FilmModel *)film forIndex:(NSInteger)index;
+
+@end
 
 @interface SFWantedTableViewController : UITableViewController
+
+@property (nonatomic, unsafe_unretained) id<SFWantedTableViewControllerDelegate> delegate;
+
+@property (nonatomic, strong) NSMutableArray *wantedArray;
 
 @end

@@ -37,6 +37,7 @@
     if (!film.posterImage) {
         self.filmThumbnailPoster.image = [UIImage imageNamed:@"Movies.png"];
         //[film downloadPoster];
+        //NSLog(@"%@", film.thumbnailPoster);
     } else {
         self.filmThumbnailPoster.image = film.posterImage;
     }

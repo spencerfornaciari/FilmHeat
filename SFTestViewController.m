@@ -15,7 +15,6 @@
 
 @property (strong, nonatomic) CLLocationManager *locationManager;
 @property (strong, nonatomic) CLLocation *location;
-@property (strong, nonatomic) CLPlacemark *placemark;
 @property (strong, nonatomic) NSString *zipCode;
 
 @property (strong, nonatomic) IBOutlet UISegmentedControl *segmentOutlet;
@@ -35,6 +34,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    //Delcar Tableview and Search Bar delegates
     self.theaterController = [SFFilmModelDataController new];
     
     self.theaterSearchBar.delegate = self;
@@ -55,7 +56,6 @@
     [self.locationManager startUpdatingLocation];
     
     self.location = [[CLLocation alloc] init];
-    NSLog(@"ZipCode: %@", self.zipCode);
     
     _strongArray = [NSMutableArray new];
     
@@ -68,16 +68,16 @@
     
     NSString *filmHeatPath = [documentsURL path];
     _seenItPath = [filmHeatPath stringByAppendingPathComponent:SEEN_IT_FILE];
-    NSLog(@"%@", _seenItPath);
     _wantToSeeItPath = [filmHeatPath stringByAppendingPathComponent:WANT_TO_FILE];
     _dontWantToSeeItPath = [filmHeatPath stringByAppendingPathComponent:DONT_WANT_IT_FILE];
 
     //Add items to other arrays for testing
-    for (int i=0; i<5; i++) {
-        [self.theaterController.wantedArray addObject:self.theaterController.rottenTomatoesArray[i]];
-        [self.theaterController.seenItArray addObject:self.theaterController.rottenTomatoesArray[i]];
-        [self.theaterController.noInterestArray addObject:self.theaterController.rottenTomatoesArray[i]];
-    }
+//    for (int i=0; i<5; i++) {
+//        [self.theaterController.wantedArray addObject:self.theaterController.rottenTomatoesArray[i]];
+//        [self.theaterController.seenItArray addObject:self.theaterController.rottenTomatoesArray[i]];
+//        [self.theaterController.noInterestArray addObject:self.theaterController.rottenTomatoesArray[i]];
+//    }
+    
     
     
 }
@@ -103,11 +103,13 @@
         [self.segmentOutlet setEnabled:YES forSegmentAtIndex:3];
     }
     
-    [NSKeyedArchiver archiveRootObject:self.theaterController.seenItArray toFile:_seenItPath];
-    [NSKeyedArchiver archiveRootObject:self.theaterController.wantedArray toFile:_wantToSeeItPath];
-    [NSKeyedArchiver archiveRootObject:self.theaterController.noInterestArray toFile:_dontWantToSeeItPath];
+//    [NSKeyedArchiver archiveRootObject:self.theaterController.seenItArray toFile:_seenItPath];
+//    [NSKeyedArchiver archiveRootObject:self.theaterController.wantedArray toFile:_wantToSeeItPath];
+//    [NSKeyedArchiver archiveRootObject:self.theaterController.noInterestArray toFile:_dontWantToSeeItPath];
 
 }
+
+#pragma mark - Using GPS to look up user location
 
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
 {
@@ -116,12 +118,31 @@
     CLGeocoder *geocoder = [CLGeocoder new];
     
     [geocoder reverseGeocodeLocation:self.location completionHandler:^(NSArray *placemarks, NSError *error) {
-        self.placemark = placemarks[0];
         self.zipCode = [placemarks[0] postalCode];
-        NSLog(@"%@", self.placemark.postalCode);
+        [[NSUserDefaults standardUserDefaults] setObject:self.zipCode forKey:@"defaultZipCode"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
         [self.locationManager stopUpdatingLocation];
+        
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
             [self.theaterController populateFilmData:self.zipCode];
+            NSLog(@"Seen it count: %d", self.theaterController.seenItArray.count);
+            if (self.theaterController.seenItArray.count == 0) {
+                [self.segmentOutlet setEnabled:NO forSegmentAtIndex:0];
+            } else if (self.theaterController.seenItArray.count > 0) {
+                [self.segmentOutlet setEnabled:YES forSegmentAtIndex:0];
+            }
+            
+            if (self.theaterController.wantedArray.count == 0) {
+                [self.segmentOutlet setEnabled:NO forSegmentAtIndex:2];
+            } else {
+                [self.segmentOutlet setEnabled:YES forSegmentAtIndex:2];
+            }
+            
+            if (self.theaterController.noInterestArray.count == 0) {
+                [self.segmentOutlet setEnabled:NO forSegmentAtIndex:3];
+            } else {
+                [self.segmentOutlet setEnabled:YES forSegmentAtIndex:3];
+            }
         }];
     }];
 }
@@ -190,7 +211,6 @@
     {
         case 0:
         {
-            NSLog(@"A-Z");
             NSSortDescriptor *nameSorter = [NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES];
             arrayToSort = [NSMutableArray arrayWithArray:[arrayToSort sortedArrayUsingDescriptors:@[nameSorter]]];
         }
@@ -198,7 +218,6 @@
             
         case 1:
         {
-            NSLog(@"Z-A");
             NSSortDescriptor *nameSorter = [NSSortDescriptor sortDescriptorWithKey:@"title" ascending:NO];
             arrayToSort = [NSMutableArray arrayWithArray:[arrayToSort sortedArrayUsingDescriptors:@[nameSorter]]];
         }
@@ -206,7 +225,6 @@
             
         case 2:
         {
-            NSLog(@"Date");
             NSSortDescriptor *nameSorter = [NSSortDescriptor sortDescriptorWithKey:@"releaseDate" ascending:NO];
             arrayToSort = [NSMutableArray arrayWithArray:[arrayToSort sortedArrayUsingDescriptors:@[nameSorter]]];
         }
@@ -214,7 +232,6 @@
             
         case 3:
         {
-            NSLog(@"Date");
             NSSortDescriptor *nameSorter = [NSSortDescriptor sortDescriptorWithKey:@"releaseDate" ascending:YES];
             arrayToSort = [NSMutableArray arrayWithArray:[arrayToSort sortedArrayUsingDescriptors:@[nameSorter]]];
         }
@@ -306,28 +323,6 @@
 
 }
 
-- (void)searchArray:(NSMutableArray *)searchedArray
-{
-    //NSMutableArray *tempArray = [NSMutableArray new];
-    
-    for (FilmModel *model in self.theaterController.rottenTomatoesArray)
-    {
-//        NSString *string = [model.title uppercaseString];
-//        if ([string hasPrefix:[searchText uppercaseString]])
-//        {
-//            [tempArray addObject:model];
-//        }
-    }
-    
-//    if (searchText.length == 0) {
-//        searchedArray = _strongArray;
-//    } else {
-//        searchedArray = tempArray;
-//    }
-    
-    [self.theaterTableView reloadData];
-}
-
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     NSLog(@"Touches Began");
@@ -346,38 +341,6 @@
     NSIndexPath *row = [NSIndexPath indexPathForRow:modelRow inSection:0];
     
     [self.theaterTableView reloadRowsAtIndexPaths:@[row] withRowAnimation:UITableViewRowAnimationNone];
-}
-
-#pragma mark - Swipe Gesture handlers
-
-- (void)handleGesture:(UISwipeGestureRecognizer *)recognizer
-{
-
-    if (recognizer.direction == 1) {
-        //[self.testArray addObject:]
-        NSLog(@"RIGHT");
-        if (self.segmentOutlet.selectedSegmentIndex < 2) {
-            self.segmentOutlet.selectedSegmentIndex = self.segmentOutlet.selectedSegmentIndex + 1;
-        } else {
-            self.segmentOutlet.selectedSegmentIndex = 2;
-        }
-    } else {//if (recognizer.direction == 2) {
-        NSLog(@"LEFT");
-        //NSLog(@"%@", [self.theaterTableView indexPathForRowAtPoint:CGPoint point = [sender locationInView:self.tableView];);
-        [UIView animateWithDuration:.4 animations:^{
-            // = CGRectMake(<#CGFloat x#>, <#CGFloat y#>, <#CGFloat width#>, <#CGFloat height#>)
-            
-            //self.table.view.frame = CGRectMake(self.view.frame.size.width * .5, self.topViewController.view.frame.origin.y, self.topViewController.view.frame.size.width, self.topViewController.view.frame.size.height);
-        } completion:^(BOOL finished) {
-            
-        }];
-
-        if (self.segmentOutlet.selectedSegmentIndex > 0) {
-            self.segmentOutlet.selectedSegmentIndex = self.segmentOutlet.selectedSegmentIndex - 1;
-        } else {
-            self.segmentOutlet.selectedSegmentIndex = 0;
-        }
-    }
 }
 
 #pragma mark - seguing to Movie Detail View Controller

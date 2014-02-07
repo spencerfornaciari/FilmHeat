@@ -1,18 +1,18 @@
 //
-//  SFWantedTableViewController.m
+//  SFNoneTableViewController.m
 //  FilmHeat
 //
 //  Created by Spencer Fornaciari on 2/6/14.
 //  Copyright (c) 2014 Spencer Fornaciari. All rights reserved.
 //
 
-#import "SFWantedTableViewController.h"
+#import "SFNoneTableViewController.h"
 
-@interface SFWantedTableViewController ()
+@interface SFNoneTableViewController ()
 
 @end
 
-@implementation SFWantedTableViewController
+@implementation SFNoneTableViewController
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -26,8 +26,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    self.view.backgroundColor = [UIColor grayColor];
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -58,7 +56,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return self.wantedArray.count;
+    return self.noneArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -67,7 +65,8 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     // Configure the cell...
-    cell.textLabel.text = [self.wantedArray[indexPath.row] title];
+    cell.textLabel.text = [self.noneArray[indexPath.row] title];
+    
     
     return cell;
 }

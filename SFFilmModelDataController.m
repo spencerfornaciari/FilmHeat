@@ -9,7 +9,7 @@
 #import "SFFilmModelDataController.h"
 #import "SFMovieDetailViewController.h"
 
-#define ROTTEN_TOMATOES_API_KEY @"sxqdwkta4vvwcggqmm5ggja7"
+//#define ROTTEN_TOMATOES_API_KEY @"sxqdwkta4vvwcggqmm5ggja7"
 #define TMS_API_KEY @"7f4sgppp533ecxvutkaqg243"
 
 @interface SFFilmModelDataController () <UIScrollViewDelegate>
@@ -30,8 +30,12 @@
     self.wantedPath = [filmHeatPath stringByAppendingPathComponent:WANT_TO_FILE];
     self.noInterestPath = [filmHeatPath stringByAppendingPathComponent:DONT_WANT_IT_FILE];
     
+    //self.seenItArray = [NSMutableArray new];
+    
     if ([self doesArrayExist:SEEN_IT_FILE]) {
         self.seenItArray = [NSKeyedUnarchiver unarchiveObjectWithFile:self.seenItPath];
+        NSLog(@"Seen it Array: %d", self.seenItArray.count);
+        NSLog(@"SEEN IT");
     } else {
         self.seenItArray = [NSMutableArray new];
         NSLog(@"Created Seen");
@@ -40,6 +44,7 @@
     
     if ([self doesArrayExist:WANT_TO_FILE]) {
         self.wantedArray = [NSKeyedUnarchiver unarchiveObjectWithFile:self.wantedPath];
+        NSLog(@"WANT IT");
     } else {
         self.wantedArray = [NSMutableArray new];
         NSLog(@"Created Want");
@@ -48,6 +53,7 @@
 
     if ([self doesArrayExist:DONT_WANT_IT_FILE]) {
         self.noInterestArray = [NSKeyedUnarchiver unarchiveObjectWithFile:self.noInterestPath];
+        NSLog(@"NO INTEREST");
     } else {
         self.noInterestArray = [NSMutableArray new];
         NSLog(@"Created No Interest");
@@ -81,103 +87,37 @@
         
         film.title = dictionary[@"title"];
         
+        BOOL doesExist = [self doesFilmExist:film];
+        
         film.synopsis = dictionary[@"shortDescription"];
         
         //Set the film's MPAA rating
-        
         NSArray *ratingArray = [dictionary valueForKeyPath:@"ratings"];
         NSDictionary *ratingDictinary = ratingArray[0];
-        //NSLog(@"%@", ratingArray);
-      
         NSString *rating = [ratingDictinary objectForKey:@"code"];
-        
-        //NSLog(@"%@: %@", film.title, rating);
-        
-      //  NSString *rating = ratingDictionary[@"code"];
-       // NSLog(@"Rating: %@", rating);
-        
+
         if (rating) {
             film.mpaaRating = rating;
-            //NSLog(@"TRUE");
-           NSLog(@"%@: %@", film.title, film.mpaaRating);
         } else {
-            //NSLog(@"FALSE");
             film.mpaaRating = @"NR";
-            NSLog(@"%@: %@", film.title, film.mpaaRating);
-
         }
-        
-        BOOL doesExist = [self doesFilmExist:film];
-        
-        
-        
-
-        
-//        film.mpaaRating = [dictionary valueForKeyPath:@"ratings.code"];
-//        NSLog(@"%@", film.mpaaRating);
         
         //Grab the URL for the thumbnail of the film's poster
         NSString *poster = [dictionary valueForKeyPath:@"preferredImage.uri"];
         film.thumbnailPoster = [NSString stringWithFormat:@"http://developer.tmsimg.com/%@?api_key=%@", poster, TMS_API_KEY];
         //NSLog(@"%@", film.thumbnailPoster);
-        
-        //[film.showtimes =
-        
-        //NSLog(@"%@", [dictionary valueForKeyPath:@"showtimes.theatre.name"]);
-//        NSString *thisDate = [dictionary valueForKeyPath:@"showtimes.dateTime"];
-        
-//        NSDateFormatter *newForm = [NSDateFormatter new];
-//        [newForm setDateFormat:@"yyyy-MM-dd"];
-//        NSLog(@"%@", thisDate);
 
         film.genres = [dictionary valueForKey:@"genres"];
         
         film.runtime = [film runTimeConverter:[dictionary valueForKey:@"runTime"]];
-//
-        film.releaseDate = [film releaseDateConverter:[dictionary valueForKey:@"releaseDate"]];
-    
-//        NSDateFormatter *dateFormatter2 = [[NSDateFormatter alloc] init];
-//        [dateFormatter2 setDateStyle:NSDateFormatterShortStyle];
-//        NSLog(@"%@", [dateFormatter2 stringFromDate:film.releaseDate]);
 
-//        if ([self doesSeenItArrayExist])
-//        {
-//            if ([self.seenItArray containsObject:film.title]) {
-//                NSLog(@"Got it!");
-//            } else {
-//            }
-//        }
+        film.releaseDate = [film releaseDateConverter:[dictionary valueForKey:@"releaseDate"]];
         
         if (!doesExist) {
             [rottenInstance addObject:film];
         }
        
     }
-    
-
-//    
-
-
-    
-   // NSArray *myArray = [[NSArray alloc] initWithArray:[NSKeyedUnarchiver unarchiveObjectWithFile:self.seenItPath]];
-    
-    
-//    for (int i=0; i<5; i++) {
-//        FilmModel *film = self.seenItArray[i];
-//        film.wantsToSee = YES;
-//    }
-
-//    if ([self doesSeenItArrayExist]) {
-//        
-//        
-//        self.seenItArray = [NSArray arrayWithArray:[NSKeyedUnarchiver unarchiveObjectWithFile:self.seenItPath]];
-//        NSLog(@"%@", self.seenItArray);
-//    } else {
-//        
-//        NSPredicate *wantedPredicate = [NSPredicate predicateWithFormat:@"hasSeen = TRUE"];
-//        self.seenItArray = [_rottenTomatoesArray filteredArrayUsingPredicate:wantedPredicate];
-//    }
-
     
     _rottenTomatoesArray = rottenInstance;
     [self.tableView reloadData];
@@ -250,10 +190,10 @@
             cell.separatorInset = UIEdgeInsetsZero;
         }
         
-        [cell setSelectionStyle:UITableViewCellSelectionStyleGray];
+        [cell setSelectionStyle:UITableViewCellSelectionStyleBlue];
         
         // Setting the background color of the cell.
-        //cell.contentView.backgroundColor = [UIColor whiteColor];
+        cell.contentView.backgroundColor = [UIColor redColor];
     }
     
     NSMutableArray *selectedArray = [NSMutableArray new];
@@ -305,7 +245,6 @@
     [cell setSwipeGestureWithView:listView color:[UIColor theaterColor] mode:MCSwipeTableViewCellModeSwitch state:MCSwipeTableViewCellState4 completionBlock:^(MCSwipeTableViewCell *cell, MCSwipeTableViewCellState state, MCSwipeTableViewCellMode mode) {
         NSLog(@"Did swipe \"Movies\" cell");
         
-        //[self deleteCell:cell];
     }];
     
     return cell;
@@ -341,29 +280,6 @@
     
 }
 
-//- (NSArray *)wantedArray
-//{
-//    NSPredicate *wantedPredicate = [NSPredicate predicateWithFormat:@"wantsToSee = TRUE"];
-//    return [_rottenTomatoesArray filteredArrayUsingPredicate:wantedPredicate];
-//}
-
-//- (NSArray *)seenItArray
-//{
-////    NSMutableArray *seenFilmsArray = [NSMutableArray new];
-////    for (FilmModel *film in _rottenTomatoesArray) {
-////        if (film.hasSeen) {
-////            [seenFilmsArray addObject:film];
-////        }
-////    }
-////    
-////    return seenFilmsArray;
-//    
-//    
-//
-//    
-//    
-//}
-
 #pragma mark - ScrollViewDelegate
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
@@ -387,7 +303,7 @@
     documentsPath = [documentsPath stringByAppendingPathComponent:arrayNameString];
     
     if (![[NSFileManager defaultManager] fileExistsAtPath:documentsPath]) {
-        //NSLog(@"FALSE");
+        NSLog(@"FALSE");
         return FALSE;
     } else {
         //NSLog(@"TRUE");
@@ -399,29 +315,42 @@
 {
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
     [self.seenItArray addObject:array[indexPath.row]];
+    NSLog(@"Seen it count: %d", self.seenItArray.count);
+    
     [NSKeyedArchiver archiveRootObject:self.seenItArray toFile:_seenItPath];
     [array removeObjectAtIndex:indexPath.row];
     [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    [self.delegate enableSegment:0];
-    //[self.tableView reloadData];
     
-
+    if (self.seenItArray.count > 0) {
+        [self.delegate enableSegment:0];
+    } else {
+        [self.delegate disableSegment:0];
+    }
 }
 
 -(void)addToWantedList:(MCSwipeTableViewCell *)cell selectedArray:(NSMutableArray *)array
 {
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
     [self.wantedArray addObject:array[indexPath.row]];
+    NSLog(@"Wanted count: %d", self.wantedArray.count);
+    
     [NSKeyedArchiver archiveRootObject:self.wantedArray toFile:_wantedPath];
     [array removeObjectAtIndex:indexPath.row];
     [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    [self.delegate enableSegment:2];
+    
+    if (self.wantedArray.count > 0) {
+        [self.delegate enableSegment:2];
+    } else {
+        [self.delegate disableSegment:2];
+    }
 }
 
 -(void)addToNoInterestList:(MCSwipeTableViewCell *)cell selectedArray:(NSMutableArray *)array
 {
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
     [self.noInterestArray addObject:array[indexPath.row]];
+    NSLog(@"No interest count: %d", self.noInterestArray.count);
+    
     [NSKeyedArchiver archiveRootObject:self.noInterestArray toFile:_noInterestPath];
     [array removeObjectAtIndex:indexPath.row];
     [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
@@ -431,7 +360,6 @@
     } else {
         [self.delegate disableSegment:3];
     }
-    [self.delegate enableSegment:3];
 }
 
 

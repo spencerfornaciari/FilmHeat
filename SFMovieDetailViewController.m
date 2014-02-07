@@ -42,6 +42,7 @@
     
     self.movieSynopsis.text = _film.synopsis;
     self.moviePoster.image = _film.posterImage;
+    self.filmRatingLabel.text = _film.mpaaRating;
     
     NSDateFormatter *releaseDateFormatter = [[NSDateFormatter alloc] init];
     [releaseDateFormatter setDateStyle:NSDateFormatterShortStyle];

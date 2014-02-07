@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SFTheaterTableViewController.h"
+#import "SFSeenTableViewController.h"
+#import "SFWantedTableViewController.h"
+#import "SFNoneTableViewController.h"
 
-@interface SFBaseViewController : UIViewController
+@interface SFBaseViewController : UIViewController <SFTheaterTableViewControllerDelegate, SFSeenTableViewControllerDelegate>
 
 @end

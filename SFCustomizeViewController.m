@@ -9,9 +9,9 @@
 #import "SFCustomizeViewController.h"
 
 @interface SFCustomizeViewController ()
-- (IBAction)dismissViewController:(id)sender;
 
-@property (nonatomic) NSUserDefaults *prefs;
+
+- (IBAction)dismissViewController:(id)sender;
 
 @end
 
@@ -29,9 +29,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    _prefs = [NSUserDefaults standardUserDefaults];
     self.gpsButton.backgroundColor = [UIColor redColor];
     self.gpsButton.tintColor = [UIColor whiteColor];
+    self.zipCodeTextField.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"defaultZipCode"];
     
     if ([[NSUserDefaults standardUserDefaults] integerForKey:@"distanceThreshold"]) {
         float flo = [[NSUserDefaults standardUserDefaults] integerForKey:@"distanceThreshold"] / 20.f;
