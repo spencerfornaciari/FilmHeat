@@ -40,6 +40,11 @@
     [self.controller populateFilmData:@"98121"];
     
     self.theaterArray = self.controller.rottenTomatoesArray;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(reloadTable:)
+                                                 name:@"reload"
+                                               object:nil];
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -147,6 +152,15 @@
     [self.delegate passFilmFromTheater:self.theaterArray[indexPath.row] forIndex:index];
     [self.theaterArray removeObjectAtIndex:indexPath.row];
     [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+}
+
+- (void)reloadTable:(NSNotification *)note
+{
+    FilmModel *model = [note.userInfo objectForKey:@"film"];
+    NSInteger modelRow = [self.theaterArray indexOfObject:model];
+    NSIndexPath *row = [NSIndexPath indexPathForRow:modelRow inSection:0];
+    
+    [self.tableView reloadRowsAtIndexPaths:@[row] withRowAnimation:UITableViewRowAnimationNone];
 }
 
 @end

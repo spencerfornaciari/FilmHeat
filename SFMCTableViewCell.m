@@ -34,12 +34,14 @@
     
     self.filmMPAARating.text = film.mpaaRating;
     
-    if (!film.posterImage) {
+    UIImage *image = [UIImage imageWithContentsOfFile:[NSData dataWithContentsOfFile:film.posterImagePath]];
+    
+    if (!image) {
         self.filmThumbnailPoster.image = [UIImage imageNamed:@"Movies.png"];
         //[film downloadPoster];
-        //NSLog(@"%@", film.thumbnailPoster);
+       // NSLog(@"%@", film.thumbnailPoster);
     } else {
-        self.filmThumbnailPoster.image = film.posterImage;
+        self.filmThumbnailPoster.image = image;
     }
 }
 

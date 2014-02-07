@@ -12,6 +12,6 @@
 #import "SFWantedTableViewController.h"
 #import "SFNoneTableViewController.h"
 
-@interface SFBaseViewController : UIViewController <SFTheaterTableViewControllerDelegate, SFSeenTableViewControllerDelegate, SFWantedTableViewControllerDelegate, UIActionSheetDelegate>
+@interface SFBaseViewController : UIViewController <SFTheaterTableViewControllerDelegate, SFSeenTableViewControllerDelegate, SFWantedTableViewControllerDelegate, SFNoneTableViewControllerDelegate, UIActionSheetDelegate, UISearchBarDelegate>
 
 @end

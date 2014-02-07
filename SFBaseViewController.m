@@ -15,11 +15,16 @@
 @property (nonatomic, strong) SFTheaterTableViewController *theaterController;
 @property (nonatomic, strong) SFWantedTableViewController *wantedController;
 @property (nonatomic, strong) SFNoneTableViewController *noneController;
+@property (strong, nonatomic) NSMutableArray *strongArray;
+
 
 @property (nonatomic, strong) NSArray *childVCArray;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentOutlet;
 
 @property (weak, nonatomic) IBOutlet UIView *movieContainer;
+
+@property (weak, nonatomic) IBOutlet UISearchBar *filmSearchBar;
+
 - (IBAction)segmentPicker:(UISegmentedControl *)sender;
 
 @property (nonatomic, strong) UIViewController *currentViewController;
@@ -53,13 +58,12 @@
     _wantToSeeItPath = [filmHeatPath stringByAppendingPathComponent:WANT_TO_FILE];
     _dontWantToSeeItPath = [filmHeatPath stringByAppendingPathComponent:DONT_WANT_IT_FILE];
     
-    
     self.seenController = [self.storyboard instantiateViewControllerWithIdentifier:@"SeenView"];
     self.theaterController = [self.storyboard instantiateViewControllerWithIdentifier:@"TheaterView"];
     self.wantedController = [self.storyboard instantiateViewControllerWithIdentifier:@"WantedView"];
     self.noneController = [self.storyboard instantiateViewControllerWithIdentifier:@"NoneView"];
 
-    
+    self.filmSearchBar.delegate = self;
     self.theaterController.delegate = self;
     self.seenController.delegate = self;
     self.wantedController.delegate = self;
@@ -67,7 +71,6 @@
     
     self.currentViewController = self.theaterController;
 
-    
     self.childVCArray = @[self.seenController, self.theaterController, self.wantedController, self.noneController];
     
     [self setupFirstView];
@@ -90,6 +93,29 @@
         [view removeFromSuperview];
         [self.currentViewController removeFromParentViewController];
     }
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    if ([[NSKeyedUnarchiver unarchiveObjectWithFile:_seenItPath] count] == 0) {
+        [self.segmentOutlet setEnabled:NO forSegmentAtIndex:0];
+    } else  {
+        [self.segmentOutlet setEnabled:YES forSegmentAtIndex:0];
+    }
+
+    if ([[NSKeyedUnarchiver unarchiveObjectWithFile:_wantToSeeItPath] count] == 0) {
+        [self.segmentOutlet setEnabled:NO forSegmentAtIndex:2];
+    } else {
+        [self.segmentOutlet setEnabled:YES forSegmentAtIndex:2];
+    }
+    
+    if ([[NSKeyedUnarchiver unarchiveObjectWithFile:_dontWantToSeeItPath] count] == 0) {
+        [self.segmentOutlet setEnabled:NO forSegmentAtIndex:3];
+    } else {
+        [self.segmentOutlet setEnabled:YES forSegmentAtIndex:3];
+    }
+
+    NSLog(@"%d", self.seenController.seenArray.count);
 }
 
 - (void)didReceiveMemoryWarning
@@ -161,6 +187,12 @@
         [self.wantedController.wantedArray addObject:film];
         
         [NSKeyedArchiver archiveRootObject:self.wantedController.wantedArray toFile:_wantToSeeItPath];
+        
+        if (self.wantedController.wantedArray.count > 0) {
+            [self.segmentOutlet setEnabled:TRUE forSegmentAtIndex:0];
+        } else {
+            [self.segmentOutlet setEnabled:FALSE forSegmentAtIndex:0];
+        }
 
     } else if (index == 3) {
         if (!self.noneController.noneArray)
@@ -184,6 +216,13 @@
         }
         
         [self.theaterController.theaterArray addObject:film];
+        
+        if (self.seenController.seenArray.count> 0) {
+             [self.segmentOutlet setEnabled:TRUE forSegmentAtIndex:0];
+        } else {
+            [self.segmentOutlet setEnabled:FALSE forSegmentAtIndex:0];
+        }
+        
     } else if (index == 2) {
         if (!self.wantedController.wantedArray)
         {
@@ -323,6 +362,104 @@
     }
     
     return arrayToSort;
+}
+
+#pragma mark - Dynamically search text as user enters it
+
+- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar
+{
+    NSLog(@"Search Bar Should Begin Editing");
+    if (self.segmentOutlet.selectedSegmentIndex == 0) {
+        _strongArray = [self.seenController.seenArray copy];
+    } else if (self.segmentOutlet.selectedSegmentIndex == 1){
+        _strongArray = [self.theaterController.theaterArray copy];
+    } else if (self.segmentOutlet.selectedSegmentIndex == 2){
+        _strongArray = [self.wantedController.wantedArray copy];
+    } else if (self.segmentOutlet.selectedSegmentIndex == 3){
+        _strongArray = [self.noneController.noneArray copy];
+    }
+    
+    [self.seenController.tableView setUserInteractionEnabled:NO];
+    [self.theaterController.tableView setUserInteractionEnabled:NO];
+    [self.wantedController.tableView setUserInteractionEnabled:NO];
+    [self.noneController.tableView setUserInteractionEnabled:NO];
+
+    return YES;
+}
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+    [searchBar resignFirstResponder];
+}
+
+- (BOOL)searchBarShouldEndEditing:(UISearchBar *)searchBar
+{
+    NSLog(@"Search Bar Should End Editing");
+    [self.seenController.tableView setUserInteractionEnabled:YES];
+    [self.theaterController.tableView setUserInteractionEnabled:YES];
+    [self.wantedController.tableView setUserInteractionEnabled:YES];
+    [self.noneController.tableView setUserInteractionEnabled:YES];
+    
+    return YES;
+}
+
+//Updates as user enters text
+-(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+{
+    
+    if (self.segmentOutlet.selectedSegmentIndex == 0) {
+        self.seenController.seenArray = [self searchWithArray:self.seenController.seenArray textToSearch:searchText];
+        [self.seenController.tableView reloadData];
+    } else if (self.segmentOutlet.selectedSegmentIndex == 1){
+        self.theaterController.theaterArray = [self searchWithArray:self.theaterController.theaterArray textToSearch:searchText];
+        [self.theaterController.tableView reloadData];
+    } else if (self.segmentOutlet.selectedSegmentIndex == 2){
+        self.wantedController.wantedArray = [self searchWithArray:self.wantedController.wantedArray textToSearch:searchText];
+        [self.wantedController.tableView reloadData];
+    } else if (self.segmentOutlet.selectedSegmentIndex == 3){
+        self.noneController.noneArray = [self searchWithArray:self.noneController.noneArray textToSearch:searchText];
+        [self.noneController.tableView reloadData];
+    }
+    
+}
+
+-(NSMutableArray *)searchWithArray:(NSMutableArray *)arrayToSearch textToSearch:(NSString *)searchText
+{
+    //    NSMutableArray *strongArray
+    NSMutableArray *finalResults = [NSMutableArray new];
+    
+    NSLog(@"%@", searchText);
+    
+    for (FilmModel *model in [_strongArray copy])
+    {
+        NSString *string = [model.title uppercaseString];
+        if ([string hasPrefix:[searchText uppercaseString]])
+        {
+            [finalResults addObject:model];
+        }
+    }
+    
+    NSLog(@"%d", finalResults.count);
+    
+    if (searchText.length == 0) {
+        return _strongArray;
+    } else {
+       return finalResults;
+    }
+    
+   // return arrayToSearch;
+    
+}
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    NSLog(@"Touches Began");
+    [self.filmSearchBar resignFirstResponder];
+}
+
+-(void) dismissKeyboard:(id)sender
+{
+    [self.view endEditing:YES];
 }
 
 

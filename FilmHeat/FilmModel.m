@@ -60,12 +60,25 @@
         NSData *posterData = [NSData dataWithContentsOfURL:posterURL];
         self.posterImage = [UIImage imageWithData:posterData];
         
+        posterData = UIImageJPEGRepresentation(self.posterImage, 0.5);
+        
+         NSString *posterLocation = [NSString stringWithFormat:@"%@/%@.jpg", [self documentsDirectoryPath], self.title];
+         NSLog(@"%@", posterLocation);
+         
+         [posterData writeToFile:posterLocation atomically:YES];
+        
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
             //_isDownloading = FALSE;
             [[NSNotificationCenter defaultCenter] postNotificationName:@"reload" object:nil userInfo:@{@"film": self}];
         }];
     }];
     
+}
+
+- (NSString *)documentsDirectoryPath
+{
+    NSURL *documentsURL = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+    return [documentsURL path];
 }
 
 -(NSDate *)releaseDateConverter:(NSString *)releaseDateString
