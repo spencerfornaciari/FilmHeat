@@ -15,7 +15,6 @@
 
 - (IBAction)submitZipCode:(id)sender;
 
-
 @property (weak, nonatomic) IBOutlet UILabel *distanceThresholdLabel;
 @property (weak, nonatomic) IBOutlet UISlider *distanceThresholdSliderOutlet;
 

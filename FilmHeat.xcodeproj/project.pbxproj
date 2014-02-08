@@ -43,13 +43,10 @@
 		894DFADA18A176CA00806267 /* List@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 894DFAD918A176CA00806267 /* List@2x.png */; };
 		894DFADC18A176DB00806267 /* List.png in Resources */ = {isa = PBXBuildFile; fileRef = 894DFADB18A176DB00806267 /* List.png */; };
 		895B49C91895E04F001874D5 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 895B49C81895E04F001874D5 /* MapKit.framework */; };
-		897EB4DB1899CEAB007D43F3 /* SFScrollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 897EB4DA1899CEAA007D43F3 /* SFScrollViewController.m */; };
 		897EB575189B2DD0007D43F3 /* SFTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 897EB574189B2DD0007D43F3 /* SFTestViewController.m */; };
 		897EB57C189B3060007D43F3 /* Movies@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 897EB57A189B3060007D43F3 /* Movies@2x.png */; };
 		897EB580189B306C007D43F3 /* Movies.png in Resources */ = {isa = PBXBuildFile; fileRef = 897EB57E189B306C007D43F3 /* Movies.png */; };
 		898F4CBB189080D20060E847 /* SFFilmModelDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 898F4CBA189080D20060E847 /* SFFilmModelDataController.m */; };
-		898F4CBE189082A90060E847 /* SFFilmTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 898F4CBD189082A90060E847 /* SFFilmTableViewCell.m */; };
-		89A6F6C1189C7967002E1A21 /* SFMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89A6F6C0189C7967002E1A21 /* SFMapViewController.m */; };
 		89A6F6C4189C7D49002E1A21 /* ShowtimeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 89A6F6C3189C7D49002E1A21 /* ShowtimeModel.m */; };
 		89BC654D18A2F97000B27385 /* Sad_Face@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 89BC654C18A2F97000B27385 /* Sad_Face@2x.png */; };
 		89BC654F18A2F99100B27385 /* Sad_Face.png in Resources */ = {isa = PBXBuildFile; fileRef = 89BC654E18A2F99100B27385 /* Sad_Face.png */; };
@@ -119,18 +116,12 @@
 		894DFAD918A176CA00806267 /* List@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "List@2x.png"; sourceTree = "<group>"; };
 		894DFADB18A176DB00806267 /* List.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = List.png; sourceTree = "<group>"; };
 		895B49C81895E04F001874D5 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		897EB4D91899CEAA007D43F3 /* SFScrollViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SFScrollViewController.h; path = ../SFScrollViewController.h; sourceTree = "<group>"; };
-		897EB4DA1899CEAA007D43F3 /* SFScrollViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SFScrollViewController.m; path = ../SFScrollViewController.m; sourceTree = "<group>"; };
 		897EB573189B2DD0007D43F3 /* SFTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SFTestViewController.h; path = ../SFTestViewController.h; sourceTree = "<group>"; };
 		897EB574189B2DD0007D43F3 /* SFTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SFTestViewController.m; path = ../SFTestViewController.m; sourceTree = "<group>"; };
 		897EB57A189B3060007D43F3 /* Movies@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Movies@2x.png"; path = "FilmHeat/Movies@2x.png"; sourceTree = "<group>"; };
 		897EB57E189B306C007D43F3 /* Movies.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Movies.png; path = FilmHeat/Movies.png; sourceTree = "<group>"; };
 		898F4CB9189080D20060E847 /* SFFilmModelDataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SFFilmModelDataController.h; path = ../SFFilmModelDataController.h; sourceTree = "<group>"; };
 		898F4CBA189080D20060E847 /* SFFilmModelDataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SFFilmModelDataController.m; path = ../SFFilmModelDataController.m; sourceTree = "<group>"; };
-		898F4CBC189082A90060E847 /* SFFilmTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SFFilmTableViewCell.h; path = ../SFFilmTableViewCell.h; sourceTree = "<group>"; };
-		898F4CBD189082A90060E847 /* SFFilmTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SFFilmTableViewCell.m; path = ../SFFilmTableViewCell.m; sourceTree = "<group>"; };
-		89A6F6BF189C7967002E1A21 /* SFMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SFMapViewController.h; path = ../SFMapViewController.h; sourceTree = "<group>"; };
-		89A6F6C0189C7967002E1A21 /* SFMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SFMapViewController.m; path = ../SFMapViewController.m; sourceTree = "<group>"; };
 		89A6F6C2189C7D49002E1A21 /* ShowtimeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowtimeModel.h; sourceTree = "<group>"; };
 		89A6F6C3189C7D49002E1A21 /* ShowtimeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowtimeModel.m; sourceTree = "<group>"; };
 		89BC654C18A2F97000B27385 /* Sad_Face@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Sad_Face@2x.png"; sourceTree = "<group>"; };
@@ -218,17 +209,9 @@
 				8931CF5618A44A4200A4CFBC /* SFTheaterTableViewController.m */,
 				897EB573189B2DD0007D43F3 /* SFTestViewController.h */,
 				894DFACC18A0722000806267 /* Media */,
-				894DFAC918A0681000806267 /* SFCustomizeViewController.h */,
-				894DFACA18A0681100806267 /* SFCustomizeViewController.m */,
-				894DFAC618A0516A00806267 /* SFMovieDetailViewController.h */,
-				894DFAC718A0516A00806267 /* SFMovieDetailViewController.m */,
-				89A6F6BF189C7967002E1A21 /* SFMapViewController.h */,
-				89A6F6C0189C7967002E1A21 /* SFMapViewController.m */,
 				894C50B2189C3BBA003F72C6 /* UIColor+SFFilmHeatColors.h */,
 				894C50B3189C3BBA003F72C6 /* UIColor+SFFilmHeatColors.m */,
 				897EB574189B2DD0007D43F3 /* SFTestViewController.m */,
-				897EB4D91899CEAA007D43F3 /* SFScrollViewController.h */,
-				897EB4DA1899CEAA007D43F3 /* SFScrollViewController.m */,
 				8949F778188DF29C0069E9D4 /* Controller */,
 				8949F777188DF2980069E9D4 /* View */,
 				8949F776188DF2910069E9D4 /* Model */,
@@ -287,8 +270,6 @@
 			children = (
 				89BC655318A3008D00B27385 /* SFMCTableViewCell.h */,
 				89BC655418A3008D00B27385 /* SFMCTableViewCell.m */,
-				898F4CBC189082A90060E847 /* SFFilmTableViewCell.h */,
-				898F4CBD189082A90060E847 /* SFFilmTableViewCell.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -296,6 +277,10 @@
 		8949F778188DF29C0069E9D4 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				894DFAC918A0681000806267 /* SFCustomizeViewController.h */,
+				894DFACA18A0681100806267 /* SFCustomizeViewController.m */,
+				894DFAC618A0516A00806267 /* SFMovieDetailViewController.h */,
+				894DFAC718A0516A00806267 /* SFMovieDetailViewController.m */,
 				898F4CB9189080D20060E847 /* SFFilmModelDataController.h */,
 				898F4CBA189080D20060E847 /* SFFilmModelDataController.m */,
 				8949F770188DE1450069E9D4 /* SFTabBarController.h */,
@@ -483,7 +468,6 @@
 				8949F748188DDD090069E9D4 /* FilmHeat.xcdatamodeld in Sources */,
 				8949F73E188DDD090069E9D4 /* main.m in Sources */,
 				897EB575189B2DD0007D43F3 /* SFTestViewController.m in Sources */,
-				898F4CBE189082A90060E847 /* SFFilmTableViewCell.m in Sources */,
 				8949F772188DE1460069E9D4 /* SFTabBarController.m in Sources */,
 				8931CF6618A5998E00A4CFBC /* Constants.m in Sources */,
 				8931CF6318A4820100A4CFBC /* SFNoneTableViewController.m in Sources */,
@@ -492,8 +476,6 @@
 				89BC655518A3008D00B27385 /* SFMCTableViewCell.m in Sources */,
 				8931CF5A18A44AA800A4CFBC /* SFBaseViewController.m in Sources */,
 				8949F742188DDD090069E9D4 /* SFAppDelegate.m in Sources */,
-				897EB4DB1899CEAB007D43F3 /* SFScrollViewController.m in Sources */,
-				89A6F6C1189C7967002E1A21 /* SFMapViewController.m in Sources */,
 				894C50B4189C3BBA003F72C6 /* UIColor+SFFilmHeatColors.m in Sources */,
 				8949F775188DF2530069E9D4 /* FilmModel.m in Sources */,
 			);
