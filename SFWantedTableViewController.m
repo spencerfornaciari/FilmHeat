@@ -209,14 +209,19 @@
 
 - (void)checkForFilmImage:(FilmModel *)film
 {
-    NSLog(@"%@", film.posterImagePath);
-    NSString *string = [NSString stringWithFormat:@"%@/%@.jpg", [self documentsDirectoryPath], [film.title stringByReplacingOccurrencesOfString:@":" withString:@""]];
-    NSLog(@"String: %@", string);
-    UIImage *image = [UIImage imageWithContentsOfFile:string];
+    if (!film.posterFilePath) {
+        NSString *string = [NSString stringWithFormat:@"%@/%@.jpg", [self documentsDirectoryPath], [film.title stringByReplacingOccurrencesOfString:@":" withString:@""]];
+        film.posterFilePath = string;
+        NSLog(@"String: %@", string);
+        
+    }
+    
+    UIImage *image = [UIImage imageWithContentsOfFile:film.posterFilePath];
     
     if (image) {
         NSLog(@"%@", image);
         film.posterImage = image;
+        
     }
 }
 

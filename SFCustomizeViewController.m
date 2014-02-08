@@ -12,6 +12,7 @@
 
 
 - (IBAction)dismissViewController:(id)sender;
+- (IBAction)changeDefaultZipCode:(id)sender;
 
 @end
 
@@ -32,6 +33,8 @@
     self.gpsButton.backgroundColor = [UIColor redColor];
     self.gpsButton.tintColor = [UIColor whiteColor];
     self.zipCodeTextField.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"defaultZipCode"];
+    self.zipCodeTextField.keyboardType = UIKeyboardTypeDecimalPad;
+    self.zipCodeTextField.delegate = self;
     
     if ([[NSUserDefaults standardUserDefaults] integerForKey:@"mpaaRatingThreshold"]) {
         int threshold = [[NSUserDefaults standardUserDefaults] integerForKey:@"mpaaRatingThreshold"];
@@ -108,6 +111,8 @@
 - (IBAction)dismissViewController:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
+
 - (IBAction)submitZipCode:(id)sender
 {
     self.zipCodeTextField.text = @"";
@@ -115,6 +120,21 @@
     int zip = [textfield integerValue];
     [[NSUserDefaults standardUserDefaults] setInteger:zip forKey:@"defaultZipCode"];
     [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    
+}
+
+-(void)textFieldDidEndEditing:(UITextField *)textField
+{
     [self.zipCodeTextField resignFirstResponder];
 }
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    NSUInteger newLength = [textField.text length] + [string length] - range.length;
+    return (newLength > 5) ? NO : YES;
+}
+
 @end

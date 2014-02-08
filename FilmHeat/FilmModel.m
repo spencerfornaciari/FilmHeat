@@ -31,7 +31,7 @@
         self.releaseDate = [decoder decodeObjectForKey:@"releaseDate"];
         self.synopsis = [decoder decodeObjectForKey:@"synopsis"];
         self.myRating = [decoder decodeObjectForKey:@"myRating"];
-        self.posterImagePath = [decoder decodeObjectForKey:@"posterFilePath"];
+        self.posterFilePath = [decoder decodeObjectForKey:@"posterFilePath"];
         self.ratingValue = [decoder decodeObjectForKey:@"ratingValue"];
         
         return self;
@@ -47,9 +47,11 @@
     [encoder encodeObject:self.runtime forKey:@"runtime"];
     [encoder encodeObject:self.genres forKey:@"genres"];
     [encoder encodeObject:self.thumbnailPoster forKey:@"thumbnailPoster"];
+    [encoder encodeObject:self.posterFilePath forKey:@"posterFilePath"];
     [encoder encodeObject:self.releaseDate forKey:@"releaseDate"];
     [encoder encodeObject:self.synopsis forKey:@"synopsis"];
     [encoder encodeObject:self.myRating forKey:@"myRating"];
+   
     [encoder encodeObject:self.ratingValue forKey:@"ratingValue"];
 }
 
@@ -66,7 +68,7 @@
         posterData = UIImageJPEGRepresentation(self.posterImage, 0.5);
         
          NSString *posterLocation = [NSString stringWithFormat:@"%@/%@.jpg", [self documentsDirectoryPath], self.title];
-        self.posterImagePath = posterLocation;
+        self.posterFilePath = posterLocation;
          NSLog(@"%@", posterLocation);
          
          [posterData writeToFile:posterLocation atomically:YES];

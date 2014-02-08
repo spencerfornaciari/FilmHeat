@@ -34,6 +34,11 @@
     
     self.filmMPAARating.text = film.mpaaRating;
     
+    
+    if (film.myRating) {
+        self.myRatingLabel.text = [NSString stringWithFormat:@"My Rating: %@", film.myRating];
+    }
+    
     //UIImage *image = [UIImage imageWithContentsOfFile:[NSData dataWithContentsOfFile:film.posterImagePath]];
 //    
 //    if (image) {

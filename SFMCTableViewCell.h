@@ -18,6 +18,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *filmTitle;
 @property (strong, nonatomic) IBOutlet UIImageView *filmThumbnailPoster;
 @property (strong, nonatomic) IBOutlet UILabel *filmMPAARating;
+@property (strong, nonatomic) IBOutlet UILabel *myRatingLabel;
 
 - (void)setFilm:(FilmModel *)film;
 

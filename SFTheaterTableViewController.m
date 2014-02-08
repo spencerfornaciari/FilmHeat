@@ -242,9 +242,7 @@
             
             NSString *posterLocation = [NSString stringWithFormat:@"%@/%@.jpg", [self documentsDirectoryPath], [film.title stringByReplacingOccurrencesOfString:@":" withString:@""]];
             film.posterFilePath = posterLocation;
-                //film.posterImagePath = [NSString stringWithString:posterLocation];
             NSLog(@"%@", film.posterFilePath);
-            //NSLog(@"%@", posterData);
             
             [posterData writeToFile:film.posterFilePath atomically:YES];
             
