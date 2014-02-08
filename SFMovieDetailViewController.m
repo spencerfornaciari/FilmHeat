@@ -31,6 +31,29 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    NSString *rottenString = [NSString stringWithFormat:@"http://api.rottentomatoes.com/api/public/v1.0/movies.json?apikey=%@&q=%@&page_limit=1", kROTTEN_TOMATOES_API_KEY, self.film.title];
+    rottenString = [rottenString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+
+    
+    NSURL *rottenURL = [NSURL URLWithString:rottenString];
+    
+    NSData *rottenData = [NSData dataWithContentsOfURL:rottenURL];
+    
+    NSError *error;
+    
+    NSDictionary *rottenDictionary = [NSJSONSerialization JSONObjectWithData:rottenData
+                                                        options:NSJSONReadingMutableContainers
+                                                          error:&error];
+
+    NSString *criticsRating = [rottenDictionary valueForKeyPath:@"movies.ratings.critics_score"];
+    self.film.criticsRating = criticsRating;
+    NSString *audienceRating = [rottenDictionary valueForKeyPath:@"movies.ratings.audience_score"];
+    self.film.audienceRating = audienceRating;
+    
+    NSLog(@"Critics: %@, Audience: %@", criticsRating, audienceRating);
+    
+    
 	// Do any additional setup after loading the view.
 }
 

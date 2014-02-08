@@ -34,6 +34,9 @@
         self.posterFilePath = [decoder decodeObjectForKey:@"posterFilePath"];
         self.ratingValue = [decoder decodeObjectForKey:@"ratingValue"];
         
+        self.criticsRating = [decoder decodeObjectForKey:@"criticsRating"];
+        self.audienceRating = [decoder decodeObjectForKey:@"audienceRating"];
+        
         return self;
     }
     
@@ -53,6 +56,10 @@
     [encoder encodeObject:self.myRating forKey:@"myRating"];
    
     [encoder encodeObject:self.ratingValue forKey:@"ratingValue"];
+    
+    
+    [encoder encodeObject:self.criticsRating forKey:@"criticsRating"];
+    [encoder encodeObject:self.audienceRating forKey:@"audienceRating"];
 }
 
 -(void)downloadPoster

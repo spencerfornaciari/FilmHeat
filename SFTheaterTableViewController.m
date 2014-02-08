@@ -193,6 +193,7 @@
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
     [self.delegate passFilmFromTheater:self.theaterArray[indexPath.row] forIndex:index];
     [self.theaterArray removeObjectAtIndex:indexPath.row];
+    [self.strongArray removeObjectAtIndex:indexPath.row];
     [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
 }
 
@@ -262,15 +263,7 @@
             [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
             
         }];
-        
-        
-        
-       //NSLog(@"%@", posterLocation);
-        
-//        film.posterImagePath = posterLocation;
-        //NSLog(@"%@", film.posterImagePath);
-        
-//
+    
 
     }];
     

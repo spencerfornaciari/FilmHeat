@@ -22,6 +22,6 @@
 @property (nonatomic, unsafe_unretained) id<SFTheaterTableViewControllerDelegate> delegate;
 
 @property (nonatomic, strong) NSMutableArray *theaterArray;
-@property (nonatomic, retain) NSMutableArray *strongArray;
+@property (nonatomic, strong) NSMutableArray *strongArray;
 
 @end

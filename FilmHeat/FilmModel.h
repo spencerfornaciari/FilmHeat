@@ -15,6 +15,8 @@
 
 @property (strong, nonatomic) NSString *thumbnailPoster;
 @property (strong, nonatomic) UIImage *posterImage;
+@property (strong, nonatomic) NSString *criticsRating;
+@property (strong, nonatomic) NSString *audienceRating;
 @property (strong, nonatomic) NSString *posterFilePath;
 @property (strong, nonatomic) NSNumber *runtime;
 @property (strong, nonatomic) NSString *synopsis;
