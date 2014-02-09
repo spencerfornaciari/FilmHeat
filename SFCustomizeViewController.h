@@ -7,28 +7,21 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MapKit/MapKit.h>
 
-@interface SFCustomizeViewController : UIViewController <UITextFieldDelegate>
+@interface SFCustomizeViewController : UIViewController <UITextFieldDelegate, CLLocationManagerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *zipCodeTextField;
 @property (weak, nonatomic) IBOutlet UIButton *gpsButton;
 
 - (IBAction)submitZipCode:(id)sender;
 
-@property (weak, nonatomic) IBOutlet UILabel *distanceThresholdLabel;
-@property (weak, nonatomic) IBOutlet UISlider *distanceThresholdSliderOutlet;
-
-@property (weak, nonatomic) IBOutlet UILabel *criticsRatingThresholdLabel;
-@property (weak, nonatomic) IBOutlet UISlider *criticsThresholdSliderOutlet;
-
-@property (weak, nonatomic) IBOutlet UILabel *audienceRatingThresholdLabel;
-@property (weak, nonatomic) IBOutlet UISlider *audienceRatingSliderOutlet;
+@property (weak, nonatomic) IBOutlet UILabel *mpaaRatingThresholdLabel;
+@property (weak, nonatomic) IBOutlet UISlider *mpaaRatingThresholdSliderOutlet;
 
 - (IBAction)gpsButtonAction:(id)sender;
 
 - (IBAction)mpaaRatingThresholdSliderAction:(id)sender;
-- (IBAction)criticsRatingThresholdSliderAction:(id)sender;
-- (IBAction)audienceRatingThresholdSliderAction:(id)sender;
 
 
 @end

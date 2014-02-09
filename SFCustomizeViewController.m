@@ -10,6 +10,9 @@
 
 @interface SFCustomizeViewController ()
 
+@property (strong, nonatomic) CLLocationManager *locationManager;
+@property (strong, nonatomic) CLLocation *location;
+@property (strong, nonatomic) NSString *zipCode;
 
 - (IBAction)dismissViewController:(id)sender;
 
@@ -35,27 +38,23 @@
     self.zipCodeTextField.keyboardType = UIKeyboardTypeDecimalPad;
     self.zipCodeTextField.delegate = self;
     
+    //Declare CLLocation Manager
+    self.locationManager = [[CLLocationManager alloc] init];
+    self.locationManager.delegate = self;
+    [self.locationManager setDistanceFilter:kCLDistanceFilterNone];
+    [self.locationManager setDesiredAccuracy:kCLLocationAccuracyKilometer];
+    
+    self.location = [[CLLocation alloc] init];
+    
     NSLog(@"%d", [[NSUserDefaults standardUserDefaults] integerForKey:@"mpaaRatingThreshold"]);
     
     if ([[NSUserDefaults standardUserDefaults] integerForKey:@"mpaaRatingThreshold"] >= 0) {
         int threshold = [[NSUserDefaults standardUserDefaults] integerForKey:@"mpaaRatingThreshold"];
-        self.distanceThresholdSliderOutlet.value = threshold / 5.f;
+        self.mpaaRatingThresholdSliderOutlet.value = threshold / 5.f;
         [self setRatingThresholdLabel:threshold];
     }
+
     
-    if ([[NSUserDefaults standardUserDefaults] integerForKey:@"criticThreshold"]) {
-        float flo =  [[NSUserDefaults standardUserDefaults] integerForKey:@"criticThreshold"] / 100.f;
-        self.criticsThresholdSliderOutlet.value = flo;
-        int threshold = [self.criticsThresholdSliderOutlet value] * 100;
-        self.criticsRatingThresholdLabel.text = [[NSNumber numberWithInt:threshold] stringValue];
-    }
-    
-    if ([[NSUserDefaults standardUserDefaults] integerForKey:@"audienceThreshold"]) {
-        float flo =  [[NSUserDefaults standardUserDefaults] integerForKey:@"audienceThreshold"] / 100.f;
-        self.audienceRatingSliderOutlet.value = flo;
-        int threshold = [self.audienceRatingSliderOutlet value] * 100;
-        self.audienceRatingThresholdLabel.text = [[NSNumber numberWithInt:threshold] stringValue];
-    }
     if ([[NSUserDefaults standardUserDefaults] integerForKey:@"defaultZipCode"]) {
         int zip =  [[NSUserDefaults standardUserDefaults] integerForKey:@"defaultZipCode"];
         self.zipCodeTextField.text = [[NSNumber numberWithInt:zip] stringValue];
@@ -71,7 +70,7 @@
 }
 
 - (IBAction)mpaaRatingThresholdSliderAction:(id)sender {
-    int threshold = [self.distanceThresholdSliderOutlet value] * 5;
+    int threshold = [self.mpaaRatingThresholdSliderOutlet value] * 5;
     [self setRatingThresholdLabel:threshold];
     
     [[NSUserDefaults standardUserDefaults] setInteger:threshold forKey:@"mpaaRatingThreshold"];
@@ -81,34 +80,24 @@
 -(void)setRatingThresholdLabel:(NSInteger)index
 {
     if (index == 5) {
-        self.distanceThresholdLabel.text = @"NC-17";
+        self.mpaaRatingThresholdLabel.text = @"NC-17";
     } else if (index == 4) {
-        self.distanceThresholdLabel.text = @"R";
+        self.mpaaRatingThresholdLabel.text = @"R";
     }else if (index == 3) {
-        self.distanceThresholdLabel.text = @"PG-13";
+        self.mpaaRatingThresholdLabel.text = @"PG-13";
     } else if (index == 2) {
-        self.distanceThresholdLabel.text = @"PG";
+        self.mpaaRatingThresholdLabel.text = @"PG";
     } else if (index == 1) {
-        self.distanceThresholdLabel.text = @"G";
+        self.mpaaRatingThresholdLabel.text = @"G";
     } else {
-        self.distanceThresholdLabel.text = @"NR";
+        self.mpaaRatingThresholdLabel.text = @"NR";
     }
 }
 
-- (IBAction)criticsRatingThresholdSliderAction:(id)sender {
-    int threshold = [self.criticsThresholdSliderOutlet value] * 100;
-    self.criticsRatingThresholdLabel.text = [[NSNumber numberWithInt:threshold] stringValue];
-    [[NSUserDefaults standardUserDefaults] setInteger:threshold forKey:@"criticThreshold"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-}
-
-- (IBAction)audienceRatingThresholdSliderAction:(id)sender {
-    int threshold = [self.audienceRatingSliderOutlet value] * 100;
-    self.audienceRatingThresholdLabel.text = [[NSNumber numberWithInt:threshold] stringValue];
-    [[NSUserDefaults standardUserDefaults] setInteger:threshold forKey:@"audienceThreshold"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-}
 - (IBAction)gpsButtonAction:(id)sender {
+    [self.locationManager startUpdatingLocation];
+    
+    
 }
 - (IBAction)dismissViewController:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
@@ -137,6 +126,27 @@
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     NSUInteger newLength = [textField.text length] + [string length] - range.length;
     return (newLength > 5) ? NO : YES;
+}
+
+-(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
+{
+    self.location = locations[0];
+    
+    CLGeocoder *geocoder = [CLGeocoder new];
+    
+    [geocoder reverseGeocodeLocation:self.location completionHandler:^(NSArray *placemarks, NSError *error) {
+        self.zipCode = [placemarks[0] postalCode];
+        [[NSUserDefaults standardUserDefaults] setObject:self.zipCode forKey:@"defaultZipCode"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        [self.locationManager stopUpdatingLocation];
+        
+        NSLog(@"%@", self.zipCode);
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            [[NSUserDefaults standardUserDefaults] setObject:self.zipCode forKey:@"defaultZipCode"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+            [self.locationManager stopUpdatingLocation];
+        }];
+    }];
 }
 
 @end
