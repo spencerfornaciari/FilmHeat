@@ -47,6 +47,7 @@
                                              selector:@selector(reloadTable:)
                                                  name:@"reload"
                                                object:nil];
+    
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -57,21 +58,22 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    NSMutableArray *ratingArray = [NSMutableArray new];
     
-    for (FilmModel *film in [self.strongArray copy]) {
-        
+    NSMutableArray *ratingFilterArray = [NSMutableArray new];
+    
+    NSLog(@"User Default: %d", [[NSUserDefaults standardUserDefaults] integerForKey:@"mpaaRatingThreshold"]);
+    
+    for (FilmModel *film in self.strongArray) {
         if ([film.ratingValue integerValue] >= [[NSUserDefaults standardUserDefaults] integerForKey:@"mpaaRatingThreshold"])
         {
-//            NSLog(@"Threshold Value: %ld", (long)[[NSUserDefaults standardUserDefaults] integerForKey:@"mpaaRatingThreshold"]);
-//            NSLog(@"Rating Value: %@", film.ratingValue);
-//            NSLog(@"%@: %@", film.title, film.mpaaRating);
-            [ratingArray addObject:film];
+            [ratingFilterArray addObject:film];
         }
     }
-    NSLog(@"Rating Array Count: %d", ratingArray.count);
+    NSLog(@"Filter Count: %d", ratingFilterArray.count);
     
-    self.theaterArray = ratingArray;
+    self.theaterArray = ratingFilterArray;
+//    
+//    NSLog(@"Rating Array Count: %d", self.theaterArray.count);
     
     [self.tableView reloadData];
      
@@ -192,8 +194,11 @@
    
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
     [self.delegate passFilmFromTheater:self.theaterArray[indexPath.row] forIndex:index];
+    
+    [self.strongArray removeObjectAtIndex:[self.strongArray indexOfObject:self.theaterArray[indexPath.row]]];
+    
     [self.theaterArray removeObjectAtIndex:indexPath.row];
-    [self.strongArray removeObjectAtIndex:indexPath.row];
+    
     [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
 }
 
@@ -244,12 +249,12 @@
             
             NSString *posterLocation = [NSString stringWithFormat:@"%@/%@.jpg", [self documentsDirectoryPath], [film.title stringByReplacingOccurrencesOfString:@":" withString:@""]];
             film.posterFilePath = posterLocation;
-            NSLog(@"%@", film.posterFilePath);
+            //NSLog(@"%@", film.posterFilePath);
             
             [posterData writeToFile:film.posterFilePath atomically:YES];
             
             
-            NSLog(@"%hhd", [self doesFileExist:film.posterFilePath]);
+            //NSLog(@"%hhd", [self doesFileExist:film.posterFilePath]);
 //            if (film.posterFilePath) {
 //                NSLog(@"%@", film.posterFilePath);
 //            } else {

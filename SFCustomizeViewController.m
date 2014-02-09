@@ -40,7 +40,6 @@
     if ([[NSUserDefaults standardUserDefaults] integerForKey:@"mpaaRatingThreshold"] >= 0) {
         int threshold = [[NSUserDefaults standardUserDefaults] integerForKey:@"mpaaRatingThreshold"];
         self.distanceThresholdSliderOutlet.value = threshold / 5.f;
-        NSLog(@"%f", self.distanceThresholdSliderOutlet.value);
         [self setRatingThresholdLabel:threshold];
     }
     
@@ -74,10 +73,8 @@
 - (IBAction)mpaaRatingThresholdSliderAction:(id)sender {
     int threshold = [self.distanceThresholdSliderOutlet value] * 5;
     [self setRatingThresholdLabel:threshold];
-   // NSLog(@"%d", threshold);
     
     [[NSUserDefaults standardUserDefaults] setInteger:threshold forKey:@"mpaaRatingThreshold"];
-    NSLog(@"%d", [[NSUserDefaults standardUserDefaults] integerForKey:@"mpaaRatingThreshold"]);
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 

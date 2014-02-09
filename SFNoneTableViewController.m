@@ -35,11 +35,11 @@
     NSString *filmHeatPath = [documentsURL path];
     _nonePath = [filmHeatPath stringByAppendingPathComponent:kDONT_WANT_IT_FILE];
     
-    if ([self doesArrayExist:kDONT_WANT_IT_FILE]) {
-        self.noneArray = [NSKeyedUnarchiver unarchiveObjectWithFile:_nonePath];
-    } else {
-        self.noneArray = [NSMutableArray new];
-    }
+//    if ([self doesArrayExist:kDONT_WANT_IT_FILE]) {
+//        self.noneArray = [NSKeyedUnarchiver unarchiveObjectWithFile:_nonePath];
+//    } else {
+//        self.noneArray = [NSMutableArray new];
+//    }
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;

@@ -20,15 +20,12 @@
 @property (nonatomic, strong) SFTheaterTableViewController *theaterController;
 @property (nonatomic, strong) SFWantedTableViewController *wantedController;
 @property (nonatomic, strong) SFNoneTableViewController *noneController;
-@property (strong, nonatomic) NSMutableArray *strongArray;
-
-@property (nonatomic, strong) SFFilmModelDataController *controller;
+@property (strong, nonatomic) NSMutableArray *searchArray;
 
 @property (nonatomic, strong) NSArray *childVCArray;
+
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentOutlet;
-
 @property (weak, nonatomic) IBOutlet UIView *movieContainer;
-
 @property (weak, nonatomic) IBOutlet UISearchBar *filmSearchBar;
 
 - (IBAction)segmentPicker:(UISegmentedControl *)sender;
@@ -37,6 +34,7 @@
 
 @property (nonatomic) NSString *seenItPath, *wantToSeeItPath, *dontWantToSeeItPath;
 
+@property (nonatomic, strong) NSOperationQueue *downloadQueue;
 
 @end
 
@@ -64,7 +62,7 @@
     
     self.location = [[CLLocation alloc] init];
     
-    _strongArray = [NSMutableArray new];
+    _searchArray = [NSMutableArray new];
     
     self.segmentOutlet.selectedSegmentIndex = 1;
     
@@ -90,13 +88,9 @@
 
     self.childVCArray = @[self.seenController, self.theaterController, self.wantedController, self.noneController];
     
-    [self setupFirstView];
+
     
-    self.theaterController.theaterArray = [NSMutableArray new];
     self.theaterController.strongArray = [NSMutableArray new];
-    self.controller = [SFFilmModelDataController new];
-
-
     
 	// Do any additional setup after loading the view.
 }
@@ -155,12 +149,12 @@
         [[NSUserDefaults standardUserDefaults] setObject:self.zipCode forKey:@"defaultZipCode"];
         [[NSUserDefaults standardUserDefaults] synchronize];
         [self.locationManager stopUpdatingLocation];
-        [self.controller populateFilmData:self.zipCode];
-        
+        [self populateFilmData:self.zipCode];
+        self.theaterController.strongArray = self.theaterController.theaterArray;
+
         NSLog(@"%@", self.zipCode);
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-            self.theaterController.theaterArray = self.controller.rottenTomatoesArray;
-            self.theaterController.strongArray = self.theaterController.theaterArray;
+            [self setupFirstView];
             [self.theaterController.tableView reloadData];
         }];
     }];
@@ -428,13 +422,13 @@
 {
     NSLog(@"Search Bar Should Begin Editing");
     if (self.segmentOutlet.selectedSegmentIndex == 0) {
-        _strongArray = [self.seenController.seenArray copy];
+        _searchArray = [self.seenController.seenArray copy];
     } else if (self.segmentOutlet.selectedSegmentIndex == 1){
-        _strongArray = [self.theaterController.theaterArray copy];
+        _searchArray = [self.theaterController.theaterArray copy];
     } else if (self.segmentOutlet.selectedSegmentIndex == 2){
-        _strongArray = [self.wantedController.wantedArray copy];
+        _searchArray = [self.wantedController.wantedArray copy];
     } else if (self.segmentOutlet.selectedSegmentIndex == 3){
-        _strongArray = [self.noneController.noneArray copy];
+        _searchArray = [self.noneController.noneArray copy];
     }
     
     [self.seenController.tableView setUserInteractionEnabled:NO];
@@ -487,7 +481,7 @@
     
     NSLog(@"%@", searchText);
     
-    for (FilmModel *model in [_strongArray copy])
+    for (FilmModel *model in [_searchArray copy])
     {
         NSString *string = [model.title uppercaseString];
         if ([string hasPrefix:[searchText uppercaseString]])
@@ -499,7 +493,7 @@
     NSLog(@"%d", finalResults.count);
     
     if (searchText.length == 0) {
-        return _strongArray;
+        return _searchArray;
     } else {
        return finalResults;
     }
@@ -517,6 +511,170 @@
 }
 
 
+- (void)populateFilmData:(NSString *)zipCode
+{
+    _downloadQueue = [NSOperationQueue new];
+    
+    //self.seenItArray = [NSMutableArray new];
+    
+    if ([self doesArrayExist:kSEEN_IT_FILE]) {
+        self.seenController.seenArray = [NSKeyedUnarchiver unarchiveObjectWithFile:self.seenItPath];
+       // NSLog(@"Seen it Array: %d", self.seenItArray.count);
+        NSLog(@"SEEN IT");
+    } else {
+        self.seenController.seenArray = [NSMutableArray new];
+        NSLog(@"Created Seen");
+        
+    }
+    
+    if ([self doesArrayExist:kWANT_TO_FILE]) {
+        self.wantedController.wantedArray = [NSKeyedUnarchiver unarchiveObjectWithFile:self.wantToSeeItPath];
+        NSLog(@"WANT IT");
+    } else {
+        self.wantedController.wantedArray = [NSMutableArray new];
+        NSLog(@"Created Want");
+        
+    }
+    
+    if ([self doesArrayExist:kDONT_WANT_IT_FILE]) {
+        self.noneController.noneArray = [NSKeyedUnarchiver unarchiveObjectWithFile:self.dontWantToSeeItPath];
+        NSLog(@"NO INTEREST");
+    } else {
+        self.noneController.noneArray = [NSMutableArray new];
+        NSLog(@"Created No Interest");
+    }
+    
+    NSDateFormatter *apiDateFormatter = [NSDateFormatter new];
+    [apiDateFormatter setDateFormat:@"yyyy-MM-dd"];
+    NSString *apiDateString = [apiDateFormatter stringFromDate:[NSDate date]];
+    
+    NSString *tmsString = [NSString stringWithFormat:@"http://data.tmsapi.com/v1/movies/showings?startDate=%@&zip=%@&imageSize=Sm&imageText=false&api_key=%@", apiDateString, zipCode, kTMS_API_KEY];
+    
+    NSURL *tmsURL = [NSURL URLWithString:tmsString];
+    
+    NSData *tmsData = [NSData dataWithContentsOfURL:tmsURL];
+    
+    NSError *error;
+    
+    NSArray *tmsArray = [NSJSONSerialization JSONObjectWithData:tmsData
+                                                        options:NSJSONReadingMutableContainers
+                                                          error:&error];
+    
+    
+    NSMutableArray *tmsInstance = [NSMutableArray new];
+    
+    for (NSDictionary *dictionary in tmsArray)
+    {
+        FilmModel *film = [FilmModel new];
+        
+        film.downloadQueue = self.downloadQueue;
+        //film.isDownloading = NO;
+        
+        film.title = dictionary[@"title"];
+        
+        BOOL doesExist = [self doesFilmExist:film];
+        
+        film.synopsis = dictionary[@"shortDescription"];
+        
+        //Set the film's MPAA rating
+        NSArray *ratingArray = [dictionary valueForKeyPath:@"ratings"];
+        NSDictionary *ratingDictinary = ratingArray[0];
+        NSString *rating = [ratingDictinary objectForKey:@"code"];
+        
+        if (rating) {
+            film.mpaaRating = rating;
+            film.ratingValue = [NSNumber numberWithInt:[self setRatingValue:film.mpaaRating]];
+        } else {
+            film.mpaaRating = @"NR";
+            film.ratingValue = [NSNumber numberWithInt:0];
+        }
+        
+        //Grab the URL for the thumbnail of the film's poster
+        NSString *poster = [dictionary valueForKeyPath:@"preferredImage.uri"];
+        film.thumbnailPoster = [NSString stringWithFormat:@"http://developer.tmsimg.com/%@?api_key=%@", poster, kTMS_API_KEY];
+        //NSLog(@"%@", film.thumbnailPoster);
+        
+        film.genres = [dictionary valueForKey:@"genres"];
+        
+        film.runtime = [film runTimeConverter:[dictionary valueForKey:@"runTime"]];
+        
+        film.releaseDate = [film releaseDateConverter:[dictionary valueForKey:@"releaseDate"]];
+        
+        if (!doesExist) {
+            [tmsInstance addObject:film];
+        }
+        
+    }
+    
+    self.theaterController.theaterArray = tmsInstance;
+    
+    [self.theaterController.tableView reloadData];
+}
 
+-(NSInteger)setRatingValue:(NSString *)mpaaRating
+{
+    if ([mpaaRating isEqualToString:@"G"]) {
+        return 1;
+    } else if ([mpaaRating isEqualToString:@"PG"]){
+        return 2;
+    } else if ([mpaaRating isEqualToString:@"PG-13"]) {
+        return 3;
+    } else if ([mpaaRating isEqualToString:@"R"]) {
+        return 4;
+    } else {
+        return 5;
+    }
+}
+
+#pragma mark - Checking if the film already exists
+
+- (BOOL)doesFilmExist:(FilmModel *)film
+{
+    if ([self doesArrayExist:kSEEN_IT_FILE]) {
+        NSArray *ratingCheck = [NSKeyedUnarchiver unarchiveObjectWithFile:self.seenItPath];
+        for (FilmModel *check in ratingCheck) {
+            if ([check.title isEqualToString:film.title]) {
+                return YES;
+            }
+        }
+    }
+    
+    if ([self doesArrayExist:kWANT_TO_FILE]) {
+        NSArray *ratingCheck = [NSKeyedUnarchiver unarchiveObjectWithFile:self.wantToSeeItPath];
+        for (FilmModel *check in ratingCheck) {
+            if ([check.title isEqualToString:film.title]) {
+                return YES;
+            }
+        }
+    }
+    
+    if ([self doesArrayExist:kDONT_WANT_IT_FILE]) {
+        NSArray *ratingCheck = [NSKeyedUnarchiver unarchiveObjectWithFile:self.dontWantToSeeItPath];
+        for (FilmModel *check in ratingCheck) {
+            if ([check.title isEqualToString:film.title]) {
+                return YES;
+            }
+        }
+    }
+    
+    return NO;
+    
+}
+
+-(BOOL)doesArrayExist:(NSString *)arrayNameString
+{
+    NSURL *documentsURL = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+    
+    NSString *documentsPath = [documentsURL path];
+    documentsPath = [documentsPath stringByAppendingPathComponent:arrayNameString];
+    
+    if (![[NSFileManager defaultManager] fileExistsAtPath:documentsPath]) {
+        NSLog(@"FALSE");
+        return FALSE;
+    } else {
+        //NSLog(@"TRUE");
+        return TRUE;
+    }
+}
 
 @end
