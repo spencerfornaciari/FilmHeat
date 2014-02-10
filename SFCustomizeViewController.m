@@ -10,10 +10,6 @@
 
 @interface SFCustomizeViewController ()
 
-@property (strong, nonatomic) CLLocationManager *locationManager;
-@property (strong, nonatomic) CLLocation *location;
-@property (strong, nonatomic) NSString *zipCode;
-
 - (IBAction)dismissViewController:(id)sender;
 
 @end
@@ -32,28 +28,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.gpsButton.backgroundColor = [UIColor redColor];
-    self.gpsButton.tintColor = [UIColor whiteColor];
-    //self.zipCodeTextField.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"defaultZipCode"];
-    //self.zipCodeTextField.keyboardType = UIKeyboardTypeDecimalPad;
-    self.zipCodeTextField.delegate = self;
-    
-    //Declare CLLocation Manager
-    self.locationManager = [[CLLocationManager alloc] init];
-    self.locationManager.delegate = self;
-    [self.locationManager setDistanceFilter:kCLDistanceFilterNone];
-    [self.locationManager setDesiredAccuracy:kCLLocationAccuracyKilometer];
-    
-    if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied || [CLLocationManager authorizationStatus] == kCLAuthorizationStatusRestricted || [CLLocationManager authorizationStatus] == kCLAuthorizationStatusNotDetermined) {
-        NSLog(@"Not Authorized");
-        self.zipCode = @"94115";
-        self.gpsButton.enabled = YES;
-    } else {
-        NSLog(@"Authorized");
-        self.gpsButton.enabled = YES;
-    }
-    
-    self.location = [[CLLocation alloc] init];
     
     NSLog(@"%d", [[NSUserDefaults standardUserDefaults] integerForKey:@"mpaaRatingThreshold"]);
     
@@ -64,9 +38,18 @@
     }
 
     
-    if ([[NSUserDefaults standardUserDefaults] integerForKey:@"defaultZipCode"]) {
-        int zip =  [[NSUserDefaults standardUserDefaults] integerForKey:@"defaultZipCode"];
-        self.zipCodeTextField.text = [[NSNumber numberWithInt:zip] stringValue];
+    if ([[NSUserDefaults standardUserDefaults] integerForKey:@"criticThreshold"]) {
+        float flo =  [[NSUserDefaults standardUserDefaults] integerForKey:@"criticThreshold"] / 100.f;
+        self.criticsRatingThresholdSliderOutlet.value = flo;
+        int threshold = self.criticsRatingThresholdSliderOutlet.value * 100;
+        self.criticsRatingThresholdLabel.text = [[NSNumber numberWithInt:threshold] stringValue];
+    }
+    
+    if ([[NSUserDefaults standardUserDefaults] integerForKey:@"audienceThreshold"]) {
+        float flo =  [[NSUserDefaults standardUserDefaults] integerForKey:@"audienceThreshold"] / 100.f;
+        self.audienceRatingThresholdSliderOutlet.value = flo;
+        int threshold = self.audienceRatingThresholdSliderOutlet.value * 100;
+        self.audienceRatingThresholdLabel.text = [[NSNumber numberWithInt:threshold] stringValue];
     }
     
     // Do any additional setup after loading the view.
@@ -103,49 +86,13 @@
     }
 }
 
-- (IBAction)gpsButtonAction:(id)sender {
-    [self.locationManager startUpdatingLocation];
-    
-    
-}
+
 - (IBAction)dismissViewController:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 
-- (IBAction)submitZipCode:(id)sender
-{
-    NSString *textfield = self.zipCodeTextField.text;
-    if(textfield.length < 5){
-        [self zipCodeIsTooShort];
-    } else {
-        int zip = [textfield integerValue];
-        [[NSUserDefaults standardUserDefaults] setInteger:zip forKey:@"defaultZipCode"];
-        [[NSUserDefaults standardUserDefaults] synchronize];
-        [self.delegate repopulateData];
-        NSLog(@"TEXTFIELD IS CALLED");
-    }
-}
 
--(void)zipCodeIsTooShort
-{
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Zip Code Problem" message:@"The zipcode you entered is too short, try again" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-    [alert show];
-    int zip =  [[NSUserDefaults standardUserDefaults] integerForKey:@"defaultZipCode"];
-    self.zipCodeTextField.text = [[NSNumber numberWithInt:zip] stringValue];
-}
-
-- (void)textFieldDidBeginEditing:(UITextField *)textField
-{
-    self.zipCodeTextField.text = @"";
-}
-
--(void)textFieldDidEndEditing:(UITextField *)textField
-{
-    
-    
-    //self.zipCodeTextField.text = textField.text;
-}
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     NSUInteger newLength = [textField.text length] + [string length] - range.length;
@@ -158,30 +105,20 @@
 //    return YES;
 //}
 
--(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
-{
-    self.location = locations[0];
-    
-    CLGeocoder *geocoder = [CLGeocoder new];
-    
-    [geocoder reverseGeocodeLocation:self.location completionHandler:^(NSArray *placemarks, NSError *error) {
-        self.zipCode = [placemarks[0] postalCode];
-        [[NSUserDefaults standardUserDefaults] setObject:self.zipCode forKey:@"defaultZipCode"];
-        [[NSUserDefaults standardUserDefaults] synchronize];
-        [self.locationManager stopUpdatingLocation];
-        
-        NSLog(@"%@", self.zipCode);
-        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-            self.zipCodeTextField.text = self.zipCode;
-            [self.delegate repopulateData];
-        }];
-    }];
+
+
+- (IBAction)criticsRatingThresholdSliderAction:(id)sender {
+    int threshold = self.criticsRatingThresholdSliderOutlet.value * 100;
+    self.criticsRatingThresholdLabel.text = [[NSNumber numberWithInt:threshold] stringValue];
+    [[NSUserDefaults standardUserDefaults] setInteger:threshold forKey:@"criticThreshold"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    [self textFieldDidEndEditing:self.zipCodeTextField];
-    [self.zipCodeTextField resignFirstResponder];
+- (IBAction)audienceRatingThresholdSliderAction:(id)sender {
+    int threshold = self.audienceRatingThresholdSliderOutlet.value * 100;
+    self.audienceRatingThresholdLabel.text = [[NSNumber numberWithInt:threshold] stringValue];
+    [[NSUserDefaults standardUserDefaults] setInteger:threshold forKey:@"audienceThreshold"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 @end

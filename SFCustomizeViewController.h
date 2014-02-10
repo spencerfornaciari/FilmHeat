@@ -19,15 +19,22 @@
 
 @property (nonatomic, unsafe_unretained) id<SFCustomizeViewControllerDelegate>delegate;
 
-@property (weak, nonatomic) IBOutlet UITextField *zipCodeTextField;
-@property (weak, nonatomic) IBOutlet UIButton *gpsButton;
-
-- (IBAction)submitZipCode:(id)sender;
-
 @property (weak, nonatomic) IBOutlet UILabel *mpaaRatingThresholdLabel;
 @property (weak, nonatomic) IBOutlet UISlider *mpaaRatingThresholdSliderOutlet;
 
-- (IBAction)gpsButtonAction:(id)sender;
+@property (weak, nonatomic) IBOutlet UILabel *criticsRatingThresholdLabel;
+@property (weak, nonatomic) IBOutlet UISlider *criticsRatingThresholdSliderOutlet;
+- (IBAction)criticsRatingThresholdSliderAction:(id)sender;
+
+
+@property (weak, nonatomic) IBOutlet UILabel *audienceRatingThresholdLabel;
+@property (weak, nonatomic) IBOutlet UISlider *audienceRatingThresholdSliderOutlet;
+- (IBAction)audienceRatingThresholdSliderAction:(id)sender;
+
+
+
+
+
 
 - (IBAction)mpaaRatingThresholdSliderAction:(id)sender;
 
