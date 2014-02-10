@@ -34,8 +34,8 @@
     [super viewDidLoad];
     self.gpsButton.backgroundColor = [UIColor redColor];
     self.gpsButton.tintColor = [UIColor whiteColor];
-    self.zipCodeTextField.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"defaultZipCode"];
-    self.zipCodeTextField.keyboardType = UIKeyboardTypeDecimalPad;
+    //self.zipCodeTextField.text = [[NSUserDefaults standardUserDefaults] objectForKey:@"defaultZipCode"];
+    //self.zipCodeTextField.keyboardType = UIKeyboardTypeDecimalPad;
     self.zipCodeTextField.delegate = self;
     
     //Declare CLLocation Manager
@@ -43,6 +43,15 @@
     self.locationManager.delegate = self;
     [self.locationManager setDistanceFilter:kCLDistanceFilterNone];
     [self.locationManager setDesiredAccuracy:kCLLocationAccuracyKilometer];
+    
+    if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied || [CLLocationManager authorizationStatus] == kCLAuthorizationStatusRestricted || [CLLocationManager authorizationStatus] == kCLAuthorizationStatusNotDetermined) {
+        NSLog(@"Not Authorized");
+        self.zipCode = @"94115";
+        self.gpsButton.enabled = NO;
+    } else {
+        NSLog(@"Authorized");
+        self.gpsButton.enabled = YES;
+    }
     
     self.location = [[CLLocation alloc] init];
     
@@ -106,27 +115,37 @@
 
 - (IBAction)submitZipCode:(id)sender
 {
-    self.zipCodeTextField.text = @"";
+    //self.zipCodeTextField.text = @"";
     NSString *textfield = self.zipCodeTextField.text;
     int zip = [textfield integerValue];
-    [[NSUserDefaults standardUserDefaults] setInteger:zip forKey:@"defaultZipCode"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
+    //[[NSUserDefaults standardUserDefaults] setInteger:zip forKey:@"defaultZipCode"];
+    //[[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    
+    self.zipCodeTextField.text = @"";
 }
 
 -(void)textFieldDidEndEditing:(UITextField *)textField
 {
-    [self.zipCodeTextField resignFirstResponder];
+    if(textField.text.length < 5){
+        NSLog(@"Your Zipcode is too short");
+    }
+    
+    //self.zipCodeTextField.text = textField.text;
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     NSUInteger newLength = [textField.text length] + [string length] - range.length;
     return (newLength > 5) ? NO : YES;
 }
+
+//- (BOOL)textFieldShouldReturn:(UITextField *)textField
+//{
+//    [textField resignFirstResponder];
+//    return YES;
+//}
 
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
 {
@@ -147,6 +166,12 @@
             [self.locationManager stopUpdatingLocation];
         }];
     }];
+}
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [self textFieldDidEndEditing:self.zipCodeTextField];
+    [self.zipCodeTextField resignFirstResponder];
 }
 
 @end

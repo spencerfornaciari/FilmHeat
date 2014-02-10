@@ -32,40 +32,72 @@
 {
     [super viewDidLoad];
     
+    //Grabbing and parsing Rotten Tomatoes data for individual films
     NSString *rottenString = [NSString stringWithFormat:@"http://api.rottentomatoes.com/api/public/v1.0/movies.json?apikey=%@&q=%@&page_limit=1", kROTTEN_TOMATOES_API_KEY, self.film.title];
     rottenString = [rottenString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 
-    
     NSURL *rottenURL = [NSURL URLWithString:rottenString];
     
     NSData *rottenData = [NSData dataWithContentsOfURL:rottenURL];
+    NSLog(@"%@", rottenURL);
     
     NSError *error;
     
     NSDictionary *rottenDictionary = [NSJSONSerialization JSONObjectWithData:rottenData
                                                         options:NSJSONReadingMutableContainers
                                                           error:&error];
+    
+    NSArray *rottenArray = [rottenDictionary objectForKey:@"movies"];
+    
+    if (rottenArray.count == 0) {
+        NSLog(@"DEAD END");
 
-    NSString *criticsRating = [rottenDictionary valueForKeyPath:@"movies.ratings.critics_score"];
-    self.film.criticsRating = criticsRating;
-    NSString *audienceRating = [rottenDictionary valueForKeyPath:@"movies.ratings.audience_score"];
-    self.film.audienceRating = audienceRating;
-    
-    NSLog(@"Critics: %@, Audience: %@", criticsRating, audienceRating);
-    
+    } else {
+        self.film.criticsRating = [rottenArray[0] valueForKeyPath:@"ratings.critics_score"];
+        self.film.audienceRating = [rottenArray[0] valueForKeyPath:@"ratings.audience_score"];
+    }
     
 	// Do any additional setup after loading the view.
-}
-
--(void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    
     self.detailViewTitle.title = _film.title;
     
     self.movieSynopsis.text = _film.synopsis;
     self.moviePoster.image = _film.posterImage;
     self.filmRatingLabel.text = _film.mpaaRating;
+    self.filmRuntimeLabel.text = [NSString stringWithFormat:@"%@ min.", [_film.runtime stringValue]];
+    
+    
+    //Adding critic and audience ratings to detail view controller
+    if (self.film.criticsRating) {
+        if ([self.film.criticsRating integerValue] < 0) {
+            self.criticRatingLabel.text = @"None";
+        } else {
+            self.criticRatingLabel.text =  [self.film.criticsRating stringValue];
+        }
+    } else {
+        self.criticsLabel.hidden = TRUE;
+        self.criticRatingLabel.hidden = TRUE;
+    }
+    
+    if (self.film.audienceRating) {
+        if ([self.film.audienceRating integerValue] < 0) {
+            self.criticRatingLabel.text = @"None";
+        } else {
+            self.audienceRatingLabel.text = [self.film.audienceRating stringValue];
+        }
+    } else {
+        self.audienceLabel.hidden = TRUE;
+        self.audienceRatingLabel.hidden = TRUE;
+    }
+    
+    
+    //    if (_film.criticsRating) {// && [_film.criticsRating integerValue] > 0) {
+    //       // NSLog(@"%ld", [NSNumber number _film.criticsRating integerValue]);
+    //        self.criticRatingLabel.text = _film.criticsRating;
+    //    }
+    //
+    //    if (_film.audienceRating) {// && [_film.audienceRating integerValue] > 0) {
+    //        NSLog(@"%@", _film.audienceRating);
+    //    }
     
     NSDateFormatter *releaseDateFormatter = [[NSDateFormatter alloc] init];
     [releaseDateFormatter setDateStyle:NSDateFormatterShortStyle];
@@ -89,6 +121,13 @@
             self.myRatingSliderOutlet.value = .5;
         }
     }
+
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
     
 }
 

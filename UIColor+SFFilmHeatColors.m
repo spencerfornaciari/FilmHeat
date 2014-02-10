@@ -26,4 +26,8 @@
     return [UIColor grayColor];
 }
 
++ (UIColor *)navigationBarColor {
+    return [UIColor colorWithRed:255/255.f green:19/255.f blue:0/255.f alpha:1];
+}
+
 @end

@@ -62,6 +62,9 @@
     if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied || [CLLocationManager authorizationStatus] == kCLAuthorizationStatusRestricted || [CLLocationManager authorizationStatus] == kCLAuthorizationStatusNotDetermined) {
         NSLog(@"Not Authorized");
         self.zipCode = @"94115";
+        [self setupFirstView];
+        [self populateFilmData:self.zipCode];
+        [self.theaterController.tableView reloadData];
     } else {
         NSLog(@"Authorized");
         [self.locationManager startUpdatingLocation];
@@ -521,8 +524,6 @@
 - (void)populateFilmData:(NSString *)zipCode
 {
     _downloadQueue = [NSOperationQueue new];
-    
-    //self.seenItArray = [NSMutableArray new];
     
     if ([self doesArrayExist:kSEEN_IT_FILE]) {
         self.seenController.seenArray = [NSKeyedUnarchiver unarchiveObjectWithFile:self.seenItPath];
