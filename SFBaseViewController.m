@@ -49,14 +49,18 @@
     self.locationManager.delegate = self;
     [self.locationManager setDistanceFilter:kCLDistanceFilterNone];
     [self.locationManager setDesiredAccuracy:kCLLocationAccuracyKilometer];
-    [self.locationManager startUpdatingLocation];
+    //[self.locationManager startUpdatingLocation];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    [self setupLocationManager];
+    
+    
+    //[self setupLocationManager];
+
+    
     
     _searchArray = [NSMutableArray new];
     
@@ -80,11 +84,13 @@
     self.wantedController.delegate = self;
     self.noneController.delegate = self;
     
-
     self.currentViewController = self.theaterController;
     self.childVCArray = @[self.seenController, self.theaterController, self.wantedController, self.noneController];
 
     self.theaterController.strongArray = [NSMutableArray new];
+    [self setupFirstView];
+    [self rottenFilmData];
+
     
 	// Do any additional setup after loading the view.
 }
@@ -100,7 +106,7 @@
         NSLog(@"%d", [CLLocationManager authorizationStatus]);
         self.zipCode = @"94115";
         [self setupFirstView];
-        [self populateFilmData:self.zipCode];
+        //[self populateFilmData:self.zipCode];
         [self.theaterController.tableView reloadData];
     } else if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusNotDetermined) {
         NSLog(@"Not Determined");
@@ -120,7 +126,7 @@
 -(void)setupFirstView
 {
     [self addChildViewController:self.currentViewController];
-    self.currentViewController.view.frame = self.movieContainer.frame;
+    self.currentViewController.view.frame = self.movieContainer.bounds;
     [self.movieContainer addSubview:self.currentViewController.view];
     [self.currentViewController didMoveToParentViewController:self];
     
@@ -554,8 +560,6 @@
     NSData *tmsData = [NSData dataWithContentsOfURL:tmsURL];
     
     NSError *error;
-    
-    
 
     NSMutableArray *tmsArray = [NSMutableArray new];
    
@@ -566,6 +570,8 @@
                                                               error:&error];
     }
     @catch (NSException *exception) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Data Error" message:@"The data source is currently down, try again later" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alert show];
         NSLog(@"API Limit Reached? %@", exception.debugDescription);
         if (error) {
             NSLog(@"Error: %@", error.debugDescription);
@@ -620,6 +626,118 @@
     self.theaterController.theaterArray = tmsInstance;
     
     [self.theaterController.tableView reloadData];
+}
+
+- (void)rottenFilmData
+{
+    _downloadQueue = [NSOperationQueue new];
+    
+//    if ([self doesArrayExist:kSEEN_IT_FILE]) {
+//        self.seenController.seenArray = [NSKeyedUnarchiver unarchiveObjectWithFile:self.seenItPath];
+//        // NSLog(@"Seen it Array: %d", self.seenItArray.count);
+//        NSLog(@"SEEN IT");
+//    } else {
+//        self.seenController.seenArray = [NSMutableArray new];
+//        NSLog(@"Created Seen");
+//        
+//    }
+//    
+//    if ([self doesArrayExist:kWANT_TO_FILE]) {
+//        self.wantedController.wantedArray = [NSKeyedUnarchiver unarchiveObjectWithFile:self.wantToSeeItPath];
+//        NSLog(@"WANT IT");
+//    } else {
+//        self.wantedController.wantedArray = [NSMutableArray new];
+//        NSLog(@"Created Want");
+//        
+//    }
+//    
+//    if ([self doesArrayExist:kDONT_WANT_IT_FILE]) {
+//        self.noneController.noneArray = [NSKeyedUnarchiver unarchiveObjectWithFile:self.dontWantToSeeItPath];
+//        NSLog(@"NO INTEREST");
+//    } else {
+//        self.noneController.noneArray = [NSMutableArray new];
+//        NSLog(@"Created No Interest");
+//    }
+    
+    
+    NSString *rottenString = [NSString stringWithFormat:@"http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json?apikey=%@", kROTTEN_TOMATOES_API_KEY];
+    
+    
+    NSURL *rottenURL = [NSURL URLWithString:rottenString];
+    
+    NSData *rottenData = [NSData dataWithContentsOfURL:rottenURL];
+    
+    NSError *error;
+    
+    NSDictionary *rottenDictionary = [NSDictionary new];
+    
+    
+    @try {
+        rottenDictionary = [NSJSONSerialization JSONObjectWithData:rottenData
+                                                   options:NSJSONReadingMutableContainers
+                                                     error:&error];
+    }
+    @catch (NSException *exception) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Data Error" message:@"The data source is currently down, try again later" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alert show];
+        NSLog(@"API Limit Reached? %@", exception.debugDescription);
+        if (error) {
+            NSLog(@"Error: %@", error.debugDescription);
+        }
+    }
+    
+    NSArray *rottenArray = [rottenDictionary objectForKey:@"movies"];
+    NSMutableArray *rottenMutableArray = [NSMutableArray new];
+    
+    for (NSDictionary *dictionary in rottenArray)
+    {
+        FilmModel *film = [FilmModel new];
+        
+        //Set the film title
+        film.title = [dictionary objectForKey:@"title"];
+        
+        //Set the critics rating of the film according to Rotten Tomatoes
+        film.criticsRating = [dictionary valueForKeyPath:@"ratings.critics_score"];
+        
+        //Set the audience rating of the film according to Rotten Tomatoes
+        film.audienceRating = [dictionary valueForKeyPath:@"ratings.audience_score"];
+        
+        //film.ratingVariance = abs([film.criticsRating integerValue] - [film.audienceRating integerValue]);
+        //NSLog(@"%i", film.ratingVariance);
+        
+        //Grab the URL for the thumbnail of the film's poster
+        film.thumbnailPoster = [dictionary valueForKeyPath:@"posters.thumbnail"];
+        
+        //Set the film runtime
+        film.runtime = [dictionary valueForKeyPath:@"runtime"];
+        
+        //Set the film's MPAA rating
+        NSString *rating = [dictionary valueForKeyPath:@"mpaa_rating"];
+        
+        if (rating) {
+            film.mpaaRating = rating;
+            film.ratingValue = [NSNumber numberWithInt:[self setRatingValue:film.mpaaRating]];
+        } else {
+            film.mpaaRating = @"NR";
+            film.ratingValue = [NSNumber numberWithInt:0];
+        }
+        
+        //Set the film's synopsis
+        film.synopsis = [dictionary valueForKeyPath:@"synopsis"];
+        
+        //Set the path to the film's IMDb page
+        //film.IMDb = [NSString stringWithFormat:@"http://www.imdb.com/title/tt%@/",[dictionary valueForKeyPath:@"alternate_ids.imdb"]];
+        
+        [rottenMutableArray addObject:film];
+    }
+    
+    NSLog(@"%@", rottenMutableArray);
+    
+    self.theaterController.theaterArray = [NSMutableArray new];
+    self.theaterController.theaterArray = rottenMutableArray;
+    self.theaterController.strongArray = rottenMutableArray;
+    [self.theaterController.tableView reloadData];
+
 }
 
 -(NSInteger)setRatingValue:(NSString *)mpaaRating

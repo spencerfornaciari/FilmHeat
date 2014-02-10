@@ -16,12 +16,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <containerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m18-NA-o6d">
-                                <rect key="frame" x="0.0" y="52" width="320" height="327"/>
+                            <containerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="m18-NA-o6d">
+                                <rect key="frame" x="0.0" y="105" width="320" height="375"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </containerView>
-                            <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5d2-hw-ZTF">
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5d2-hw-ZTF">
                                 <rect key="frame" x="0.0" y="17" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -54,28 +54,15 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Search Films" translatesAutoresizingMaskIntoConstraints="NO" id="bTf-Gb-eHf">
+                            <searchBar contentMode="redraw" fixedFrame="YES" searchBarStyle="minimal" placeholder="Search Films" translatesAutoresizingMaskIntoConstraints="NO" id="bTf-Gb-eHf">
                                 <rect key="frame" x="0.0" y="61" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="5d2-hw-ZTF" firstAttribute="leading" secondItem="bTf-Gb-eHf" secondAttribute="leading" id="2JR-Wz-JCz"/>
-                            <constraint firstItem="m18-NA-o6d" firstAttribute="trailing" secondItem="bTf-Gb-eHf" secondAttribute="trailing" id="4Hb-kB-Kx5"/>
-                            <constraint firstItem="m18-NA-o6d" firstAttribute="leading" secondItem="bTf-Gb-eHf" secondAttribute="leading" id="4f3-Eu-H2h"/>
-                            <constraint firstItem="5d2-hw-ZTF" firstAttribute="top" secondItem="bu3-ls-j2w" secondAttribute="top" constant="17" id="AdO-Q1-LhF"/>
-                            <constraint firstItem="f51-f0-Lvo" firstAttribute="top" secondItem="m18-NA-o6d" secondAttribute="bottom" constant="57" id="JYw-KU-Gel"/>
-                            <constraint firstItem="m18-NA-o6d" firstAttribute="top" secondItem="Fmf-jp-OaR" secondAttribute="bottom" constant="32" id="OrH-TF-HZ1"/>
-                            <constraint firstItem="5d2-hw-ZTF" firstAttribute="trailing" secondItem="bTf-Gb-eHf" secondAttribute="trailing" id="Ryj-Dy-BjZ"/>
-                            <constraint firstItem="5d2-hw-ZTF" firstAttribute="bottom" secondItem="bTf-Gb-eHf" secondAttribute="top" id="TKZ-0h-NKl"/>
-                            <constraint firstItem="m18-NA-o6d" firstAttribute="leading" secondItem="bu3-ls-j2w" secondAttribute="leading" id="eIb-yi-ffR"/>
-                            <constraint firstAttribute="trailing" secondItem="m18-NA-o6d" secondAttribute="trailing" id="tQb-na-mKJ"/>
-                        </constraints>
                     </view>
                     <toolbarItems/>
-                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="filmSearchBar" destination="bTf-Gb-eHf" id="kpE-yV-YFd"/>
                         <outlet property="movieContainer" destination="m18-NA-o6d" id="ccB-v0-hWi"/>
@@ -393,7 +380,7 @@
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bXb-Ra-azq">
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bXb-Ra-azq">
                                 <rect key="frame" x="0.0" y="16" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -480,7 +467,7 @@
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="20"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i1u-3v-rhT">
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i1u-3v-rhT">
                                 <rect key="frame" x="0.0" y="19" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <textAttributes key="titleTextAttributes">

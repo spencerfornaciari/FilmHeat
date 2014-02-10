@@ -34,8 +34,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-//    self.theaterArray = [NSMutableArray new];
+    
+    //self.theaterArray = [NSMutableArray new];
 //    self.controller = [SFFilmModelDataController new];
     
 //    [self.controller populateFilmData:@"98121"];
