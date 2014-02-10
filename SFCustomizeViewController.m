@@ -115,11 +115,22 @@
 
 - (IBAction)submitZipCode:(id)sender
 {
-    //self.zipCodeTextField.text = @"";
     NSString *textfield = self.zipCodeTextField.text;
-    int zip = [textfield integerValue];
-    //[[NSUserDefaults standardUserDefaults] setInteger:zip forKey:@"defaultZipCode"];
-    //[[NSUserDefaults standardUserDefaults] synchronize];
+    if(textfield.length < 5){
+        [self zipCodeIsTooShort];
+    } else {
+        int zip = [textfield integerValue];
+        [[NSUserDefaults standardUserDefaults] setInteger:zip forKey:@"defaultZipCode"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
+}
+
+-(void)zipCodeIsTooShort
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Zip Code Problem" message:@"The zipcode you entered is too short, try again" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+    [alert show];
+    int zip =  [[NSUserDefaults standardUserDefaults] integerForKey:@"defaultZipCode"];
+    self.zipCodeTextField.text = [[NSNumber numberWithInt:zip] stringValue];
 }
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField
@@ -129,9 +140,7 @@
 
 -(void)textFieldDidEndEditing:(UITextField *)textField
 {
-    if(textField.text.length < 5){
-        NSLog(@"Your Zipcode is too short");
-    }
+    
     
     //self.zipCodeTextField.text = textField.text;
 }
@@ -161,9 +170,7 @@
         
         NSLog(@"%@", self.zipCode);
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-            [[NSUserDefaults standardUserDefaults] setObject:self.zipCode forKey:@"defaultZipCode"];
-            [[NSUserDefaults standardUserDefaults] synchronize];
-            [self.locationManager stopUpdatingLocation];
+            self.zipCodeTextField.text = self.zipCode;
         }];
     }];
 }
