@@ -9,7 +9,15 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 
+@protocol SFCustomizeViewControllerDelegate <NSObject>
+
+-(void)repopulateData;
+
+@end
+
 @interface SFCustomizeViewController : UIViewController <UITextFieldDelegate, CLLocationManagerDelegate>
+
+@property (nonatomic, unsafe_unretained) id<SFCustomizeViewControllerDelegate>delegate;
 
 @property (weak, nonatomic) IBOutlet UITextField *zipCodeTextField;
 @property (weak, nonatomic) IBOutlet UIButton *gpsButton;

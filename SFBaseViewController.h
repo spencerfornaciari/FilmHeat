@@ -13,7 +13,8 @@
 #import "SFSeenTableViewController.h"
 #import "SFWantedTableViewController.h"
 #import "SFNoneTableViewController.h"
+#import "SFCustomizeViewController.h"
 
-@interface SFBaseViewController : UIViewController <SFTheaterTableViewControllerDelegate, SFSeenTableViewControllerDelegate, SFWantedTableViewControllerDelegate, SFNoneTableViewControllerDelegate, UIActionSheetDelegate, UISearchBarDelegate, CLLocationManagerDelegate>
+@interface SFBaseViewController : UIViewController <SFTheaterTableViewControllerDelegate, SFSeenTableViewControllerDelegate, SFWantedTableViewControllerDelegate, SFNoneTableViewControllerDelegate, UIActionSheetDelegate, UISearchBarDelegate, CLLocationManagerDelegate, SFCustomizeViewControllerDelegate>
 
 @end

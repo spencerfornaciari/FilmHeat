@@ -36,7 +36,13 @@
     
     
     if (film.myRating) {
+        self.filmRuntimeLabel.hidden = TRUE;
         self.myRatingLabel.text = [NSString stringWithFormat:@"My Rating: %@", film.myRating];
+    }
+    
+    if (film.runtime) {
+        self.filmRuntimeLabel.hidden = FALSE;
+        self.filmRuntimeLabel.text = [NSString stringWithFormat:@"%@ min.", [film.runtime stringValue]];
     }
     
     //UIImage *image = [UIImage imageWithContentsOfFile:[NSData dataWithContentsOfFile:film.posterImagePath]];

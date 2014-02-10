@@ -122,6 +122,7 @@
         int zip = [textfield integerValue];
         [[NSUserDefaults standardUserDefaults] setInteger:zip forKey:@"defaultZipCode"];
         [[NSUserDefaults standardUserDefaults] synchronize];
+        [self.delegate repopulateData];
     }
 }
 
@@ -171,6 +172,7 @@
         NSLog(@"%@", self.zipCode);
         [[NSOperationQueue mainQueue] addOperationWithBlock:^{
             self.zipCodeTextField.text = self.zipCode;
+            [self.delegate repopulateData];
         }];
     }];
 }

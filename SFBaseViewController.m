@@ -20,6 +20,8 @@
 @property (nonatomic, strong) SFTheaterTableViewController *theaterController;
 @property (nonatomic, strong) SFWantedTableViewController *wantedController;
 @property (nonatomic, strong) SFNoneTableViewController *noneController;
+@property (nonatomic, strong) SFCustomizeViewController *customController;
+
 @property (strong, nonatomic) NSMutableArray *searchArray;
 
 @property (nonatomic, strong) NSArray *childVCArray;
@@ -93,6 +95,7 @@
     self.seenController.delegate = self;
     self.wantedController.delegate = self;
     self.noneController.delegate = self;
+    self.customController.delegate = self;
     
     self.currentViewController = self.theaterController;
 
@@ -127,23 +130,7 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
-//    if ([[NSKeyedUnarchiver unarchiveObjectWithFile:_seenItPath] count] == 0) {
-//        [self.segmentOutlet setEnabled:NO forSegmentAtIndex:0];
-//    } else  {
-//        [self.segmentOutlet setEnabled:YES forSegmentAtIndex:0];
-//    }
-//
-//    if ([[NSKeyedUnarchiver unarchiveObjectWithFile:_wantToSeeItPath] count] == 0) {
-//        [self.segmentOutlet setEnabled:NO forSegmentAtIndex:2];
-//    } else {
-//        [self.segmentOutlet setEnabled:YES forSegmentAtIndex:2];
-//    }
-//    
-//    if ([[NSKeyedUnarchiver unarchiveObjectWithFile:_dontWantToSeeItPath] count] == 0) {
-//        [self.segmentOutlet setEnabled:NO forSegmentAtIndex:3];
-//    } else {
-//        [self.segmentOutlet setEnabled:YES forSegmentAtIndex:3];
-//    }
+
 }
 
 #pragma mark - Using GPS to look up user location
@@ -683,6 +670,16 @@
         //NSLog(@"TRUE");
         return TRUE;
     }
+}
+
+-(void)repopulateData
+{
+    NSNumber *zip = [NSNumber numberWithInt:[[NSUserDefaults standardUserDefaults] integerForKey:@"defaultZipCode"]];
+    NSLog(@"%@", [zip stringValue]);
+    [self populateFilmData:[zip stringValue]];
+    [self.theaterController.tableView reloadData];
+    NSLog(@"Repopulate");
+    
 }
 
 @end

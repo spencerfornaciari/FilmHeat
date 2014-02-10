@@ -39,10 +39,8 @@
     NSURL *rottenURL = [NSURL URLWithString:rottenString];
     
     NSData *rottenData = [NSData dataWithContentsOfURL:rottenURL];
-    NSLog(@"%@", rottenURL);
     
     NSError *error;
-    
     NSDictionary *rottenDictionary = [NSJSONSerialization JSONObjectWithData:rottenData
                                                         options:NSJSONReadingMutableContainers
                                                           error:&error];
@@ -64,7 +62,6 @@
     self.moviePoster.image = _film.posterImage;
     self.filmRatingLabel.text = _film.mpaaRating;
     self.filmRuntimeLabel.text = [NSString stringWithFormat:@"%@ min.", [_film.runtime stringValue]];
-    
     
     //Adding critic and audience ratings to detail view controller
     if (self.film.criticsRating) {
@@ -88,16 +85,6 @@
         self.audienceLabel.hidden = TRUE;
         self.audienceRatingLabel.hidden = TRUE;
     }
-    
-    
-    //    if (_film.criticsRating) {// && [_film.criticsRating integerValue] > 0) {
-    //       // NSLog(@"%ld", [NSNumber number _film.criticsRating integerValue]);
-    //        self.criticRatingLabel.text = _film.criticsRating;
-    //    }
-    //
-    //    if (_film.audienceRating) {// && [_film.audienceRating integerValue] > 0) {
-    //        NSLog(@"%@", _film.audienceRating);
-    //    }
     
     NSDateFormatter *releaseDateFormatter = [[NSDateFormatter alloc] init];
     [releaseDateFormatter setDateStyle:NSDateFormatterShortStyle];
