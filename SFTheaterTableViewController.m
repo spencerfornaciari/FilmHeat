@@ -136,10 +136,10 @@
     }
     
     // Configuring the views and colors.
-    UIView *checkView = [self viewWithImageName:@"Seen"];
-    UIView *crossView = [self viewWithImageName:@"Want"];
-    UIView *clockView = [self viewWithImageName:@"Dont"];
-    UIView *listView = [self viewWithImageName:@"Theaters"];
+    UIView *checkView = [self viewWithImageName:@"SeenExtraLarge"];
+    UIView *crossView = [self viewWithImageName:@"WantExtraLarge"];
+    UIView *clockView = [self viewWithImageName:@"DontExtraLarge"];
+    UIView *listView = [self viewWithImageName:@"TheaterExtraLarge"];
     
     // Setting the default inactive state color to the tableView background color.
     [cell setDefaultColor:self.tableView.backgroundView.backgroundColor];

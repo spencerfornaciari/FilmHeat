@@ -16,27 +16,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
-//    UITabBarController *tbc = (UITabBarController *)self.window.rootViewController;
-//    UINavigationController *navigationController = tbc.viewControllers[1];
-//    SFMasterViewController *controller = (SFMasterViewController *)navigationController.topViewController;
-//    controller.managedObjectContext = self.managedObjectContext;
-//    NSManagedObjectContext *context = [self managedObjectContext];
-//
-//    NSError *error;
-//    if (![context save:&error]) {
-//        NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
-//    }
-//    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-//    NSEntityDescription *entity = [NSEntityDescription
-//                                   entityForName:@"History" inManagedObjectContext:context];
-//    [fetchRequest setEntity:entity];
-//    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
-//    for (NSManagedObject *info in fetchedObjects) {
-//        NSLog(@"Name: %@", [info valueForKey:@"title"]);
-//    }
-    
-    //UINavigationController *navigationController = tbc.viewControllers[3];
-    //MasterViewController *controller = (MasterViewController *)navigationController.topViewController;
+
     return YES;
 }
 							

@@ -47,7 +47,7 @@
     if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied || [CLLocationManager authorizationStatus] == kCLAuthorizationStatusRestricted || [CLLocationManager authorizationStatus] == kCLAuthorizationStatusNotDetermined) {
         NSLog(@"Not Authorized");
         self.zipCode = @"94115";
-        self.gpsButton.enabled = NO;
+        self.gpsButton.enabled = YES;
     } else {
         NSLog(@"Authorized");
         self.gpsButton.enabled = YES;
@@ -123,6 +123,7 @@
         [[NSUserDefaults standardUserDefaults] setInteger:zip forKey:@"defaultZipCode"];
         [[NSUserDefaults standardUserDefaults] synchronize];
         [self.delegate repopulateData];
+        NSLog(@"TEXTFIELD IS CALLED");
     }
 }
 

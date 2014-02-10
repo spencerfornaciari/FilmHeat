@@ -51,6 +51,11 @@
 		89A43EE318A8CF27009DC814 /* Dont.png in Resources */ = {isa = PBXBuildFile; fileRef = 89A43EE018A8CF27009DC814 /* Dont.png */; };
 		89A43EE418A8CF27009DC814 /* Theaters.png in Resources */ = {isa = PBXBuildFile; fileRef = 89A43EE118A8CF27009DC814 /* Theaters.png */; };
 		89A43EE518A8CF27009DC814 /* Want.png in Resources */ = {isa = PBXBuildFile; fileRef = 89A43EE218A8CF27009DC814 /* Want.png */; };
+		89A43EE718A93547009DC814 /* SeenLarge.png in Resources */ = {isa = PBXBuildFile; fileRef = 89A43EE618A93547009DC814 /* SeenLarge.png */; };
+		89A43EE918A935C3009DC814 /* SeenExtraLarge.png in Resources */ = {isa = PBXBuildFile; fileRef = 89A43EE818A935C3009DC814 /* SeenExtraLarge.png */; };
+		89A43EEB18A936B7009DC814 /* WantExtraLarge.png in Resources */ = {isa = PBXBuildFile; fileRef = 89A43EEA18A936B7009DC814 /* WantExtraLarge.png */; };
+		89A43EF118A938EA009DC814 /* TheaterExtraLarge.png in Resources */ = {isa = PBXBuildFile; fileRef = 89A43EEF18A938EA009DC814 /* TheaterExtraLarge.png */; };
+		89A43EF318A9391E009DC814 /* DontExtraLarge.png in Resources */ = {isa = PBXBuildFile; fileRef = 89A43EF218A9391E009DC814 /* DontExtraLarge.png */; };
 		89A6F6C4189C7D49002E1A21 /* ShowtimeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 89A6F6C3189C7D49002E1A21 /* ShowtimeModel.m */; };
 		89BC654D18A2F97000B27385 /* Sad_Face@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 89BC654C18A2F97000B27385 /* Sad_Face@2x.png */; };
 		89BC654F18A2F99100B27385 /* Sad_Face.png in Resources */ = {isa = PBXBuildFile; fileRef = 89BC654E18A2F99100B27385 /* Sad_Face.png */; };
@@ -130,6 +135,11 @@
 		89A43EE018A8CF27009DC814 /* Dont.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Dont.png; sourceTree = "<group>"; };
 		89A43EE118A8CF27009DC814 /* Theaters.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Theaters.png; sourceTree = "<group>"; };
 		89A43EE218A8CF27009DC814 /* Want.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Want.png; sourceTree = "<group>"; };
+		89A43EE618A93547009DC814 /* SeenLarge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SeenLarge.png; sourceTree = "<group>"; };
+		89A43EE818A935C3009DC814 /* SeenExtraLarge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SeenExtraLarge.png; sourceTree = "<group>"; };
+		89A43EEA18A936B7009DC814 /* WantExtraLarge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WantExtraLarge.png; sourceTree = "<group>"; };
+		89A43EEF18A938EA009DC814 /* TheaterExtraLarge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TheaterExtraLarge.png; sourceTree = "<group>"; };
+		89A43EF218A9391E009DC814 /* DontExtraLarge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DontExtraLarge.png; sourceTree = "<group>"; };
 		89A6F6C2189C7D49002E1A21 /* ShowtimeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowtimeModel.h; sourceTree = "<group>"; };
 		89A6F6C3189C7D49002E1A21 /* ShowtimeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowtimeModel.m; sourceTree = "<group>"; };
 		89BC654C18A2F97000B27385 /* Sad_Face@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Sad_Face@2x.png"; sourceTree = "<group>"; };
@@ -302,6 +312,11 @@
 		894DFACC18A0722000806267 /* Media */ = {
 			isa = PBXGroup;
 			children = (
+				89A43EF218A9391E009DC814 /* DontExtraLarge.png */,
+				89A43EEF18A938EA009DC814 /* TheaterExtraLarge.png */,
+				89A43EEA18A936B7009DC814 /* WantExtraLarge.png */,
+				89A43EE818A935C3009DC814 /* SeenExtraLarge.png */,
+				89A43EE618A93547009DC814 /* SeenLarge.png */,
 				89A43EE018A8CF27009DC814 /* Dont.png */,
 				89A43EE118A8CF27009DC814 /* Theaters.png */,
 				89A43EE218A8CF27009DC814 /* Want.png */,
@@ -409,6 +424,7 @@
 			files = (
 				89A43EDF18A8CD9A009DC814 /* Seen.png in Resources */,
 				894DFAD618A1769300806267 /* Checkbox.png in Resources */,
+				89A43EEB18A936B7009DC814 /* WantExtraLarge.png in Resources */,
 				897EB580189B306C007D43F3 /* Movies.png in Resources */,
 				894DFADA18A176CA00806267 /* List@2x.png in Resources */,
 				894DFACE18A0723600806267 /* Horizontal_Slider@2x.png in Resources */,
@@ -419,10 +435,14 @@
 				8949F73C188DDD090069E9D4 /* InfoPlist.strings in Resources */,
 				89A43EE518A8CF27009DC814 /* Want.png in Resources */,
 				897EB57C189B3060007D43F3 /* Movies@2x.png in Resources */,
+				89A43EE718A93547009DC814 /* SeenLarge.png in Resources */,
+				89A43EE918A935C3009DC814 /* SeenExtraLarge.png in Resources */,
+				89A43EF318A9391E009DC814 /* DontExtraLarge.png in Resources */,
 				8949F745188DDD090069E9D4 /* Main.storyboard in Resources */,
 				89A43EE318A8CF27009DC814 /* Dont.png in Resources */,
 				89BC654D18A2F97000B27385 /* Sad_Face@2x.png in Resources */,
 				894DFAD818A1769F00806267 /* Checkbox@2x.png in Resources */,
+				89A43EF118A938EA009DC814 /* TheaterExtraLarge.png in Resources */,
 				89A43EE418A8CF27009DC814 /* Theaters.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

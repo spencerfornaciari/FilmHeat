@@ -48,7 +48,7 @@
                                         </segmentedControl>
                                         <barButtonItem key="rightBarButtonItem" image="Horizontal_Slider.png" id="4jm-kz-ZLN">
                                             <connections>
-                                                <segue destination="glN-5l-SCP" kind="modal" id="AB2-0G-jdn"/>
+                                                <segue destination="glN-5l-SCP" kind="modal" identifier="customModal" id="AB2-0G-jdn"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>

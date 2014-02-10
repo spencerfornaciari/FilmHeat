@@ -42,37 +42,21 @@
 
 @implementation SFBaseViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (void)setupLocationManager
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
+    //Declare CLLocation Manager
+    self.locationManager = [[CLLocationManager alloc] init];
+    self.locationManager.delegate = self;
+    [self.locationManager setDistanceFilter:kCLDistanceFilterNone];
+    [self.locationManager setDesiredAccuracy:kCLLocationAccuracyKilometer];
+    [self.locationManager startUpdatingLocation];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    //Declare CLLocation Manager
-    self.locationManager = [[CLLocationManager alloc] init];
-    self.locationManager.delegate = self;
-    [self.locationManager setDistanceFilter:kCLDistanceFilterNone];
-    [self.locationManager setDesiredAccuracy:kCLLocationAccuracyKilometer];
-    
-    if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied || [CLLocationManager authorizationStatus] == kCLAuthorizationStatusRestricted || [CLLocationManager authorizationStatus] == kCLAuthorizationStatusNotDetermined) {
-        NSLog(@"Not Authorized");
-        self.zipCode = @"94115";
-        [self setupFirstView];
-        [self populateFilmData:self.zipCode];
-        [self.theaterController.tableView reloadData];
-    } else {
-        NSLog(@"Authorized");
-        [self.locationManager startUpdatingLocation];
-    }
-    
-    self.location = [[CLLocation alloc] init];
+    [self setupLocationManager];
     
     _searchArray = [NSMutableArray new];
     
@@ -89,23 +73,48 @@
     self.theaterController = [self.storyboard instantiateViewControllerWithIdentifier:@"TheaterView"];
     self.wantedController = [self.storyboard instantiateViewControllerWithIdentifier:@"WantedView"];
     self.noneController = [self.storyboard instantiateViewControllerWithIdentifier:@"NoneView"];
-
+    
     self.filmSearchBar.delegate = self;
     self.theaterController.delegate = self;
     self.seenController.delegate = self;
     self.wantedController.delegate = self;
     self.noneController.delegate = self;
-    self.customController.delegate = self;
     
+
     self.currentViewController = self.theaterController;
-
     self.childVCArray = @[self.seenController, self.theaterController, self.wantedController, self.noneController];
-    
 
-    
     self.theaterController.strongArray = [NSMutableArray new];
     
 	// Do any additional setup after loading the view.
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+}
+
+-(void)checkAuthorizationStatus
+{
+    if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied || [CLLocationManager authorizationStatus] == kCLAuthorizationStatusRestricted) {
+        NSLog(@"%d", [CLLocationManager authorizationStatus]);
+        self.zipCode = @"94115";
+        [self setupFirstView];
+        [self populateFilmData:self.zipCode];
+        [self.theaterController.tableView reloadData];
+    } else if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusNotDetermined) {
+        NSLog(@"Not Determined");
+    }
+    else {
+        NSLog(@"Authorized");
+        [self.locationManager stopUpdatingLocation];
+        [self.locationManager startUpdatingLocation];
+    }
+}
+
+- (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status
+{
+    [self checkAuthorizationStatus];
 }
 
 -(void)setupFirstView
@@ -128,11 +137,6 @@
     }
 }
 
--(void)viewWillAppear:(BOOL)animated
-{
-
-}
-
 #pragma mark - Using GPS to look up user location
 
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
@@ -142,7 +146,7 @@
     CLGeocoder *geocoder = [CLGeocoder new];
     
     [geocoder reverseGeocodeLocation:self.location completionHandler:^(NSArray *placemarks, NSError *error) {
-        self.zipCode = [placemarks[0] postalCode];
+        self.zipCode = [[placemarks lastObject] postalCode];
         [[NSUserDefaults standardUserDefaults] setObject:self.zipCode forKey:@"defaultZipCode"];
         [[NSUserDefaults standardUserDefaults] synchronize];
         [self.locationManager stopUpdatingLocation];
@@ -551,10 +555,22 @@
     
     NSError *error;
     
-    NSArray *tmsArray = [NSJSONSerialization JSONObjectWithData:tmsData
-                                                        options:NSJSONReadingMutableContainers
-                                                          error:&error];
     
+
+    NSMutableArray *tmsArray = [NSMutableArray new];
+   
+    
+    @try {
+        tmsArray = [NSJSONSerialization JSONObjectWithData:tmsData
+                                                            options:NSJSONReadingMutableContainers
+                                                              error:&error];
+    }
+    @catch (NSException *exception) {
+        NSLog(@"API Limit Reached? %@", exception.debugDescription);
+        if (error) {
+            NSLog(@"Error: %@", error.debugDescription);
+        }
+    }
     
     NSMutableArray *tmsInstance = [NSMutableArray new];
     
@@ -663,6 +679,8 @@
     NSString *documentsPath = [documentsURL path];
     documentsPath = [documentsPath stringByAppendingPathComponent:arrayNameString];
     
+    NSLog(@"%@", documentsPath);
+    
     if (![[NSFileManager defaultManager] fileExistsAtPath:documentsPath]) {
         NSLog(@"FALSE");
         return FALSE;
@@ -675,11 +693,21 @@
 -(void)repopulateData
 {
     NSNumber *zip = [NSNumber numberWithInt:[[NSUserDefaults standardUserDefaults] integerForKey:@"defaultZipCode"]];
-    NSLog(@"%@", [zip stringValue]);
+    NSLog(@"New Default: %@", zip);
+    //int zip = 94115;
+    //NSLog(@"New Zip: %d", zip);
     [self populateFilmData:[zip stringValue]];
     [self.theaterController.tableView reloadData];
     NSLog(@"Repopulate");
     
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"customModal"]) {
+        self.customController = (SFCustomizeViewController *)segue.destinationViewController;
+        self.customController.delegate = self;
+    }
 }
 
 @end
