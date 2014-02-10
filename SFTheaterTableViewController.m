@@ -62,7 +62,7 @@
     NSMutableArray *ratingFilterArray = [NSMutableArray new];
     
     for (FilmModel *film in self.strongArray) {
-        if ([film.ratingValue integerValue] >= [[NSUserDefaults standardUserDefaults] integerForKey:@"mpaaRatingThreshold"] && [film.criticsRating integerValue] >= [[NSUserDefaults standardUserDefaults] integerForKey:@"criticThreshold"] && [film.audienceRating integerValue] >= [[NSUserDefaults standardUserDefaults] integerForKey:@"audienceThreshold"]) {
+        if ([film.ratingValue integerValue] >= [[NSUserDefaults standardUserDefaults] integerForKey:@"mpaaRatingThreshold"] && [film.criticsRating integerValue] >= [[NSUserDefaults standardUserDefaults] integerForKey:@"criticThreshold"] && [film.audienceRating integerValue] >= [[NSUserDefaults standardUserDefaults] integerForKey:@"audienceThreshold"] && [film.ratingVariance integerValue] <= [[NSUserDefaults standardUserDefaults] integerForKey:@"varianceThreshold"]) {
             [ratingFilterArray addObject:film];
         }
     }

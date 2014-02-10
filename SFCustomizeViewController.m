@@ -52,6 +52,13 @@
         self.audienceRatingThresholdLabel.text = [[NSNumber numberWithInt:threshold] stringValue];
     }
     
+    if ([[NSUserDefaults standardUserDefaults] integerForKey:@"varianceThreshold"]) {
+        float flo =  [[NSUserDefaults standardUserDefaults] integerForKey:@"varianceThreshold"] / 100.f;
+        self.ratingVarianceSliderOutlet.value = flo;
+        int threshold = self.ratingVarianceSliderOutlet.value * 100;
+        self.ratingVarianceLabel.text = [[NSNumber numberWithInt:threshold] stringValue];
+    }
+    
     // Do any additional setup after loading the view.
 }
 
@@ -60,6 +67,8 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
 
 - (IBAction)mpaaRatingThresholdSliderAction:(id)sender {
     int threshold = [self.mpaaRatingThresholdSliderOutlet value] * 5;
@@ -118,6 +127,13 @@
     int threshold = self.audienceRatingThresholdSliderOutlet.value * 100;
     self.audienceRatingThresholdLabel.text = [[NSNumber numberWithInt:threshold] stringValue];
     [[NSUserDefaults standardUserDefaults] setInteger:threshold forKey:@"audienceThreshold"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (IBAction)ratingVarianceSliderAction:(id)sender {
+    int threshold = self.ratingVarianceSliderOutlet.value * 100;
+    self.ratingVarianceLabel.text = [[NSNumber numberWithInt:threshold] stringValue];
+    [[NSUserDefaults standardUserDefaults] setInteger:threshold forKey:@"varianceThreshold"];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 

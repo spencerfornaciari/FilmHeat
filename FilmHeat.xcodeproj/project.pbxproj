@@ -42,7 +42,6 @@
 		894DFAD818A1769F00806267 /* Checkbox@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 894DFAD718A1769F00806267 /* Checkbox@2x.png */; };
 		894DFADA18A176CA00806267 /* List@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 894DFAD918A176CA00806267 /* List@2x.png */; };
 		894DFADC18A176DB00806267 /* List.png in Resources */ = {isa = PBXBuildFile; fileRef = 894DFADB18A176DB00806267 /* List.png */; };
-		895B49C91895E04F001874D5 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 895B49C81895E04F001874D5 /* MapKit.framework */; };
 		897EB575189B2DD0007D43F3 /* SFTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 897EB574189B2DD0007D43F3 /* SFTestViewController.m */; };
 		897EB57C189B3060007D43F3 /* Movies@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 897EB57A189B3060007D43F3 /* Movies@2x.png */; };
 		897EB580189B306C007D43F3 /* Movies.png in Resources */ = {isa = PBXBuildFile; fileRef = 897EB57E189B306C007D43F3 /* Movies.png */; };
@@ -124,7 +123,6 @@
 		894DFAD718A1769F00806267 /* Checkbox@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Checkbox@2x.png"; sourceTree = "<group>"; };
 		894DFAD918A176CA00806267 /* List@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "List@2x.png"; sourceTree = "<group>"; };
 		894DFADB18A176DB00806267 /* List.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = List.png; sourceTree = "<group>"; };
-		895B49C81895E04F001874D5 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		897EB573189B2DD0007D43F3 /* SFTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SFTestViewController.h; path = ../SFTestViewController.h; sourceTree = "<group>"; };
 		897EB574189B2DD0007D43F3 /* SFTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SFTestViewController.m; path = ../SFTestViewController.m; sourceTree = "<group>"; };
 		897EB57A189B3060007D43F3 /* Movies@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Movies@2x.png"; path = "FilmHeat/Movies@2x.png"; sourceTree = "<group>"; };
@@ -155,7 +153,6 @@
 			files = (
 				8949F732188DDD090069E9D4 /* CoreGraphics.framework in Frameworks */,
 				8949F736188DDD090069E9D4 /* CoreData.framework in Frameworks */,
-				895B49C91895E04F001874D5 /* MapKit.framework in Frameworks */,
 				8949F734188DDD090069E9D4 /* UIKit.framework in Frameworks */,
 				8949F730188DDD090069E9D4 /* Foundation.framework in Frameworks */,
 				3683493BBB7C48629F3A1C9C /* libPods.a in Frameworks */,
@@ -201,7 +198,6 @@
 		8949F72E188DDD090069E9D4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				895B49C81895E04F001874D5 /* MapKit.framework */,
 				8949F72F188DDD090069E9D4 /* Foundation.framework */,
 				8949F731188DDD090069E9D4 /* CoreGraphics.framework */,
 				8949F733188DDD090069E9D4 /* UIKit.framework */,
@@ -389,7 +385,7 @@
 					8949F72B188DDD090069E9D4 = {
 						SystemCapabilities = {
 							com.apple.iOS = {
-								enabled = 1;
+								enabled = 0;
 							};
 						};
 					};

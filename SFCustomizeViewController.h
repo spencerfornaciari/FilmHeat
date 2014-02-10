@@ -9,15 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 
-@protocol SFCustomizeViewControllerDelegate <NSObject>
-
--(void)repopulateData;
-
-@end
-
-@interface SFCustomizeViewController : UIViewController <UITextFieldDelegate, CLLocationManagerDelegate>
-
-@property (nonatomic, unsafe_unretained) id<SFCustomizeViewControllerDelegate>delegate;
+@interface SFCustomizeViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet UILabel *mpaaRatingThresholdLabel;
 @property (weak, nonatomic) IBOutlet UISlider *mpaaRatingThresholdSliderOutlet;
@@ -31,6 +23,9 @@
 @property (weak, nonatomic) IBOutlet UISlider *audienceRatingThresholdSliderOutlet;
 - (IBAction)audienceRatingThresholdSliderAction:(id)sender;
 
+@property (weak, nonatomic) IBOutlet UILabel *ratingVarianceLabel;
+@property (weak, nonatomic) IBOutlet UISlider *ratingVarianceSliderOutlet;
+- (IBAction)ratingVarianceSliderAction:(id)sender;
 
 
 

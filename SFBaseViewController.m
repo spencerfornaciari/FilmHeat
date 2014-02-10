@@ -366,7 +366,7 @@
 #pragma mark - Sort
 
 - (IBAction)buttonAction:(id)sender {
-    UIActionSheet *action = [[UIActionSheet alloc] initWithTitle:@"Test Sheet" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"A-Z", @"Z-A", @"Date (Newest)", @"Date (Oldest)", nil];
+    UIActionSheet *action = [[UIActionSheet alloc] initWithTitle:@"Test Sheet" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"A-Z", @"Z-A", @"Date (Newest)", @"Date (Oldest)", @"Variance (Smallest)", @"Variance (Greatest)", nil];
     [action showInView:self.view];
 }
 
@@ -415,6 +415,19 @@
         case 3:
         {
             NSSortDescriptor *nameSorter = [NSSortDescriptor sortDescriptorWithKey:@"releaseDate" ascending:YES];
+            arrayToSort = [NSMutableArray arrayWithArray:[arrayToSort sortedArrayUsingDescriptors:@[nameSorter]]];
+        }
+            break;
+            
+        case 4:
+        {
+            NSSortDescriptor *nameSorter = [NSSortDescriptor sortDescriptorWithKey:@"ratingVariance" ascending:YES];
+            arrayToSort = [NSMutableArray arrayWithArray:[arrayToSort sortedArrayUsingDescriptors:@[nameSorter]]];
+        }
+            break;
+        case 5:
+        {
+            NSSortDescriptor *nameSorter = [NSSortDescriptor sortDescriptorWithKey:@"ratingVariance" ascending:NO];
             arrayToSort = [NSMutableArray arrayWithArray:[arrayToSort sortedArrayUsingDescriptors:@[nameSorter]]];
         }
             break;
@@ -702,6 +715,13 @@
         //Set the audience rating of the film according to Rotten Tomatoes
         film.audienceRating = [dictionary valueForKeyPath:@"ratings.audience_score"];
         
+        int critcs = [film.criticsRating integerValue];
+        int audience = [film.audienceRating integerValue];
+        int variance = abs(critcs - audience);
+        
+        film.ratingVariance = [NSNumber numberWithInt:variance];
+        
+        
         //film.ratingVariance = abs([film.criticsRating integerValue] - [film.audienceRating integerValue]);
         //NSLog(@"%i", film.ratingVariance);
         
@@ -816,26 +836,6 @@
     } else {
         //NSLog(@"TRUE");
         return TRUE;
-    }
-}
-
--(void)repopulateData
-{
-    NSNumber *zip = [NSNumber numberWithInt:[[NSUserDefaults standardUserDefaults] integerForKey:@"defaultZipCode"]];
-    NSLog(@"New Default: %@", zip);
-    //int zip = 94115;
-    //NSLog(@"New Zip: %d", zip);
-    [self populateFilmData:[zip stringValue]];
-    [self.theaterController.tableView reloadData];
-    NSLog(@"Repopulate");
-    
-}
-
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    if ([segue.identifier isEqualToString:@"customModal"]) {
-        self.customController = (SFCustomizeViewController *)segue.destinationViewController;
-        self.customController.delegate = self;
     }
 }
 
