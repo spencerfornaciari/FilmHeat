@@ -61,19 +61,13 @@
     
     NSMutableArray *ratingFilterArray = [NSMutableArray new];
     
-    NSLog(@"User Default: %d", [[NSUserDefaults standardUserDefaults] integerForKey:@"mpaaRatingThreshold"]);
-    
     for (FilmModel *film in self.strongArray) {
         if ([film.ratingValue integerValue] >= [[NSUserDefaults standardUserDefaults] integerForKey:@"mpaaRatingThreshold"])
         {
             [ratingFilterArray addObject:film];
         }
     }
-    NSLog(@"Filter Count: %d", ratingFilterArray.count);
-    
     self.theaterArray = ratingFilterArray;
-//    
-//    NSLog(@"Rating Array Count: %d", self.theaterArray.count);
     
     [self.tableView reloadData];
      

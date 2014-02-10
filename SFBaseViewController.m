@@ -58,7 +58,14 @@
     self.locationManager.delegate = self;
     [self.locationManager setDistanceFilter:kCLDistanceFilterNone];
     [self.locationManager setDesiredAccuracy:kCLLocationAccuracyKilometer];
-    [self.locationManager startUpdatingLocation];
+    
+    if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied || [CLLocationManager authorizationStatus] == kCLAuthorizationStatusRestricted || [CLLocationManager authorizationStatus] == kCLAuthorizationStatusNotDetermined) {
+        NSLog(@"Not Authorized");
+        self.zipCode = @"94115";
+    } else {
+        NSLog(@"Authorized");
+        [self.locationManager startUpdatingLocation];
+    }
     
     self.location = [[CLLocation alloc] init];
     
