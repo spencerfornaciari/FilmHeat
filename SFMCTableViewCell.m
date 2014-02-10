@@ -40,6 +40,11 @@
         self.myRatingLabel.text = [NSString stringWithFormat:@"My Rating: %@", film.myRating];
     }
     
+//    if (film.criticsRating) {
+//        self.filmRuntimeLabel.hidden = FALSE;
+//        self.filmRuntimeLabel.text = [NSString stringWithFormat:@"Critics: %@", [film.criticsRating stringValue]];
+//    }
+    
     if (film.runtime) {
         self.filmRuntimeLabel.hidden = FALSE;
         self.filmRuntimeLabel.text = [NSString stringWithFormat:@"%@ min.", [film.runtime stringValue]];
