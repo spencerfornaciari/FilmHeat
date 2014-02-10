@@ -32,29 +32,6 @@
 {
     [super viewDidLoad];
     
-    //Grabbing and parsing Rotten Tomatoes data for individual films
-//    NSString *rottenString = [NSString stringWithFormat:@"http://api.rottentomatoes.com/api/public/v1.0/movies.json?apikey=%@&q=%@&page_limit=1", kROTTEN_TOMATOES_API_KEY, self.film.title];
-//    rottenString = [rottenString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-//
-//    NSURL *rottenURL = [NSURL URLWithString:rottenString];
-//    
-//    NSData *rottenData = [NSData dataWithContentsOfURL:rottenURL];
-//    
-//    NSError *error;
-//    NSDictionary *rottenDictionary = [NSJSONSerialization JSONObjectWithData:rottenData
-//                                                        options:NSJSONReadingMutableContainers
-//                                                          error:&error];
-//    
-//    NSArray *rottenArray = [rottenDictionary objectForKey:@"movies"];
-//    
-//    if (rottenArray.count == 0) {
-//        NSLog(@"DEAD END");
-//
-//    } else {
-//        self.film.criticsRating = [rottenArray[0] valueForKeyPath:@"ratings.critics_score"];
-//        self.film.audienceRating = [rottenArray[0] valueForKeyPath:@"ratings.audience_score"];
-//    }
-    
 	// Do any additional setup after loading the view.
     self.detailViewTitle.title = _film.title;
     

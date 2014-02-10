@@ -62,23 +62,13 @@
     NSMutableArray *ratingFilterArray = [NSMutableArray new];
     
     for (FilmModel *film in self.strongArray) {
-        if ([film.ratingValue integerValue] >= [[NSUserDefaults standardUserDefaults] integerForKey:@"mpaaRatingThreshold"] && [film.criticsRating integerValue] >= [[NSUserDefaults standardUserDefaults] integerForKey:@"criticThreshold"] && [film.audienceRating integerValue] >= [[NSUserDefaults standardUserDefaults] integerForKey:@"audienceThreshold"])
-        {
+        if ([film.ratingValue integerValue] >= [[NSUserDefaults standardUserDefaults] integerForKey:@"mpaaRatingThreshold"] && [film.criticsRating integerValue] >= [[NSUserDefaults standardUserDefaults] integerForKey:@"criticThreshold"] && [film.audienceRating integerValue] >= [[NSUserDefaults standardUserDefaults] integerForKey:@"audienceThreshold"]) {
             [ratingFilterArray addObject:film];
-//            if ([film.criticsRating integerValue] >= [[NSUserDefaults standardUserDefaults] integerForKey:@"criticThreshold"]) {
-//                if ([film.audienceRating integerValue] >= [[NSUserDefaults standardUserDefaults] integerForKey:@"audienceThreshold"]) {
-//                    
-//                }
-//            }
         }
-        
-       
-        
     }
     self.theaterArray = ratingFilterArray;
     
     [self.tableView reloadData];
-     
 }
 
 - (void)didReceiveMemoryWarning

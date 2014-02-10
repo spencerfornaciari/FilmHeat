@@ -36,7 +36,7 @@
     
     
     if (film.myRating) {
-        self.filmRuntimeLabel.hidden = TRUE;
+        self.filmCriticsLabel.hidden = TRUE;
         self.myRatingLabel.text = [NSString stringWithFormat:@"My Rating: %@", film.myRating];
     }
     
@@ -45,9 +45,14 @@
 //        self.filmRuntimeLabel.text = [NSString stringWithFormat:@"Critics: %@", [film.criticsRating stringValue]];
 //    }
     
-    if (film.runtime) {
-        self.filmRuntimeLabel.hidden = FALSE;
-        self.filmRuntimeLabel.text = [NSString stringWithFormat:@"%@ min.", [film.runtime stringValue]];
+    if (film.criticsRating) {
+        self.filmCriticsLabel.hidden = FALSE;
+        self.filmCriticsLabel.text = [NSString stringWithFormat:@"Critics: %@", [film.criticsRating stringValue]];
+    }
+    
+    if (film.audienceRating) {
+        self.filmAudiencesLabel.hidden = FALSE;
+        self.filmAudiencesLabel.text = [NSString stringWithFormat:@"Audiences: %@", [film.audienceRating stringValue]];
     }
     
     //UIImage *image = [UIImage imageWithContentsOfFile:[NSData dataWithContentsOfFile:film.posterImagePath]];

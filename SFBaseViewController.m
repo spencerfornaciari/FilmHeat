@@ -632,32 +632,32 @@
 {
     _downloadQueue = [NSOperationQueue new];
     
-//    if ([self doesArrayExist:kSEEN_IT_FILE]) {
-//        self.seenController.seenArray = [NSKeyedUnarchiver unarchiveObjectWithFile:self.seenItPath];
-//        // NSLog(@"Seen it Array: %d", self.seenItArray.count);
-//        NSLog(@"SEEN IT");
-//    } else {
-//        self.seenController.seenArray = [NSMutableArray new];
-//        NSLog(@"Created Seen");
-//        
-//    }
-//    
-//    if ([self doesArrayExist:kWANT_TO_FILE]) {
-//        self.wantedController.wantedArray = [NSKeyedUnarchiver unarchiveObjectWithFile:self.wantToSeeItPath];
-//        NSLog(@"WANT IT");
-//    } else {
-//        self.wantedController.wantedArray = [NSMutableArray new];
-//        NSLog(@"Created Want");
-//        
-//    }
-//    
-//    if ([self doesArrayExist:kDONT_WANT_IT_FILE]) {
-//        self.noneController.noneArray = [NSKeyedUnarchiver unarchiveObjectWithFile:self.dontWantToSeeItPath];
-//        NSLog(@"NO INTEREST");
-//    } else {
-//        self.noneController.noneArray = [NSMutableArray new];
-//        NSLog(@"Created No Interest");
-//    }
+    if ([self doesArrayExist:kSEEN_IT_FILE]) {
+        self.seenController.seenArray = [NSKeyedUnarchiver unarchiveObjectWithFile:self.seenItPath];
+        // NSLog(@"Seen it Array: %d", self.seenItArray.count);
+        NSLog(@"SEEN IT");
+    } else {
+        self.seenController.seenArray = [NSMutableArray new];
+        NSLog(@"Created Seen");
+        
+    }
+    
+    if ([self doesArrayExist:kWANT_TO_FILE]) {
+        self.wantedController.wantedArray = [NSKeyedUnarchiver unarchiveObjectWithFile:self.wantToSeeItPath];
+        NSLog(@"WANT IT");
+    } else {
+        self.wantedController.wantedArray = [NSMutableArray new];
+        NSLog(@"Created Want");
+        
+    }
+    
+    if ([self doesArrayExist:kDONT_WANT_IT_FILE]) {
+        self.noneController.noneArray = [NSKeyedUnarchiver unarchiveObjectWithFile:self.dontWantToSeeItPath];
+        NSLog(@"NO INTEREST");
+    } else {
+        self.noneController.noneArray = [NSMutableArray new];
+        NSLog(@"Created No Interest");
+    }
     
     
     NSString *rottenString = [NSString stringWithFormat:@"http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json?apikey=%@", kROTTEN_TOMATOES_API_KEY];
@@ -722,13 +722,24 @@
             film.ratingValue = [NSNumber numberWithInt:0];
         }
         
+        //Release date
+        NSDictionary *releaseDictionary = [dictionary valueForKeyPath:@"release_dates"];
+        NSString *releaseDate = [releaseDictionary objectForKey:@"theater"];
+        NSDateFormatter *df = [[NSDateFormatter alloc] init];
+        [df setDateFormat:@"yyyy-MM-dd"];
+        film.releaseDate = [df dateFromString:releaseDate];
+       // NSLog(@"Release: %@", release);
+        
         //Set the film's synopsis
         film.synopsis = [dictionary valueForKeyPath:@"synopsis"];
         
         //Set the path to the film's IMDb page
         //film.IMDb = [NSString stringWithFormat:@"http://www.imdb.com/title/tt%@/",[dictionary valueForKeyPath:@"alternate_ids.imdb"]];
         
-        [rottenMutableArray addObject:film];
+        BOOL doesExist = [self doesFilmExist:film];
+        if (!doesExist) {
+            [rottenMutableArray addObject:film];
+        }
     }
     
     NSLog(@"%@", rottenMutableArray);
