@@ -36,6 +36,10 @@
         
         self.criticsRating = [decoder decodeObjectForKey:@"criticsRating"];
         self.audienceRating = [decoder decodeObjectForKey:@"audienceRating"];
+        self.ratingVariance = [decoder decodeObjectForKey:@"ratingVariance"];
+        
+        self.rottenID = [decoder decodeObjectForKey:@"rottenID"];
+        self.imdbID = [decoder decodeObjectForKey:@"imdbID"];
         
         return self;
     }
@@ -57,9 +61,12 @@
    
     [encoder encodeObject:self.ratingValue forKey:@"ratingValue"];
     
-    
     [encoder encodeObject:self.criticsRating forKey:@"criticsRating"];
     [encoder encodeObject:self.audienceRating forKey:@"audienceRating"];
+    [encoder encodeObject:self.ratingVariance forKey:@"ratingVariance"];
+    
+    [encoder encodeObject:self.rottenID forKey:@"@rottenID"];
+    [encoder encodeObject:self.imdbID forKey:@"imdbID"];
 }
 
 -(void)downloadPoster

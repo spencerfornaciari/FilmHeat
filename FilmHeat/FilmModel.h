@@ -25,6 +25,10 @@
 @property (strong, nonatomic) NSNumber *ratingValue;
 @property (strong, nonatomic) NSNumber *releaseYear;
 @property (strong, nonatomic) NSDate *releaseDate;
+
+@property (strong, nonatomic) NSString *rottenID;
+@property (strong, nonatomic) NSString *imdbID;
+
 @property (nonatomic) NSArray *genres;
 @property (nonatomic) NSArray *showtimes;
 

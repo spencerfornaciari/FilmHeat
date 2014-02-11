@@ -111,40 +111,29 @@
     }
     
     // Configuring the views and colors.
-    UIView *checkView = [self viewWithImageName:@"Checkbox"];
-    UIView *crossView = [self viewWithImageName:@"List"];
-    UIView *clockView = [self viewWithImageName:@"Sad_Face"];
-    UIView *listView = [self viewWithImageName:@"Movies"];
+    UIView *checkView = [self viewWithImageName:@"SeenExtraLarge"];
+    UIView *crossView = [self viewWithImageName:@"WantExtraLarge"];
+    UIView *clockView = [self viewWithImageName:@"DontExtraLarge"];
+    UIView *listView = [self viewWithImageName:@"TheaterExtraLarge"];
     
     // Setting the default inactive state color to the tableView background color.
     [cell setDefaultColor:self.tableView.backgroundView.backgroundColor];
     
     // Adding gestures per state basis.
     [cell setSwipeGestureWithView:checkView color:[UIColor seenItColor] mode:MCSwipeTableViewCellModeSwitch state:MCSwipeTableViewCellState1 completionBlock:^(MCSwipeTableViewCell *cell, MCSwipeTableViewCellState state, MCSwipeTableViewCellMode mode) {
-        NSLog(@"Did swipe \"Checkbox\" cell");
-        NSLog(@"%d", indexPath.row);
         [self deleteCell:cell forIndex:0];
         
-        // [self addToSeenItList:cell selectedArray:selectedArray];
     }];
     
     [cell setSwipeGestureWithView:crossView color:[UIColor wantedColor] mode:MCSwipeTableViewCellModeSwitch state:MCSwipeTableViewCellState2 completionBlock:^(MCSwipeTableViewCell *cell, MCSwipeTableViewCellState state, MCSwipeTableViewCellMode mode) {
-        NSLog(@"Did swipe \"List\" cell");
         [self deleteCell:cell forIndex:2];
-        //        [self.delegate passFilmFromTheater:self.theaterArray[indexPath.row] forIndex:2];
-        //        [self.theaterArray removeObjectAtIndex:indexPath.row];
-        //        [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-        // [self addToWantedList:cell selectedArray:selectedArray];
+
     }];
     
     [cell setSwipeGestureWithView:clockView color:[UIColor noInterestColor] mode:MCSwipeTableViewCellModeSwitch state:MCSwipeTableViewCellState3 completionBlock:^(MCSwipeTableViewCell *cell, MCSwipeTableViewCellState state, MCSwipeTableViewCellMode mode) {
-        NSLog(@"Did swipe \"Sad_Face\" cell");
-        //[self deleteCell:cell forIndex:3];
-        //[self addToNoInterestList:cell selectedArray:selectedArray];
     }];
     
     [cell setSwipeGestureWithView:listView color:[UIColor theaterColor] mode:MCSwipeTableViewCellModeSwitch state:MCSwipeTableViewCellState4 completionBlock:^(MCSwipeTableViewCell *cell, MCSwipeTableViewCellState state, MCSwipeTableViewCellMode mode) {
-        NSLog(@"Did swipe \"Movies\" cell");
         [self deleteCell:cell forIndex:1];
         
     }];
