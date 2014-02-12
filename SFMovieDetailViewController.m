@@ -88,18 +88,14 @@
 
 }
 
--(void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    
-    
-}
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+#pragma mark - Button Actions
 
 - (IBAction)ratingsSliderInput:(id)sender {
     int rating = [self.myRatingSliderOutlet value] * 100;
@@ -111,10 +107,11 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
--(void)setFilm:(FilmModel *)film
+#pragma mark - UI Status Bar Style
+
+-(UIStatusBarStyle)preferredStatusBarStyle
 {
-    _film = film;
-    
+    return UIStatusBarStyleLightContent;
 }
 
 @end

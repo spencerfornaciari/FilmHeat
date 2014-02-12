@@ -11,19 +11,19 @@
 @implementation UIColor (SFFilmHeatColors)
 
 + (UIColor *)seenItColor{
-    return [UIColor redColor];
+    return [UIColor navigationBarColor];
 }
 
 + (UIColor *)theaterColor{
-    return [UIColor blueColor];
+    return [UIColor navigationBarColor];
 }
 
 + (UIColor *)wantedColor{
-    return [UIColor purpleColor];
+    return [UIColor navigationBarColor];
 }
 
 + (UIColor *)noInterestColor{
-    return [UIColor grayColor];
+    return [UIColor navigationBarColor];
 }
 
 + (UIColor *)navigationBarColor {

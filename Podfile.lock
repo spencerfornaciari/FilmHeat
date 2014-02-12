@@ -1,10 +1,19 @@
 PODS:
+  - Facebook-iOS-SDK (3.12.0)
   - MCSwipeTableViewCell (2.1.0)
+  - Parse+NSCoding (0.1.1):
+    - Parse-iOS-SDK (~> 1.2.18)
+  - Parse-iOS-SDK (1.2.18):
+    - Facebook-iOS-SDK (~> 3.7)
 
 DEPENDENCIES:
   - MCSwipeTableViewCell (~> 2.1.0)
+  - Parse+NSCoding (~> 0.1.1)
 
 SPEC CHECKSUMS:
+  Facebook-iOS-SDK: c09f7d80db5c48170ff834bc03ebe774c49d1f5b
   MCSwipeTableViewCell: 4a26851568843d15340eeca00210c219aa9f76d5
+  Parse+NSCoding: 5c202d9552d090279f8fa1ba849124cddf03acee
+  Parse-iOS-SDK: 48bfd538a107b6e1f29eebe59fa80c0f0b844dd1
 
 COCOAPODS: 0.29.0

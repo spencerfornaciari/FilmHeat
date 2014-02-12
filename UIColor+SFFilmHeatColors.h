@@ -14,5 +14,6 @@
 + (UIColor *)theaterColor;
 + (UIColor *)wantedColor;
 + (UIColor *)noInterestColor;
++ (UIColor *)navigationBarColor;
 
 @end

@@ -25,10 +25,15 @@
                                 <rect key="frame" x="0.0" y="17" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="barTintColor" red="1" green="0.074509803920000006" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                <textAttributes key="titleTextAttributes">
+                                    <offsetWrapper key="textShadowOffset" horizontal="0.0" vertical="0.0"/>
+                                </textAttributes>
                                 <items>
                                     <navigationItem id="n8p-oT-9Mt">
                                         <nil key="title"/>
                                         <barButtonItem key="leftBarButtonItem" title="Sort" id="4OI-nd-kp3">
+                                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <connections>
                                                 <action selector="buttonAction:" destination="5v0-mY-CsX" id="rc9-c3-VPB"/>
                                             </connections>
@@ -37,16 +42,18 @@
                                             <rect key="frame" x="68" y="7" width="185" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <segments>
-                                                <segment title="" image="Checkbox.png"/>
-                                                <segment title="" image="Movies.png"/>
-                                                <segment title="" image="List.png"/>
-                                                <segment title="" image="Sad_Face.png"/>
+                                                <segment title="" image="check.png"/>
+                                                <segment title="" image="masks.png"/>
+                                                <segment title="" image="wantlist.png"/>
+                                                <segment title="" image="delete.png"/>
                                             </segments>
+                                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <connections>
                                                 <action selector="segmentPicker:" destination="5v0-mY-CsX" eventType="valueChanged" id="fCp-cG-sLY"/>
                                             </connections>
                                         </segmentedControl>
                                         <barButtonItem key="rightBarButtonItem" image="Horizontal_Slider.png" id="4jm-kz-ZLN">
+                                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <connections>
                                                 <segue destination="glN-5l-SCP" kind="modal" identifier="customModal" id="AB2-0G-jdn"/>
                                             </connections>
@@ -54,13 +61,14 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <searchBar contentMode="redraw" fixedFrame="YES" searchBarStyle="minimal" placeholder="Search Films" translatesAutoresizingMaskIntoConstraints="NO" id="bTf-Gb-eHf">
+                            <searchBar contentMode="redraw" fixedFrame="YES" searchBarStyle="prominent" placeholder="Search Films" translatesAutoresizingMaskIntoConstraints="NO" id="bTf-Gb-eHf">
                                 <rect key="frame" x="0.0" y="61" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <color key="barTintColor" red="1" green="0.074509803920000006" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="0.074509803920000006" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
                         <constraints>
                             <constraint firstItem="m18-NA-o6d" firstAttribute="leading" secondItem="bu3-ls-j2w" secondAttribute="leading" id="RFD-uP-vZn"/>
                             <constraint firstAttribute="trailing" secondItem="m18-NA-o6d" secondAttribute="trailing" id="cVT-n6-iSo"/>
@@ -69,7 +77,9 @@
                         </constraints>
                     </view>
                     <toolbarItems/>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
+                        <outlet property="baseNavigationBar" destination="5d2-hw-ZTF" id="edj-q8-gXA"/>
                         <outlet property="filmSearchBar" destination="bTf-Gb-eHf" id="kpE-yV-YFd"/>
                         <outlet property="movieContainer" destination="m18-NA-o6d" id="ccB-v0-hWi"/>
                         <outlet property="segmentOutlet" destination="wzW-wG-3gW" id="xAs-tt-nOD"/>
@@ -349,6 +359,54 @@
             </objects>
             <point key="canvasLocation" x="966" y="-1932"/>
         </scene>
+        <!--Tutorial View Controller-->
+        <scene sceneID="odT-GW-Nug">
+            <objects>
+                <viewController id="FUO-X5-zgg" customClass="SFTutorialViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="f1G-lU-pvn"/>
+                        <viewControllerLayoutGuide type="bottom" id="Y5I-1Z-S9P"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="EaJ-3O-F2o">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zo5-iF-20O" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-767" y="-3770"/>
+        </scene>
+        <!--Tutorial Child View Controller-->
+        <scene sceneID="Njv-TY-wF9">
+            <objects>
+                <viewController storyboardIdentifier="myStoryboardID" id="XK7-zn-Lqa" customClass="SFTutorialChildViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="umH-0x-o1N"/>
+                        <viewControllerLayoutGuide type="bottom" id="avj-ar-EDO"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="JwC-kq-J7r">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Screen #n" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="btj-nA-1P2">
+                                <rect key="frame" x="79" y="221" width="162" height="38"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="33"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                    <connections>
+                        <outlet property="screenNumber" destination="btj-nA-1P2" id="0aF-aw-uBM"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="h5p-Us-h6H" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-351" y="-3742"/>
+        </scene>
         <!--Customize View Controller-->
         <scene sceneID="2Mv-UL-hpp">
             <objects>
@@ -361,6 +419,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aNG-Bq-ZxB">
+                                <rect key="frame" x="0.0" y="60" width="320" height="420"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
                             <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.40000000000000002" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="CZ3-xK-FHx">
                                 <rect key="frame" x="18" y="111" width="284" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -384,12 +447,15 @@
                                 <rect key="frame" x="0.0" y="16" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="barTintColor" red="1" green="0.074509803920000006" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
                                 <textAttributes key="titleTextAttributes">
+                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="textShadowColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </textAttributes>
                                 <items>
                                     <navigationItem title="Settings" id="W1W-im-GCX">
                                         <barButtonItem key="leftBarButtonItem" image="Movies.png" id="CQD-Wd-gmt">
+                                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <connections>
                                                 <action selector="dismissViewController:" destination="glN-5l-SCP" id="P9P-2x-00X"/>
                                             </connections>
@@ -455,8 +521,9 @@
                                 </connections>
                             </slider>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="0.074509803920000006" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
                     </view>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
                         <outlet property="audienceRatingThresholdLabel" destination="OI4-qH-ktv" id="VAx-9t-8MO"/>
                         <outlet property="audienceRatingThresholdSliderOutlet" destination="5SL-jl-tH6" id="sE5-f8-p64"/>
@@ -484,25 +551,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YBY-I5-nfo">
-                                <rect key="frame" x="20" y="73" width="101" height="142"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                            </imageView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2UX-bL-suB">
-                                <rect key="frame" x="20" y="215" width="280" height="175"/>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6wZ-o1-7nf">
+                                <rect key="frame" x="0.0" y="62" width="320" height="418"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <mutableString key="text"> Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. .Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</mutableString>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="13"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="kzo-hl-BXd">
-                                <rect key="frame" x="18" y="421" width="273" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <connections>
-                                    <action selector="ratingsSliderInput:" destination="ls1-BT-5KF" eventType="valueChanged" id="gnr-Hz-E5u"/>
-                                </connections>
-                            </slider>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Rating:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="17N-on-byq">
                                 <rect key="frame" x="88" y="389" width="105" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -601,12 +654,24 @@
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="15"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2UX-bL-suB">
+                                <rect key="frame" x="20" y="215" width="280" height="175"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <string key="text"> Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. .Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</string>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="13"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hJa-fw-h6t">
                                 <rect key="frame" x="0.0" y="18" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <color key="barTintColor" red="1" green="0.074509803920000006" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
+                                <textAttributes key="titleTextAttributes">
+                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </textAttributes>
                                 <items>
                                     <navigationItem title="Title" id="CSn-0f-TBx">
                                         <barButtonItem key="leftBarButtonItem" image="Movies.png" id="C9v-SC-QN4">
+                                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <connections>
                                                 <action selector="dismissViewController:" destination="ls1-BT-5KF" id="7I8-vA-4hk"/>
                                             </connections>
@@ -614,8 +679,19 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YBY-I5-nfo">
+                                <rect key="frame" x="20" y="73" width="101" height="142"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="kzo-hl-BXd">
+                                <rect key="frame" x="18" y="421" width="273" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="ratingsSliderInput:" destination="ls1-BT-5KF" eventType="valueChanged" id="gnr-Hz-E5u"/>
+                                </connections>
+                            </slider>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="0.074509803920000006" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
                         <constraints>
                             <constraint firstItem="oZb-1y-2ZS" firstAttribute="top" secondItem="myx-Gy-dSe" secondAttribute="top" id="2Yj-BA-v7t"/>
                             <constraint firstItem="dVt-Nr-Twx" firstAttribute="baseline" secondItem="Xpr-xP-DHN" secondAttribute="baseline" id="3XY-TV-3P9"/>
@@ -672,6 +748,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="tsl-0Y-8lE"/>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
                         <outlet property="audienceLabel" destination="l6U-V2-4bN" id="Ajs-sa-v28"/>
                         <outlet property="audienceRatingLabel" destination="cXB-fS-e2e" id="0tl-Jg-RwT"/>
@@ -694,11 +771,12 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Checkbox.png" width="27" height="21"/>
         <image name="Horizontal_Slider.png" width="24" height="23"/>
-        <image name="List.png" width="27" height="23"/>
         <image name="Movies.png" width="23" height="22"/>
-        <image name="Sad_Face.png" width="24" height="24"/>
+        <image name="check.png" width="24" height="24"/>
+        <image name="delete.png" width="24" height="24"/>
+        <image name="masks.png" width="24" height="24"/>
+        <image name="wantlist.png" width="24" height="24"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
@@ -706,6 +784,6 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="aZm-qK-wL3"/>
+        <segue reference="X3O-uX-vQ1"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -137,4 +137,11 @@
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
+#pragma mark - UI Status Bar Style
+
+-(UIStatusBarStyle)preferredStatusBarStyle
+{
+    return UIStatusBarStyleLightContent;
+}
+
 @end

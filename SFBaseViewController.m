@@ -12,9 +12,8 @@
 
 @interface SFBaseViewController ()
 
-@property (strong, nonatomic) CLLocationManager *locationManager;
-@property (strong, nonatomic) CLLocation *location;
-@property (strong, nonatomic) NSString *zipCode;
+@property (strong, nonatomic) IBOutlet UINavigationBar *baseNavigationBar;
+
 
 @property (nonatomic, strong) SFSeenTableViewController *seenController;
 @property (nonatomic, strong) SFTheaterTableViewController *theaterController;
@@ -41,7 +40,6 @@
 @end
 
 @implementation SFBaseViewController
-
 
 - (void)viewDidLoad
 {
@@ -84,7 +82,6 @@
 {
     [super viewWillAppear:animated];
 }
-
 
 -(void)setupFirstView
 {
@@ -416,22 +413,14 @@
 }
 
 -(NSMutableArray *)searchWithArray:(NSMutableArray *)arrayToSearch textToSearch:(NSString *)searchText
-{
-    NSMutableArray *finalResults = [NSMutableArray new];
-    
-    for (FilmModel *model in [_searchArray copy])
-    {
-        NSString *string = [model.title uppercaseString];
-        if ([string hasPrefix:[searchText uppercaseString]])
-        {
-            [finalResults addObject:model];
-        }
-    }
+{    
+    NSPredicate *titlePredicate = [NSPredicate predicateWithFormat:@"title CONTAINS[cd] %@", searchText];
+    NSArray *predicateArray = [NSArray arrayWithArray:[_searchArray filteredArrayUsingPredicate:titlePredicate]];
     
     if (searchText.length == 0) {
         return _searchArray;
     } else {
-       return finalResults;
+       return [predicateArray mutableCopy];
     }
 }
 
@@ -636,6 +625,13 @@
         //NSLog(@"TRUE");
         return TRUE;
     }
+}
+
+#pragma mark - UI Status Bar Style
+
+-(UIStatusBarStyle)preferredStatusBarStyle
+{
+    return UIStatusBarStyleLightContent;
 }
 
 @end

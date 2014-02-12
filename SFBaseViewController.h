@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Constants.h"
+#import "UIColor+SFFilmHeatColors.h"
 #import "SFTheaterTableViewController.h"
 #import "SFSeenTableViewController.h"
 #import "SFWantedTableViewController.h"
