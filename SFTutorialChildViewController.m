@@ -9,6 +9,7 @@
 #import "SFTutorialChildViewController.h"
 
 @interface SFTutorialChildViewController ()
+@property (strong, nonatomic) IBOutlet UIImageView *tutorialImageView;
 
 @end
 
@@ -32,12 +33,17 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     if (self.index == 0) {
-        self.view.backgroundColor = [UIColor redColor];
+        self.tutorialImageView.image = [UIImage imageNamed:@"1"];
     } else if (self.index == 1) {
-        self.view.backgroundColor = [UIColor blueColor];
+        self.tutorialImageView.image = [UIImage imageNamed:@"2"];
     } else if (self.index == 2) {
-        self.view.backgroundColor = [UIColor greenColor];
+        self.tutorialImageView.image = [UIImage imageNamed:@"3"];
+    } else if (self.index == 3) {
+        self.tutorialImageView.image = [UIImage imageNamed:@"4"];
+    } else if (self.index == 4) {
+        self.tutorialImageView.image = [UIImage imageNamed:@"5"];
     }
+    
     
     self.screenNumber.text = [NSString stringWithFormat:@"Screen #%d", self.index];
 
@@ -47,6 +53,13 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - UI Status Bar Style
+
+-(UIStatusBarStyle)preferredStatusBarStyle
+{
+    return UIStatusBarStyleLightContent;
 }
 
 @end

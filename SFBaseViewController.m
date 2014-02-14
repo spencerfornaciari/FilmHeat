@@ -281,7 +281,7 @@
 #pragma mark - Sort
 
 - (IBAction)buttonAction:(id)sender {
-    UIActionSheet *action = [[UIActionSheet alloc] initWithTitle:@"Test Sheet" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"A-Z", @"Z-A", @"Date (Newest)", @"Date (Oldest)", @"Variance (Smallest)", @"Variance (Greatest)", nil];
+    UIActionSheet *action = [[UIActionSheet alloc] initWithTitle:@"Sort Options" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"A-Z", @"Z-A", @"Date (Newest)", @"Date (Oldest)", @"Variance (Smallest)", @"Variance (Greatest)", nil];
     [action showInView:self.view];
 }
 
@@ -413,7 +413,7 @@
 }
 
 -(NSMutableArray *)searchWithArray:(NSMutableArray *)arrayToSearch textToSearch:(NSString *)searchText
-{    
+{
     NSPredicate *titlePredicate = [NSPredicate predicateWithFormat:@"title CONTAINS[cd] %@", searchText];
     NSArray *predicateArray = [NSArray arrayWithArray:[_searchArray filteredArrayUsingPredicate:titlePredicate]];
     
@@ -615,8 +615,6 @@
     
     NSString *documentsPath = [documentsURL path];
     documentsPath = [documentsPath stringByAppendingPathComponent:arrayNameString];
-    
-    //NSLog(@"%@", documentsPath);
     
     if (![[NSFileManager defaultManager] fileExistsAtPath:documentsPath]) {
         NSLog(@"FALSE");
