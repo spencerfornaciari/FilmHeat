@@ -8,12 +8,13 @@
 
 #import "SFBaseViewController.h"
 #import "SFFilmModelDataController.h"
+#import "SFTutorialViewController.h"
 
 
 @interface SFBaseViewController ()
 
 @property (strong, nonatomic) IBOutlet UINavigationBar *baseNavigationBar;
-
+@property (strong, nonatomic) SFTutorialViewController *tutorialController;
 
 @property (nonatomic, strong) SFSeenTableViewController *seenController;
 @property (nonatomic, strong) SFTheaterTableViewController *theaterController;
@@ -44,6 +45,16 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    BOOL tutorial = TRUE;
+    
+    if (tutorial) {
+        self.tutorialController = [self.storyboard instantiateViewControllerWithIdentifier:@"tutorial"];
+        [self addChildViewController:self.tutorialController];
+        self.tutorialController.view.frame = self.view.frame;
+        [self.view addSubview:self.tutorialController.view];
+        [self.tutorialController didMoveToParentViewController:self];
+    }
 
     _searchArray = [NSMutableArray new];
     
