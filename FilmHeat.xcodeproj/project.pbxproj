@@ -65,6 +65,8 @@
 		89A8E70D18AD9AA200B88F6D /* 5.png in Resources */ = {isa = PBXBuildFile; fileRef = 89A8E70B18AD9AA200B88F6D /* 5.png */; };
 		89B98A8D18AC16C5006FF961 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89B98A8C18AC16C5006FF961 /* Crashlytics.framework */; };
 		89BC655518A3008D00B27385 /* SFMCTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 89BC655418A3008D00B27385 /* SFMCTableViewCell.m */; };
+		89D69B9A18B433D4008583B6 /* 0.png in Resources */ = {isa = PBXBuildFile; fileRef = 89D69B9918B433D4008583B6 /* 0.png */; };
+		89D69B9C18B436A6008583B6 /* 6.png in Resources */ = {isa = PBXBuildFile; fileRef = 89D69B9B18B436A6008583B6 /* 6.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -168,6 +170,8 @@
 		89B98A8C18AC16C5006FF961 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		89BC655318A3008D00B27385 /* SFMCTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SFMCTableViewCell.h; path = ../SFMCTableViewCell.h; sourceTree = "<group>"; };
 		89BC655418A3008D00B27385 /* SFMCTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SFMCTableViewCell.m; path = ../SFMCTableViewCell.m; sourceTree = "<group>"; };
+		89D69B9918B433D4008583B6 /* 0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 0.png; sourceTree = "<group>"; };
+		89D69B9B18B436A6008583B6 /* 6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 6.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -373,6 +377,8 @@
 		89A8E6E318AD945400B88F6D /* Tutorial */ = {
 			isa = PBXGroup;
 			children = (
+				89D69B9B18B436A6008583B6 /* 6.png */,
+				89D69B9918B433D4008583B6 /* 0.png */,
 				89A8E70A18AD9AA200B88F6D /* 2.png */,
 				89A8E70B18AD9AA200B88F6D /* 5.png */,
 				89A8E6FC18AD98D600B88F6D /* 1.png */,
@@ -483,6 +489,7 @@
 				89A8E70D18AD9AA200B88F6D /* 5.png in Resources */,
 				89A43FF418AAF267009DC814 /* masks@2x.png in Resources */,
 				89A8E70C18AD9AA200B88F6D /* 2.png in Resources */,
+				89D69B9C18B436A6008583B6 /* 6.png in Resources */,
 				89A43FEC18AAF0BD009DC814 /* check@2x.png in Resources */,
 				89A8E70118AD98D600B88F6D /* 1.png in Resources */,
 				8949F73C188DDD090069E9D4 /* InfoPlist.strings in Resources */,
@@ -490,6 +497,7 @@
 				89A43FE818AAEB1E009DC814 /* delete@2x.png in Resources */,
 				89A43EE918A935C3009DC814 /* SeenExtraLarge.png in Resources */,
 				89A43EF318A9391E009DC814 /* DontExtraLarge.png in Resources */,
+				89D69B9A18B433D4008583B6 /* 0.png in Resources */,
 				8949F745188DDD090069E9D4 /* Main.storyboard in Resources */,
 				89A43FE718AAEB1E009DC814 /* delete.png in Resources */,
 				894DFAD818A1769F00806267 /* Checkbox@2x.png in Resources */,

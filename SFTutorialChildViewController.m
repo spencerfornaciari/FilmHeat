@@ -7,9 +7,11 @@
 //
 
 #import "SFTutorialChildViewController.h"
+#import "SFBaseViewController.h"
 
 @interface SFTutorialChildViewController ()
 @property (strong, nonatomic) IBOutlet UIImageView *tutorialImageView;
+@property (strong, nonatomic) SFBaseViewController *baseController;
 
 @end
 
@@ -27,25 +29,41 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.baseController = [SFBaseViewController new];
 	// Do any additional setup after loading the view.
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     if (self.index == 0) {
-        self.tutorialImageView.image = [UIImage imageNamed:@"1"];
+       self.tutorialImageView.image = [UIImage imageNamed:@"0"];
     } else if (self.index == 1) {
-        self.tutorialImageView.image = [UIImage imageNamed:@"2"];
+        self.tutorialImageView.image = [UIImage imageNamed:@"1"];
     } else if (self.index == 2) {
-        self.tutorialImageView.image = [UIImage imageNamed:@"3"];
+        self.tutorialImageView.image = [UIImage imageNamed:@"2"];
     } else if (self.index == 3) {
-        self.tutorialImageView.image = [UIImage imageNamed:@"4"];
+        self.tutorialImageView.image = [UIImage imageNamed:@"3"];
     } else if (self.index == 4) {
+        self.tutorialImageView.image = [UIImage imageNamed:@"4"];
+    } else if (self.index == 5) {
         self.tutorialImageView.image = [UIImage imageNamed:@"5"];
+    } else if (self.index == 6) {
+        self.tutorialImageView.image = [UIImage imageNamed:@"6"];
+        UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 350, 320, 40)];
+        //button.backgroundColor = [UIColor redColor];
+        button.tintColor = [UIColor whiteColor];
+        button.titleLabel.text = @"DISMISS";
+        [self.view addSubview:button];
+        
     }
     
-    
-    self.screenNumber.text = [NSString stringWithFormat:@"Screen #%d", self.index];
+
+
+}
+
+-(void)dismissButton
+{
+   // self.baseController = [self.storyboard instantiateViewControllerWithIdentifier:@"base"];
 
 }
 

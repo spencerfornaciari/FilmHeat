@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SFBaseViewController.h"
 
 @interface SFTutorialChildViewController : UIViewController
 @property (strong, nonatomic) IBOutlet UILabel *screenNumber;

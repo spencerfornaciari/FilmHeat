@@ -14,7 +14,6 @@
 @interface SFBaseViewController ()
 
 @property (strong, nonatomic) IBOutlet UINavigationBar *baseNavigationBar;
-@property (strong, nonatomic) SFTutorialViewController *tutorialController;
 
 @property (nonatomic, strong) SFSeenTableViewController *seenController;
 @property (nonatomic, strong) SFTheaterTableViewController *theaterController;
@@ -22,6 +21,7 @@
 @property (nonatomic, strong) SFNoneTableViewController *noneController;
 @property (nonatomic, strong) SFCustomizeViewController *customController;
 
+@property (nonatomic) SFTutorialViewController *tutorial;
 @property (strong, nonatomic) NSMutableArray *searchArray;
 
 @property (nonatomic, strong) NSArray *childVCArray;
@@ -46,15 +46,19 @@
 {
     [super viewDidLoad];
     
-    BOOL tutorial = TRUE;
+//    BOOL tutorial = TRUE;
+//    self.tutorial = [SFTutorialViewController new];
+//    [self presentViewController:self.tutorial animated:YES completion:nil];
+//    if (tutorial) {
     
-    if (tutorial) {
-        self.tutorialController = [self.storyboard instantiateViewControllerWithIdentifier:@"tutorial"];
-        [self addChildViewController:self.tutorialController];
-        self.tutorialController.view.frame = self.view.frame;
-        [self.view addSubview:self.tutorialController.view];
-        [self.tutorialController didMoveToParentViewController:self];
-    }
+    
+        
+//        self.tutorialController = [self.storyboard instantiateViewControllerWithIdentifier:@"tutorial"];
+//        [self addChildViewController:self.tutorialController];
+//        self.tutorialController.view.frame = self.view.frame;
+//        [self.view addSubview:self.tutorialController.view];
+//        [self.tutorialController didMoveToParentViewController:self];
+    
 
     _searchArray = [NSMutableArray new];
     

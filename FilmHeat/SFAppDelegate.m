@@ -7,6 +7,7 @@
 //
 
 #import "SFAppDelegate.h"
+#import "SFTutorialViewController.h"
 #import <Crashlytics/Crashlytics.h>
 
 @implementation SFAppDelegate
@@ -16,6 +17,15 @@
 {
     // Override point for customization after application launch.
     
+    BOOL tutorial = TRUE;
+    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main"
+                                                             bundle: nil];
+    
+    if (tutorial) {
+        SFTutorialViewController *viewController = [mainStoryboard instantiateViewControllerWithIdentifier: @"tutorial"];
+        
+        self.window.rootViewController = viewController;
+    }
     
     
     [Crashlytics startWithAPIKey:@"532795e0d25b45a680534c336246204778a0a137"];
