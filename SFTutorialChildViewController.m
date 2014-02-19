@@ -29,6 +29,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    NSLog(@"%f %f", self.view.frame.size.width, self.view.frame.size.height);
+    
+    self.view.backgroundColor = [UIColor blueColor];
+    [[UIApplication sharedApplication] setStatusBarHidden:YES];
+
     self.tabBarController = [UITabBarController new];
 	// Do any additional setup after loading the view.
 }
