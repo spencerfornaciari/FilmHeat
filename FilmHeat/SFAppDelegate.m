@@ -17,7 +17,7 @@
 {
     // Override point for customization after application launch.
     
-    BOOL tutorial = TRUE;
+    BOOL tutorial = FALSE;
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main"
                                                              bundle: nil];
     

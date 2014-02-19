@@ -94,10 +94,10 @@
 		8931CF6218A4820100A4CFBC /* SFNoneTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SFNoneTableViewController.m; path = ../SFNoneTableViewController.m; sourceTree = "<group>"; };
 		8931CF6418A5998E00A4CFBC /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		8931CF6518A5998E00A4CFBC /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
-		89366F3918AAFF3500C278DA /* SFTutorialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFTutorialViewController.h; sourceTree = "<group>"; };
-		89366F3A18AAFF3500C278DA /* SFTutorialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFTutorialViewController.m; sourceTree = "<group>"; };
-		89366F3C18AAFF4600C278DA /* SFTutorialChildViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFTutorialChildViewController.h; sourceTree = "<group>"; };
-		89366F3D18AAFF4600C278DA /* SFTutorialChildViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFTutorialChildViewController.m; sourceTree = "<group>"; };
+		89366F3918AAFF3500C278DA /* SFTutorialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SFTutorialViewController.h; path = ../SFTutorialViewController.h; sourceTree = "<group>"; };
+		89366F3A18AAFF3500C278DA /* SFTutorialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SFTutorialViewController.m; path = ../SFTutorialViewController.m; sourceTree = "<group>"; };
+		89366F3C18AAFF4600C278DA /* SFTutorialChildViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SFTutorialChildViewController.h; path = ../SFTutorialChildViewController.h; sourceTree = "<group>"; };
+		89366F3D18AAFF4600C278DA /* SFTutorialChildViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SFTutorialChildViewController.m; path = ../SFTutorialChildViewController.m; sourceTree = "<group>"; };
 		8949F72C188DDD090069E9D4 /* FilmHeat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FilmHeat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8949F72F188DDD090069E9D4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		8949F731188DDD090069E9D4 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -205,10 +205,6 @@
 			isa = PBXGroup;
 			children = (
 				89A8E6E318AD945400B88F6D /* Tutorial */,
-				89366F3C18AAFF4600C278DA /* SFTutorialChildViewController.h */,
-				89366F3D18AAFF4600C278DA /* SFTutorialChildViewController.m */,
-				89366F3918AAFF3500C278DA /* SFTutorialViewController.h */,
-				89366F3A18AAFF3500C278DA /* SFTutorialViewController.m */,
 				8931CF6418A5998E00A4CFBC /* Constants.h */,
 				8931CF6518A5998E00A4CFBC /* Constants.m */,
 				8949F737188DDD090069E9D4 /* FilmHeat */,
@@ -254,6 +250,10 @@
 		8949F737188DDD090069E9D4 /* FilmHeat */ = {
 			isa = PBXGroup;
 			children = (
+				89366F3C18AAFF4600C278DA /* SFTutorialChildViewController.h */,
+				89366F3D18AAFF4600C278DA /* SFTutorialChildViewController.m */,
+				89366F3918AAFF3500C278DA /* SFTutorialViewController.h */,
+				89366F3A18AAFF3500C278DA /* SFTutorialViewController.m */,
 				8931CF6118A4820100A4CFBC /* SFNoneTableViewController.h */,
 				8931CF6218A4820100A4CFBC /* SFNoneTableViewController.m */,
 				8931CF5E18A44B1C00A4CFBC /* SFWantedTableViewController.h */,

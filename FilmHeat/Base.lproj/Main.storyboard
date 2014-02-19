@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <containerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m18-NA-o6d">
-                                <rect key="frame" x="0.0" y="105" width="320" height="375"/>
+                                <rect key="frame" x="0.0" y="105" width="320" height="331"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </containerView>
@@ -67,7 +67,7 @@
                             <constraint firstItem="m18-NA-o6d" firstAttribute="leading" secondItem="bu3-ls-j2w" secondAttribute="leading" id="RFD-uP-vZn"/>
                             <constraint firstAttribute="trailing" secondItem="m18-NA-o6d" secondAttribute="trailing" id="cVT-n6-iSo"/>
                             <constraint firstItem="m18-NA-o6d" firstAttribute="top" secondItem="bu3-ls-j2w" secondAttribute="top" constant="105" id="ccn-ho-GTa"/>
-                            <constraint firstAttribute="bottom" secondItem="m18-NA-o6d" secondAttribute="bottom" id="hu2-4L-As3"/>
+                            <constraint firstAttribute="bottom" secondItem="m18-NA-o6d" secondAttribute="bottom" constant="44" id="p7n-UH-udl"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Films" image="Movies.png" id="Ei9-Q1-85n"/>

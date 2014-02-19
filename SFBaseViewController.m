@@ -457,16 +457,13 @@
     if ([self doesArrayExist:kSEEN_IT_FILE]) {
         self.seenController.seenArray = [NSKeyedUnarchiver unarchiveObjectWithFile:self.seenItPath];
         // NSLog(@"Seen it Array: %d", self.seenItArray.count);
-        NSLog(@"SEEN IT");
     } else {
         self.seenController.seenArray = [NSMutableArray new];
         NSLog(@"Created Seen");
-        
     }
     
     if ([self doesArrayExist:kWANT_TO_FILE]) {
         self.wantedController.wantedArray = [NSKeyedUnarchiver unarchiveObjectWithFile:self.wantToSeeItPath];
-        NSLog(@"WANT IT");
     } else {
         self.wantedController.wantedArray = [NSMutableArray new];
         NSLog(@"Created Want");
@@ -475,7 +472,6 @@
     
     if ([self doesArrayExist:kDONT_WANT_IT_FILE]) {
         self.noneController.noneArray = [NSKeyedUnarchiver unarchiveObjectWithFile:self.dontWantToSeeItPath];
-        NSLog(@"NO INTEREST");
     } else {
         self.noneController.noneArray = [NSMutableArray new];
         NSLog(@"Created No Interest");
