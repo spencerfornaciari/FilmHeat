@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "ShowtimeModel.h"
 
 @interface FilmModel : NSObject
 
@@ -42,6 +41,5 @@
 -(void)downloadPoster;
 -(NSDate *)releaseDateConverter:(NSString *)releaseDateString;
 -(NSNumber *)runTimeConverter:(NSString *)runTimeString;
--(NSArray *)setShowTimes:(NSArray *)tmsShowtimeArray;
 
 @end

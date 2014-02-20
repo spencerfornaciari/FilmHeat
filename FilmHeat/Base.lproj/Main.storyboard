@@ -385,18 +385,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ZmL-0N-Nk0">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZmL-0N-Nk0">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.89411764709999997" green="0.31764705879999999" blue="0.29411764709999999" alpha="1" colorSpace="deviceRGB"/>
-                        <constraints>
-                            <constraint firstItem="ZmL-0N-Nk0" firstAttribute="leading" secondItem="JwC-kq-J7r" secondAttribute="leading" id="WmI-Qe-hdY"/>
-                            <constraint firstItem="ZmL-0N-Nk0" firstAttribute="top" secondItem="JwC-kq-J7r" secondAttribute="top" id="qGm-jT-BGb"/>
-                            <constraint firstAttribute="trailing" secondItem="ZmL-0N-Nk0" secondAttribute="trailing" id="ynS-d5-jaJ"/>
-                            <constraint firstAttribute="bottom" secondItem="ZmL-0N-Nk0" secondAttribute="bottom" id="ziU-sT-mIU"/>
-                        </constraints>
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>

@@ -136,21 +136,4 @@
     return [NSNumber numberWithInteger:filmRuntime];
 }
 
--(NSArray *)setShowTimes:(NSArray *)tmsShowtimeArray;
-{
-    NSMutableArray *showtimesMutable = [NSMutableArray new];
-    
-    for (NSDictionary *dictionary in tmsShowtimeArray)
-    {
-        ShowtimeModel *model = [ShowtimeModel new];
-        model.theaterName = [dictionary valueForKeyPath:@"showtimes.theatre.name"];
-        model.screeningDate = [dictionary valueForKeyPath:@"showtimes.theatre.dateTime"];
-        model.ticketURL = [dictionary valueForKeyPath:@"showtimes.ticketURI"];
-        
-        [showtimesMutable addObject:model];
-    }
-    
-    return nil;
-}
-
 @end
