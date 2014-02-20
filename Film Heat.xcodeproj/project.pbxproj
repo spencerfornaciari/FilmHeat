@@ -92,23 +92,23 @@
 		89366F3A18AAFF3500C278DA /* SFTutorialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SFTutorialViewController.m; path = ../SFTutorialViewController.m; sourceTree = "<group>"; };
 		89366F3C18AAFF4600C278DA /* SFTutorialChildViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SFTutorialChildViewController.h; path = ../SFTutorialChildViewController.h; sourceTree = "<group>"; };
 		89366F3D18AAFF4600C278DA /* SFTutorialChildViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SFTutorialChildViewController.m; path = ../SFTutorialChildViewController.m; sourceTree = "<group>"; };
-		8949F72C188DDD090069E9D4 /* FilmHeat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FilmHeat.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8949F72C188DDD090069E9D4 /* Film Heat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Film Heat.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8949F72F188DDD090069E9D4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		8949F731188DDD090069E9D4 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		8949F733188DDD090069E9D4 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		8949F735188DDD090069E9D4 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		8949F739188DDD090069E9D4 /* FilmHeat-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FilmHeat-Info.plist"; sourceTree = "<group>"; };
+		8949F739188DDD090069E9D4 /* Film Heat-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Film Heat-Info.plist"; sourceTree = "<group>"; };
 		8949F73B188DDD090069E9D4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		8949F73D188DDD090069E9D4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		8949F73F188DDD090069E9D4 /* FilmHeat-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FilmHeat-Prefix.pch"; sourceTree = "<group>"; };
+		8949F73F188DDD090069E9D4 /* Film Heat-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Film Heat-Prefix.pch"; sourceTree = "<group>"; };
 		8949F740188DDD090069E9D4 /* SFAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SFAppDelegate.h; sourceTree = "<group>"; };
 		8949F741188DDD090069E9D4 /* SFAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SFAppDelegate.m; sourceTree = "<group>"; };
 		8949F744188DDD090069E9D4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8949F747188DDD090069E9D4 /* FilmHeat.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FilmHeat.xcdatamodel; sourceTree = "<group>"; };
 		8949F74F188DDD090069E9D4 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		8949F755188DDD090069E9D4 /* FilmHeatTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FilmHeatTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8949F755188DDD090069E9D4 /* Film HeatTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Film HeatTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8949F756188DDD090069E9D4 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		8949F75F188DDD090069E9D4 /* FilmHeatTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FilmHeatTests-Info.plist"; sourceTree = "<group>"; };
+		8949F75F188DDD090069E9D4 /* Film HeatTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Film HeatTests-Info.plist"; sourceTree = "<group>"; };
 		8949F761188DDD090069E9D4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		8949F763188DDD090069E9D4 /* FilmHeatTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FilmHeatTests.m; sourceTree = "<group>"; };
 		8949F770188DE1450069E9D4 /* SFTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SFTabBarController.h; path = ../SFTabBarController.h; sourceTree = "<group>"; };
@@ -206,8 +206,8 @@
 		8949F72D188DDD090069E9D4 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8949F72C188DDD090069E9D4 /* FilmHeat.app */,
-				8949F755188DDD090069E9D4 /* FilmHeatTests.xctest */,
+				8949F72C188DDD090069E9D4 /* Film Heat.app */,
+				8949F755188DDD090069E9D4 /* Film HeatTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -273,10 +273,10 @@
 		8949F738188DDD090069E9D4 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				8949F739188DDD090069E9D4 /* FilmHeat-Info.plist */,
+				8949F739188DDD090069E9D4 /* Film Heat-Info.plist */,
 				8949F73A188DDD090069E9D4 /* InfoPlist.strings */,
 				8949F73D188DDD090069E9D4 /* main.m */,
-				8949F73F188DDD090069E9D4 /* FilmHeat-Prefix.pch */,
+				8949F73F188DDD090069E9D4 /* Film Heat-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -293,7 +293,7 @@
 		8949F75E188DDD090069E9D4 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				8949F75F188DDD090069E9D4 /* FilmHeatTests-Info.plist */,
+				8949F75F188DDD090069E9D4 /* Film HeatTests-Info.plist */,
 				8949F760188DDD090069E9D4 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
@@ -365,9 +365,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		8949F72B188DDD090069E9D4 /* FilmHeat */ = {
+		8949F72B188DDD090069E9D4 /* Film Heat */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 8949F767188DDD090069E9D4 /* Build configuration list for PBXNativeTarget "FilmHeat" */;
+			buildConfigurationList = 8949F767188DDD090069E9D4 /* Build configuration list for PBXNativeTarget "Film Heat" */;
 			buildPhases = (
 				B8B519FA7F744F23B90BDCB5 /* Check Pods Manifest.lock */,
 				8949F728188DDD090069E9D4 /* Sources */,
@@ -380,14 +380,14 @@
 			);
 			dependencies = (
 			);
-			name = FilmHeat;
+			name = "Film Heat";
 			productName = FilmHeat;
-			productReference = 8949F72C188DDD090069E9D4 /* FilmHeat.app */;
+			productReference = 8949F72C188DDD090069E9D4 /* Film Heat.app */;
 			productType = "com.apple.product-type.application";
 		};
-		8949F754188DDD090069E9D4 /* FilmHeatTests */ = {
+		8949F754188DDD090069E9D4 /* Film HeatTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 8949F76A188DDD090069E9D4 /* Build configuration list for PBXNativeTarget "FilmHeatTests" */;
+			buildConfigurationList = 8949F76A188DDD090069E9D4 /* Build configuration list for PBXNativeTarget "Film HeatTests" */;
 			buildPhases = (
 				8949F751188DDD090069E9D4 /* Sources */,
 				8949F752188DDD090069E9D4 /* Frameworks */,
@@ -398,9 +398,9 @@
 			dependencies = (
 				8949F75C188DDD090069E9D4 /* PBXTargetDependency */,
 			);
-			name = FilmHeatTests;
+			name = "Film HeatTests";
 			productName = FilmHeatTests;
-			productReference = 8949F755188DDD090069E9D4 /* FilmHeatTests.xctest */;
+			productReference = 8949F755188DDD090069E9D4 /* Film HeatTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -425,7 +425,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 8949F727188DDD090069E9D4 /* Build configuration list for PBXProject "FilmHeat" */;
+			buildConfigurationList = 8949F727188DDD090069E9D4 /* Build configuration list for PBXProject "Film Heat" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -438,8 +438,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				8949F72B188DDD090069E9D4 /* FilmHeat */,
-				8949F754188DDD090069E9D4 /* FilmHeatTests */,
+				8949F72B188DDD090069E9D4 /* Film Heat */,
+				8949F754188DDD090069E9D4 /* Film HeatTests */,
 			);
 		};
 /* End PBXProject section */
@@ -572,7 +572,7 @@
 /* Begin PBXTargetDependency section */
 		8949F75C188DDD090069E9D4 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 8949F72B188DDD090069E9D4 /* FilmHeat */;
+			target = 8949F72B188DDD090069E9D4 /* Film Heat */;
 			targetProxy = 8949F75B188DDD090069E9D4 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -688,9 +688,9 @@
 					/Users/spencerfornaciari/Dropbox/Developer/FilmHeat2,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "FilmHeat/FilmHeat-Prefix.pch";
-				INFOPLIST_FILE = "FilmHeat/FilmHeat-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				GCC_PREFIX_HEADER = "FilmHeat/Film Heat-Prefix.pch";
+				INFOPLIST_FILE = "FilmHeat/Film Heat-Info.plist";
+				PRODUCT_NAME = "Film Heat";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -706,9 +706,9 @@
 					/Users/spencerfornaciari/Dropbox/Developer/FilmHeat2,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "FilmHeat/FilmHeat-Prefix.pch";
-				INFOPLIST_FILE = "FilmHeat/FilmHeat-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				GCC_PREFIX_HEADER = "FilmHeat/Film Heat-Prefix.pch";
+				INFOPLIST_FILE = "FilmHeat/Film Heat-Info.plist";
+				PRODUCT_NAME = "Film Heat";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -729,8 +729,8 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "FilmHeatTests/FilmHeatTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_FILE = "FilmHeatTests/Film HeatTests-Info.plist";
+				PRODUCT_NAME = "Film HeatTests";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -748,8 +748,8 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FilmHeat/FilmHeat-Prefix.pch";
-				INFOPLIST_FILE = "FilmHeatTests/FilmHeatTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_FILE = "FilmHeatTests/Film HeatTests-Info.plist";
+				PRODUCT_NAME = "Film HeatTests";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -758,7 +758,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		8949F727188DDD090069E9D4 /* Build configuration list for PBXProject "FilmHeat" */ = {
+		8949F727188DDD090069E9D4 /* Build configuration list for PBXProject "Film Heat" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8949F765188DDD090069E9D4 /* Debug */,
@@ -767,7 +767,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		8949F767188DDD090069E9D4 /* Build configuration list for PBXNativeTarget "FilmHeat" */ = {
+		8949F767188DDD090069E9D4 /* Build configuration list for PBXNativeTarget "Film Heat" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8949F768188DDD090069E9D4 /* Debug */,
@@ -776,7 +776,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		8949F76A188DDD090069E9D4 /* Build configuration list for PBXNativeTarget "FilmHeatTests" */ = {
+		8949F76A188DDD090069E9D4 /* Build configuration list for PBXNativeTarget "Film HeatTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8949F76B188DDD090069E9D4 /* Debug */,

@@ -3,37 +3,55 @@
     {
       "size" : "29x29",
       "idiom" : "iphone",
-      "filename" : "Icon@29.png",
+      "filename" : "AppIcon29x29.png",
       "scale" : "1x"
     },
     {
       "size" : "29x29",
       "idiom" : "iphone",
-      "filename" : "Icon@58.png",
+      "filename" : "AppIcon29x29@2x.png",
       "scale" : "2x"
     },
     {
       "size" : "40x40",
       "idiom" : "iphone",
-      "filename" : "Icon@80.png",
+      "filename" : "AppIcon40x40@2x.png",
       "scale" : "2x"
     },
     {
       "size" : "57x57",
       "idiom" : "iphone",
-      "filename" : "Icon@57.png",
+      "filename" : "AppIcon57x57.png",
       "scale" : "1x"
     },
     {
       "size" : "57x57",
       "idiom" : "iphone",
-      "filename" : "Icon@114.png",
+      "filename" : "AppIcon57x57@2x.png",
       "scale" : "2x"
     },
     {
       "size" : "60x60",
       "idiom" : "iphone",
-      "filename" : "Icon@120.png",
+      "filename" : "AppIcon60x60@2x.png",
+      "scale" : "2x"
+    },
+    {
+      "size" : "40x40",
+      "idiom" : "ipad",
+      "filename" : "AppIcon40x40.png",
+      "scale" : "1x"
+    },
+    {
+      "size" : "50x50",
+      "idiom" : "ipad",
+      "filename" : "AppIcon50x50.png",
+      "scale" : "1x"
+    },
+    {
+      "size" : "50x50",
+      "idiom" : "ipad",
+      "filename" : "AppIcon50x50@2x.png",
       "scale" : "2x"
     }
   ],
