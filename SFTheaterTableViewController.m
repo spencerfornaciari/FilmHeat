@@ -35,10 +35,7 @@
 {
     [super viewDidLoad];
     
-    //self.theaterArray = [NSMutableArray new];
-//    self.controller = [SFFilmModelDataController new];
-    
-//    [self.controller populateFilmData:@"98121"];
+
     self.downloadQueue = [NSOperationQueue new];
 //    
 //    self.theaterArray = self.controller.rottenTomatoesArray;
@@ -95,6 +92,8 @@
 {
     SFMCTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     // Configure the cell...
+    
+    NSLog(@"Theater Count: %d", self.theaterArray.count);
     
     cell.imageView.image = nil;
     

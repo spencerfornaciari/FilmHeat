@@ -46,6 +46,9 @@
 {
     [super viewDidLoad];
     
+    [[NSUserDefaults standardUserDefaults] setInteger:80 forKey:@"varianceThreshold"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
 //    BOOL tutorial = TRUE;
 //    self.tutorial = [SFTutorialViewController new];
 //    [self presentViewController:self.tutorial animated:YES completion:nil];
@@ -456,7 +459,6 @@
     
     if ([self doesArrayExist:kSEEN_IT_FILE]) {
         self.seenController.seenArray = [NSKeyedUnarchiver unarchiveObjectWithFile:self.seenItPath];
-        // NSLog(@"Seen it Array: %d", self.seenItArray.count);
     } else {
         self.seenController.seenArray = [NSMutableArray new];
         NSLog(@"Created Seen");
