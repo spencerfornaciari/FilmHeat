@@ -66,11 +66,8 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - UI Status Bar Style
-
--(UIStatusBarStyle)preferredStatusBarStyle
-{
-    return UIStatusBarStyleLightContent;
+- (BOOL)prefersStatusBarHidden {
+    return YES;
 }
 
 @end
