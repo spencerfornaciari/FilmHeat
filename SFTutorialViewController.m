@@ -26,7 +26,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [[UIApplication sharedApplication] setStatusBarHidden:YES];
+    [[NSUserDefaults standardUserDefaults] setBool:TRUE forKey:@"startupTutorial"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
     
     self.pageController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
     

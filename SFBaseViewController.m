@@ -45,23 +45,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    [[NSUserDefaults standardUserDefaults] setInteger:80 forKey:@"varianceThreshold"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-    
-//    BOOL tutorial = TRUE;
-//    self.tutorial = [SFTutorialViewController new];
-//    [self presentViewController:self.tutorial animated:YES completion:nil];
-//    if (tutorial) {
-    
-    
-        
-//        self.tutorialController = [self.storyboard instantiateViewControllerWithIdentifier:@"tutorial"];
-//        [self addChildViewController:self.tutorialController];
-//        self.tutorialController.view.frame = self.view.frame;
-//        [self.view addSubview:self.tutorialController.view];
-//        [self.tutorialController didMoveToParentViewController:self];
-    
 
     _searchArray = [NSMutableArray new];
     
@@ -143,12 +126,6 @@
     
     [self cycleFromViewController:self.currentViewController toViewController:self.childVCArray[sender.selectedSegmentIndex]];
 
-//    [self addChildViewController:[self.childVCArray objectAtIndex:sender.selectedSegmentIndex]];
-//    
-//    UIViewController *viewController = self.childVCArray[self.segmentOutlet.selectedSegmentIndex];
-//    viewController.view.frame = self.movieContainer.frame;
-//    [self.movieContainer addSubview:viewController.view];
-//    [viewController didMoveToParentViewController:self];
 }
 
 - (void) cycleFromViewController: (UIViewController*) oldC
@@ -630,10 +607,8 @@
     documentsPath = [documentsPath stringByAppendingPathComponent:arrayNameString];
     
     if (![[NSFileManager defaultManager] fileExistsAtPath:documentsPath]) {
-        NSLog(@"FALSE");
         return FALSE;
     } else {
-        //NSLog(@"TRUE");
         return TRUE;
     }
 }

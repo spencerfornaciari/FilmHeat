@@ -93,8 +93,6 @@
     SFMCTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     // Configure the cell...
     
-    NSLog(@"Theater Count: %d", self.theaterArray.count);
-    
     cell.imageView.image = nil;
     
     FilmModel *film = self.theaterArray[indexPath.row];

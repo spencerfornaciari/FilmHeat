@@ -17,17 +17,18 @@
 {
     // Override point for customization after application launch.
     
-    BOOL tutorial = FALSE;
+    //BOOL tutorial = FALSE;
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main"
                                                              bundle: nil];
     
-    if (tutorial) {
-        SFTutorialViewController *viewController = [mainStoryboard instantiateViewControllerWithIdentifier: @"tutorial"];
+    if (![[NSUserDefaults standardUserDefaults] boolForKey:@"startupTutorial"]) {
+        [[NSUserDefaults standardUserDefaults] setInteger:80 forKey:@"varianceThreshold"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
         
+        SFTutorialViewController *viewController = [mainStoryboard instantiateViewControllerWithIdentifier: @"tutorial"];
         self.window.rootViewController = viewController;
     }
-    
-    
+
     [Crashlytics startWithAPIKey:@"532795e0d25b45a680534c336246204778a0a137"];
     
     return YES;
