@@ -29,10 +29,8 @@
 {
     [super viewDidLoad];
     
-    NSLog(@"%d", [[NSUserDefaults standardUserDefaults] integerForKey:@"mpaaRatingThreshold"]);
-    
     if ([[NSUserDefaults standardUserDefaults] integerForKey:@"mpaaRatingThreshold"] >= 0) {
-        int threshold = [[NSUserDefaults standardUserDefaults] integerForKey:@"mpaaRatingThreshold"];
+        NSInteger threshold = [[NSUserDefaults standardUserDefaults] integerForKey:@"mpaaRatingThreshold"];
         self.mpaaRatingThresholdSliderOutlet.value = threshold / 5.f;
         [self setRatingThresholdLabel:threshold];
     }

@@ -498,9 +498,9 @@
         //Set the audience rating of the film according to Rotten Tomatoes
         film.audienceRating = [dictionary valueForKeyPath:@"ratings.audience_score"];
         
-        int critcs = [film.criticsRating integerValue];
-        int audience = [film.audienceRating integerValue];
-        int variance = abs(critcs - audience);
+        NSInteger critics = [film.criticsRating integerValue];
+        NSInteger audience = [film.audienceRating integerValue];
+        NSInteger variance = ABS(critics - audience);
         
         film.ratingVariance = [NSNumber numberWithInt:variance];
         
@@ -510,7 +510,7 @@
         film.imdbID = [NSString stringWithFormat:@"http://www.imdb.com/title/tt%@/",[dictionary valueForKeyPath:@"alternate_ids.imdb"]];
         
         //Grab the URL for the thumbnail of the film's poster
-        film.thumbnailPoster = [dictionary valueForKeyPath:@"posters.thumbnail"];
+        film.thumbnailPoster = [dictionary valueForKeyPath:@"posters.profile"];
         
         //Set the film runtime
         film.runtime = [dictionary valueForKeyPath:@"runtime"];

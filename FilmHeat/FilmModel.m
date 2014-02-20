@@ -120,7 +120,7 @@
     NSMutableArray *runTimeParsedCharacters = [NSMutableArray arrayWithArray:runTimeRawCharacters];
     [runTimeParsedCharacters removeLastObject];
 
-    int filmRuntime = 0;
+    NSInteger filmRuntime = 0;
 
     for (int i = 1; i < runTimeParsedCharacters.count; i++)
     {

@@ -30,7 +30,6 @@
     
     if ([self doesArrayExist:kSEEN_IT_FILE]) {
         self.seenItArray = [NSKeyedUnarchiver unarchiveObjectWithFile:self.seenItPath];
-        NSLog(@"Seen it Array: %d", self.seenItArray.count);
         NSLog(@"SEEN IT");
     } else {
         self.seenItArray = [NSMutableArray new];
@@ -328,7 +327,6 @@
 {
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
     [self.seenItArray addObject:array[indexPath.row]];
-    NSLog(@"Seen it count: %d", self.seenItArray.count);
     
     [NSKeyedArchiver archiveRootObject:self.seenItArray toFile:_seenItPath];
     [array removeObjectAtIndex:indexPath.row];
@@ -345,7 +343,6 @@
 {
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
     [self.wantedArray addObject:array[indexPath.row]];
-    NSLog(@"Wanted count: %d", self.wantedArray.count);
     
     [NSKeyedArchiver archiveRootObject:self.wantedArray toFile:_wantedPath];
     [array removeObjectAtIndex:indexPath.row];
@@ -362,7 +359,6 @@
 {
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
     [self.noInterestArray addObject:array[indexPath.row]];
-    NSLog(@"No interest count: %d", self.noInterestArray.count);
     
     [NSKeyedArchiver archiveRootObject:self.noInterestArray toFile:_noInterestPath];
     [array removeObjectAtIndex:indexPath.row];

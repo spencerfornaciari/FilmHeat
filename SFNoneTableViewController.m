@@ -200,17 +200,13 @@
     
     if (!film.posterFilePath) {
         NSString *string = [NSString stringWithFormat:@"%@/%@.jpg", [self documentsDirectoryPath], [film.title stringByReplacingOccurrencesOfString:@":" withString:@""]];
-        film.posterFilePath = string;
-        NSLog(@"String: %@", string);
-        
+        film.posterFilePath = string;        
     }
     
     UIImage *image = [UIImage imageWithContentsOfFile:film.posterFilePath];
     
     if (image) {
-        NSLog(@"%@", image);
         film.posterImage = image;
-        
     }
 }
 
