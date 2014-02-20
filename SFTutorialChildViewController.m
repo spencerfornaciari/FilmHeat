@@ -29,11 +29,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    NSLog(@"%f %f", self.view.frame.size.width, self.view.frame.size.height);
-    
-    self.view.backgroundColor = [UIColor blueColor];
-    [[UIApplication sharedApplication] setStatusBarHidden:YES];
 
     self.tabBarController = [UITabBarController new];
 	// Do any additional setup after loading the view.
@@ -55,13 +50,6 @@
         self.tutorialImageView.image = [UIImage imageNamed:@"5"];
     } else if (self.index == 6) {
         self.tutorialImageView.image = [UIImage imageNamed:@"6"];
-//        UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 350, 320, 50)];
-//        button.backgroundColor = [UIColor whiteColor];
-//        button.tintColor = [UIColor blackColor];
-//        //button.titleLabel.text = @"DISMISS";
-//        [button setTitle:@"Dismiss" forState:UIControlStateNormal];
-//        [self.view addSubview:button];
-        
     } else if (self.index == 7) {
         self.tabBarController = [self.storyboard instantiateViewControllerWithIdentifier:@"movieTab"];
         [self presentViewController:self.tabBarController animated:YES completion:^{
@@ -69,12 +57,6 @@
         }];
     }
 
-
-}
-
--(void)dismissButton
-{
-   // self.baseController = [self.storyboard instantiateViewControllerWithIdentifier:@"base"];
 
 }
 
