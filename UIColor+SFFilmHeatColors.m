@@ -27,7 +27,7 @@
 }
 
 + (UIColor *)navigationBarColor {
-    return [UIColor colorWithRed:231/255.f green:76/255.f blue:60/255.f alpha:1];
+    return [UIColor colorWithRed:228/255.f green:76/255.f blue:60/255.f alpha:1];
 }
 
 @end
