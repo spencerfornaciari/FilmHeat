@@ -32,6 +32,9 @@
                                 <items>
                                     <navigationItem id="n8p-oT-9Mt">
                                         <nil key="title"/>
+                                        <barButtonItem key="leftBarButtonItem" systemItem="search" id="w60-wx-LMD">
+                                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </barButtonItem>
                                         <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="wzW-wG-3gW">
                                             <rect key="frame" x="68" y="7" width="185" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -61,6 +64,14 @@
                                 <color key="barTintColor" red="0.89411764709999997" green="0.31764705879999999" blue="0.29411764709999999" alpha="1" colorSpace="deviceRGB"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
+                            <searchBar contentMode="redraw" fixedFrame="YES" placeholder="Search Films" translatesAutoresizingMaskIntoConstraints="NO" id="hN4-O5-Kad">
+                                <rect key="frame" x="0.0" y="105" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="5v0-mY-CsX" id="5fe-YY-9U4"/>
+                                </connections>
+                            </searchBar>
                         </subviews>
                         <color key="backgroundColor" red="0.89411764709999997" green="0.31764705879999999" blue="0.29411764709999999" alpha="1" colorSpace="deviceRGB"/>
                         <constraints>
@@ -77,10 +88,20 @@
                         <outlet property="baseNavigationBar" destination="5d2-hw-ZTF" id="edj-q8-gXA"/>
                         <outlet property="filmSearchBar" destination="bTf-Gb-eHf" id="kpE-yV-YFd"/>
                         <outlet property="movieContainer" destination="m18-NA-o6d" id="ccB-v0-hWi"/>
+                        <outlet property="searchDisplayController" destination="cdr-ZW-cad" id="oNY-PG-2Gu"/>
                         <outlet property="segmentOutlet" destination="wzW-wG-3gW" id="xAs-tt-nOD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aAj-1y-yQB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="cdr-ZW-cad">
+                    <connections>
+                        <outlet property="delegate" destination="5v0-mY-CsX" id="EpA-Fs-Ycg"/>
+                        <outlet property="searchBar" destination="hN4-O5-Kad" id="0Cf-3R-RJq"/>
+                        <outlet property="searchContentsController" destination="5v0-mY-CsX" id="HdR-cd-JNZ"/>
+                        <outlet property="searchResultsDataSource" destination="5v0-mY-CsX" id="VQd-AI-Hwi"/>
+                        <outlet property="searchResultsDelegate" destination="5v0-mY-CsX" id="hD1-ds-DEz"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="928" y="-2522"/>
         </scene>
