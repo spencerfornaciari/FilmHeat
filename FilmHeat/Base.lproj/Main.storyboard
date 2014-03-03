@@ -58,15 +58,16 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <searchBar contentMode="redraw" fixedFrame="YES" placeholder="Search Films" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bTf-Gb-eHf">
+                            <searchBar contentMode="redraw" fixedFrame="YES" placeholder="Search Films" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bTf-Gb-eHf" userLabel="Search Bar Basic">
                                 <rect key="frame" x="0.0" y="61" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <color key="barTintColor" red="0.89411764709999997" green="0.31764705879999999" blue="0.29411764709999999" alpha="1" colorSpace="deviceRGB"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
-                            <searchBar contentMode="redraw" fixedFrame="YES" placeholder="Search Films" translatesAutoresizingMaskIntoConstraints="NO" id="hN4-O5-Kad">
+                            <searchBar contentMode="redraw" fixedFrame="YES" placeholder="Search Films" translatesAutoresizingMaskIntoConstraints="NO" id="hN4-O5-Kad" userLabel="Search Bar 2">
                                 <rect key="frame" x="0.0" y="105" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <color key="barTintColor" red="0.89411764709999997" green="0.31764705879999999" blue="0.29411764709999999" alpha="1" colorSpace="deviceRGB"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
                                     <outlet property="delegate" destination="5v0-mY-CsX" id="5fe-YY-9U4"/>
@@ -86,7 +87,6 @@
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
                         <outlet property="baseNavigationBar" destination="5d2-hw-ZTF" id="edj-q8-gXA"/>
-                        <outlet property="filmSearchBar" destination="bTf-Gb-eHf" id="kpE-yV-YFd"/>
                         <outlet property="movieContainer" destination="m18-NA-o6d" id="ccB-v0-hWi"/>
                         <outlet property="searchDisplayController" destination="cdr-ZW-cad" id="oNY-PG-2Gu"/>
                         <outlet property="segmentOutlet" destination="wzW-wG-3gW" id="xAs-tt-nOD"/>
