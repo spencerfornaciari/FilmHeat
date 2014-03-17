@@ -21,13 +21,13 @@
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main"
                                                              bundle: nil];
     
-    if (![[NSUserDefaults standardUserDefaults] boolForKey:@"startupTutorial"]) {
-        [[NSUserDefaults standardUserDefaults] setInteger:80 forKey:@"varianceThreshold"];
-        [[NSUserDefaults standardUserDefaults] synchronize];
-        
-        SFTutorialViewController *viewController = [mainStoryboard instantiateViewControllerWithIdentifier: @"tutorial"];
-        self.window.rootViewController = viewController;
-    }
+//    if (![[NSUserDefaults standardUserDefaults] boolForKey:@"startupTutorial"]) {
+//        [[NSUserDefaults standardUserDefaults] setInteger:80 forKey:@"varianceThreshold"];
+//        [[NSUserDefaults standardUserDefaults] synchronize];
+//        
+//        SFTutorialViewController *viewController = [mainStoryboard instantiateViewControllerWithIdentifier: @"tutorial"];
+//        self.window.rootViewController = viewController;
+//    }
 
     [Crashlytics startWithAPIKey:@"532795e0d25b45a680534c336246204778a0a137"];
     

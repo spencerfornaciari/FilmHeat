@@ -32,6 +32,10 @@
 {
     [super viewDidLoad];
     
+    UISwipeGestureRecognizer *recognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(dismissViewController:)];
+    
+    recognizer.direction = UISwipeGestureRecognizerDirectionRight;
+    
 	// Do any additional setup after loading the view.
     self.detailViewTitle.title = _film.title;
     
@@ -109,6 +113,9 @@
 
 #pragma mark - UI Status Bar Style
 
-
+-(UIStatusBarStyle)preferredStatusBarStyle
+{
+    return UIStatusBarStyleLightContent;
+}
 
 @end

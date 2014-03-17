@@ -29,6 +29,9 @@
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentOutlet;
 @property (weak, nonatomic) IBOutlet UIView *movieContainer;
 @property (weak, nonatomic) IBOutlet UISearchBar *filmSearchBar;
+- (IBAction)openSearchControllerButton:(id)sender;
+
+
 
 - (IBAction)segmentPicker:(UISegmentedControl *)sender;
 
@@ -45,6 +48,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [[UITabBar appearance] setTintColor:[UIColor whiteColor]];
 
     _searchArray = [NSMutableArray new];
     
@@ -108,6 +112,10 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (IBAction)openSearchControllerButton:(id)sender {
+//    [self performSelector:@selector(<#selector#>) withObject:<#(id)#>]
 }
 
 - (IBAction)segmentPicker:(UISegmentedControl *)sender {
@@ -500,9 +508,9 @@
         
         NSInteger critics = [film.criticsRating integerValue];
         NSInteger audience = [film.audienceRating integerValue];
-        NSInteger variance = ABS(critics - audience);
+        long variance = ABS(critics - audience);
         
-        film.ratingVariance = [NSNumber numberWithInt:variance];
+        film.ratingVariance = [NSNumber numberWithLong:variance];
         
         //Getting ID information
         film.rottenID = [dictionary objectForKey:@"id"];
@@ -520,7 +528,7 @@
         
         if (rating) {
             film.mpaaRating = rating;
-            film.ratingValue = [NSNumber numberWithInt:[self setRatingValue:film.mpaaRating]];
+            film.ratingValue = [NSNumber numberWithLong:[self setRatingValue:film.mpaaRating]];
         } else {
             film.mpaaRating = @"NR";
             film.ratingValue = [NSNumber numberWithInt:0];
@@ -620,18 +628,18 @@
     return UIStatusBarStyleLightContent;
 }
 
-- (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
-{
-    NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"name contains[c] %@", searchText];
-    searchResults = [searchArray filteredArrayUsingPredicate:resultPredicate];
-}
+//- (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
+//{
+//    NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"name contains[c] %@", searchText];
+//    searchResults = [searchArray filteredArrayUsingPredicate:resultPredicate];
+//}
 
--(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
-{
-    [self filterContentForSearchText:searchString
-                               scope:[[self.searchDisplayController.searchBar scopeButtonTitles]
-                                      objectAtIndex:[self.searchDisplayController.searchBar
-                                                     selectedScopeButtonIndex]]];
-    return YES;
-}
+//-(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
+//{
+//    [self filterContentForSearchText:searchString
+//                               scope:[[self.searchDisplayController.searchBar scopeButtonTitles]
+//                                      objectAtIndex:[self.searchDisplayController.searchBar
+//                                                     selectedScopeButtonIndex]]];
+//    return YES;
+//}
 @end

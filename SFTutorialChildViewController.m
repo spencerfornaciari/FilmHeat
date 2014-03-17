@@ -51,10 +51,17 @@
     } else if (self.index == 6) {
         self.tutorialImageView.image = [UIImage imageNamed:@"6"];
     } else if (self.index == 7) {
-        self.tabBarController = [self.storyboard instantiateViewControllerWithIdentifier:@"movieTab"];
-        [self presentViewController:self.tabBarController animated:YES completion:^{
-            
-        }];
+        if (([[NSUserDefaults standardUserDefaults] boolForKey:@"startupTutorial"])) {
+            [self dismissViewControllerAnimated:YES
+                                     completion:nil];
+        } else {
+            self.tabBarController = [self.storyboard instantiateViewControllerWithIdentifier:@"movieTab"];
+            [self presentViewController:self.tabBarController animated:YES completion:^{
+                
+            }];
+        }
+        
+        
     }
 
 

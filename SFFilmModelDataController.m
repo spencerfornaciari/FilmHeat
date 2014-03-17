@@ -93,7 +93,7 @@
 
         if (rating) {
             film.mpaaRating = rating;
-            film.ratingValue = [NSNumber numberWithInt:[self setRatingValue:film.mpaaRating]];
+            film.ratingValue = [NSNumber numberWithLong:[self setRatingValue:film.mpaaRating]];
         } else {
             film.mpaaRating = @"NR";
             film.ratingValue = [NSNumber numberWithInt:0];
