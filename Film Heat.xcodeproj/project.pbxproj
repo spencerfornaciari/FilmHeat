@@ -57,6 +57,7 @@
 		89A43FF818AAF370009DC814 /* wantlist@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 89A43FF618AAF370009DC814 /* wantlist@2x.png */; };
 		89B98A8D18AC16C5006FF961 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89B98A8C18AC16C5006FF961 /* Crashlytics.framework */; };
 		89BC655518A3008D00B27385 /* SFMCTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 89BC655418A3008D00B27385 /* SFMCTableViewCell.m */; };
+		89C8923318D910DE009E3E6B /* SFAboutTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89C8923218D910DE009E3E6B /* SFAboutTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -149,6 +150,8 @@
 		89B98A8C18AC16C5006FF961 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		89BC655318A3008D00B27385 /* SFMCTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SFMCTableViewCell.h; path = ../SFMCTableViewCell.h; sourceTree = "<group>"; };
 		89BC655418A3008D00B27385 /* SFMCTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SFMCTableViewCell.m; path = ../SFMCTableViewCell.m; sourceTree = "<group>"; };
+		89C8923118D910DE009E3E6B /* SFAboutTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SFAboutTableViewController.h; path = ../SFAboutTableViewController.h; sourceTree = "<group>"; };
+		89C8923218D910DE009E3E6B /* SFAboutTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SFAboutTableViewController.m; path = ../SFAboutTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -292,6 +295,8 @@
 		8949F778188DF29C0069E9D4 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				89C8923118D910DE009E3E6B /* SFAboutTableViewController.h */,
+				89C8923218D910DE009E3E6B /* SFAboutTableViewController.m */,
 				89366F3C18AAFF4600C278DA /* SFTutorialChildViewController.h */,
 				89366F3D18AAFF4600C278DA /* SFTutorialChildViewController.m */,
 				89366F3918AAFF3500C278DA /* SFTutorialViewController.h */,
@@ -533,6 +538,7 @@
 				8931CF5A18A44AA800A4CFBC /* SFBaseViewController.m in Sources */,
 				8949F742188DDD090069E9D4 /* SFAppDelegate.m in Sources */,
 				894C50B4189C3BBA003F72C6 /* UIColor+SFFilmHeatColors.m in Sources */,
+				89C8923318D910DE009E3E6B /* SFAboutTableViewController.m in Sources */,
 				8949F775188DF2530069E9D4 /* FilmModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

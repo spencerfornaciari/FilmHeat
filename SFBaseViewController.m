@@ -31,8 +31,6 @@
 @property (weak, nonatomic) IBOutlet UISearchBar *filmSearchBar;
 - (IBAction)openSearchControllerButton:(id)sender;
 
-
-
 - (IBAction)segmentPicker:(UISegmentedControl *)sender;
 
 @property (nonatomic, strong) UIViewController *currentViewController;
@@ -115,7 +113,7 @@
 }
 
 - (IBAction)openSearchControllerButton:(id)sender {
-//    [self performSelector:@selector(<#selector#>) withObject:<#(id)#>]
+
 }
 
 - (IBAction)segmentPicker:(UISegmentedControl *)sender {
@@ -628,18 +626,20 @@
     return UIStatusBarStyleLightContent;
 }
 
-//- (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
-//{
+- (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
+{
 //    NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"name contains[c] %@", searchText];
-//    searchResults = [searchArray filteredArrayUsingPredicate:resultPredicate];
-//}
+//    NSArray *searchResults = [_searchArray filteredArrayUsingPredicate:resultPredicate];
+//    NSLog(@"%@", searchResults);
+    NSLog(@"TEST");
+}
 
-//-(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
-//{
-//    [self filterContentForSearchText:searchString
-//                               scope:[[self.searchDisplayController.searchBar scopeButtonTitles]
-//                                      objectAtIndex:[self.searchDisplayController.searchBar
-//                                                     selectedScopeButtonIndex]]];
-//    return YES;
-//}
+-(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
+{
+    [self filterContentForSearchText:searchString
+                               scope:[[self.searchDisplayController.searchBar scopeButtonTitles]
+                                      objectAtIndex:[self.searchDisplayController.searchBar
+                                                     selectedScopeButtonIndex]]];
+    return YES;
+}
 @end
