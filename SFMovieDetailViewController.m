@@ -32,6 +32,14 @@
 {
     [super viewDidLoad];
     
+//    http://api.rottentomatoes.com/api/public/v1.0/movies/770672122/similar.json?apikey=[your_api_key]
+    
+    NSString *similarMovies = [NSString stringWithFormat:@"http://api.rottentomatoes.com/api/public/v1.0/movies/%@/similar.json?apikey=%@", _film.rottenID, kROTTEN_TOMATOES_API_KEY];
+    NSURL *similarURL = [NSURL URLWithString:similarMovies];
+    NSData *similarData = [NSData dataWithContentsOfURL:similarURL];
+    
+    NSLog(@"%@", similarMovies);
+    
     UISwipeGestureRecognizer *recognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(dismissViewController:)];
     
     recognizer.direction = UISwipeGestureRecognizerDirectionRight;
