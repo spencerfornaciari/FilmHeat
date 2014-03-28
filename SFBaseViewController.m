@@ -77,7 +77,7 @@
     [self setupFirstView];
     [self rottenFilmData];
 
-    
+    [self filmDoesExist];
 	// Do any additional setup after loading the view.
 }
 
@@ -356,6 +356,40 @@
 
 #pragma mark - Dynamically search text as user enters it
 
+-(void)filmDoesExist
+{
+    
+//    NSArray *array = [NSArray arrayWithObject:@[[self.theaterController.theaterArray copy],[self.seenController.seenArray copy],[self.wantedController.wantedArray copy],[self.noneController.noneArray copy]]];
+    
+    //    NSArray *array = [NSArray arrayWithObject:@[[self.theaterController.theaterArray copy],[self.seenController.seenArray copy],[self.wantedController.wantedArray copy],[self.noneController.noneArray copy]]];
+    
+    NSMutableArray *arrayNewt = [NSMutableArray new];
+    [arrayNewt addObjectsFromArray:self.theaterController.theaterArray];
+    [arrayNewt addObjectsFromArray:self.seenController.seenArray];
+    [arrayNewt addObjectsFromArray:self.wantedController.wantedArray];
+    [arrayNewt addObjectsFromArray:self.noneController.noneArray];
+    
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"title CONTAINS[cd] %@", @"The"];
+    NSArray *result = [NSArray arrayWithArray:[arrayNewt filteredArrayUsingPredicate:predicate]];
+//    [arrayMute addObjectsFromArray:[array[0] filteredArrayUsingPredicate:predicate]];
+    
+//    
+//    [self.theaterController.theaterArray copy];
+//    NSArray *array2 = [self.seenController.seenArray copy];
+//    NSArray *array3 = [self.wantedController.wantedArray copy];
+//    NSArray *array4 = [self.noneController.noneArray copy];
+    
+
+//
+//    for (int i = 0; i < array.count; i++) {
+//        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"title CONTAINS[cd] %@", @"The"];
+//        [arrayMute addObjectsFromArray:[array[0] filteredArrayUsingPredicate:predicate]];
+//
+//    }
+    
+    NSLog(@"%@", result);
+}
+
 - (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar
 {
     NSLog(@"Search Bar Should Begin Editing");
@@ -628,11 +662,18 @@
 
 - (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
 {
-//    NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"name contains[c] %@", searchText];
-//    NSArray *searchResults = [_searchArray filteredArrayUsingPredicate:resultPredicate];
-//    NSLog(@"%@", searchResults);
-    NSLog(@"TEST");
+    NSPredicate *titlePredicate = [NSPredicate predicateWithFormat:@"title CONTAINS[cd] %@", searchText];
+    
+    NSMutableArray *myArray = [NSMutableArray new];
+    
+    [myArray addObjectsFromArray:[NSArray arrayWithArray:[self.theaterController.theaterArray filteredArrayUsingPredicate:titlePredicate]]];
+    [myArray addObjectsFromArray:[NSArray arrayWithArray:[self.wantedController.wantedArray filteredArrayUsingPredicate:titlePredicate]]];
+    [myArray addObjectsFromArray:[NSArray arrayWithArray:[self.seenController.seenArray filteredArrayUsingPredicate:titlePredicate]]];
+    [myArray addObjectsFromArray:[NSArray arrayWithArray:[self.noneController.noneArray filteredArrayUsingPredicate:titlePredicate]]];
+    
 }
+
+    
 
 -(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
 {
