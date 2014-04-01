@@ -18,6 +18,11 @@
     // Override point for customization after application launch.
     
     //BOOL tutorial = FALSE;
+    [[UINavigationBar appearance] setBarTintColor:[UIColor navigationBarColor]];
+    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
+    
+    [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
+    
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main"
                                                              bundle: nil];
     

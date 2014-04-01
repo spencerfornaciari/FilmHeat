@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UIColor+SFFilmHeatColors.h"
 
 @interface SFAppDelegate : UIResponder <UIApplicationDelegate>
 

@@ -78,6 +78,8 @@
     [self rottenFilmData];
 
     [self filmDoesExist];
+    
+    [UIApplication sharedApplication].applicationIconBadgeNumber = self.theaterController.theaterArray.count;
 	// Do any additional setup after loading the view.
 }
 
@@ -371,21 +373,6 @@
     
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"title CONTAINS[cd] %@", @"The"];
     NSArray *result = [NSArray arrayWithArray:[arrayNewt filteredArrayUsingPredicate:predicate]];
-//    [arrayMute addObjectsFromArray:[array[0] filteredArrayUsingPredicate:predicate]];
-    
-//    
-//    [self.theaterController.theaterArray copy];
-//    NSArray *array2 = [self.seenController.seenArray copy];
-//    NSArray *array3 = [self.wantedController.wantedArray copy];
-//    NSArray *array4 = [self.noneController.noneArray copy];
-    
-
-//
-//    for (int i = 0; i < array.count; i++) {
-//        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"title CONTAINS[cd] %@", @"The"];
-//        [arrayMute addObjectsFromArray:[array[0] filteredArrayUsingPredicate:predicate]];
-//
-//    }
     
     NSLog(@"%@", result);
 }
