@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
-        <!--Base View Controller - Films-->
+        <!--Base View Controller-->
         <scene sceneID="HmZ-R4-vwb">
             <objects>
                 <viewController storyboardIdentifier="base" id="5v0-mY-CsX" customClass="SFBaseViewController" sceneMemberID="viewController">
@@ -16,65 +16,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <containerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m18-NA-o6d">
-                                <rect key="frame" x="0.0" y="105" width="320" height="419"/>
+                            <containerView contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="m18-NA-o6d">
+                                <rect key="frame" x="0.0" y="109" width="320" height="407"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </containerView>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5d2-hw-ZTF">
-                                <rect key="frame" x="0.0" y="17" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="barTintColor" red="0.89411764705882346" green="0.31764705882352939" blue="0.29411764705882354" alpha="1" colorSpace="deviceRGB"/>
-                                <textAttributes key="titleTextAttributes">
-                                    <offsetWrapper key="textShadowOffset" horizontal="0.0" vertical="0.0"/>
-                                </textAttributes>
-                                <items>
-                                    <navigationItem id="n8p-oT-9Mt">
-                                        <nil key="title"/>
-                                        <barButtonItem key="leftBarButtonItem" systemItem="search" id="w60-wx-LMD">
-                                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                            <connections>
-                                                <action selector="openSearchControllerButton:" destination="5v0-mY-CsX" id="ie4-ua-Qxa"/>
-                                            </connections>
-                                        </barButtonItem>
-                                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="wzW-wG-3gW">
-                                            <rect key="frame" x="51" y="6" width="222" height="33"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <segments>
-                                                <segment title="Seen"/>
-                                                <segment title="Theater"/>
-                                                <segment title="Want"/>
-                                                <segment title="Don't"/>
-                                            </segments>
-                                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <connections>
-                                                <action selector="segmentPicker:" destination="5v0-mY-CsX" eventType="valueChanged" id="fCp-cG-sLY"/>
-                                            </connections>
-                                        </segmentedControl>
-                                        <barButtonItem key="rightBarButtonItem" title="Sort" id="4OI-nd-kp3">
-                                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <connections>
-                                                <action selector="buttonAction:" destination="5v0-mY-CsX" id="rc9-c3-VPB"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
-                            <searchBar contentMode="redraw" fixedFrame="YES" placeholder="Search Films" showsCancelButton="YES" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bTf-Gb-eHf" userLabel="Search Bar Basic">
-                                <rect key="frame" x="0.0" y="61" width="320" height="44"/>
+                            <searchBar contentMode="redraw" fixedFrame="YES" placeholder="Search Films" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bTf-Gb-eHf" userLabel="Search Bar Basic">
+                                <rect key="frame" x="0.0" y="65" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <color key="barTintColor" red="0.89411764709999997" green="0.31764705879999999" blue="0.29411764709999999" alpha="1" colorSpace="deviceRGB"/>
                                 <textInputTraits key="textInputTraits"/>
-                            </searchBar>
-                            <searchBar contentMode="redraw" fixedFrame="YES" placeholder="Search Films" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hN4-O5-Kad" userLabel="Search Bar 2">
-                                <rect key="frame" x="0.0" y="105" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <color key="barTintColor" red="0.89411764709999997" green="0.31764705879999999" blue="0.29411764709999999" alpha="1" colorSpace="deviceRGB"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <outlet property="delegate" destination="5v0-mY-CsX" id="5fe-YY-9U4"/>
-                                </connections>
                             </searchBar>
                         </subviews>
                         <color key="backgroundColor" red="0.89411764709999997" green="0.31764705879999999" blue="0.29411764709999999" alpha="1" colorSpace="deviceRGB"/>
@@ -85,11 +36,32 @@
                             <constraint firstAttribute="bottom" secondItem="m18-NA-o6d" secondAttribute="bottom" constant="44" id="p7n-UH-udl"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Films" image="Movies.png" id="Ei9-Q1-85n"/>
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="oYZ-nW-p60">
+                        <nil key="title"/>
+                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="wzW-wG-3gW">
+                            <rect key="frame" x="30" y="6" width="243" height="33"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segments>
+                                <segment title="Seen"/>
+                                <segment title="Theater"/>
+                                <segment title="Want"/>
+                                <segment title="Don't"/>
+                            </segments>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="segmentPicker:" destination="5v0-mY-CsX" eventType="valueChanged" id="fCp-cG-sLY"/>
+                            </connections>
+                        </segmentedControl>
+                        <barButtonItem key="rightBarButtonItem" title="Sort" id="4OI-nd-kp3">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="buttonAction:" destination="5v0-mY-CsX" id="rc9-c3-VPB"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
-                        <outlet property="baseNavigationBar" destination="5d2-hw-ZTF" id="edj-q8-gXA"/>
                         <outlet property="movieContainer" destination="m18-NA-o6d" id="ccB-v0-hWi"/>
                         <outlet property="searchDisplayController" destination="cdr-ZW-cad" id="oNY-PG-2Gu"/>
                         <outlet property="segmentOutlet" destination="wzW-wG-3gW" id="xAs-tt-nOD"/>
@@ -99,14 +71,13 @@
                 <searchDisplayController id="cdr-ZW-cad">
                     <connections>
                         <outlet property="delegate" destination="5v0-mY-CsX" id="EpA-Fs-Ycg"/>
-                        <outlet property="searchBar" destination="hN4-O5-Kad" id="0Cf-3R-RJq"/>
                         <outlet property="searchContentsController" destination="5v0-mY-CsX" id="HdR-cd-JNZ"/>
                         <outlet property="searchResultsDataSource" destination="5v0-mY-CsX" id="VQd-AI-Hwi"/>
                         <outlet property="searchResultsDelegate" destination="5v0-mY-CsX" id="hD1-ds-DEz"/>
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="928" y="-2522"/>
+            <point key="canvasLocation" x="1414" y="-2488"/>
         </scene>
         <!--Theater Table View Controller-->
         <scene sceneID="lQG-u0-Wkq">
@@ -175,7 +146,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ip1-Sy-N7l" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1484" y="-2564"/>
+            <point key="canvasLocation" x="2010" y="-2564"/>
         </scene>
         <!--Seen Table View Controller-->
         <scene sceneID="zBK-cY-TAi">
@@ -238,7 +209,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r5k-Dj-sZf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1484" y="-3261"/>
+            <point key="canvasLocation" x="2010" y="-3261"/>
         </scene>
         <!--None Table View Controller-->
         <scene sceneID="qlK-tk-fXc">
@@ -427,7 +398,7 @@
             </objects>
             <point key="canvasLocation" x="-131" y="-2522"/>
         </scene>
-        <!--Customize View Controller - Setting-->
+        <!--Customize View Controller - Settings-->
         <scene sceneID="2Mv-UL-hpp">
             <objects>
                 <viewController id="glN-5l-SCP" customClass="SFCustomizeViewController" sceneMemberID="viewController">
@@ -471,26 +442,6 @@
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bXb-Ra-azq">
-                                <rect key="frame" x="0.0" y="16" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="barTintColor" red="0.89411764709999997" green="0.31764705879999999" blue="0.29411764709999999" alpha="1" colorSpace="deviceRGB"/>
-                                <textAttributes key="titleTextAttributes">
-                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="textShadowColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                </textAttributes>
-                                <items>
-                                    <navigationItem title="Settings" id="W1W-im-GCX">
-                                        <barButtonItem key="rightBarButtonItem" title="Tutorial" id="5yn-x7-1tl">
-                                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                            <connections>
-                                                <segue destination="FUO-X5-zgg" kind="modal" id="taK-Yk-HKO"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
                             <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="yeI-zo-7MU">
                                 <rect key="frame" x="24" y="181" width="278" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -545,7 +496,7 @@
                         </subviews>
                         <color key="backgroundColor" red="0.89411764709999997" green="0.31764705879999999" blue="0.29411764709999999" alpha="1" colorSpace="deviceRGB"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Setting" image="Horizontal_Slider.png" id="6ZF-La-7aL"/>
+                    <navigationItem key="navigationItem" title="Settings" id="IhR-Oj-fiI"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
                         <outlet property="audienceRatingThresholdLabel" destination="OI4-qH-ktv" id="VAx-9t-8MO"/>
@@ -560,7 +511,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bP4-YP-nac" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="402" y="-3314"/>
+            <point key="canvasLocation" x="928" y="-3314"/>
         </scene>
         <!--Movie Detail View Controller-->
         <scene sceneID="PKW-KP-Y1c">
@@ -797,7 +748,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kc9-2o-luT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2694" y="-2416"/>
+            <point key="canvasLocation" x="3220" y="-2416"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="iCw-yY-Q9M">
@@ -813,8 +764,8 @@
                         <color key="barTintColor" red="0.89411764705882346" green="0.31764705882352939" blue="0.29411764705882354" alpha="1" colorSpace="deviceRGB"/>
                     </tabBar>
                     <connections>
-                        <segue destination="5v0-mY-CsX" kind="relationship" relationship="viewControllers" id="3WM-D6-Zia"/>
-                        <segue destination="glN-5l-SCP" kind="relationship" relationship="viewControllers" id="eud-LZ-iso"/>
+                        <segue destination="5Gk-vr-nAD" kind="relationship" relationship="viewControllers" id="3WM-D6-Zia"/>
+                        <segue destination="gl5-4i-BwR" kind="relationship" relationship="viewControllers" id="eud-LZ-iso"/>
                         <segue destination="KFG-WQ-SF5" kind="relationship" relationship="viewControllers" id="5F3-4z-sl2"/>
                     </connections>
                 </tabBarController>
@@ -896,11 +847,10 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="About" id="d3K-Em-qsP"/>
-                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6L1-SS-Faq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1205" y="-1807"/>
+            <point key="canvasLocation" x="1161" y="-1807"/>
         </scene>
         <!--Navigation Controller - About-->
         <scene sceneID="aeV-gN-q49">
@@ -921,6 +871,44 @@
             </objects>
             <point key="canvasLocation" x="679" y="-1807"/>
         </scene>
+        <!--Navigation Controller - Films-->
+        <scene sceneID="6U0-b3-qJd">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="5Gk-vr-nAD" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Films" image="Movies.png" id="Ei9-Q1-85n"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="30I-fp-4SM">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="5v0-mY-CsX" kind="relationship" relationship="rootViewController" id="Nis-Nx-tjZ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IwN-K0-zsB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="928" y="-2522"/>
+        </scene>
+        <!--Navigation Controller - Setting-->
+        <scene sceneID="KXp-OQ-5S3">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="gl5-4i-BwR" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Setting" image="Horizontal_Slider.png" id="6ZF-La-7aL"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="uB3-IX-Kye">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="glN-5l-SCP" kind="relationship" relationship="rootViewController" id="1Xw-km-aDm"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iuW-Tq-suF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="402" y="-3314"/>
+        </scene>
     </scenes>
     <resources>
         <image name="Horizontal_Slider.png" width="24" height="23"/>
@@ -932,7 +920,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="T9g-je-FDA"/>
         <segue reference="uB5-59-lE2"/>
     </inferredMetricsTieBreakers>
 </document>

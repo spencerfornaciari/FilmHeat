@@ -66,5 +66,10 @@
     // Saves changes in the application's managed object context before the application terminates.
 }
 
+-(UIStatusBarStyle)preferredStatusBarStyle
+{
+    return UIStatusBarStyleLightContent;
+}
+
 
 @end
