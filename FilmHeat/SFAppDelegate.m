@@ -18,11 +18,17 @@
     // Override point for customization after application launch.
     
     //BOOL tutorial = FALSE;
+    //Set Navigation Bar/Tab Bar Appearance
     [[UINavigationBar appearance] setBarTintColor:[UIColor navigationBarColor]];
     [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
+    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+    [[UITabBar appearance] setTintColor:[UIColor whiteColor]];
+//    [[UITabBar appearance] setBackgroundColor:[UIColor blueColor]];
     
     [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
     
+    
+    //Instantiate the tutorial view controller if it is their first time running the app
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main"
                                                              bundle: nil];
     

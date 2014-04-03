@@ -175,16 +175,11 @@
 
 #pragma mark - Segue Navigation
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    self.currentFilm = self.wantedArray[indexPath.row];
-    [self performSegueWithIdentifier:@"detailModal" sender:nil];
-}
-
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.destinationViewController isKindOfClass:[SFMovieDetailViewController class]]) {
-        [(SFMovieDetailViewController *)segue.destinationViewController setFilm:self.currentFilm];
+    if ([segue.identifier isEqualToString:@"detail"]) {
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        [(SFMovieDetailViewController *)segue.destinationViewController setFilm:self.wantedArray[indexPath.row]];
     }
 }
 

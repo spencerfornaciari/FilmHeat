@@ -13,8 +13,6 @@
 
 @interface SFBaseViewController ()
 
-@property (strong, nonatomic) IBOutlet UINavigationBar *baseNavigationBar;
-
 @property (nonatomic, strong) SFSeenTableViewController *seenController;
 @property (nonatomic, strong) SFTheaterTableViewController *theaterController;
 @property (nonatomic, strong) SFWantedTableViewController *wantedController;
@@ -29,7 +27,6 @@
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentOutlet;
 @property (weak, nonatomic) IBOutlet UIView *movieContainer;
 @property (weak, nonatomic) IBOutlet UISearchBar *filmSearchBar;
-- (IBAction)openSearchControllerButton:(id)sender;
 
 - (IBAction)segmentPicker:(UISegmentedControl *)sender;
 
@@ -48,8 +45,7 @@
     [super viewDidLoad];
     [[UIApplication sharedApplication] setStatusBarHidden:FALSE];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-    [[UITabBar appearance] setTintColor:[UIColor whiteColor]];
-
+    
     _searchArray = [NSMutableArray new];
     
     self.segmentOutlet.selectedSegmentIndex = 1;
@@ -81,7 +77,7 @@
 
     [self filmDoesExist];
     
-    [UIApplication sharedApplication].applicationIconBadgeNumber = self.theaterController.theaterArray.count;
+    [UIApplication sharedApplication].applicationIconBadgeNumber = self.wantedController.wantedArray.count;
 	// Do any additional setup after loading the view.
 }
 
@@ -640,13 +636,6 @@
     } else {
         return TRUE;
     }
-}
-
-#pragma mark - UI Status Bar Style
-
--(UIStatusBarStyle)preferredStatusBarStyle
-{
-    return UIStatusBarStyleLightContent;
 }
 
 - (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope

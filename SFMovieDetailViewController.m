@@ -13,8 +13,6 @@
 - (IBAction)dismissViewController:(id)sender;
 @property (weak, nonatomic) IBOutlet UILabel *myRatingTextLabel;
 
-
-
 @end
 
 @implementation SFMovieDetailViewController
@@ -31,6 +29,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [[UIApplication sharedApplication] setStatusBarHidden:FALSE];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    
+    NSLog(@"%@", self.film);
     
     //    http://api.rottentomatoes.com/api/public/v1.0/movies/770672122/similar.json?apikey=[your_api_key]
     
@@ -117,13 +120,6 @@
 - (IBAction)dismissViewController:(id)sender {
     
     [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-#pragma mark - UI Status Bar Style
-
--(UIStatusBarStyle)preferredStatusBarStyle
-{
-    return UIStatusBarStyleLightContent;
 }
 
 @end

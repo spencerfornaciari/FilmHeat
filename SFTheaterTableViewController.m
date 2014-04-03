@@ -35,7 +35,8 @@
 {
     [super viewDidLoad];
     
-
+    self.tableView.contentInset = UIEdgeInsetsMake(-64, 0, -52, 0);
+    
     self.downloadQueue = [NSOperationQueue new];
 //    
 //    self.theaterArray = self.controller.rottenTomatoesArray;
@@ -183,16 +184,11 @@
 
 #pragma mark - Segue Navigation
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    self.currentFilm = self.theaterArray[indexPath.row];
-    [self performSegueWithIdentifier:@"detailModal" sender:nil];
-}
-
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.destinationViewController isKindOfClass:[SFMovieDetailViewController class]]) {
-        [(SFMovieDetailViewController *)segue.destinationViewController setFilm:self.currentFilm];
+    if ([segue.identifier isEqualToString:@"detail"]) {
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        [(SFMovieDetailViewController *)segue.destinationViewController setFilm:self.theaterArray[indexPath.row]];
     }
 }
 
