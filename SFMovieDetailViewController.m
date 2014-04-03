@@ -33,7 +33,9 @@
     [[UIApplication sharedApplication] setStatusBarHidden:FALSE];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     
-    NSLog(@"%@", self.film);
+    //Set detail page title on Navigation Controller
+    self.title = self.film.title;
+    
     
     //    http://api.rottentomatoes.com/api/public/v1.0/movies/770672122/similar.json?apikey=[your_api_key]
     

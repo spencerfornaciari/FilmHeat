@@ -1,20 +1,18 @@
 //
-//  SFAboutTableViewController.m
+//  SFTSettingsTableViewController.m
 //  Film Heat
 //
-//  Created by Spencer Fornaciari on 3/18/14.
+//  Created by Spencer Fornaciari on 4/3/14.
 //  Copyright (c) 2014 Spencer Fornaciari. All rights reserved.
 //
 
-#import "SFAboutTableViewController.h"
+#import "SFTSettingsTableViewController.h"
 
-@interface SFAboutTableViewController ()
-
-@property (nonatomic) UINavigationBar *aboutBar;
+@interface SFTSettingsTableViewController ()
 
 @end
 
-@implementation SFAboutTableViewController
+@implementation SFTSettingsTableViewController
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -29,8 +27,7 @@
 {
     [super viewDidLoad];
     
-    [[UIApplication sharedApplication] setStatusBarHidden:FALSE];
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];    // Uncomment the following line to preserve selection between presentations.
+    // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
@@ -47,34 +44,28 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
+#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 1;
+    return 0;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 3;
+    return 0;
 }
 
-
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+/*
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == 0) {
-        NSLog(@"1");
-    }
-    if (indexPath.row == 1) {
-        NSLog(@"2");
-    }
-    if (indexPath.row == 2) {
-        NSLog(@"3");
-    }
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    
+    // Configure the cell...
+    
+    return cell;
 }
-
--(UIStatusBarStyle)preferredStatusBarStyle
-{
-    return UIStatusBarStyleLightContent;
-}
+*/
 
 /*
 // Override to support conditional editing of the table view.
@@ -124,26 +115,5 @@
     // Pass the selected object to the new view controller.
 }
 */
-
-#pragma mark - Rating the app
-
-//- (void)rateTheApp {
-//    UIAlertView *rateAlert = [[UIAlertView alloc] initWithTitle:@"Fan of iota?"
-//                                                        message:@"Show some love by rating this app."
-//                                                       delegate:self
-//                                              cancelButtonTitle:@"Cancel"
-//                                              otherButtonTitles:@"Rate iota!", nil];
-//    
-//    [rateAlert show];
-//}
-
-//- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-//    switch (buttonIndex) {
-//        case 1:
-//            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@""https://itunes.apple.com/us/app/id825996138]];
-//            [alertView dismissWithClickedButtonIndex:buttonIndex animated:NO];
-//            break;
-//    }
-//}
 
 @end

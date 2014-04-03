@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SFAboutTableViewController : UITableViewController
+@interface SFAboutTableViewController : UITableViewController <UIAlertViewDelegate>
 
 @end
