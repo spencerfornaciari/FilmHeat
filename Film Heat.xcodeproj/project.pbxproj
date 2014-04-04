@@ -58,7 +58,7 @@
 		89B98A8D18AC16C5006FF961 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89B98A8C18AC16C5006FF961 /* Crashlytics.framework */; };
 		89BC655518A3008D00B27385 /* SFMCTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 89BC655418A3008D00B27385 /* SFMCTableViewCell.m */; };
 		89C8923318D910DE009E3E6B /* SFAboutTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89C8923218D910DE009E3E6B /* SFAboutTableViewController.m */; };
-		89EBD9B218EE25E800F9D63D /* SFTSettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89EBD9B118EE25E800F9D63D /* SFTSettingsTableViewController.m */; };
+		89EBD9B218EE25E800F9D63D /* SFSettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89EBD9B118EE25E800F9D63D /* SFSettingsTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -153,8 +153,8 @@
 		89BC655418A3008D00B27385 /* SFMCTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SFMCTableViewCell.m; path = ../SFMCTableViewCell.m; sourceTree = "<group>"; };
 		89C8923118D910DE009E3E6B /* SFAboutTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SFAboutTableViewController.h; path = ../SFAboutTableViewController.h; sourceTree = "<group>"; };
 		89C8923218D910DE009E3E6B /* SFAboutTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SFAboutTableViewController.m; path = ../SFAboutTableViewController.m; sourceTree = "<group>"; };
-		89EBD9B018EE25E800F9D63D /* SFTSettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SFTSettingsTableViewController.h; path = ../SFTSettingsTableViewController.h; sourceTree = "<group>"; };
-		89EBD9B118EE25E800F9D63D /* SFTSettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SFTSettingsTableViewController.m; path = ../SFTSettingsTableViewController.m; sourceTree = "<group>"; };
+		89EBD9B018EE25E800F9D63D /* SFSettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SFSettingsTableViewController.h; path = ../SFSettingsTableViewController.h; sourceTree = "<group>"; };
+		89EBD9B118EE25E800F9D63D /* SFSettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SFSettingsTableViewController.m; path = ../SFSettingsTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -298,8 +298,8 @@
 		8949F778188DF29C0069E9D4 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				89EBD9B018EE25E800F9D63D /* SFTSettingsTableViewController.h */,
-				89EBD9B118EE25E800F9D63D /* SFTSettingsTableViewController.m */,
+				89EBD9B018EE25E800F9D63D /* SFSettingsTableViewController.h */,
+				89EBD9B118EE25E800F9D63D /* SFSettingsTableViewController.m */,
 				89C8923118D910DE009E3E6B /* SFAboutTableViewController.h */,
 				89C8923218D910DE009E3E6B /* SFAboutTableViewController.m */,
 				89366F3C18AAFF4600C278DA /* SFTutorialChildViewController.h */,
@@ -533,7 +533,7 @@
 				894DFAC818A0516A00806267 /* SFMovieDetailViewController.m in Sources */,
 				8931CF5D18A44B0D00A4CFBC /* SFSeenTableViewController.m in Sources */,
 				8949F73E188DDD090069E9D4 /* main.m in Sources */,
-				89EBD9B218EE25E800F9D63D /* SFTSettingsTableViewController.m in Sources */,
+				89EBD9B218EE25E800F9D63D /* SFSettingsTableViewController.m in Sources */,
 				8949F772188DE1460069E9D4 /* SFTabBarController.m in Sources */,
 				8931CF6618A5998E00A4CFBC /* Constants.m in Sources */,
 				8931CF6318A4820100A4CFBC /* SFNoneTableViewController.m in Sources */,

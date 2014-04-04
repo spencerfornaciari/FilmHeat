@@ -1,18 +1,18 @@
 //
-//  SFCustomizeViewController.h
-//  FilmHeat
+//  SFTSettingsTableViewController.h
+//  Film Heat
 //
-//  Created by Spencer Fornaciari on 2/3/14.
+//  Created by Spencer Fornaciari on 4/3/14.
 //  Copyright (c) 2014 Spencer Fornaciari. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
-#import <MapKit/MapKit.h>
 
-@interface SFCustomizeViewController : UIViewController
+@interface SFSettingsTableViewController : UITableViewController
 
 @property (weak, nonatomic) IBOutlet UILabel *mpaaRatingThresholdLabel;
 @property (weak, nonatomic) IBOutlet UISlider *mpaaRatingThresholdSliderOutlet;
+- (IBAction)mpaaRatingThresholdSliderAction:(id)sender;
 
 @property (weak, nonatomic) IBOutlet UILabel *criticsRatingThresholdLabel;
 @property (weak, nonatomic) IBOutlet UISlider *criticsRatingThresholdSliderOutlet;
@@ -28,7 +28,6 @@
 - (IBAction)ratingVarianceSliderAction:(id)sender;
 
 
-- (IBAction)mpaaRatingThresholdSliderAction:(id)sender;
 
 
 @end
