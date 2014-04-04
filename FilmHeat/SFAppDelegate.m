@@ -23,7 +23,7 @@
     [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
     [[UITabBar appearance] setTintColor:[UIColor whiteColor]];
-//    [[UITabBar appearance] setBackgroundColor:[UIColor blueColor]];
+    [[UITabBar appearance] setBarTintColor:[UIColor navigationBarColor]];
     
     [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
     
