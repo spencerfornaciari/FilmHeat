@@ -16,4 +16,8 @@
 + (UIColor *)noInterestColor;
 + (UIColor *)navigationBarColor;
 
++ (UIColor *)filmHeatPrimaryColor;
++ (UIColor *)filmHeatComplementaryColor;
+
+
 @end

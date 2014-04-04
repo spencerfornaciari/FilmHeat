@@ -28,6 +28,10 @@
 @property (weak, nonatomic) IBOutlet UIView *movieContainer;
 @property (weak, nonatomic) IBOutlet UISearchBar *filmSearchBar;
 
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *sortButton;
+
+
+
 - (IBAction)segmentPicker:(UISegmentedControl *)sender;
 
 @property (nonatomic, strong) UIViewController *currentViewController;
@@ -45,6 +49,8 @@
     [super viewDidLoad];
     [[UIApplication sharedApplication] setStatusBarHidden:FALSE];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    
+    self.sortButton.tintColor = [UIColor whiteColor];
     
     _searchArray = [NSMutableArray new];
     

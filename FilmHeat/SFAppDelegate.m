@@ -18,12 +18,18 @@
     // Override point for customization after application launch.
     
     //BOOL tutorial = FALSE;
-    //Set Navigation Bar/Tab Bar Appearance
-    [[UINavigationBar appearance] setBarTintColor:[UIColor navigationBarColor]];
-    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
-    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
-    [[UITabBar appearance] setTintColor:[UIColor whiteColor]];
-    [[UITabBar appearance] setBarTintColor:[UIColor navigationBarColor]];
+    //Set Navigation Controller Appearance
+    [[UINavigationBar appearance] setBarTintColor:[UIColor filmHeatPrimaryColor]];
+    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor filmHeatComplementaryColor]}];
+    [[UINavigationBar appearance] setTintColor:[UIColor filmHeatComplementaryColor]];
+    
+    //Styling buttons/controllers on the Navigation Controller
+    [[UISegmentedControl appearance] setTintColor:[UIColor filmHeatComplementaryColor]];
+    [[UIBarButtonItem appearance] setTintColor:[UIColor filmHeatComplementaryColor]];
+    
+    //Set Tab Bar Controller Appearance
+    [[UITabBar appearance] setTintColor:[UIColor filmHeatComplementaryColor]];
+    [[UITabBar appearance] setBarTintColor:[UIColor filmHeatPrimaryColor]];
     
     [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
     

@@ -34,8 +34,8 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="oYZ-nW-p60">
                         <nil key="title"/>
-                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="wzW-wG-3gW">
-                            <rect key="frame" x="30" y="6" width="243" height="33"/>
+                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" segmentControlStyle="bar" selectedSegmentIndex="0" id="wzW-wG-3gW">
+                            <rect key="frame" x="30" y="7" width="243" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <segments>
                                 <segment title="Seen"/>
@@ -43,13 +43,13 @@
                                 <segment title="Want"/>
                                 <segment title="Don't"/>
                             </segments>
-                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="segmentPicker:" destination="5v0-mY-CsX" eventType="valueChanged" id="fCp-cG-sLY"/>
                             </connections>
                         </segmentedControl>
                         <barButtonItem key="rightBarButtonItem" title="Sort" id="4OI-nd-kp3">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="buttonAction:" destination="5v0-mY-CsX" id="rc9-c3-VPB"/>
                             </connections>
@@ -59,6 +59,7 @@
                         <outlet property="movieContainer" destination="m18-NA-o6d" id="ccB-v0-hWi"/>
                         <outlet property="searchDisplayController" destination="cdr-ZW-cad" id="oNY-PG-2Gu"/>
                         <outlet property="segmentOutlet" destination="wzW-wG-3gW" id="xAs-tt-nOD"/>
+                        <outlet property="sortButton" destination="4OI-nd-kp3" id="5s5-HY-gpH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aAj-1y-yQB" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -501,7 +502,7 @@
         <scene sceneID="ubh-fo-Xb7">
             <objects>
                 <tableViewController id="LTG-lX-vu8" customClass="SFSettingsTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="1" sectionFooterHeight="1" id="1Jf-6B-2of">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="1" sectionFooterHeight="9" id="1Jf-6B-2of">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
@@ -536,7 +537,7 @@
                             <tableViewSection headerTitle="Critics Rating Threshold" id="HMD-gb-eKy">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="70" id="Ewa-mf-xD4">
-                                        <rect key="frame" x="0.0" y="228" width="320" height="70"/>
+                                        <rect key="frame" x="0.0" y="236" width="320" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ewa-mf-xD4" id="iDn-bc-nif">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="69"/>
@@ -563,7 +564,7 @@
                             <tableViewSection headerTitle="Audience Rating Threshold" id="et6-nB-2ht">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="70" id="u1P-Eq-Uje">
-                                        <rect key="frame" x="0.0" y="337" width="320" height="70"/>
+                                        <rect key="frame" x="0.0" y="353" width="320" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="u1P-Eq-Uje" id="O08-Fh-Kro">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="69"/>
@@ -590,7 +591,7 @@
                             <tableViewSection headerTitle="Rating Variance Threshold" id="ZxS-xo-8vk">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="70" id="7Z2-TE-vfi">
-                                        <rect key="frame" x="0.0" y="446" width="320" height="70"/>
+                                        <rect key="frame" x="0.0" y="470" width="320" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7Z2-TE-vfi" id="n9y-xX-y3Y">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="69"/>
@@ -766,24 +767,6 @@
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="15"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <navigationBar contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hJa-fw-h6t">
-                                <rect key="frame" x="0.0" y="18" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <color key="barTintColor" red="0.89411764709999997" green="0.31764705879999999" blue="0.29411764709999999" alpha="1" colorSpace="deviceRGB"/>
-                                <textAttributes key="titleTextAttributes">
-                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </textAttributes>
-                                <items>
-                                    <navigationItem title="Title" id="CSn-0f-TBx">
-                                        <barButtonItem key="leftBarButtonItem" image="Movies.png" id="C9v-SC-QN4">
-                                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <connections>
-                                                <action selector="dismissViewController:" destination="ls1-BT-5KF" id="7I8-vA-4hk"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YBY-I5-nfo">
                                 <rect key="frame" x="20" y="73" width="101" height="142"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -800,11 +783,10 @@
                                 </connections>
                             </slider>
                         </subviews>
-                        <color key="backgroundColor" red="0.89411764705882346" green="0.29803921568627451" blue="0.23529411764705882" alpha="1" colorSpace="deviceRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="YBY-I5-nfo" firstAttribute="bottom" secondItem="cXB-fS-e2e" secondAttribute="bottom" id="23z-2s-wji"/>
                             <constraint firstAttribute="bottom" secondItem="kzo-hl-BXd" secondAttribute="bottom" constant="26" id="5mF-H9-5BH"/>
-                            <constraint firstItem="YBY-I5-nfo" firstAttribute="top" secondItem="hJa-fw-h6t" secondAttribute="bottom" constant="11" id="AUW-QZ-NTS"/>
                             <constraint firstItem="YBY-I5-nfo" firstAttribute="top" secondItem="Alh-Tw-GXz" secondAttribute="top" constant="73" id="OKl-Kc-h2O"/>
                             <constraint firstItem="YBY-I5-nfo" firstAttribute="leading" secondItem="Alh-Tw-GXz" secondAttribute="leading" constant="20" symbolic="YES" id="PXg-M2-1QI"/>
                             <constraint firstItem="UAE-ni-aRU" firstAttribute="leading" secondItem="YBY-I5-nfo" secondAttribute="trailing" constant="26" id="bqo-Bd-2xD"/>
@@ -818,7 +800,6 @@
                         <outlet property="audienceRatingLabel" destination="cXB-fS-e2e" id="0tl-Jg-RwT"/>
                         <outlet property="criticRatingLabel" destination="bPX-GU-3vr" id="ZYY-RD-vkf"/>
                         <outlet property="criticsLabel" destination="UAE-ni-aRU" id="Fqr-YY-obq"/>
-                        <outlet property="detailViewTitle" destination="CSn-0f-TBx" id="nrt-Qz-NUb"/>
                         <outlet property="filmRatingLabel" destination="oZb-1y-2ZS" id="qTN-he-XRQ"/>
                         <outlet property="filmRuntimeLabel" destination="Icp-MJ-3oE" id="Zyn-S9-Cmu"/>
                         <outlet property="moviePoster" destination="YBY-I5-nfo" id="uf0-FV-98U"/>
@@ -922,7 +903,7 @@
         <scene sceneID="aeV-gN-q49">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="KFG-WQ-SF5" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="About" id="LLj-2D-Zed"/>
+                    <tabBarItem key="tabBarItem" title="About" image="Info" id="LLj-2D-Zed"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="KGg-vw-4fL">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -941,7 +922,7 @@
         <scene sceneID="6U0-b3-qJd">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="5Gk-vr-nAD" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Films" image="Movies.png" id="Ei9-Q1-85n"/>
+                    <tabBarItem key="tabBarItem" title="Films" image="Movies" id="Ei9-Q1-85n"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="30I-fp-4SM">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -960,7 +941,7 @@
         <scene sceneID="KXp-OQ-5S3">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="gl5-4i-BwR" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Setting" image="Horizontal_Slider.png" id="6ZF-La-7aL"/>
+                    <tabBarItem key="tabBarItem" title="Setting" image="Horizontal_Slider" id="6ZF-La-7aL"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="uB3-IX-Kye">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -977,8 +958,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Horizontal_Slider.png" width="24" height="23"/>
-        <image name="Movies.png" width="23" height="22"/>
+        <image name="Horizontal_Slider" width="24" height="23"/>
+        <image name="Info" width="25" height="25"/>
+        <image name="Movies" width="23" height="22"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

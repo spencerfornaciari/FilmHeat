@@ -30,4 +30,13 @@
     return [UIColor colorWithRed:228/255.f green:76/255.f blue:60/255.f alpha:1];
 }
 
++ (UIColor *)filmHeatPrimaryColor {
+    return [UIColor colorWithRed:228/255.f green:76/255.f blue:60/255.f alpha:1];
+}
+
+
++ (UIColor *)filmHeatComplementaryColor {
+    return [UIColor whiteColor];
+}
+
 @end
