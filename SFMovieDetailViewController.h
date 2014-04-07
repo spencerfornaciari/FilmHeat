@@ -10,7 +10,7 @@
 #import "FilmModel.h"
 #import "Constants.h"
 
-@interface SFMovieDetailViewController : UIViewController
+@interface SFMovieDetailViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UIImageView *moviePoster;
 @property (weak, nonatomic) IBOutlet UITextView *movieSynopsis;

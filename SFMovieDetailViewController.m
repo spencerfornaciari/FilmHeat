@@ -10,8 +10,10 @@
 
 @interface SFMovieDetailViewController ()
 
-- (IBAction)dismissViewController:(id)sender;
 @property (weak, nonatomic) IBOutlet UILabel *myRatingTextLabel;
+
+@property (weak, nonatomic) IBOutlet UITableView *detailSynopsis;
+
 
 @end
 
@@ -32,6 +34,9 @@
     
     [[UIApplication sharedApplication] setStatusBarHidden:FALSE];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    
+    self.detailSynopsis.delegate = self;
+    self.detailSynopsis.dataSource = self;
     
     //Set detail page title on Navigation Controller
     self.title = self.film.title;
@@ -110,6 +115,30 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 1;
+}
+
+
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DetailCell" forIndexPath:indexPath];
+    
+    cell.textLabel.text = self.film.synopsis;
+    cell.textLabel.numberOfLines = 4;
+    cell.textLabel.font = [UIFont systemFontOfSize:12.0];
+    
+    return cell;
+
 }
 
 #pragma mark - Button Actions
