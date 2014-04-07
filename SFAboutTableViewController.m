@@ -65,6 +65,7 @@
     }
     if (indexPath.row == 1) {
         NSLog(@"2");
+        [self rateTheApp];
     }
 }
 
@@ -119,23 +120,11 @@
 
 #pragma mark - Rating the app
 
-//- (void)rateTheApp {
-//    UIAlertView *rateAlert = [[UIAlertView alloc] initWithTitle:@"Fan of iota?"
-//                                                        message:@"Show some love by rating this app."
-//                                                       delegate:self
-//                                              cancelButtonTitle:@"Cancel"
-//                                              otherButtonTitles:@"Rate iota!", nil];
-//    
-//    [rateAlert show];
-//}
+-(void)rateTheApp
+{
+    NSString *iTunesLink = @"https://itunes.apple.com/us/app/apple-store/id825996138?mt=8";
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:iTunesLink]];
+}
 
-//- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-//    switch (buttonIndex) {
-//        case 1:
-//            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@""https://itunes.apple.com/us/app/id825996138]];
-//            [alertView dismissWithClickedButtonIndex:buttonIndex animated:NO];
-//            break;
-//    }
-//}
 
 @end
