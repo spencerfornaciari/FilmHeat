@@ -36,6 +36,19 @@
     [[UIApplication sharedApplication] setStatusBarHidden:FALSE];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     
+//    //get the Image
+//    UIImage *img = [UIImage imageNamed:@"PG 13"];
+//    //create a UIImageView
+//    UIImageView *imageView = [[UIImageView alloc] initWithImage:img];
+//    imageView.frame = CGRectMake(50, 200, img.size.width, img.size.height);
+//    [self.view addSubview:imageView];
+//    
+//    UIImage *img2 = [UIImage imageNamed:@"PG"];
+//    //create a UIImageView
+//    UIImageView *imageView2 = [[UIImageView alloc] initWithImage:img2];
+//    imageView2.frame = CGRectMake(250, 200, img2.size.width, img2.size.height);
+//    [self.view addSubview:imageView2];
+    
     self.detailSynopsis.delegate = self;
     self.detailSynopsis.dataSource = self;
     
@@ -57,7 +70,7 @@
     
 	// Do any additional setup after loading the view.
     self.detailViewTitle.title = _film.title;
-    self.filmRatingImageView.image = [self setRatingImage:self.film.mpaaRating];
+    [self setRatingImage:self.film.mpaaRating];
     
     self.movieSynopsis.text = _film.synopsis;
     self.moviePoster.image = _film.posterImage;
@@ -163,18 +176,26 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
--(UIImage *)setRatingImage:(NSString *)mpaaRating
+-(void)setRatingImage:(NSString *)mpaaRating
 {
+    UIImage *image;
+
+    
     if ([mpaaRating isEqualToString:@"G"]) {
-        return nil;
+        image = [UIImage imageNamed:@"G"];
     } else if ([mpaaRating isEqualToString:@"PG"]){
-        return nil;
+        image = [UIImage imageNamed:@"PG"];
     } else if ([mpaaRating isEqualToString:@"PG-13"]) {
-        return [UIImage imageNamed:@"PG 13"];
+        image = [UIImage imageNamed:@"PG 13"];
     } else if ([mpaaRating isEqualToString:@"R"]) {
-        return [UIImage imageNamed:@"R"];;
+        image = [UIImage imageNamed:@"R"];;
     } else {
-        return nil;
+        image = [UIImage imageNamed:@"NC 17"];
     }
+    
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+    imageView.frame = CGRectMake(126, 170, image.size.width, image.size.height);
+    [self.view addSubview:imageView];
+    
 }
 @end

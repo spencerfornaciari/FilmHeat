@@ -49,7 +49,7 @@
     [super viewDidLoad];
     [[UIApplication sharedApplication] setStatusBarHidden:FALSE];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-        
+    
     _searchArray = [NSMutableArray new];
     
     self.segmentOutlet.selectedSegmentIndex = 1;
@@ -121,18 +121,6 @@
 }
 
 - (IBAction)segmentPicker:(UISegmentedControl *)sender {
-    
-//    [self clearContainerView];
-//    
-//    if (self.segmentOutlet.selectedSegmentIndex == 0) {
-//        self.segmentOutlet.tintColor = [UIColor seenItColor];
-//    } else if (self.segmentOutlet.selectedSegmentIndex == 1) {
-//        self.segmentOutlet.tintColor = [UIColor theaterColor];
-//    } else if(self.segmentOutlet.selectedSegmentIndex == 2) {
-//        self.segmentOutlet.tintColor = [UIColor wantedColor];
-//    } else if (self.segmentOutlet.selectedSegmentIndex == 3){
-//        self.segmentOutlet.tintColor = [UIColor noInterestColor];
-//    }
     
     [self cycleFromViewController:self.currentViewController toViewController:self.childVCArray[sender.selectedSegmentIndex]];
 

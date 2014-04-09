@@ -99,12 +99,6 @@
                                             <rect key="frame" x="8" y="0.0" width="65" height="81"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="MPAA" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zzT-vg-bSd">
-                                            <rect key="frame" x="84" y="31" width="58" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Critics:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8FS-Kv-tzM">
                                             <rect key="frame" x="84" y="57" width="77" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -122,7 +116,6 @@
                                 <connections>
                                     <outlet property="filmAudiencesLabel" destination="dZA-QR-g7a" id="ylV-1x-Ow9"/>
                                     <outlet property="filmCriticsLabel" destination="8FS-Kv-tzM" id="lCL-rW-ROn"/>
-                                    <outlet property="filmMPAARating" destination="zzT-vg-bSd" id="Fhv-O7-2nY"/>
                                     <outlet property="filmThumbnailPoster" destination="vLn-HR-49X" id="qAE-yu-T3Y"/>
                                     <outlet property="filmTitle" destination="2uW-ad-wzb" id="izI-Cb-k3X"/>
                                     <segue destination="ls1-BT-5KF" kind="push" identifier="detail" id="3Xe-EX-EgX"/>
@@ -173,16 +166,9 @@
                                             <rect key="frame" x="8" y="0.0" width="65" height="81"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="MPAA" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HHR-pU-3fM">
-                                            <rect key="frame" x="84" y="31" width="67" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="filmMPAARating" destination="HHR-pU-3fM" id="tu9-6E-9Gw"/>
                                     <outlet property="filmThumbnailPoster" destination="4fX-Kx-0dA" id="v5I-ti-JLf"/>
                                     <outlet property="filmTitle" destination="Mcf-f2-3NU" id="BQe-8o-b6o"/>
                                     <outlet property="myRatingLabel" destination="dvM-nt-xU2" id="odb-bD-ZVk"/>
@@ -227,12 +213,6 @@
                                             <rect key="frame" x="8" y="0.0" width="65" height="81"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="MPAA" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U3O-nh-o1C">
-                                            <rect key="frame" x="84" y="31" width="67" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Critics:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eBD-CU-pcy">
                                             <rect key="frame" x="84" y="57" width="90" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -250,7 +230,6 @@
                                 <connections>
                                     <outlet property="filmAudiencesLabel" destination="vwC-NT-Cfj" id="pcD-4j-Ict"/>
                                     <outlet property="filmCriticsLabel" destination="eBD-CU-pcy" id="4Nd-we-JT5"/>
-                                    <outlet property="filmMPAARating" destination="U3O-nh-o1C" id="jGS-Ja-1Ph"/>
                                     <outlet property="filmThumbnailPoster" destination="IIm-zi-QXz" id="OPg-eL-vhK"/>
                                     <outlet property="filmTitle" destination="Rky-fQ-sRF" id="qxK-WC-nhZ"/>
                                     <segue destination="ls1-BT-5KF" kind="push" identifier="detail" id="tIK-vc-qZ4"/>
@@ -294,12 +273,6 @@
                                             <rect key="frame" x="8" y="0.0" width="65" height="81"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="MPAA" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z8L-hy-itm">
-                                            <rect key="frame" x="84" y="31" width="67" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Critics:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qZJ-Eb-cJf">
                                             <rect key="frame" x="84" y="57" width="77" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -317,7 +290,6 @@
                                 <connections>
                                     <outlet property="filmAudiencesLabel" destination="XV2-P4-qF5" id="2hg-hT-DTj"/>
                                     <outlet property="filmCriticsLabel" destination="qZJ-Eb-cJf" id="dAw-HZ-xG8"/>
-                                    <outlet property="filmMPAARating" destination="Z8L-hy-itm" id="FnJ-Yh-x6F"/>
                                     <outlet property="filmThumbnailPoster" destination="RyY-a4-qiu" id="EFk-rF-Vyt"/>
                                     <outlet property="filmTitle" destination="R2V-TJ-yCo" id="BVV-Gp-zZl"/>
                                     <segue destination="ls1-BT-5KF" kind="push" identifier="detail" id="S32-KN-iGS"/>
@@ -666,35 +638,8 @@
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="20"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oZb-1y-2ZS">
-                                <rect key="frame" x="67" y="211" width="62" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="15"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xpr-xP-DHN">
-                                <rect key="frame" x="203" y="307" width="62" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="15"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Icp-MJ-3oE">
-                                <rect key="frame" x="231" y="170" width="57" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="15"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bPX-GU-3vr">
-                                <rect key="frame" x="44" y="307" width="42" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="42" id="Bfi-uM-FtQ"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="15"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cXB-fS-e2e">
-                                <rect key="frame" x="133" y="307" width="42" height="21"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Runtime" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Icp-MJ-3oE">
+                                <rect key="frame" x="183" y="168" width="57" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="15"/>
                                 <nil key="highlightedColor"/>
@@ -757,10 +702,6 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YVE-WV-Qb4">
-                                <rect key="frame" x="112" y="163" width="101" height="40"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -770,11 +711,8 @@
                             <constraint firstItem="kzo-hl-BXd" firstAttribute="leading" secondItem="zCE-cd-tQh" secondAttribute="leading" id="VRS-IH-Zcc"/>
                             <constraint firstItem="kzo-hl-BXd" firstAttribute="leading" secondItem="YBY-I5-nfo" secondAttribute="leading" id="bNK-ZE-4Dv"/>
                             <constraint firstItem="iFl-y1-uIr" firstAttribute="leading" secondItem="17N-on-byq" secondAttribute="trailing" constant="8" symbolic="YES" id="lBy-gG-cMK"/>
-                            <constraint firstItem="iFl-y1-uIr" firstAttribute="top" secondItem="Xpr-xP-DHN" secondAttribute="bottom" constant="30" id="m4q-kq-i5K"/>
                             <constraint firstItem="kzo-hl-BXd" firstAttribute="trailing" secondItem="ZZS-Br-o6S" secondAttribute="trailing" id="oPg-rp-Nhf"/>
                             <constraint firstItem="17N-on-byq" firstAttribute="top" secondItem="iFl-y1-uIr" secondAttribute="top" id="p8T-0I-g6B"/>
-                            <constraint firstItem="17N-on-byq" firstAttribute="trailing" secondItem="cXB-fS-e2e" secondAttribute="trailing" id="riw-iN-F8q"/>
-                            <constraint firstItem="17N-on-byq" firstAttribute="top" secondItem="cXB-fS-e2e" secondAttribute="bottom" constant="30" id="saD-vW-V0w"/>
                             <constraint firstAttribute="trailing" secondItem="kzo-hl-BXd" secondAttribute="trailing" constant="20" symbolic="YES" id="tSF-13-aqb"/>
                             <constraint firstItem="iFl-y1-uIr" firstAttribute="baseline" secondItem="17N-on-byq" secondAttribute="baseline" id="tY9-yX-vwd"/>
                             <constraint firstItem="kzo-hl-BXd" firstAttribute="trailing" secondItem="Bvi-jR-S62" secondAttribute="trailing" id="vg0-83-e9r"/>
@@ -783,17 +721,12 @@
                     </view>
                     <navigationItem key="navigationItem" id="tsl-0Y-8lE"/>
                     <connections>
-                        <outlet property="audienceRatingLabel" destination="cXB-fS-e2e" id="0tl-Jg-RwT"/>
-                        <outlet property="criticRatingLabel" destination="bPX-GU-3vr" id="ZYY-RD-vkf"/>
                         <outlet property="detailSynopsis" destination="Bvi-jR-S62" id="dQd-d4-DLV"/>
-                        <outlet property="filmRatingImageView" destination="YVE-WV-Qb4" id="brh-Hx-scd"/>
-                        <outlet property="filmRatingLabel" destination="oZb-1y-2ZS" id="qTN-he-XRQ"/>
                         <outlet property="filmRuntimeLabel" destination="Icp-MJ-3oE" id="Zyn-S9-Cmu"/>
                         <outlet property="moviePoster" destination="YBY-I5-nfo" id="uf0-FV-98U"/>
                         <outlet property="myRatingLabel" destination="iFl-y1-uIr" id="bzA-Nw-5we"/>
                         <outlet property="myRatingSliderOutlet" destination="kzo-hl-BXd" id="kQe-z8-MdW"/>
                         <outlet property="myRatingTextLabel" destination="17N-on-byq" id="NW1-rS-yZa"/>
-                        <outlet property="releaseDateLabel" destination="Xpr-xP-DHN" id="59r-hz-ijF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kc9-2o-luT" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -40,11 +40,6 @@
         self.myRatingLabel.text = [NSString stringWithFormat:@"My Rating: %@", film.myRating];
     }
     
-//    if (film.criticsRating) {
-//        self.filmRuntimeLabel.hidden = FALSE;
-//        self.filmRuntimeLabel.text = [NSString stringWithFormat:@"Critics: %@", [film.criticsRating stringValue]];
-//    }
-    
     if (film.criticsRating) {
         self.filmCriticsLabel.hidden = FALSE;
         self.filmCriticsLabel.text = [NSString stringWithFormat:@"Critics: %@", [film.criticsRating stringValue]];
@@ -55,8 +50,13 @@
         self.filmAudiencesLabel.text = [NSString stringWithFormat:@"Audiences: %@", [film.audienceRating stringValue]];
     }
     
+    UIImage *image = [self setRatingImage:film.mpaaRating];
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+    imageView.frame = CGRectMake(84, 34, image.size.width, image.size.height);
+    [self addSubview:imageView];
+    
     //UIImage *image = [UIImage imageWithContentsOfFile:[NSData dataWithContentsOfFile:film.posterImagePath]];
-//    
+//
 //    if (image) {
 ////        self.filmThumbnailPoster.image = image;
 //        NSLog(@"%@: TRUE", film.title);
@@ -77,7 +77,22 @@
 //    }
 }
 
-
+-(UIImage *)setRatingImage:(NSString *)mpaaRating
+{
+    
+    if ([mpaaRating isEqualToString:@"G"]) {
+        return [UIImage imageNamed:@"G"];
+    } else if ([mpaaRating isEqualToString:@"PG"]){
+        return [UIImage imageNamed:@"PG"];
+    } else if ([mpaaRating isEqualToString:@"PG-13"]) {
+        return [UIImage imageNamed:@"PG 13"];
+    } else if ([mpaaRating isEqualToString:@"R"]) {
+        return [UIImage imageNamed:@"R"];;
+    } else {
+        return [UIImage imageNamed:@"NC 17"];
+    }
+    
+}
 
 
 
