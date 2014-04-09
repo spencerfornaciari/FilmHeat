@@ -49,7 +49,6 @@
                             </connections>
                         </segmentedControl>
                         <barButtonItem key="rightBarButtonItem" title="Sort" id="4OI-nd-kp3">
-                            <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="buttonAction:" destination="5v0-mY-CsX" id="rc9-c3-VPB"/>
                             </connections>

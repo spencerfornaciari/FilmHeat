@@ -49,9 +49,7 @@
     [super viewDidLoad];
     [[UIApplication sharedApplication] setStatusBarHidden:FALSE];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-    
-//    self.sortButton.tintColor = [UIColor whiteColor];
-    
+        
     _searchArray = [NSMutableArray new];
     
     self.segmentOutlet.selectedSegmentIndex = 1;
