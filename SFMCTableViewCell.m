@@ -32,9 +32,6 @@
     
     self.filmTitle.text = film.title;
     
-    self.filmMPAARating.text = film.mpaaRating;
-    
-    
     if (film.myRating) {
         self.filmCriticsLabel.hidden = TRUE;
         self.myRatingLabel.text = [NSString stringWithFormat:@"My Rating: %@", film.myRating];
@@ -50,10 +47,14 @@
         self.filmAudiencesLabel.text = [NSString stringWithFormat:@"Audiences: %@", [film.audienceRating stringValue]];
     }
     
-    UIImage *image = [self setRatingImage:film.mpaaRating];
-    UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
-    imageView.frame = CGRectMake(84, 34, image.size.width, image.size.height);
-    [self addSubview:imageView];
+    if (!self.ratingImage) {
+        self.ratingImage = [self ratingImage:film.mpaaRating];
+        UIImageView *imageView = [[UIImageView alloc] initWithImage:self.ratingImage];
+        imageView.frame = CGRectMake(84, 34, self.ratingImage.size.width, self.ratingImage.size.height);
+        [self addSubview:imageView];
+    }
+    
+    
     
     //UIImage *image = [UIImage imageWithContentsOfFile:[NSData dataWithContentsOfFile:film.posterImagePath]];
 //
@@ -77,19 +78,24 @@
 //    }
 }
 
--(UIImage *)setRatingImage:(NSString *)mpaaRating
+-(UIImage *)ratingImage:(NSString *)mpaaRating
 {
     
     if ([mpaaRating isEqualToString:@"G"]) {
-        return [UIImage imageNamed:@"G"];
+        UIImage *image = [UIImage imageNamed:@"G"];
+        return image;
     } else if ([mpaaRating isEqualToString:@"PG"]){
-        return [UIImage imageNamed:@"PG"];
+        UIImage *image = [UIImage imageNamed:@"PG"];
+        return image;
     } else if ([mpaaRating isEqualToString:@"PG-13"]) {
-        return [UIImage imageNamed:@"PG 13"];
+        UIImage *image = [UIImage imageNamed:@"PG 13"];
+        return image;
     } else if ([mpaaRating isEqualToString:@"R"]) {
-        return [UIImage imageNamed:@"R"];;
+        UIImage *image = [UIImage imageNamed:@"R"];
+        return image;
     } else {
-        return [UIImage imageNamed:@"NC 17"];
+        UIImage *image = [UIImage imageNamed:@"NC 17"];
+        return image;
     }
     
 }
