@@ -20,7 +20,7 @@
     //BOOL tutorial = FALSE;
     //Set Navigation Controller Appearance
     [[UINavigationBar appearance] setBarTintColor:[UIColor filmHeatPrimaryColor]];
-    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor filmHeatComplementaryColor]}];
+    [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor filmHeatComplementaryColor]}];
     [[UINavigationBar appearance] setTintColor:[UIColor filmHeatComplementaryColor]];
     
     //Styling buttons/controllers on the Navigation Controller

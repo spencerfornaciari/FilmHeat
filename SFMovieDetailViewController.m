@@ -7,6 +7,7 @@
 //
 
 #import "SFMovieDetailViewController.h"
+#import "SynopsisTableViewController.h"
 
 @interface SFMovieDetailViewController ()
 
@@ -56,6 +57,7 @@
     
 	// Do any additional setup after loading the view.
     self.detailViewTitle.title = _film.title;
+    self.filmRatingImageView.image = [self setRatingImage:self.film.mpaaRating];
     
     self.movieSynopsis.text = _film.synopsis;
     self.moviePoster.image = _film.posterImage;
@@ -141,6 +143,13 @@
 
 }
 
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"synopsis"]) {
+        [(SynopsisTableViewController *)segue.destinationViewController setSynopsisString:self.film.synopsis];
+    }
+}
+
 #pragma mark - Button Actions
 
 - (IBAction)ratingsSliderInput:(id)sender {
@@ -148,9 +157,24 @@
     self.myRatingLabel.text = [[NSNumber numberWithInt:rating] stringValue];
     _film.myRating = [[NSNumber numberWithInt:rating] stringValue];
 }
+
 - (IBAction)dismissViewController:(id)sender {
     
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+-(UIImage *)setRatingImage:(NSString *)mpaaRating
+{
+    if ([mpaaRating isEqualToString:@"G"]) {
+        return nil;
+    } else if ([mpaaRating isEqualToString:@"PG"]){
+        return nil;
+    } else if ([mpaaRating isEqualToString:@"PG-13"]) {
+        return [UIImage imageNamed:@"PG 13"];
+    } else if ([mpaaRating isEqualToString:@"R"]) {
+        return [UIImage imageNamed:@"R"];;
+    } else {
+        return nil;
+    }
+}
 @end

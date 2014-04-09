@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3683493BBB7C48629F3A1C9C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FF12FEB14B24765906F06AA /* libPods.a */; };
+		892E3A8F18F3581E00640930 /* SynopsisTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 892E3A8E18F3581E00640930 /* SynopsisTableViewCell.m */; };
 		8931CF5718A44A4200A4CFBC /* SFTheaterTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8931CF5618A44A4200A4CFBC /* SFTheaterTableViewController.m */; };
 		8931CF5A18A44AA800A4CFBC /* SFBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8931CF5918A44AA800A4CFBC /* SFBaseViewController.m */; };
 		8931CF5D18A44B0D00A4CFBC /* SFSeenTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8931CF5C18A44B0D00A4CFBC /* SFSeenTableViewController.m */; };
@@ -37,7 +38,6 @@
 		894DFACB18A0681100806267 /* SFCustomizeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 894DFACA18A0681100806267 /* SFCustomizeViewController.m */; };
 		894DFAD618A1769300806267 /* Checkbox.png in Resources */ = {isa = PBXBuildFile; fileRef = 894DFAD518A1769300806267 /* Checkbox.png */; };
 		894DFAD818A1769F00806267 /* Checkbox@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 894DFAD718A1769F00806267 /* Checkbox@2x.png */; };
-		8973C2E918B5BBDB0052346A /* Tutorial Images in Resources */ = {isa = PBXBuildFile; fileRef = 8973C2E818B5BBDB0052346A /* Tutorial Images */; };
 		898F4CBB189080D20060E847 /* SFFilmModelDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 898F4CBA189080D20060E847 /* SFFilmModelDataController.m */; };
 		89A43EE918A935C3009DC814 /* SeenExtraLarge.png in Resources */ = {isa = PBXBuildFile; fileRef = 89A43EE818A935C3009DC814 /* SeenExtraLarge.png */; };
 		89A43EEB18A936B7009DC814 /* WantExtraLarge.png in Resources */ = {isa = PBXBuildFile; fileRef = 89A43EEA18A936B7009DC814 /* WantExtraLarge.png */; };
@@ -55,6 +55,7 @@
 		89BC655518A3008D00B27385 /* SFMCTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 89BC655418A3008D00B27385 /* SFMCTableViewCell.m */; };
 		89C8923318D910DE009E3E6B /* SFAboutTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89C8923218D910DE009E3E6B /* SFAboutTableViewController.m */; };
 		89EBD9B218EE25E800F9D63D /* SFSettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89EBD9B118EE25E800F9D63D /* SFSettingsTableViewController.m */; };
+		89EBD9B518F329F400F9D63D /* SynopsisTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89EBD9B418F329F400F9D63D /* SynopsisTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +71,8 @@
 /* Begin PBXFileReference section */
 		12C9E41BD7F84C05A7D9B4A2 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		6FF12FEB14B24765906F06AA /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		892E3A8D18F3581E00640930 /* SynopsisTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SynopsisTableViewCell.h; path = ../SynopsisTableViewCell.h; sourceTree = "<group>"; };
+		892E3A8E18F3581E00640930 /* SynopsisTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SynopsisTableViewCell.m; path = ../SynopsisTableViewCell.m; sourceTree = "<group>"; };
 		8931CF5518A44A4200A4CFBC /* SFTheaterTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SFTheaterTableViewController.h; path = ../SFTheaterTableViewController.h; sourceTree = "<group>"; };
 		8931CF5618A44A4200A4CFBC /* SFTheaterTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SFTheaterTableViewController.m; path = ../SFTheaterTableViewController.m; sourceTree = "<group>"; };
 		8931CF5818A44AA800A4CFBC /* SFBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SFBaseViewController.h; path = ../SFBaseViewController.h; sourceTree = "<group>"; };
@@ -116,7 +119,6 @@
 		894DFACA18A0681100806267 /* SFCustomizeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SFCustomizeViewController.m; path = ../SFCustomizeViewController.m; sourceTree = "<group>"; };
 		894DFAD518A1769300806267 /* Checkbox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Checkbox.png; sourceTree = "<group>"; };
 		894DFAD718A1769F00806267 /* Checkbox@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Checkbox@2x.png"; sourceTree = "<group>"; };
-		8973C2E818B5BBDB0052346A /* Tutorial Images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Tutorial Images"; sourceTree = "<group>"; };
 		897E23F018AAF71900D6B901 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		897E23F218AAF77000D6B901 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		897E23F418AAF77700D6B901 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -147,6 +149,8 @@
 		89C8923218D910DE009E3E6B /* SFAboutTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SFAboutTableViewController.m; path = ../SFAboutTableViewController.m; sourceTree = "<group>"; };
 		89EBD9B018EE25E800F9D63D /* SFSettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SFSettingsTableViewController.h; path = ../SFSettingsTableViewController.h; sourceTree = "<group>"; };
 		89EBD9B118EE25E800F9D63D /* SFSettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SFSettingsTableViewController.m; path = ../SFSettingsTableViewController.m; sourceTree = "<group>"; };
+		89EBD9B318F329F400F9D63D /* SynopsisTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SynopsisTableViewController.h; path = ../SynopsisTableViewController.h; sourceTree = "<group>"; };
+		89EBD9B418F329F400F9D63D /* SynopsisTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SynopsisTableViewController.m; path = ../SynopsisTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,7 +183,6 @@
 		8949F723188DDD090069E9D4 = {
 			isa = PBXGroup;
 			children = (
-				8973C2E818B5BBDB0052346A /* Tutorial Images */,
 				8949F737188DDD090069E9D4 /* FilmHeat */,
 				8949F75D188DDD090069E9D4 /* FilmHeatTests */,
 				8949F72E188DDD090069E9D4 /* Frameworks */,
@@ -281,6 +284,8 @@
 		8949F777188DF2980069E9D4 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				892E3A8D18F3581E00640930 /* SynopsisTableViewCell.h */,
+				892E3A8E18F3581E00640930 /* SynopsisTableViewCell.m */,
 				89BC655318A3008D00B27385 /* SFMCTableViewCell.h */,
 				89BC655418A3008D00B27385 /* SFMCTableViewCell.m */,
 			);
@@ -290,6 +295,8 @@
 		8949F778188DF29C0069E9D4 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				89EBD9B318F329F400F9D63D /* SynopsisTableViewController.h */,
+				89EBD9B418F329F400F9D63D /* SynopsisTableViewController.m */,
 				89EBD9B018EE25E800F9D63D /* SFSettingsTableViewController.h */,
 				89EBD9B118EE25E800F9D63D /* SFSettingsTableViewController.m */,
 				89C8923118D910DE009E3E6B /* SFAboutTableViewController.h */,
@@ -300,8 +307,8 @@
 				89366F3A18AAFF3500C278DA /* SFTutorialViewController.m */,
 				8931CF6118A4820100A4CFBC /* SFNoneTableViewController.h */,
 				8931CF6218A4820100A4CFBC /* SFNoneTableViewController.m */,
-				8931CF5E18A44B1C00A4CFBC /* SFWantedTableViewController.h */,
 				8931CF5F18A44B1C00A4CFBC /* SFWantedTableViewController.m */,
+				8931CF5E18A44B1C00A4CFBC /* SFWantedTableViewController.h */,
 				8931CF5B18A44B0D00A4CFBC /* SFSeenTableViewController.h */,
 				8931CF5C18A44B0D00A4CFBC /* SFSeenTableViewController.m */,
 				8931CF5818A44AA800A4CFBC /* SFBaseViewController.h */,
@@ -437,7 +444,6 @@
 				8949F750188DDD090069E9D4 /* Images.xcassets in Resources */,
 				89A43FF418AAF267009DC814 /* masks@2x.png in Resources */,
 				89A43FEC18AAF0BD009DC814 /* check@2x.png in Resources */,
-				8973C2E918B5BBDB0052346A /* Tutorial Images in Resources */,
 				8949F73C188DDD090069E9D4 /* InfoPlist.strings in Resources */,
 				89A43FE818AAEB1E009DC814 /* delete@2x.png in Resources */,
 				89A43EE918A935C3009DC814 /* SeenExtraLarge.png in Resources */,
@@ -518,9 +524,11 @@
 				8931CF5D18A44B0D00A4CFBC /* SFSeenTableViewController.m in Sources */,
 				8949F73E188DDD090069E9D4 /* main.m in Sources */,
 				89EBD9B218EE25E800F9D63D /* SFSettingsTableViewController.m in Sources */,
+				89EBD9B518F329F400F9D63D /* SynopsisTableViewController.m in Sources */,
 				8949F772188DE1460069E9D4 /* SFTabBarController.m in Sources */,
 				8931CF6618A5998E00A4CFBC /* Constants.m in Sources */,
 				8931CF6318A4820100A4CFBC /* SFNoneTableViewController.m in Sources */,
+				892E3A8F18F3581E00640930 /* SynopsisTableViewCell.m in Sources */,
 				8931CF6018A44B1C00A4CFBC /* SFWantedTableViewController.m in Sources */,
 				89366F3E18AAFF4600C278DA /* SFTutorialChildViewController.m in Sources */,
 				89366F3B18AAFF3500C278DA /* SFTutorialViewController.m in Sources */,
