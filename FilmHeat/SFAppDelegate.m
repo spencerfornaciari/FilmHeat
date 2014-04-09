@@ -31,6 +31,7 @@
     [[UITabBar appearance] setTintColor:[UIColor filmHeatComplementaryColor]];
     [[UITabBar appearance] setBarTintColor:[UIColor filmHeatPrimaryColor]];
     
+    
     //Instantiate the tutorial view controller if it is their first time running the app
     UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main"
                                                              bundle: nil];

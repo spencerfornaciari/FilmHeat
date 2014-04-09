@@ -73,7 +73,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UIFont *fontText = [UIFont fontWithName:@"HelveticaNeue" size:18];
+    UIFont *fontText = [UIFont fontWithName:@"HelveticaNeue" size:17];
     CGSize maximumLabelSize = CGSizeMake(280, CGFLOAT_MAX);
     CGRect textRect = [self.synopsisString boundingRectWithSize:maximumLabelSize
                                              options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading)
@@ -82,7 +82,7 @@
     
     CGSize requiredSize = textRect.size;
     
-    return requiredSize.height; // - 50
+    return requiredSize.height + 15;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -99,6 +99,5 @@
 {
     return 0;
 }
-
 
 @end
