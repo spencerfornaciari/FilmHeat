@@ -24,4 +24,5 @@
 - (void)setFilm:(FilmModel *)film;
 - (UIImage *)ratingImage:(NSString *)mpaaRating;
 
+
 @end

@@ -35,6 +35,10 @@
     NSString *filmHeatPath = [documentsURL path];
     _seenItPath = [filmHeatPath stringByAppendingPathComponent:kSEEN_IT_FILE];
     
+    for (FilmModel *model in self.seenArray) {
+        NSLog(@"Seen: %@", model.title);
+    }
+    
 //    if ([self doesArrayExist:kSEEN_IT_FILE]) {
 //        self.seenArray = [NSKeyedUnarchiver unarchiveObjectWithFile:_seenItPath];
 //    } else {

@@ -9,9 +9,13 @@
 #import "SFBaseViewController.h"
 #import "SFFilmModelDataController.h"
 #import "SFTutorialViewController.h"
+#import "SearchDisplayDataController.h"
 
 
 @interface SFBaseViewController ()
+{
+    NSArray *searchResults;
+}
 
 @property (nonatomic, strong) SFSeenTableViewController *seenController;
 @property (nonatomic, strong) SFTheaterTableViewController *theaterController;
@@ -26,10 +30,11 @@
 
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentOutlet;
 @property (weak, nonatomic) IBOutlet UIView *movieContainer;
-@property (weak, nonatomic) IBOutlet UISearchBar *filmSearchBar;
+//@property (weak, nonatomic) IBOutlet UISearchBar *filmSearchBar;
 
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *sortButton;
+//@property (weak, nonatomic) IBOutlet UIBarButtonItem *sortButton;
 
+@property (nonatomic) SearchDisplayDataController *searchData;
 
 
 - (IBAction)segmentPicker:(UISegmentedControl *)sender;
@@ -66,7 +71,7 @@
     self.wantedController = [self.storyboard instantiateViewControllerWithIdentifier:@"WantedView"];
     self.noneController = [self.storyboard instantiateViewControllerWithIdentifier:@"NoneView"];
     
-    self.filmSearchBar.delegate = self;
+//    self.filmSearchBar.delegate = self;
     self.theaterController.delegate = self;
     self.seenController.delegate = self;
     self.wantedController.delegate = self;
@@ -79,9 +84,25 @@
     [self setupFirstView];
     [self rottenFilmData];
 
-    [self filmDoesExist];
+//    [self filmDoesExist];
+    
+    self.searchData = [[SearchDisplayDataController alloc] init];
+    
+    self.searchDisplayController.searchResultsDataSource = self.searchData;
+    self.searchDisplayController.searchResultsDelegate = self.searchData;
+    
+    [self.searchData.searchArray addObjectsFromArray:self.theaterController.theaterArray];
+    [self.searchData.searchArray addObjectsFromArray:self.seenController.seenArray];
+    [self.searchData.searchArray addObjectsFromArray:self.wantedController.wantedArray];
+    [self.searchData.searchArray addObjectsFromArray:self.noneController.noneArray];
+//    NSLog(@"Search Array: %@", self.searchData.searchArray);
+    
+    for (FilmModel *model in self.searchData.searchArray) {
+        NSLog(@"%@", model.title);
+    }
     
     [UIApplication sharedApplication].applicationIconBadgeNumber = self.wantedController.wantedArray.count;
+    self.tabBarItem.badgeValue = [NSString stringWithFormat:@"%d", self.wantedController.wantedArray.count];
 	// Do any additional setup after loading the view.
 }
 
@@ -114,10 +135,6 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (IBAction)openSearchControllerButton:(id)sender {
-
 }
 
 - (IBAction)segmentPicker:(UISegmentedControl *)sender {
@@ -364,47 +381,51 @@
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"title CONTAINS[cd] %@", @"The"];
     NSArray *result = [NSArray arrayWithArray:[arrayNewt filteredArrayUsingPredicate:predicate]];
     
-    NSLog(@"%@", result);
-}
-
-- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar
-{
-    NSLog(@"Search Bar Should Begin Editing");
-    if (self.segmentOutlet.selectedSegmentIndex == 0) {
-        _searchArray = [self.seenController.seenArray copy];
-    } else if (self.segmentOutlet.selectedSegmentIndex == 1){
-        _searchArray = [self.theaterController.theaterArray copy];
-    } else if (self.segmentOutlet.selectedSegmentIndex == 2){
-        _searchArray = [self.wantedController.wantedArray copy];
-    } else if (self.segmentOutlet.selectedSegmentIndex == 3){
-        _searchArray = [self.noneController.noneArray copy];
+    for (FilmModel *model in result) {
+        NSLog(@"%@", model.title);
     }
     
-    [self.seenController.tableView setUserInteractionEnabled:NO];
-    [self.theaterController.tableView setUserInteractionEnabled:NO];
-    [self.wantedController.tableView setUserInteractionEnabled:NO];
-    [self.noneController.tableView setUserInteractionEnabled:NO];
-
-    return YES;
 }
 
-- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
-{
-    [searchBar resignFirstResponder];
-}
+//- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar
+//{
+//    NSLog(@"Search Bar Should Begin Editing");
+//    if (self.segmentOutlet.selectedSegmentIndex == 0) {
+//        _searchArray = [self.seenController.seenArray copy];
+//    } else if (self.segmentOutlet.selectedSegmentIndex == 1){
+//        _searchArray = [self.theaterController.theaterArray copy];
+//    } else if (self.segmentOutlet.selectedSegmentIndex == 2){
+//        _searchArray = [self.wantedController.wantedArray copy];
+//    } else if (self.segmentOutlet.selectedSegmentIndex == 3){
+//        _searchArray = [self.noneController.noneArray copy];
+//    }
+//    
+//    [self.seenController.tableView setUserInteractionEnabled:NO];
+//    [self.theaterController.tableView setUserInteractionEnabled:NO];
+//    [self.wantedController.tableView setUserInteractionEnabled:NO];
+//    [self.noneController.tableView setUserInteractionEnabled:NO];
+//
+//    return YES;
+//}
 
-- (BOOL)searchBarShouldEndEditing:(UISearchBar *)searchBar
-{
-    NSLog(@"Search Bar Should End Editing");
-    [self.seenController.tableView setUserInteractionEnabled:YES];
-    [self.theaterController.tableView setUserInteractionEnabled:YES];
-    [self.wantedController.tableView setUserInteractionEnabled:YES];
-    [self.noneController.tableView setUserInteractionEnabled:YES];
-    
-    return YES;
-}
+//- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+//{
+//    [searchBar resignFirstResponder];
+//}
+//
+//- (BOOL)searchBarShouldEndEditing:(UISearchBar *)searchBar
+//{
+//    NSLog(@"Search Bar Should End Editing");
+//    [self.seenController.tableView setUserInteractionEnabled:YES];
+//    [self.theaterController.tableView setUserInteractionEnabled:YES];
+//    [self.wantedController.tableView setUserInteractionEnabled:YES];
+//    [self.noneController.tableView setUserInteractionEnabled:YES];
+//    
+//    return YES;
+//}
 
 //Updates as user enters text
+/*
 -(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
     
@@ -445,7 +466,7 @@
 -(void) dismissKeyboard:(id)sender
 {
     [self.view endEditing:YES];
-}
+}*/
 
 - (void)rottenFilmData
 {
@@ -632,25 +653,35 @@
 
 - (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
 {
-    NSPredicate *titlePredicate = [NSPredicate predicateWithFormat:@"title CONTAINS[cd] %@", searchText];
     
-    NSMutableArray *myArray = [NSMutableArray new];
+    NSPredicate *resultPredicate = [NSPredicate predicateWithFormat:@"SELF.title contains[c] %@", searchText];
     
-    [myArray addObjectsFromArray:[NSArray arrayWithArray:[self.theaterController.theaterArray filteredArrayUsingPredicate:titlePredicate]]];
-    [myArray addObjectsFromArray:[NSArray arrayWithArray:[self.wantedController.wantedArray filteredArrayUsingPredicate:titlePredicate]]];
-    [myArray addObjectsFromArray:[NSArray arrayWithArray:[self.seenController.seenArray filteredArrayUsingPredicate:titlePredicate]]];
-    [myArray addObjectsFromArray:[NSArray arrayWithArray:[self.noneController.noneArray filteredArrayUsingPredicate:titlePredicate]]];
+    //    if (self.segmenting.selectedSegmentIndex == 0) {
+    //        searchResults = [dataNew.array1 filteredArrayUsingPredicate:resultPredicate];
+    //    } else {
+    //        searchResults = [dataNew2.array2 filteredArrayUsingPredicate:resultPredicate];
+    //    }
+    
+    searchResults = [[self.searchData.searchArray filteredArrayUsingPredicate:resultPredicate] copy];
+    
+    for (FilmModel *model in self.searchData.searchArray) {
+        NSLog(@"Pre-Title: %@", model.title);
+    }
+    
+    for (FilmModel *model in searchResults) {
+        NSLog(@"Post-Search: %@", model.title);
+    }
     
 }
 
-    
-
 -(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
 {
+    
     [self filterContentForSearchText:searchString
                                scope:[[self.searchDisplayController.searchBar scopeButtonTitles]
                                       objectAtIndex:[self.searchDisplayController.searchBar
                                                      selectedScopeButtonIndex]]];
+    
     return YES;
 }
 @end

@@ -35,6 +35,7 @@
     
     [[UIApplication sharedApplication] setStatusBarHidden:FALSE];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+
     
 //    //get the Image
 //    UIImage *img = [UIImage imageNamed:@"PG 13"];
@@ -197,5 +198,26 @@
     imageView.frame = CGRectMake(126, 170, image.size.width, image.size.height);
     [self.view addSubview:imageView];
     
+}
+
+-(IBAction)twitterShareButton:(id)sender
+{
+//    if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter]) {
+//        SLComposeViewController *twitterController = [[SLComposeViewController alloc] init];
+//        twitterController = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
+//        
+//        [twitterController setInitialText:[NSString stringWithFormat:@"I think we should go see %@", self.film.title]];
+//        
+//        [self presentViewController:twitterController animated:YES completion:nil];
+//    }
+    
+    if ([SLComposeViewController isAvailableForServiceType:SLServiceTypeFacebook]) {
+        SLComposeViewController *facebookController = [[SLComposeViewController alloc] init];
+        facebookController = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeFacebook];
+        
+        [facebookController setInitialText:[NSString stringWithFormat:@"I think we should go see %@", self.film.title]];
+        
+        [self presentViewController:facebookController animated:YES completion:nil];
+    }
 }
 @end

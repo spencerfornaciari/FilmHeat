@@ -23,6 +23,18 @@
     [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor filmHeatComplementaryColor]}];
     [[UINavigationBar appearance] setTintColor:[UIColor filmHeatComplementaryColor]];
     
+    [[UISearchBar appearance] setBackgroundColor:[UIColor filmHeatPrimaryColor]];
+//    [[UINavigationBar appearance] setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+//    [[UINavigationBar appearance] setShadowImage:[UIImage new]];
+//    [[UINavigationBar appearance] setTranslucent:YES];
+    
+//    [self.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+//    self.navigationBar.shadowImage = [UIImage new];
+//    self.navigationBar.translucent = YES;
+    
+//    [[UISearchBar appearance] setTintColor:[UIColor filmHeatPrimaryColor]];
+    
+    
     //Styling buttons/controllers on the Navigation Controller
     [[UISegmentedControl appearance] setTintColor:[UIColor filmHeatComplementaryColor]];
     [[UIBarButtonItem appearance] setTintColor:[UIColor filmHeatComplementaryColor]];
