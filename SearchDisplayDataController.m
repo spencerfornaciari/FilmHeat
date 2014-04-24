@@ -32,10 +32,16 @@
     
     SFMCTableViewCell *cell = [[SFMCTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"Cell"];
     
-    NSString *title = [self.searchArray[indexPath.row] title];
     //cell.selectionStyle = UITableViewCellSelectionStyleNone;
-
+    
+    [cell setFilm:self.searchArray[indexPath.row]];
+    
     return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"Selected: %@", self.searchArray[indexPath.row]);
 }
 
 @end

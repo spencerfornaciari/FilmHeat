@@ -50,6 +50,11 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    id tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker set:kGAIScreenName
+           value:@"No Interest Controller"];
+    [tracker send:[[GAIDictionaryBuilder createAppView] build]];
+    
     [self.tableView reloadData];
 }
 

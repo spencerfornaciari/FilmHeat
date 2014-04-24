@@ -54,6 +54,11 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    id tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker set:kGAIScreenName
+           value:@"Seen It Controller"];
+    [tracker send:[[GAIDictionaryBuilder createAppView] build]];
+    
     [NSKeyedArchiver archiveRootObject:self.seenArray toFile:_seenItPath];
 
     [self.tableView reloadData];

@@ -126,6 +126,16 @@
 
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    id tracker = [[GAI sharedInstance] defaultTracker];
+    [tracker set:kGAIScreenName
+           value:[NSString stringWithFormat:@"Movie Detail View: %@", self.film.title]];
+    [tracker send:[[GAIDictionaryBuilder createAppView] build]];
+}
+
 
 - (void)didReceiveMemoryWarning
 {
