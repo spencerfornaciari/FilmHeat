@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5064" systemVersion="13E28" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
-    <entity name="Actor" syncable="YES">
+    <entity name="Actor" representedClassName="Actor" syncable="YES">
         <attribute name="character" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="film" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Film" inverseName="actors" inverseEntity="Film" syncable="YES"/>
     </entity>
-    <entity name="Film" syncable="YES">
+    <entity name="Film" representedClassName="Film" syncable="YES">
         <attribute name="audienceRating" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="audienceScore" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="criticalConsensus" optional="YES" attributeType="String" syncable="YES"/>
@@ -23,15 +23,15 @@
         <attribute name="thumbnailPosterLocation" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="userRating" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <relationship name="actors" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Actor" inverseName="film" inverseEntity="Actor" syncable="YES"/>
+        <relationship name="actors" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Actor" inverseName="film" inverseEntity="Actor" syncable="YES"/>
         <relationship name="genres" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Genre" inverseName="film" inverseEntity="Genre" syncable="YES"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="films" inverseEntity="User" syncable="YES"/>
     </entity>
-    <entity name="Genre" syncable="YES">
+    <entity name="Genre" representedClassName="Genre" syncable="YES">
         <attribute name="category" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="film" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Film" inverseName="genres" inverseEntity="Film" syncable="YES"/>
     </entity>
-    <entity name="User" syncable="YES">
+    <entity name="User" representedClassName="User" syncable="YES">
         <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="country" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="emailAddress" optional="YES" attributeType="String" syncable="YES"/>
@@ -42,9 +42,9 @@
         <relationship name="films" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Film" inverseName="user" inverseEntity="Film" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Film" positionX="-198" positionY="-9" width="128" height="343"/>
-        <element name="User" positionX="-369" positionY="-9" width="128" height="163"/>
-        <element name="Genre" positionX="-18" positionY="-9" width="128" height="73"/>
         <element name="Actor" positionX="-18" positionY="162" width="128" height="88"/>
+        <element name="Film" positionX="-198" positionY="-9" width="128" height="343"/>
+        <element name="Genre" positionX="-18" positionY="-9" width="128" height="75"/>
+        <element name="User" positionX="-369" positionY="-9" width="128" height="165"/>
     </elements>
 </model>
