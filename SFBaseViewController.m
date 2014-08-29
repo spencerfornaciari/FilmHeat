@@ -65,6 +65,7 @@
     _seenItPath = [filmHeatPath stringByAppendingPathComponent:kSEEN_IT_FILE];
     _wantToSeeItPath = [filmHeatPath stringByAppendingPathComponent:kWANT_TO_FILE];
     _dontWantToSeeItPath = [filmHeatPath stringByAppendingPathComponent:kDONT_WANT_IT_FILE];
+    NSLog(@"Seen: %@", _seenItPath);
     
     self.seenController = [self.storyboard instantiateViewControllerWithIdentifier:@"SeenView"];
     self.theaterController = [self.storyboard instantiateViewControllerWithIdentifier:@"TheaterView"];

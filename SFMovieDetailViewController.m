@@ -136,7 +136,6 @@
     [tracker send:[[GAIDictionaryBuilder createAppView] build]];
 }
 
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
