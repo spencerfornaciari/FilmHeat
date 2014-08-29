@@ -56,10 +56,10 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    id tracker = [[GAI sharedInstance] defaultTracker];
-    [tracker set:kGAIScreenName
-           value:@"Theater Controller"];
-    [tracker send:[[GAIDictionaryBuilder createAppView] build]];
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    
+    [tracker send:[[[GAIDictionaryBuilder createAppView] set:@"Theater View"
+                                                      forKey:kGAIScreenName] build]];
     
     NSMutableArray *ratingFilterArray = [NSMutableArray new];
     

@@ -130,10 +130,11 @@
 {
     [super viewWillAppear:animated];
     
-    id tracker = [[GAI sharedInstance] defaultTracker];
-    [tracker set:kGAIScreenName
-           value:[NSString stringWithFormat:@"Movie Detail View: %@", self.film.title]];
-    [tracker send:[[GAIDictionaryBuilder createAppView] build]];
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    
+    [tracker send:[[[GAIDictionaryBuilder createAppView] set:self.film.title
+                                                      forKey:kGAIScreenName] build]];
+    
 }
 
 - (void)didReceiveMemoryWarning
