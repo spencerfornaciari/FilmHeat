@@ -36,6 +36,21 @@
     [[UITabBar appearance] setTintColor:[UIColor filmHeatComplementaryColor]];
     [[UITabBar appearance] setBarTintColor:[UIColor filmHeatPrimaryColor]];
     
+    if (![[NSUserDefaults standardUserDefaults] objectForKey:@"criticThreshold"]) {
+        [[NSUserDefaults standardUserDefaults] setObject:@0 forKey:@"criticThreshold"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
+    
+    if (![[NSUserDefaults standardUserDefaults] objectForKey:@"audienceThreshold"]) {
+        [[NSUserDefaults standardUserDefaults] setObject:@0 forKey:@"audienceThreshold"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
+    
+    if (![[NSUserDefaults standardUserDefaults] objectForKey:@"varianceThreshold"]) {
+        [[NSUserDefaults standardUserDefaults] setObject:@100 forKey:@"varianceThreshold"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
+    
     
     //Instantiate the tutorial view controller if it is their first time running the app
 //    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main"

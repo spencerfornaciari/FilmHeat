@@ -60,6 +60,43 @@
     return [array sortedArrayUsingDescriptors:@[sortDescriptor]];
 }
 
+//Fetchs the connections of the current user
++(NSArray *)findCategoryArray:(NSNumber *)category {
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Film" inManagedObjectContext:[CoreDataHelper managedContext]];
+    NSFetchRequest *request = [NSFetchRequest new];
+    [request setEntity:entity];
+    
+    NSPredicate *categoryPredicate = [NSPredicate predicateWithFormat:@"interestStatus == %@", category];
+    
+    NSPredicate *criticPredicate = [NSPredicate predicateWithFormat:@"criticScore >= %@", [[NSUserDefaults standardUserDefaults] objectForKey:@"criticThreshold"]];
+    
+//    NSPredicate *audiencePredicate = [NSPredicate predicateWithFormat:@"audienceScore >= %@", [[NSUserDefaults standardUserDefaults] objectForKey:@"audienceThreshold"]];
+//    
+//    NSPredicate *variancePredicate = [NSPredicate predicateWithFormat:@"ratingVariance <= %@", [[NSUserDefaults standardUserDefaults] objectForKey:@"varianceThreshold"]];
+//    
+    NSPredicate *customPredicate = [NSCompoundPredicate orPredicateWithSubpredicates:@[categoryPredicate, criticPredicate]];
+    
+    [request setPredicate:categoryPredicate];
+
+    NSError *error;
+    NSArray *array = [[CoreDataHelper managedContext] executeFetchRequest:request error:&error];
+    
+    NSLog(@"Array count: %li", (long)array.count);
+    
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc]
+                                        initWithKey:@"title" ascending:YES];
+    
+    return [array sortedArrayUsingDescriptors:@[sortDescriptor]];
+}
+
+
+//    for (FilmModel *film in self.strongArray) {
+//        if ([film.ratingValue integerValue] >= [[NSUserDefaults standardUserDefaults] integerForKey:@"mpaaRatingThreshold"] && [film.criticsRating integerValue] >= [[NSUserDefaults standardUserDefaults] integerForKey:@"criticThreshold"] && [film.audienceRating integerValue] >= [[NSUserDefaults standardUserDefaults] integerForKey:@"audienceThreshold"] && [film.ratingVariance integerValue] <= [[NSUserDefaults standardUserDefaults] integerForKey:@"varianceThreshold"]) {
+//            [ratingFilterArray addObject:film];
+//        }
+//    }
+
+
 +(BOOL)doesFilmExist:(NSString *)filmID {
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Film" inManagedObjectContext:[CoreDataHelper managedContext]];
     

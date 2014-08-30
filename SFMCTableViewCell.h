@@ -8,11 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "MCSwipeTableViewCell.h"
-#import "FilmModel.h"
+#import "Film.h"
 
 @interface SFMCTableViewCell : MCSwipeTableViewCell
 
-@property (weak, nonatomic) FilmModel *film;
+@property (weak, nonatomic) Film *film;
 
 @property (strong, nonatomic) UIImage *ratingImage;
 @property (strong, nonatomic) IBOutlet UILabel *filmTitle;
@@ -21,7 +21,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *filmCriticsLabel;
 @property (strong, nonatomic) IBOutlet UILabel *filmAudiencesLabel;
 
-- (void)setFilm:(FilmModel *)film;
+- (void)setFilm:(Film *)film;
 - (UIImage *)ratingImage:(NSString *)mpaaRating;
 
 

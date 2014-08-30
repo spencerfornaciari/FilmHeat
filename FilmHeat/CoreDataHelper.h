@@ -15,8 +15,7 @@
 +(NSManagedObjectContext *)managedContext;
 
 //User Methods
-//+(Worker *)currentUser;
-+(NSArray *)filmsArray;
++(NSArray *)findCategoryArray:(NSNumber *)category;
 +(BOOL)doesFilmExist:(NSString *)filmID;
 
 //Save Context

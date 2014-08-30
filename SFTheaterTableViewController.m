@@ -10,6 +10,7 @@
 #import "SFFilmModelDataController.h"
 #import "SFMovieDetailViewController.h"
 #import "SFMCTableViewCell.h"
+#import "CoreDataHelper.h";
 
 @interface SFTheaterTableViewController ()
 
@@ -38,7 +39,10 @@
     self.tableView.contentInset = UIEdgeInsetsMake(-64, 0, -52, 0);
     
     self.downloadQueue = [NSOperationQueue new];
-//    
+    
+    self.theaterArray = [CoreDataHelper findCategoryArray:@0];
+//
+    
 //    self.theaterArray = self.controller.rottenTomatoesArray;
 //    
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -61,14 +65,14 @@
     [tracker send:[[[GAIDictionaryBuilder createAppView] set:@"Theater View"
                                                       forKey:kGAIScreenName] build]];
     
-    NSMutableArray *ratingFilterArray = [NSMutableArray new];
-    
-    for (FilmModel *film in self.strongArray) {
-        if ([film.ratingValue integerValue] >= [[NSUserDefaults standardUserDefaults] integerForKey:@"mpaaRatingThreshold"] && [film.criticsRating integerValue] >= [[NSUserDefaults standardUserDefaults] integerForKey:@"criticThreshold"] && [film.audienceRating integerValue] >= [[NSUserDefaults standardUserDefaults] integerForKey:@"audienceThreshold"] && [film.ratingVariance integerValue] <= [[NSUserDefaults standardUserDefaults] integerForKey:@"varianceThreshold"]) {
-            [ratingFilterArray addObject:film];
-        }
-    }
-    self.theaterArray = ratingFilterArray;
+//    NSMutableArray *ratingFilterArray = [NSMutableArray new];
+//    
+//    for (FilmModel *film in self.strongArray) {
+//        if ([film.ratingValue integerValue] >= [[NSUserDefaults standardUserDefaults] integerForKey:@"mpaaRatingThreshold"] && [film.criticsRating integerValue] >= [[NSUserDefaults standardUserDefaults] integerForKey:@"criticThreshold"] && [film.audienceRating integerValue] >= [[NSUserDefaults standardUserDefaults] integerForKey:@"audienceThreshold"] && [film.ratingVariance integerValue] <= [[NSUserDefaults standardUserDefaults] integerForKey:@"varianceThreshold"]) {
+//            [ratingFilterArray addObject:film];
+//        }
+//    }
+//    self.theaterArray = ratingFilterArray;
     
     [self.tableView reloadData];
 }
@@ -100,7 +104,7 @@
     
     cell.imageView.image = nil;
     
-    FilmModel *film = self.theaterArray[indexPath.row];
+    Film *film = self.theaterArray[indexPath.row];
     
     if (!cell) {
         cell = [[SFMCTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"Cell"];
@@ -117,23 +121,22 @@
     }
     
     NSMutableArray *selectedArray = [NSMutableArray new];
-    selectedArray = self.theaterArray;
-
-    [cell setFilm:[selectedArray objectAtIndex:indexPath.row]];
-    
-    [self checkForFilmImage:film];
-    
-    if (!film.posterImage && !film.isDownloading) {
-        film.isDownloading = TRUE;
-        [self downloadPosterAtIndex:indexPath.row];
-        
-        cell.filmThumbnailPoster.image = [UIImage imageNamed:@"Movies"];
-        [cell.filmThumbnailPoster setContentMode:UIViewContentModeScaleAspectFit];
-        
-    } else {
-        cell.filmThumbnailPoster.image = film.posterImage;
-    
-    }
+    selectedArray = [self.theaterArray mutableCopy];
+//
+//    [cell setFilm:[selectedArray objectAtIndex:indexPath.row]];
+//    
+////    [self checkForFilmImage:film];
+////    
+//    if (!film.thumbnailPosterLocation) {
+//        [self downloadPosterAtIndex:indexPath.row];
+//        
+//        cell.filmThumbnailPoster.image = [UIImage imageNamed:@"Movies"];
+//        [cell.filmThumbnailPoster setContentMode:UIViewContentModeScaleAspectFit];
+//        
+//    } else {
+//        cell.filmThumbnailPoster.image = [UIImage imageNamed:film.posterLocation];
+//    
+//    }
     
     // Configuring the views and colors.
     UIView *checkView = [self viewWithImageName:@"SeenExtraLarge"];
@@ -175,14 +178,14 @@
 -(void)deleteCell:(UITableViewCell *)cell forIndex:(NSInteger)index
 {
    
-    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-    [self.delegate passFilmFromTheater:self.theaterArray[indexPath.row] forIndex:index];
-    
-    [self.strongArray removeObjectAtIndex:[self.strongArray indexOfObject:self.theaterArray[indexPath.row]]];
-    
-    [self.theaterArray removeObjectAtIndex:indexPath.row];
-    
-    [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+//    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+//    [self.delegate passFilmFromTheater:self.theaterArray[indexPath.row] forIndex:index];
+//    
+//    [self.strongArray removeObjectAtIndex:[self.strongArray indexOfObject:self.theaterArray[indexPath.row]]];
+//    
+//    [self.theaterArray removeObjectAtIndex:indexPath.row];
+//    
+//    [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
 }
 
 
@@ -190,54 +193,44 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:@"detail"]) {
-        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        [(SFMovieDetailViewController *)segue.destinationViewController setFilm:self.theaterArray[indexPath.row]];
-    }
+//    if ([segue.identifier isEqualToString:@"detail"]) {
+//        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+//        [(SFMovieDetailViewController *)segue.destinationViewController setFilm:self.theaterArray[indexPath.row]];
+//    }
 }
 
 - (void)reloadTable:(NSNotification *)note
 {
-    FilmModel *model = [note.userInfo objectForKey:@"film"];
-    NSInteger modelRow = [self.theaterArray indexOfObject:model];
-    NSIndexPath *row = [NSIndexPath indexPathForRow:modelRow inSection:0];
-    
-    [self.tableView reloadRowsAtIndexPaths:@[row] withRowAnimation:UITableViewRowAnimationNone];
+//    FilmModel *model = [note.userInfo objectForKey:@"film"];
+//    NSInteger modelRow = [self.theaterArray indexOfObject:model];
+//    NSIndexPath *row = [NSIndexPath indexPathForRow:modelRow inSection:0];
+//    
+//    [self.tableView reloadRowsAtIndexPaths:@[row] withRowAnimation:UITableViewRowAnimationNone];
 }
 
 -(void)downloadPosterAtIndex:(NSInteger)index
 {
-    FilmModel *film = self.theaterArray[index];
-    NSURL *posterURL = [NSURL URLWithString:film.thumbnailPoster];
+    Film *film = self.theaterArray[index];
+    NSURL *posterURL = [NSURL URLWithString:film.thumbnailPosterURL];
     NSIndexPath *indexPath = [NSIndexPath indexPathForItem:index inSection:0];
     
     [_downloadQueue addOperationWithBlock:^{
         
         NSError *error;
-        NSData *posterData = [NSData dataWithContentsOfURL:posterURL options:NSDataReadingMappedIfSafe error:&error];
-        
+        NSData *posterData = [NSData dataWithContentsOfURL:posterURL];
         
         if (error) {
             //film.isDownloading = NO;
         } else {
             
         
-            film.posterImage = [UIImage imageWithData:posterData];
-            posterData = UIImageJPEGRepresentation(film.posterImage, 0.5);
+            UIImage *image = [UIImage imageWithData:posterData];
+            posterData = UIImageJPEGRepresentation(image, 1);
             
             NSString *posterLocation = [NSString stringWithFormat:@"%@/%@.jpg", [self documentsDirectoryPath], [film.title stringByReplacingOccurrencesOfString:@":" withString:@""]];
-            film.posterFilePath = posterLocation;
-            //NSLog(@"%@", film.posterFilePath);
+            film.thumbnailPosterLocation = posterLocation;
             
-            [posterData writeToFile:film.posterFilePath atomically:YES];
-            
-            
-            //NSLog(@"%hhd", [self doesFileExist:film.posterFilePath]);
-//            if (film.posterFilePath) {
-//                NSLog(@"%@", film.posterFilePath);
-//            } else {
-//                NSLog(@"TRUE");
-//            }
+            [posterData writeToFile:film.thumbnailPosterLocation atomically:YES];
             
             
         }
@@ -258,31 +251,31 @@
     return [documentsURL path];
 }
 
-- (void)checkForFilmImage:(FilmModel *)film
-{
-    //NSLog(@"File: %@", film.posterImagePath);
-    NSString *string = [NSString stringWithFormat:@"%@/%@.jpg", [self documentsDirectoryPath], [film.title stringByReplacingOccurrencesOfString:@":" withString:@""]];
-   // NSLog(@"String: %@", string);
-    
-    NSError *error;
-    //NSData *data = [NSData dataWithContentsOfFile:string options:NSDataReadingMapped error:&error];
-    
-    UIImage *image2 = [UIImage imageWithContentsOfFile:string];
-    
-    if (error) {
-        NSLog(@"%@", error);
-    } else {
-            }
-    
-    //UIImage *image = [UIImage imageWithContentsOfFile:[NSData dataWithContentsOfFile:film.posterImagePath]];
-    //NSLog(@"Does It Exists?: %hhd", [self doesFileExist:image2]);
-
-    
-    if (image2) {
-        //NSLog(@"%@", image);
-        film.posterImage = image2;
-    }
-}
+//- (void)checkForFilmImage:(Film *)film
+//{
+//    //NSLog(@"File: %@", film.posterImagePath);
+//    NSString *string = [NSString stringWithFormat:@"%@/%@.jpg", [self documentsDirectoryPath], [film.title stringByReplacingOccurrencesOfString:@":" withString:@""]];
+//   // NSLog(@"String: %@", string);
+//    
+//    NSError *error;
+//    //NSData *data = [NSData dataWithContentsOfFile:string options:NSDataReadingMapped error:&error];
+//    
+//    UIImage *image2 = [UIImage imageWithContentsOfFile:string];
+//    
+//    if (error) {
+//        NSLog(@"%@", error);
+//    } else {
+//            }
+//    
+//    //UIImage *image = [UIImage imageWithContentsOfFile:[NSData dataWithContentsOfFile:film.posterImagePath]];
+//    //NSLog(@"Does It Exists?: %hhd", [self doesFileExist:image2]);
+//
+//    
+//    if (image2) {
+//        //NSLog(@"%@", image);
+//        film.posterImage = image2;
+//    }
+//}
 
 -(BOOL)doesFileExist:(NSString *)stringName
 {

@@ -26,25 +26,25 @@
     // Configure the view for the selected state
 }
 
-- (void)setFilm:(FilmModel *)film
+- (void)setFilm:(Film *)film
 {
     _film = film;
     
     self.filmTitle.text = film.title;
     
-    if (film.myRating) {
+    if (film.ratingValue) {
         self.filmCriticsLabel.hidden = TRUE;
-        self.myRatingLabel.text = [NSString stringWithFormat:@"My Rating: %@", film.myRating];
+        self.myRatingLabel.text = [NSString stringWithFormat:@"My Rating: %@", film.ratingValue];
     }
     
-    if (film.criticsRating) {
+    if (film.criticRating) {
         self.filmCriticsLabel.hidden = FALSE;
-        self.filmCriticsLabel.text = [NSString stringWithFormat:@"Critics: %@", [film.criticsRating stringValue]];
+        self.filmCriticsLabel.text = [NSString stringWithFormat:@"Critics: %@", [film.criticScore stringValue]];
     }
     
     if (film.audienceRating) {
         self.filmAudiencesLabel.hidden = FALSE;
-        self.filmAudiencesLabel.text = [NSString stringWithFormat:@"Audiences: %@", [film.audienceRating stringValue]];
+        self.filmAudiencesLabel.text = [NSString stringWithFormat:@"Audiences: %@", [film.audienceScore stringValue]];
     }
     
     if (!self.ratingImage) {
@@ -55,6 +55,16 @@
     }
     
     
+    if (!film.thumbnailPosterLocation) {
+        UIImage *image = [UIImage imageWithContentsOfFile:[NSData dataWithContentsOfFile:film.thumbnailPosterURL]];
+        NSData *posterData = UIImageJPEGRepresentation(image, 1);
+        
+        NSString *posterLocation = [NSString stringWithFormat:@"%@/%@.jpg", [self documentsDirectoryPath], [film.title stringByReplacingOccurrencesOfString:@":" withString:@""]];
+        film.thumbnailPosterLocation = posterLocation;
+        
+        [posterData writeToFile:film.thumbnailPosterLocation atomically:YES];
+
+    }
     
     //UIImage *image = [UIImage imageWithContentsOfFile:[NSData dataWithContentsOfFile:film.posterImagePath]];
 //
@@ -100,6 +110,10 @@
     
 }
 
-
+- (NSString *)documentsDirectoryPath
+{
+    NSURL *documentsURL = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+    return [documentsURL path];
+}
 
 @end

@@ -581,6 +581,10 @@
     }
     
     [CoreDataHelper saveContext];
+    
+    NSArray *array = [CoreDataHelper findCategoryArray:@2];
+    NSLog(@"Category: %lu", (unsigned long)array.count);
+    
 
 }
 
