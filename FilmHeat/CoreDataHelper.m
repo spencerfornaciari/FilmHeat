@@ -66,27 +66,33 @@
     NSFetchRequest *request = [NSFetchRequest new];
     [request setEntity:entity];
     
-    NSPredicate *categoryPredicate = [NSPredicate predicateWithFormat:@"interestStatus == %@", category];
-    
-    NSPredicate *criticPredicate = [NSPredicate predicateWithFormat:@"criticScore >= %@", [[NSUserDefaults standardUserDefaults] objectForKey:@"criticThreshold"]];
-    
+//    NSPredicate *categoryPredicate = [NSPredicate predicateWithFormat:@"interestStatus == %@", category];
+//    
+//    NSPredicate *ratingPredicate = [NSPredicate predicateWithFormat:@"ratingValue >= %@", [[NSUserDefaults standardUserDefaults] objectForKey:@"mpaaRatingThreshold"]];
+//    
+//    NSPredicate *criticPredicate = [NSPredicate predicateWithFormat:@"criticScore >= %@", [[NSUserDefaults standardUserDefaults] objectForKey:@"criticThreshold"]];
+//    
+//    NSLog(@"Threshold: %@", [[NSUserDefaults standardUserDefaults] objectForKey:@"criticThreshold"]);
+//    
 //    NSPredicate *audiencePredicate = [NSPredicate predicateWithFormat:@"audienceScore >= %@", [[NSUserDefaults standardUserDefaults] objectForKey:@"audienceThreshold"]];
-//    
+////
 //    NSPredicate *variancePredicate = [NSPredicate predicateWithFormat:@"ratingVariance <= %@", [[NSUserDefaults standardUserDefaults] objectForKey:@"varianceThreshold"]];
-//    
-    NSPredicate *customPredicate = [NSCompoundPredicate orPredicateWithSubpredicates:@[categoryPredicate, criticPredicate]];
+////
+//    NSPredicate *customPredicate = [NSCompoundPredicate orPredicateWithSubpredicates:@[categoryPredicate, criticPredicate]];
     
-    [request setPredicate:categoryPredicate];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:
+                              @"(interestStatus == %@) AND (ratingValue >= %@) AND (criticScore >= %@) AND (audienceScore >= %@) AND (ratingVariance <= %@)", category, [[NSUserDefaults standardUserDefaults] objectForKey:@"mpaaRatingThreshold"], [[NSUserDefaults standardUserDefaults] objectForKey:@"criticThreshold"], [[NSUserDefaults standardUserDefaults] objectForKey:@"audienceThreshold"], [[NSUserDefaults standardUserDefaults] objectForKey:@"varianceThreshold"]];
+    
+    [request setPredicate:predicate];
+    
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc]
+                                        initWithKey:@"releaseDate" ascending:NO];
+    [request setSortDescriptors:@[sortDescriptor]];
 
     NSError *error;
     NSArray *array = [[CoreDataHelper managedContext] executeFetchRequest:request error:&error];
     
-    NSLog(@"Array count: %li", (long)array.count);
-    
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc]
-                                        initWithKey:@"title" ascending:YES];
-    
-    return [array sortedArrayUsingDescriptors:@[sortDescriptor]];
+    return array;
 }
 
 

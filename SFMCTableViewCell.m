@@ -48,12 +48,11 @@
     }
     
     if (!self.ratingImage) {
-        self.ratingImage = [self ratingImage:film.mpaaRating];
+        self.ratingImage = [self getRatingImage:film.ratingValue];
         UIImageView *imageView = [[UIImageView alloc] initWithImage:self.ratingImage];
         imageView.frame = CGRectMake(84, 34, self.ratingImage.size.width, self.ratingImage.size.height);
         [self addSubview:imageView];
     }
-    
     
     if (!film.thumbnailPosterLocation) {
         UIImage *image = [UIImage imageWithContentsOfFile:[NSData dataWithContentsOfFile:film.thumbnailPosterURL]];
@@ -101,6 +100,28 @@
         UIImage *image = [UIImage imageNamed:@"PG 13"];
         return image;
     } else if ([mpaaRating isEqualToString:@"R"]) {
+        UIImage *image = [UIImage imageNamed:@"R"];
+        return image;
+    } else {
+        UIImage *image = [UIImage imageNamed:@"NC 17"];
+        return image;
+    }
+    
+}
+
+-(UIImage *)getRatingImage:(NSNumber *)rating
+{
+    
+    if ([rating integerValue] == 1) {
+        UIImage *image = [UIImage imageNamed:@"G"];
+        return image;
+    } else if ([rating integerValue] == 2){
+        UIImage *image = [UIImage imageNamed:@"PG"];
+        return image;
+    } else if ([rating integerValue] == 3) {
+        UIImage *image = [UIImage imageNamed:@"PG 13"];
+        return image;
+    } else if ([rating integerValue] == 4) {
         UIImage *image = [UIImage imageNamed:@"R"];
         return image;
     } else {

@@ -40,7 +40,7 @@
     
     self.downloadQueue = [NSOperationQueue new];
     
-    self.theaterArray = [CoreDataHelper findCategoryArray:@0];
+    
 //
     
 //    self.theaterArray = self.controller.rottenTomatoesArray;
@@ -64,6 +64,10 @@
     
     [tracker send:[[[GAIDictionaryBuilder createAppView] set:@"Theater View"
                                                       forKey:kGAIScreenName] build]];
+    
+    self.theaterArray = [CoreDataHelper findCategoryArray:@0];
+    NSLog(@"Count: %li", (long)self.theaterArray.count);
+    [self.tableView reloadData];
     
 //    NSMutableArray *ratingFilterArray = [NSMutableArray new];
 //    
@@ -123,8 +127,8 @@
     NSMutableArray *selectedArray = [NSMutableArray new];
     selectedArray = [self.theaterArray mutableCopy];
 //
-//    [cell setFilm:[selectedArray objectAtIndex:indexPath.row]];
-//    
+    [cell setFilm:[selectedArray objectAtIndex:indexPath.row]];
+//
 ////    [self checkForFilmImage:film];
 ////    
 //    if (!film.thumbnailPosterLocation) {
