@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="G4N-FL-vzT">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="sMn-O9-LgZ">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -317,7 +317,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uXK-4d-cRY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2010" y="-1860"/>
+            <point key="canvasLocation" x="2536" y="-1860"/>
         </scene>
         <!--Tutorial View Controller - Item-->
         <scene sceneID="odT-GW-Nug">
@@ -754,7 +754,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kc9-2o-luT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3155" y="-2390"/>
+            <point key="canvasLocation" x="3681" y="-2390"/>
         </scene>
         <!--Synopsis Table View Controller-->
         <scene sceneID="uPj-ru-ZHO">
@@ -799,7 +799,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cl7-fx-9Bu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3643" y="-2381"/>
+            <point key="canvasLocation" x="4169" y="-2381"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="iCw-yY-Q9M">
@@ -823,6 +823,103 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U6i-8S-QBc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="402" y="-2522"/>
+        </scene>
+        <!--Base Table View Controller-->
+        <scene sceneID="5Eh-Cc-Mgr">
+            <objects>
+                <tableViewController id="S1L-K1-frt" customClass="SFBaseTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="QFf-Pa-mHd">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" id="Bfh-xM-98h">
+                            <rect key="frame" x="0.0" y="64" width="320" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <outlet property="delegate" destination="S1L-K1-frt" id="tdE-Mb-v03"/>
+                            </connections>
+                        </searchBar>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="84" id="Gid-WI-s2m" customClass="SFMCTableViewCell">
+                                <rect key="frame" x="0.0" y="130" width="320" height="84"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Gid-WI-s2m" id="Ts0-Ui-85D">
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="83"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eRX-tL-xeX">
+                                            <rect key="frame" x="84" y="5" width="206" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="18"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MMK-d8-d7X">
+                                            <rect key="frame" x="8" y="0.0" width="65" height="81"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Critics:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gZX-2p-OGP">
+                                            <rect key="frame" x="84" y="57" width="77" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Audiences:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h1w-pL-cII">
+                                            <rect key="frame" x="195" y="57" width="105" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="filmAudiencesLabel" destination="h1w-pL-cII" id="LZv-Xh-inY"/>
+                                    <outlet property="filmCriticsLabel" destination="gZX-2p-OGP" id="sJL-qB-9ul"/>
+                                    <outlet property="filmThumbnailPoster" destination="MMK-d8-d7X" id="6kx-ft-pBM"/>
+                                    <outlet property="filmTitle" destination="eRX-tL-xeX" id="D1D-Fa-a6a"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="S1L-K1-frt" id="Ab8-kQ-LaE"/>
+                            <outlet property="delegate" destination="S1L-K1-frt" id="8hg-jB-2dr"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="azY-CX-uVB">
+                        <nil key="title"/>
+                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="OTU-Fw-m0s">
+                            <rect key="frame" x="96" y="7" width="128" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segments>
+                                <segment title="1"/>
+                                <segment title="2"/>
+                                <segment title="3"/>
+                                <segment title="4"/>
+                            </segments>
+                            <connections>
+                                <action selector="segmentedAction:" destination="S1L-K1-frt" eventType="valueChanged" id="cjn-Wi-pCI"/>
+                            </connections>
+                        </segmentedControl>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="searchBar" destination="Bfh-xM-98h" id="aCL-0R-0PU"/>
+                        <outlet property="searchDisplayController" destination="qYz-a2-iSJ" id="mCc-H9-Hhn"/>
+                        <outlet property="segmentedControl" destination="OTU-Fw-m0s" id="pRz-xg-2yZ"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hwr-kk-LJY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="qYz-a2-iSJ">
+                    <connections>
+                        <outlet property="delegate" destination="S1L-K1-frt" id="Ln9-wf-i5B"/>
+                        <outlet property="searchBar" destination="Bfh-xM-98h" id="yqW-Jb-ig4"/>
+                        <outlet property="searchContentsController" destination="S1L-K1-frt" id="eyC-t6-bQ4"/>
+                        <outlet property="searchResultsDataSource" destination="S1L-K1-frt" id="Uad-bJ-yU8"/>
+                        <outlet property="searchResultsDelegate" destination="S1L-K1-frt" id="GNP-4A-8p4"/>
+                    </connections>
+                </searchDisplayController>
+            </objects>
+            <point key="canvasLocation" x="1045" y="-1847"/>
         </scene>
         <!--About Table View Controller - About-->
         <scene sceneID="Kow-Ar-7nL">
@@ -903,7 +1000,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PkV-kX-jQV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1205" y="-1807"/>
+            <point key="canvasLocation" x="1731" y="-1807"/>
         </scene>
         <!--Navigation Controller - Films-->
         <scene sceneID="6U0-b3-qJd">
@@ -943,6 +1040,24 @@
             </objects>
             <point key="canvasLocation" x="402" y="-3314"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="KPW-md-mYz">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="sMn-O9-LgZ" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="eqf-z1-XcC">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="S1L-K1-frt" kind="relationship" relationship="rootViewController" id="9fx-W1-0MP"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HvC-CZ-NJK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="519" y="-1847"/>
+        </scene>
     </scenes>
     <resources>
         <image name="Horizontal_Slider" width="24" height="23"/>
@@ -955,6 +1070,6 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="aOf-RA-ZZi"/>
+        <segue reference="S32-KN-iGS"/>
     </inferredMetricsTieBreakers>
 </document>
