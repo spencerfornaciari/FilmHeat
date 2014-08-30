@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3683493BBB7C48629F3A1C9C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FF12FEB14B24765906F06AA /* libPods.a */; };
+		785010570EF840A882E34AC5 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AC0E5308A6A54D45BD6288A4 /* libPods.a */; };
 		892E3A8F18F3581E00640930 /* SynopsisTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 892E3A8E18F3581E00640930 /* SynopsisTableViewCell.m */; };
 		8931CF5718A44A4200A4CFBC /* SFTheaterTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8931CF5618A44A4200A4CFBC /* SFTheaterTableViewController.m */; };
 		8931CF5A18A44AA800A4CFBC /* SFBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8931CF5918A44AA800A4CFBC /* SFBaseViewController.m */; };
@@ -42,9 +42,10 @@
 		895A85EE19B0FD6300AE18C3 /* Genre.m in Sources */ = {isa = PBXBuildFile; fileRef = 895A85ED19B0FD6300AE18C3 /* Genre.m */; };
 		895A85F119B0FD6400AE18C3 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 895A85F019B0FD6400AE18C3 /* User.m */; };
 		895A85FA19B0FE2600AE18C3 /* Actor.m in Sources */ = {isa = PBXBuildFile; fileRef = 895A85F919B0FE2600AE18C3 /* Actor.m */; };
-		895A860019B0FE6400AE18C3 /* Film.m in Sources */ = {isa = PBXBuildFile; fileRef = 895A85FF19B0FE6400AE18C3 /* Film.m */; };
+		895A860319B1008B00AE18C3 /* CoreDataHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 895A860219B1008B00AE18C3 /* CoreDataHelper.m */; };
 		8966AA08198179CF00C9E54F /* FilmHeat.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8966AA06198179CF00C9E54F /* FilmHeat.xcdatamodeld */; };
 		896F545C1901A365002762D1 /* SearchDisplayDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 896F545B1901A365002762D1 /* SearchDisplayDataController.m */; };
+		898BA9B419B1086F002FE66C /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8949F735188DDD090069E9D4 /* CoreData.framework */; };
 		898F4CBB189080D20060E847 /* SFFilmModelDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 898F4CBA189080D20060E847 /* SFFilmModelDataController.m */; };
 		89A43EE918A935C3009DC814 /* SeenExtraLarge.png in Resources */ = {isa = PBXBuildFile; fileRef = 89A43EE818A935C3009DC814 /* SeenExtraLarge.png */; };
 		89A43EEB18A936B7009DC814 /* WantExtraLarge.png in Resources */ = {isa = PBXBuildFile; fileRef = 89A43EEA18A936B7009DC814 /* WantExtraLarge.png */; };
@@ -58,13 +59,13 @@
 		89A43FF418AAF267009DC814 /* masks@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 89A43FF218AAF267009DC814 /* masks@2x.png */; };
 		89A43FF718AAF370009DC814 /* wantlist.png in Resources */ = {isa = PBXBuildFile; fileRef = 89A43FF518AAF370009DC814 /* wantlist.png */; };
 		89A43FF818AAF370009DC814 /* wantlist@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 89A43FF618AAF370009DC814 /* wantlist@2x.png */; };
-		89B49C531909BA6500B8C6D0 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8949F735188DDD090069E9D4 /* CoreData.framework */; };
 		89B49C541909BA6F00B8C6D0 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89B49C4B1909B03700B8C6D0 /* SystemConfiguration.framework */; };
 		89B49C551909BA7500B8C6D0 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 897E23F818AAF79500D6B901 /* libz.dylib */; };
 		89B49C561909BA7B00B8C6D0 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89B49C481909B02500B8C6D0 /* AdSupport.framework */; };
 		89B49C591909BCB100B8C6D0 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 89B49C581909BCB100B8C6D0 /* libsqlite3.dylib */; };
 		89B49C5D190B1F7300B8C6D0 /* NetworkController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89B49C5C190B1F7300B8C6D0 /* NetworkController.m */; };
-		89B98A8D18AC16C5006FF961 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89B98A8C18AC16C5006FF961 /* Crashlytics.framework */; };
+		89B9994F19B10BCB0098BD8C /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89B98A8C18AC16C5006FF961 /* Crashlytics.framework */; };
+		89B9995519B147D00098BD8C /* Film.m in Sources */ = {isa = PBXBuildFile; fileRef = 89B9995419B147D00098BD8C /* Film.m */; };
 		89BC655518A3008D00B27385 /* SFMCTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 89BC655418A3008D00B27385 /* SFMCTableViewCell.m */; };
 		89C5D49C18FD9B8300D89033 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89C5D49B18FD9B8300D89033 /* Social.framework */; };
 		89C8923318D910DE009E3E6B /* SFAboutTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89C8923218D910DE009E3E6B /* SFAboutTableViewController.m */; };
@@ -84,7 +85,6 @@
 
 /* Begin PBXFileReference section */
 		12C9E41BD7F84C05A7D9B4A2 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
-		6FF12FEB14B24765906F06AA /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		892E3A8D18F3581E00640930 /* SynopsisTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SynopsisTableViewCell.h; path = ../SynopsisTableViewCell.h; sourceTree = "<group>"; };
 		892E3A8E18F3581E00640930 /* SynopsisTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SynopsisTableViewCell.m; path = ../SynopsisTableViewCell.m; sourceTree = "<group>"; };
 		8931CF5518A44A4200A4CFBC /* SFTheaterTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SFTheaterTableViewController.h; path = ../SFTheaterTableViewController.h; sourceTree = "<group>"; };
@@ -150,8 +150,8 @@
 		895A85F019B0FD6400AE18C3 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		895A85F819B0FE2600AE18C3 /* Actor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Actor.h; sourceTree = "<group>"; };
 		895A85F919B0FE2600AE18C3 /* Actor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Actor.m; sourceTree = "<group>"; };
-		895A85FE19B0FE6400AE18C3 /* Film.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Film.h; sourceTree = "<group>"; };
-		895A85FF19B0FE6400AE18C3 /* Film.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Film.m; sourceTree = "<group>"; };
+		895A860119B1008B00AE18C3 /* CoreDataHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataHelper.h; sourceTree = "<group>"; };
+		895A860219B1008B00AE18C3 /* CoreDataHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataHelper.m; sourceTree = "<group>"; };
 		8966AA07198179CF00C9E54F /* FilmHeat.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FilmHeat.xcdatamodel; sourceTree = "<group>"; };
 		896F545A1901A365002762D1 /* SearchDisplayDataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SearchDisplayDataController.h; path = ../SearchDisplayDataController.h; sourceTree = "<group>"; };
 		896F545B1901A365002762D1 /* SearchDisplayDataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SearchDisplayDataController.m; path = ../SearchDisplayDataController.m; sourceTree = "<group>"; };
@@ -183,6 +183,8 @@
 		89B49C5B190B1F7300B8C6D0 /* NetworkController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NetworkController.h; path = ../NetworkController.h; sourceTree = "<group>"; };
 		89B49C5C190B1F7300B8C6D0 /* NetworkController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NetworkController.m; path = ../NetworkController.m; sourceTree = "<group>"; };
 		89B98A8C18AC16C5006FF961 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
+		89B9995319B147D00098BD8C /* Film.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Film.h; sourceTree = "<group>"; };
+		89B9995419B147D00098BD8C /* Film.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Film.m; sourceTree = "<group>"; };
 		89BC655318A3008D00B27385 /* SFMCTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SFMCTableViewCell.h; path = ../SFMCTableViewCell.h; sourceTree = "<group>"; };
 		89BC655418A3008D00B27385 /* SFMCTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SFMCTableViewCell.m; path = ../SFMCTableViewCell.m; sourceTree = "<group>"; };
 		89C5D49B18FD9B8300D89033 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
@@ -192,6 +194,7 @@
 		89EBD9B118EE25E800F9D63D /* SFSettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SFSettingsTableViewController.m; path = ../SFSettingsTableViewController.m; sourceTree = "<group>"; };
 		89EBD9B318F329F400F9D63D /* SynopsisTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SynopsisTableViewController.h; path = ../SynopsisTableViewController.h; sourceTree = "<group>"; };
 		89EBD9B418F329F400F9D63D /* SynopsisTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SynopsisTableViewController.m; path = ../SynopsisTableViewController.m; sourceTree = "<group>"; };
+		AC0E5308A6A54D45BD6288A4 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -199,18 +202,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				89B9994F19B10BCB0098BD8C /* Crashlytics.framework in Frameworks */,
+				898BA9B419B1086F002FE66C /* CoreData.framework in Frameworks */,
 				89B49C591909BCB100B8C6D0 /* libsqlite3.dylib in Frameworks */,
 				89B49C561909BA7B00B8C6D0 /* AdSupport.framework in Frameworks */,
 				89B49C551909BA7500B8C6D0 /* libz.dylib in Frameworks */,
 				89B49C541909BA6F00B8C6D0 /* SystemConfiguration.framework in Frameworks */,
-				89B49C531909BA6500B8C6D0 /* CoreData.framework in Frameworks */,
 				89C5D49C18FD9B8300D89033 /* Social.framework in Frameworks */,
 				8949F732188DDD090069E9D4 /* CoreGraphics.framework in Frameworks */,
-				89B98A8D18AC16C5006FF961 /* Crashlytics.framework in Frameworks */,
 				8949F734188DDD090069E9D4 /* UIKit.framework in Frameworks */,
 				8949F730188DDD090069E9D4 /* Foundation.framework in Frameworks */,
-				3683493BBB7C48629F3A1C9C /* libPods.a in Frameworks */,
 				895A85EA19B0F98B00AE18C3 /* libGoogleAnalyticsServices.a in Frameworks */,
+				785010570EF840A882E34AC5 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -269,7 +272,7 @@
 				8949F733188DDD090069E9D4 /* UIKit.framework */,
 				8949F735188DDD090069E9D4 /* CoreData.framework */,
 				8949F756188DDD090069E9D4 /* XCTest.framework */,
-				6FF12FEB14B24765906F06AA /* libPods.a */,
+				AC0E5308A6A54D45BD6288A4 /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -327,6 +330,8 @@
 		8949F776188DF2910069E9D4 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				895A860119B1008B00AE18C3 /* CoreDataHelper.h */,
+				895A860219B1008B00AE18C3 /* CoreDataHelper.m */,
 				895A85EB19B0FD3100AE18C3 /* Core Data */,
 				8949F773188DF2530069E9D4 /* FilmModel.h */,
 				8949F774188DF2530069E9D4 /* FilmModel.m */,
@@ -434,8 +439,8 @@
 				895A85ED19B0FD6300AE18C3 /* Genre.m */,
 				895A85F819B0FE2600AE18C3 /* Actor.h */,
 				895A85F919B0FE2600AE18C3 /* Actor.m */,
-				895A85FE19B0FE6400AE18C3 /* Film.h */,
-				895A85FF19B0FE6400AE18C3 /* Film.m */,
+				89B9995319B147D00098BD8C /* Film.h */,
+				89B9995419B147D00098BD8C /* Film.m */,
 			);
 			name = "Core Data";
 			sourceTree = "<group>";
@@ -618,6 +623,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				895A85F119B0FD6400AE18C3 /* User.m in Sources */,
+				89B9995519B147D00098BD8C /* Film.m in Sources */,
 				898F4CBB189080D20060E847 /* SFFilmModelDataController.m in Sources */,
 				894DFACB18A0681100806267 /* SFCustomizeViewController.m in Sources */,
 				8931CF5718A44A4200A4CFBC /* SFTheaterTableViewController.m in Sources */,
@@ -630,7 +636,6 @@
 				89EBD9B518F329F400F9D63D /* SynopsisTableViewController.m in Sources */,
 				8949F772188DE1460069E9D4 /* SFTabBarController.m in Sources */,
 				8931CF6618A5998E00A4CFBC /* Constants.m in Sources */,
-				895A860019B0FE6400AE18C3 /* Film.m in Sources */,
 				8931CF6318A4820100A4CFBC /* SFNoneTableViewController.m in Sources */,
 				892E3A8F18F3581E00640930 /* SynopsisTableViewCell.m in Sources */,
 				8931CF6018A44B1C00A4CFBC /* SFWantedTableViewController.m in Sources */,
@@ -642,6 +647,7 @@
 				89BC655518A3008D00B27385 /* SFMCTableViewCell.m in Sources */,
 				8931CF5A18A44AA800A4CFBC /* SFBaseViewController.m in Sources */,
 				8949F742188DDD090069E9D4 /* SFAppDelegate.m in Sources */,
+				895A860319B1008B00AE18C3 /* CoreDataHelper.m in Sources */,
 				894C50B4189C3BBA003F72C6 /* UIColor+SFFilmHeatColors.m in Sources */,
 				89C8923318D910DE009E3E6B /* SFAboutTableViewController.m in Sources */,
 				8949F775188DF2530069E9D4 /* FilmModel.m in Sources */,
@@ -772,7 +778,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/spencerfornaciari/Dropbox/Developer/FilmHeat2,
+					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FilmHeat/Film Heat-Prefix.pch";
@@ -795,7 +801,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					/Users/spencerfornaciari/Dropbox/Developer/FilmHeat2,
+					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FilmHeat/Film Heat-Prefix.pch";

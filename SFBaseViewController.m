@@ -10,6 +10,9 @@
 #import "SFFilmModelDataController.h"
 #import "SFTutorialViewController.h"
 #import "SearchDisplayDataController.h"
+#import "Film.h"
+#import "Actor.h"
+#import "CoreDataHelper.h"
 
 
 @interface SFBaseViewController ()
@@ -103,7 +106,7 @@
     }
     
     [UIApplication sharedApplication].applicationIconBadgeNumber = self.wantedController.wantedArray.count;
-    self.tabBarItem.badgeValue = [NSString stringWithFormat:@"%d", self.wantedController.wantedArray.count];
+    self.tabBarItem.badgeValue = [NSString stringWithFormat:@"%lu", (unsigned long)self.wantedController.wantedArray.count];
 	// Do any additional setup after loading the view.
 }
 
@@ -473,28 +476,6 @@
 {
     _downloadQueue = [NSOperationQueue new];
     
-    if ([self doesArrayExist:kSEEN_IT_FILE]) {
-        self.seenController.seenArray = [NSKeyedUnarchiver unarchiveObjectWithFile:self.seenItPath];
-    } else {
-        self.seenController.seenArray = [NSMutableArray new];
-        NSLog(@"Created Seen");
-    }
-    
-    if ([self doesArrayExist:kWANT_TO_FILE]) {
-        self.wantedController.wantedArray = [NSKeyedUnarchiver unarchiveObjectWithFile:self.wantToSeeItPath];
-    } else {
-        self.wantedController.wantedArray = [NSMutableArray new];
-        NSLog(@"Created Want");
-        
-    }
-    
-    if ([self doesArrayExist:kDONT_WANT_IT_FILE]) {
-        self.noneController.noneArray = [NSKeyedUnarchiver unarchiveObjectWithFile:self.dontWantToSeeItPath];
-    } else {
-        self.noneController.noneArray = [NSMutableArray new];
-        NSLog(@"Created No Interest");
-    }
-    
     NSString *rottenString = [NSString stringWithFormat:@"http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json?apikey=%@", kROTTEN_TOMATOES_API_KEY];
     
     
@@ -522,69 +503,84 @@
     }
     
     NSArray *rottenArray = [rottenDictionary objectForKey:@"movies"];
-    NSMutableArray *rottenMutableArray = [NSMutableArray new];
     
-    for (NSDictionary *dictionary in rottenArray)
-    {
-        FilmModel *film = [FilmModel new];
-        
-        //Set the film title
-        film.title = [dictionary objectForKey:@"title"];
-        
-        //Set the critics rating of the film according to Rotten Tomatoes
-        film.criticsRating = [dictionary valueForKeyPath:@"ratings.critics_score"];
-        
-        //Set the audience rating of the film according to Rotten Tomatoes
-        film.audienceRating = [dictionary valueForKeyPath:@"ratings.audience_score"];
-        
-        NSInteger critics = [film.criticsRating integerValue];
-        NSInteger audience = [film.audienceRating integerValue];
-        long variance = ABS(critics - audience);
-        
-        film.ratingVariance = [NSNumber numberWithLong:variance];
-        
-        //Getting ID information
-        film.rottenID = [dictionary objectForKey:@"id"];
-        
-        film.imdbID = [NSString stringWithFormat:@"http://www.imdb.com/title/tt%@/",[dictionary valueForKeyPath:@"alternate_ids.imdb"]];
-        
-        //Grab the URL for the thumbnail of the film's poster
-        film.thumbnailPoster = [dictionary valueForKeyPath:@"posters.profile"];
-        
-        //Set the film runtime
-        film.runtime = [dictionary valueForKeyPath:@"runtime"];
-        
-        //Set the film's MPAA rating
-        NSString *rating = [dictionary valueForKeyPath:@"mpaa_rating"];
-        
-        if (rating) {
-            film.mpaaRating = rating;
-            film.ratingValue = [NSNumber numberWithLong:[self setRatingValue:film.mpaaRating]];
+    for (NSDictionary *dictionary in rottenArray) {
+        if ([CoreDataHelper doesFilmExist:[dictionary objectForKey:@"id"]]) {
+            NSLog(@"It Exists!");
         } else {
-            film.mpaaRating = @"NR";
-            film.ratingValue = [NSNumber numberWithInt:0];
+            Film *film = [NSEntityDescription insertNewObjectForEntityForName:@"Film" inManagedObjectContext:[CoreDataHelper managedContext]];
+            
+            //Getting ID information
+            film.rottenTomatoesID = [dictionary objectForKey:@"id"];
+            
+            film.imdbID = [NSString stringWithFormat:@"http://www.imdb.com/title/tt%@/",[dictionary valueForKeyPath:@"alternate_ids.imdb"]];
+            
+            //Set the film title
+            film.title = [dictionary objectForKey:@"title"];
+            
+            //Set the critics rating of the film according to Rotten Tomatoes
+            film.criticScore = [dictionary valueForKeyPath:@"ratings.critics_score"];
+            film.criticRating = [dictionary valueForKeyPath:@"ratings.critics_rating"];
+            
+            //Set the audience rating of the film according to Rotten Tomatoes
+            film.audienceScore = [dictionary valueForKeyPath:@"ratings.audience_score"];
+            film.audienceRating = [dictionary valueForKeyPath:@"ratings.audience_rating"];
+            
+            NSInteger critics = [film.criticScore integerValue];
+            NSInteger audience = [film.audienceScore integerValue];
+            long variance = ABS(critics - audience);
+            
+            film.ratingVariance = [NSNumber numberWithLong:variance];
+            
+            //Grab the URL for the thumbnail of the film's poster
+            film.thumbnailPosterURL = [dictionary valueForKeyPath:@"posters.detailed"];
+            film.posterURL = [dictionary valueForKeyPath:@"posters.original"];
+            
+            //Set the film runtime
+            film.runtime = [dictionary valueForKeyPath:@"runtime"];
+            
+            //Set the film's MPAA rating
+            NSString *rating = [dictionary valueForKeyPath:@"mpaa_rating"];
+            
+            if (rating) {
+                film.mpaaRating = rating;
+                film.ratingValue = [NSNumber numberWithLong:[self setRatingValue:film.mpaaRating]];
+            } else {
+                film.mpaaRating = @"NR";
+                film.ratingValue = [NSNumber numberWithInt:0];
+            }
+            
+            //Set film's release date
+            NSDictionary *releaseDictionary = [dictionary valueForKeyPath:@"release_dates"];
+            NSString *releaseDate = [releaseDictionary objectForKey:@"theater"];
+            NSDateFormatter *df = [[NSDateFormatter alloc] init];
+            [df setDateFormat:@"yyyy-MM-dd"];
+            film.releaseDate = [df dateFromString:releaseDate];
+            
+            //Set the film's synopsis
+            film.synopsis = [dictionary valueForKeyPath:@"synopsis"];
+            film.criticalConsensus = [dictionary valueForKeyPath:@"critics_consensus"];
+            
+            film.interestStatus = @0;
+            
+            NSArray *castArray = [dictionary valueForKey:@"abridged_cast"];
+            
+            for (NSDictionary *castMember in castArray) {
+                Actor *actor = [NSEntityDescription insertNewObjectForEntityForName:@"Actor" inManagedObjectContext:[CoreDataHelper managedContext]];
+                
+                actor.name = [castMember valueForKey:@"name"];
+                NSArray *characterArray = [castMember valueForKey:@"characters"];
+                actor.character = characterArray[0];
+                
+                [film addNewActorObject:actor];
+            }
+            
+            film.findSimilarFilms = [dictionary valueForKeyPath:@"links.similar"];
         }
-        
-        //Set film's release date
-        NSDictionary *releaseDictionary = [dictionary valueForKeyPath:@"release_dates"];
-        NSString *releaseDate = [releaseDictionary objectForKey:@"theater"];
-        NSDateFormatter *df = [[NSDateFormatter alloc] init];
-        [df setDateFormat:@"yyyy-MM-dd"];
-        film.releaseDate = [df dateFromString:releaseDate];
-        
-        //Set the film's synopsis
-        film.synopsis = [dictionary valueForKeyPath:@"synopsis"];
-        
-        BOOL doesExist = [self doesFilmExist:film];
-        if (!doesExist) {
-            [rottenMutableArray addObject:film];
-        }
+    
     }
     
-    self.theaterController.theaterArray = [NSMutableArray new];
-    self.theaterController.theaterArray = rottenMutableArray;
-    self.theaterController.strongArray = rottenMutableArray;
-    [self.theaterController.tableView reloadData];
+    [CoreDataHelper saveContext];
 
 }
 
@@ -600,55 +596,6 @@
         return 4;
     } else {
         return 5;
-    }
-}
-
-#pragma mark - Checking if the film already exists
-
-- (BOOL)doesFilmExist:(FilmModel *)film
-{
-    if ([self doesArrayExist:kSEEN_IT_FILE]) {
-        NSArray *ratingCheck = [NSKeyedUnarchiver unarchiveObjectWithFile:self.seenItPath];
-        for (FilmModel *check in ratingCheck) {
-            if ([check.title isEqualToString:film.title]) {
-                return YES;
-            }
-        }
-    }
-    
-    if ([self doesArrayExist:kWANT_TO_FILE]) {
-        NSArray *ratingCheck = [NSKeyedUnarchiver unarchiveObjectWithFile:self.wantToSeeItPath];
-        for (FilmModel *check in ratingCheck) {
-            if ([check.title isEqualToString:film.title]) {
-                return YES;
-            }
-        }
-    }
-    
-    if ([self doesArrayExist:kDONT_WANT_IT_FILE]) {
-        NSArray *ratingCheck = [NSKeyedUnarchiver unarchiveObjectWithFile:self.dontWantToSeeItPath];
-        for (FilmModel *check in ratingCheck) {
-            if ([check.title isEqualToString:film.title]) {
-                return YES;
-            }
-        }
-    }
-    
-    return NO;
-    
-}
-
--(BOOL)doesArrayExist:(NSString *)arrayNameString
-{
-    NSURL *documentsURL = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
-    
-    NSString *documentsPath = [documentsURL path];
-    documentsPath = [documentsPath stringByAppendingPathComponent:arrayNameString];
-    
-    if (![[NSFileManager defaultManager] fileExistsAtPath:documentsPath]) {
-        return FALSE;
-    } else {
-        return TRUE;
     }
 }
 

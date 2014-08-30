@@ -31,6 +31,10 @@
 @dynamic thumbnailPosterLocation;
 @dynamic title;
 @dynamic userRating;
+@dynamic thumbnailPosterURL;
+@dynamic posterURL;
+@dynamic ratingValue;
+@dynamic findSimilarFilms;
 @dynamic actors;
 @dynamic genres;
 @dynamic user;
@@ -47,7 +51,5 @@
     [tempSet addObject:value];
     self.actors = tempSet;
 }
-
-
 
 @end

@@ -30,6 +30,10 @@
 @property (nonatomic, retain) NSString * thumbnailPosterLocation;
 @property (nonatomic, retain) NSString * title;
 @property (nonatomic, retain) NSNumber * userRating;
+@property (nonatomic, retain) NSString * thumbnailPosterURL;
+@property (nonatomic, retain) NSString * posterURL;
+@property (nonatomic, retain) NSNumber * ratingValue;
+@property (nonatomic, retain) NSString * findSimilarFilms;
 @property (nonatomic, retain) NSOrderedSet *actors;
 @property (nonatomic, retain) NSOrderedSet *genres;
 @property (nonatomic, retain) User *user;
