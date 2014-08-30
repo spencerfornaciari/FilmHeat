@@ -171,8 +171,9 @@
 //Filters connections list based on the criteria from the selected scope
 - (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
 {
-    NSPredicate *searchPredicate = [NSPredicate predicateWithFormat:@"title CONTAINS[cd] %@", searchText];
-    self.searchArray = [[CoreDataHelper filmsArray] filteredArrayUsingPredicate:searchPredicate];
+//    NSArray *tempArray = [CoreDataHelper filmsArray];
+//    NSPredicate *searchPredicate = [NSPredicate predicateWithFormat:@"title CONTAINS[cd] %@", searchText];
+    self.searchArray = [CoreDataHelper titleSearchWithString:searchText];
 }
 
 //Displaying search controller when user selects it

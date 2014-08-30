@@ -15,6 +15,7 @@
 +(NSManagedObjectContext *)managedContext;
 
 //User Methods
++(NSArray *)titleSearchWithString:(NSString *)title;
 +(NSArray *)filmsArray;
 +(NSArray *)findCategoryArray:(NSNumber *)category;
 +(BOOL)doesFilmExist:(NSString *)filmID;
