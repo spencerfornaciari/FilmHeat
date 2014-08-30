@@ -11,7 +11,7 @@
 #import "CoreDataHelper.h"
 #import "Film.h"
 
-@interface SFBaseTableViewController : UITableViewController
+@interface SFBaseTableViewController : UITableViewController <UISearchBarDelegate>
 @property (strong, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
 
 @property (strong, nonatomic) IBOutlet UISearchBar *searchBar;

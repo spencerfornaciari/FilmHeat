@@ -12,6 +12,7 @@
 
 @property (nonatomic) NSArray *filmArray;
 @property (nonatomic) NSArray *searchArray;
+@property (nonatomic) NSArray *searchResultsArray;
 
 @end
 
@@ -29,9 +30,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+//    self.searchBar.delegate = self;
     
     self.filmArray = [CoreDataHelper findCategoryArray:@0];
-    self.searchArray = [CoreDataHelper filmsArray];
+    
+//    self.filmArray = [CoreDataHelper filmsArray];
+//    self.searchArray = [CoreDataHelper filmsArray];
+    self.segmentedControl.selectedSegmentIndex = 1;
 
     
     // Uncomment the following line to preserve selection between presentations.
@@ -39,6 +44,15 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
+-(void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    
+    [tracker send:[[[GAIDictionaryBuilder createAppView] set:@"Base View Controller"
+                                                      forKey:kGAIScreenName] build]];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -60,7 +74,7 @@
     // Return the number of rows in the section.
     if (tableView == self.searchDisplayController.searchResultsTableView) {
         return self.searchArray.count;
-        
+//        return 5;
     } else {
         return self.filmArray.count;
     }
@@ -69,16 +83,17 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    SFMCTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-    
+    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+
     // Configure the cell...
     if (tableView == self.searchDisplayController.searchResultsTableView) {
         Film *film = self.searchArray[indexPath.row];
-        [cell setFilm:film];
+//        [cell setFilm:film];
+        cell.textLabel.text = film.title;
     } else {
         Film *film = self.filmArray[indexPath.row];
-        [cell setFilm:film];
-
+//        [cell setFilm:film];
+        cell.textLabel.text = film.title;
     }
     
     
@@ -158,35 +173,13 @@
 {
     NSPredicate *searchPredicate = [NSPredicate predicateWithFormat:@"title CONTAINS[cd] %@", searchText];
     self.searchArray = [[CoreDataHelper filmsArray] filteredArrayUsingPredicate:searchPredicate];
-    
-        //Name Predicate
-//        NSPredicate *firstNamePredicate = [NSPredicate predicateWithFormat:@"firstName BEGINSWITH[cd] %@", searchText];
-//        NSPredicate *lastNamePredicate = [NSPredicate predicateWithFormat:@"lastName BEGINSWITH[cd] %@", searchText];
-//        NSPredicate *namePredicate = [NSCompoundPredicate orPredicateWithSubpredicates:@[firstNamePredicate, lastNamePredicate]];
-//        
-//        self.searchResultsArray = [self.connectionsArray filteredArrayUsingPredicate:namePredicate];//
-    
-//    } else if ([scope isEqualToString:@"Title"]) {
-//        //Job Title Predicate
-//        NSPredicate *jobTitlePredicate = [NSPredicate predicateWithFormat:@"ANY SELF.jobs.title CONTAINS[cd] %@", searchText];
-//        self.searchResultsArray = [self.connectionsArray filteredArrayUsingPredicate:jobTitlePredicate];
-//        
-//    } else if ([scope isEqualToString:@"Location"]) {
-//        //Location Predicate
-//        NSPredicate *locationPredicate = [NSPredicate predicateWithFormat:@"location CONTAINS[cd] %@", searchText];
-//        self.searchResultsArray = [self.connectionsArray filteredArrayUsingPredicate:locationPredicate];
-//        
-//    } else {
-//        
-//        
-//    }
-    
 }
 
 //Displaying search controller when user selects it
 -(BOOL)searchDisplayController:(UISearchDisplayController *)controller
 shouldReloadTableForSearchString:(NSString *)searchString
 {
+    
     [self filterContentForSearchText:searchString
                                scope:[[self.searchDisplayController.searchBar scopeButtonTitles]
                                       objectAtIndex:[self.searchDisplayController.searchBar
@@ -195,7 +188,18 @@ shouldReloadTableForSearchString:(NSString *)searchString
     return YES;
 }
 
+#pragma mark - Segmented Action
+
 - (IBAction)segmentedAction:(id)sender {
-    
+    if (self.segmentedControl.selectedSegmentIndex == 0) {
+        NSLog(@"Segment One");
+    } else if (self.segmentedControl.selectedSegmentIndex == 1) {
+        NSLog(@"Segment Two");
+    } else if (self.segmentedControl.selectedSegmentIndex == 2) {
+        NSLog(@"Segment Three");
+    } else {
+        NSLog(@"Segment Four");
+    }
 }
+
 @end
