@@ -38,7 +38,7 @@
 //    self.searchArray = [CoreDataHelper filmsArray];
     self.segmentedControl.selectedSegmentIndex = 1;
 
-    [NetworkController movieSearchWithTitle:@"Jack"];
+//    [NetworkController movieSearchWithTitle:@"Jack"];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -77,24 +77,38 @@
         return self.searchArray.count;
 //        return 5;
     } else {
-        return self.filmArray.count;
+        if (self.segmentedControl.selectedSegmentIndex == 0) {
+            self.filmArray = [CoreDataHelper findCategoryArray:@3];
+            return self.filmArray.count;
+        } else if (self.segmentedControl.selectedSegmentIndex == 2) {
+            self.filmArray = [CoreDataHelper findCategoryArray:@1];
+            return self.filmArray.count;
+        } else if (self.segmentedControl.selectedSegmentIndex == 3) {
+            self.filmArray = [CoreDataHelper findCategoryArray:@2];
+            return self.filmArray.count;
+        } else {
+            self.filmArray = [CoreDataHelper findCategoryArray:@0];
+            return self.filmArray.count;
+        }
     }
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    SFMCTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
 
+    Film * film;
     // Configure the cell...
     if (tableView == self.searchDisplayController.searchResultsTableView) {
-        Film *film = self.searchArray[indexPath.row];
-//        [cell setFilm:film];
-        cell.textLabel.text = film.title;
+        film = self.searchArray[indexPath.row];
+        [cell setFilm:film];
+//        cell.textLabel.text = film.title;
     } else {
-        Film *film = self.filmArray[indexPath.row];
-//        [cell setFilm:film];
-        cell.textLabel.text = film.title;
+        film = self.filmArray[indexPath.row];
+        [cell setFilm:film];
+//        cell.filmTitle.text = film.title;
+//        cell.r
     }
     
     
@@ -116,9 +130,53 @@
 //    selectedArray = [self.theaterArray mutableCopy];
     //
     
+    
+    // Configuring the views and colors.
+    UIView *checkView = [self viewWithImageName:@"SeenExtraLarge"];
+    UIView *crossView = [self viewWithImageName:@"WantExtraLarge"];
+    UIView *clockView = [self viewWithImageName:@"DontExtraLarge"];
+    UIView *listView = [self viewWithImageName:@"TheaterExtraLarge"];
+    
+    // Setting the default inactive state color to the tableView background color.
+    [cell setDefaultColor:self.tableView.backgroundView.backgroundColor];
+    
+    // Adding gestures per state basis.
+    [cell setSwipeGestureWithView:checkView color:[UIColor navigationBarColor] mode:MCSwipeTableViewCellModeSwitch state:MCSwipeTableViewCellState1 completionBlock:^(MCSwipeTableViewCell *cell, MCSwipeTableViewCellState state, MCSwipeTableViewCellMode mode) {
+        film.interestStatus = @1;
+        [CoreDataHelper saveContext];
+    }];
+    
+    [cell setSwipeGestureWithView:crossView color:[UIColor navigationBarColor] mode:MCSwipeTableViewCellModeSwitch state:MCSwipeTableViewCellState2 completionBlock:^(MCSwipeTableViewCell *cell, MCSwipeTableViewCellState state, MCSwipeTableViewCellMode mode) {
+        NSLog(@"Did swipe \"List\" cell");
+        film.interestStatus = @2;
+        [CoreDataHelper saveContext];
+    }];
+    
+    [cell setSwipeGestureWithView:clockView color:[UIColor navigationBarColor] mode:MCSwipeTableViewCellModeSwitch state:MCSwipeTableViewCellState3 completionBlock:^(MCSwipeTableViewCell *cell, MCSwipeTableViewCellState state, MCSwipeTableViewCellMode mode) {
+        NSLog(@"Did swipe \"Sad_Face\" cell");
+        film.interestStatus = @3;
+        [CoreDataHelper saveContext];
+    }];
+    
+    [cell setSwipeGestureWithView:listView color:[UIColor navigationBarColor] mode:MCSwipeTableViewCellModeSwitch state:MCSwipeTableViewCellState4 completionBlock:^(MCSwipeTableViewCell *cell, MCSwipeTableViewCellState state, MCSwipeTableViewCellMode mode) {
+        film.interestStatus = @0;
+        [CoreDataHelper saveContext];
+    }];
+
+    
     return cell;
 }
 
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 84;
+}
+
+- (UIView *)viewWithImageName:(NSString *)imageName {
+    UIImage *image = [UIImage imageNamed:imageName];
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+    imageView.contentMode = UIViewContentModeCenter;
+    return imageView;
+}
 
 /*
 // Override to support conditional editing of the table view.
