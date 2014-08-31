@@ -10,4 +10,6 @@
 
 @interface NetworkController : NSObject
 
++(void)movieSearchWithTitle:(NSString *)title;
+
 @end

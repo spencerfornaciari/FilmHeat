@@ -10,4 +10,32 @@
 
 @implementation NetworkController
 
++(void)movieSearchWithTitle:(NSString *)title {
+    
+    //Returns the top ten movies with a given search title
+    
+    NSString *titleSearchString = [NSString stringWithFormat:@"http://api.rottentomatoes.com/api/public/v1.0/movies.json?apikey=%@&q=%@&page_limit=10", kROTTEN_TOMATOES_API_KEY, title];
+    
+    NSURL *titleUrl = [NSURL URLWithString:titleSearchString];
+    
+    NSURLSessionConfiguration *sessionConfig = [NSURLSessionConfiguration ephemeralSessionConfiguration];
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:sessionConfig];
+    
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:titleUrl];
+    
+    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        
+        NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
+        
+        NSArray *array = [dictionary objectForKey:@"movies"];
+        
+        for (NSDictionary *movieDictionary in array) {
+            NSLog(@"Title: %@", [movieDictionary objectForKey:@"title"]);
+        }
+        
+    }];
+    
+    [dataTask resume];
+}
+
 @end

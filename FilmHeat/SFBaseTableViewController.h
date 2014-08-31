@@ -10,6 +10,7 @@
 #import "SFMCTableViewCell.h"
 #import "CoreDataHelper.h"
 #import "Film.h"
+#import "NetworkController.h"
 
 @interface SFBaseTableViewController : UITableViewController <UISearchBarDelegate>
 @property (strong, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
