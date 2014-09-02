@@ -48,7 +48,8 @@
     }
     
     if (!self.ratingImage) {
-        self.ratingImage = [self getRatingImage:film.ratingValue];
+//        self.ratingImage = [self getRatingImage:film.ratingValue];
+        self.ratingImage = [self ratingImage:film.mpaaRating];
         UIImageView *imageView = [[UIImageView alloc] initWithImage:self.ratingImage];
         imageView.frame = CGRectMake(84, 34, self.ratingImage.size.width, self.ratingImage.size.height);
         [self addSubview:imageView];
@@ -63,6 +64,8 @@
         
         [posterData writeToFile:film.thumbnailPosterLocation atomically:YES];
 
+    } else {
+        self.filmThumbnailPoster.image = [UIImage imageWithContentsOfFile:film.thumbnailPosterLocation];
     }
     
     //UIImage *image = [UIImage imageWithContentsOfFile:[NSData dataWithContentsOfFile:film.posterImagePath]];
