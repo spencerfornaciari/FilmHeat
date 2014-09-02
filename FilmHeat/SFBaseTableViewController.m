@@ -10,7 +10,7 @@
 
 @interface SFBaseTableViewController ()
 
-@property (nonatomic) NSArray *filmArray;
+@property (nonatomic) NSMutableArray *filmArray;
 @property (nonatomic) NSArray *searchArray;
 @property (nonatomic) NSArray *searchResultsArray;
 
@@ -32,7 +32,7 @@
     [super viewDidLoad];
 //    self.searchBar.delegate = self;
     
-    self.filmArray = [CoreDataHelper findCategoryArray:@0];
+    self.filmArray = [[CoreDataHelper findCategoryArray:@0] mutableCopy];
     
 //    self.filmArray = [CoreDataHelper filmsArray];
 //    self.searchArray = [CoreDataHelper filmsArray];
@@ -77,19 +77,20 @@
         return self.searchArray.count;
 //        return 5;
     } else {
-        if (self.segmentedControl.selectedSegmentIndex == 0) {
-            self.filmArray = [CoreDataHelper findCategoryArray:@3];
-            return self.filmArray.count;
-        } else if (self.segmentedControl.selectedSegmentIndex == 2) {
-            self.filmArray = [CoreDataHelper findCategoryArray:@1];
-            return self.filmArray.count;
-        } else if (self.segmentedControl.selectedSegmentIndex == 3) {
-            self.filmArray = [CoreDataHelper findCategoryArray:@2];
-            return self.filmArray.count;
-        } else {
-            self.filmArray = [CoreDataHelper findCategoryArray:@0];
-            return self.filmArray.count;
-        }
+        return self.filmArray.count;
+//        if (self.segmentedControl.selectedSegmentIndex == 0) {
+//            self.filmArray = [CoreDataHelper findCategoryArray:@3];
+//            return self.filmArray.count;
+//        } else if (self.segmentedControl.selectedSegmentIndex == 2) {
+//            self.filmArray = [CoreDataHelper findCategoryArray:@1];
+//            return self.filmArray.count;
+//        } else if (self.segmentedControl.selectedSegmentIndex == 3) {
+//            self.filmArray = [CoreDataHelper findCategoryArray:@2];
+//            return self.filmArray.count;
+//        } else {
+//            self.filmArray = [CoreDataHelper findCategoryArray:@0];
+//            return self.filmArray.count;
+//        }
     }
 }
 
@@ -143,6 +144,8 @@
     // Adding gestures per state basis.
     [cell setSwipeGestureWithView:checkView color:[UIColor navigationBarColor] mode:MCSwipeTableViewCellModeSwitch state:MCSwipeTableViewCellState1 completionBlock:^(MCSwipeTableViewCell *cell, MCSwipeTableViewCellState state, MCSwipeTableViewCellMode mode) {
         film.interestStatus = @1;
+//        [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+
         [CoreDataHelper saveContext];
     }];
     
@@ -150,16 +153,26 @@
         NSLog(@"Did swipe \"List\" cell");
         film.interestStatus = @2;
         [CoreDataHelper saveContext];
+        [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+
+//        [CoreDataHelper saveContext];
     }];
     
     [cell setSwipeGestureWithView:clockView color:[UIColor navigationBarColor] mode:MCSwipeTableViewCellModeSwitch state:MCSwipeTableViewCellState3 completionBlock:^(MCSwipeTableViewCell *cell, MCSwipeTableViewCellState state, MCSwipeTableViewCellMode mode) {
         NSLog(@"Did swipe \"Sad_Face\" cell");
         film.interestStatus = @3;
+//        [self.tableView reloadData];
+        [self.filmArray removeObjectAtIndex:indexPath.row];
+        [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        
         [CoreDataHelper saveContext];
+        [self.tableView reloadData];
     }];
     
     [cell setSwipeGestureWithView:listView color:[UIColor navigationBarColor] mode:MCSwipeTableViewCellModeSwitch state:MCSwipeTableViewCellState4 completionBlock:^(MCSwipeTableViewCell *cell, MCSwipeTableViewCellState state, MCSwipeTableViewCellMode mode) {
         film.interestStatus = @0;
+        [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        
         [CoreDataHelper saveContext];
     }];
 
@@ -253,13 +266,35 @@ shouldReloadTableForSearchString:(NSString *)searchString
 - (IBAction)segmentedAction:(id)sender {
     if (self.segmentedControl.selectedSegmentIndex == 0) {
         NSLog(@"Segment One");
+        self.filmArray = [[CoreDataHelper findCategoryArray:@1] mutableCopy];
+        [self.tableView reloadData];
     } else if (self.segmentedControl.selectedSegmentIndex == 1) {
         NSLog(@"Segment Two");
+        self.filmArray = [[CoreDataHelper findCategoryArray:@0] mutableCopy];
+        [self.tableView reloadData];
     } else if (self.segmentedControl.selectedSegmentIndex == 2) {
         NSLog(@"Segment Three");
+        self.filmArray = [[CoreDataHelper findCategoryArray:@2] mutableCopy];
+        [self.tableView reloadData];
     } else {
         NSLog(@"Segment Four");
+        self.filmArray = [[CoreDataHelper findCategoryArray:@3] mutableCopy];
+        [self.tableView reloadData];
     }
+    
+//    if (self.segmentedControl.selectedSegmentIndex == 0) {
+//        self.filmArray = [CoreDataHelper findCategoryArray:@3];
+//        return self.filmArray.count;
+//    } else if (self.segmentedControl.selectedSegmentIndex == 2) {
+//        self.filmArray = [CoreDataHelper findCategoryArray:@1];
+//        return self.filmArray.count;
+//    } else if (self.segmentedControl.selectedSegmentIndex == 3) {
+//        self.filmArray = [CoreDataHelper findCategoryArray:@2];
+//        return self.filmArray.count;
+//    } else {
+//        self.filmArray = [CoreDataHelper findCategoryArray:@0];
+//        return self.filmArray.count;
+//    }
 }
 
 @end
