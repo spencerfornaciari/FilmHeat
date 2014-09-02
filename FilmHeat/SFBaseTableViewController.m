@@ -244,21 +244,19 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"detail"]) {
-        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        NSIndexPath *indexPath;
+        Film *film;
         
-        if (self.tableView == self.searchDisplayController.searchResultsTableView) {
-            Film *film = self.searchArray[indexPath.row];
-            [(SFMovieDetailViewController *)segue.destinationViewController setFilm:film];
-            //        NSDictionary *dictionary = self.searchArray[indexPath.row];
-            //        cell.textLabel.text = [dictionary objectForKey:@"title"];
-            ////        cell.textLabel.text = film.title;
+        if (self.searchDisplayController.active) {
+            indexPath = [self.searchDisplayController.searchResultsTableView indexPathForSelectedRow];
+            film = self.searchArray[indexPath.row];
         } else {
-            Film *film = self.filmArray[indexPath.row];
-            [(SFMovieDetailViewController *)segue.destinationViewController setFilm:film];
-
-            //        cell.filmTitle.text = film.title;
-            //        cell.r
+            indexPath = [self.tableView indexPathForSelectedRow];
+            film = self.filmArray[indexPath.row];
         }
+        
+        SFMovieDetailViewController *destViewController = segue.destinationViewController;
+        destViewController.film = film;
     }
 }
 
