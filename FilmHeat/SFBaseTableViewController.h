@@ -12,6 +12,7 @@
 #import "Film.h"
 #import "NetworkController.h"
 #import "UIColor+SFFilmHeatColors.h"
+#import "TranslationController.h"
 
 @interface SFBaseTableViewController : UITableViewController <UISearchBarDelegate>
 @property (strong, nonatomic) IBOutlet UISegmentedControl *segmentedControl;

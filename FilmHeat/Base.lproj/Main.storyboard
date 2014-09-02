@@ -832,17 +832,21 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <searchBar key="tableHeaderView" contentMode="redraw" placeholder="Search film titles" id="LWe-ll-qr5">
-                            <rect key="frame" x="0.0" y="64" width="320" height="44"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" placeholder="Search film titles" showsScopeBar="YES" id="LWe-ll-qr5">
+                            <rect key="frame" x="0.0" y="64" width="320" height="88"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <textInputTraits key="textInputTraits"/>
+                            <scopeButtonTitles>
+                                <string>My Collection</string>
+                                <string>Search Database</string>
+                            </scopeButtonTitles>
                             <connections>
                                 <outlet property="delegate" destination="S1L-K1-frt" id="c4s-XS-zYq"/>
                             </connections>
                         </searchBar>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="84" id="WFB-N2-lAr" customClass="SFMCTableViewCell">
-                                <rect key="frame" x="0.0" y="130" width="320" height="84"/>
+                                <rect key="frame" x="0.0" y="174" width="320" height="84"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WFB-N2-lAr" id="bcC-EP-hd6">
                                     <rect key="frame" x="0.0" y="0.0" width="287" height="83"/>

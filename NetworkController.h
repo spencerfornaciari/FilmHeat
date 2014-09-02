@@ -10,6 +10,6 @@
 
 @interface NetworkController : NSObject
 
-+(void)movieSearchWithTitle:(NSString *)title;
++(void)movieSearchWithTitle:(NSString *)title andCallback:(void (^)(NSArray *results))completion;
 
 @end

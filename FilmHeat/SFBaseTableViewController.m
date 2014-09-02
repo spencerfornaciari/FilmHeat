@@ -37,6 +37,18 @@
 //    self.filmArray = [CoreDataHelper filmsArray];
 //    self.searchArray = [CoreDataHelper filmsArray];
     self.segmentedControl.selectedSegmentIndex = 1;
+    
+    __block NSArray *myArray;
+    
+    [NetworkController movieSearchWithTitle:@"Jack" andCallback:^(NSArray *results) {
+        myArray = results;
+    }];
+    
+    
+    for (NSDictionary *dictionary in myArray) {
+        NSLog(@"%@", dictionary);
+        
+    }
 
 //    [NetworkController movieSearchWithTitle:@"Jack"];
     
@@ -74,6 +86,7 @@
 {
     // Return the number of rows in the section.
     if (tableView == self.searchDisplayController.searchResultsTableView) {
+        
         return self.searchArray.count;
 //        return 5;
     } else {
@@ -104,7 +117,10 @@
     if (tableView == self.searchDisplayController.searchResultsTableView) {
         film = self.searchArray[indexPath.row];
         [cell setFilm:film];
-//        cell.textLabel.text = film.title;
+        
+//        NSDictionary *dictionary = self.searchArray[indexPath.row];
+//        cell.textLabel.text = [dictionary objectForKey:@"title"];
+////        cell.textLabel.text = film.title;
     } else {
         film = self.filmArray[indexPath.row];
         [cell setFilm:film];
@@ -243,9 +259,16 @@
 //Filters connections list based on the criteria from the selected scope
 - (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
 {
-//    NSArray *tempArray = [CoreDataHelper filmsArray];
-//    NSPredicate *searchPredicate = [NSPredicate predicateWithFormat:@"title CONTAINS[cd] %@", searchText];
-    self.searchArray = [CoreDataHelper titleSearchWithString:searchText];
+    if ([scope isEqualToString:@"My Collection"]) {
+        self.searchArray = [CoreDataHelper titleSearchWithString:searchText];
+    } else {
+        [NetworkController movieSearchWithTitle:searchText andCallback:^(NSArray *results) {
+            self.searchArray = [TranslationController convertDictionaryArrayToFilmArray:results];
+            NSLog(@"Search results: %lu", (unsigned long)self.searchArray.count);
+            [self.tableView reloadData];
+        }];
+        
+    }
 }
 
 //Displaying search controller when user selects it
@@ -296,5 +319,7 @@ shouldReloadTableForSearchString:(NSString *)searchString
 //        return self.filmArray.count;
 //    }
 }
+
+#pragma mark - Search Bar Delegate Methods
 
 @end

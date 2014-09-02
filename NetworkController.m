@@ -10,7 +10,7 @@
 
 @implementation NetworkController
 
-+(void)movieSearchWithTitle:(NSString *)title {
++(void)movieSearchWithTitle:(NSString *)title andCallback:(void (^)(NSArray *results))completion {
     
     //Returns the top ten movies with a given search title
     
@@ -29,9 +29,11 @@
         
         NSArray *array = [dictionary objectForKey:@"movies"];
         
-        for (NSDictionary *movieDictionary in array) {
-            NSLog(@"Title: %@", [movieDictionary objectForKey:@"title"]);
-        }
+        completion(array);
+        
+//        for (NSDictionary *movieDictionary in array) {
+//            NSLog(@"Title: %@", [movieDictionary objectForKey:@"title"]);
+//        }
         
     }];
     

@@ -67,6 +67,7 @@
 		89B9994F19B10BCB0098BD8C /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89B98A8C18AC16C5006FF961 /* Crashlytics.framework */; };
 		89B9995519B147D00098BD8C /* Film.m in Sources */ = {isa = PBXBuildFile; fileRef = 89B9995419B147D00098BD8C /* Film.m */; };
 		89B9995819B21B9C0098BD8C /* SFBaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89B9995719B21B9C0098BD8C /* SFBaseTableViewController.m */; };
+		89B9995B19B6272E0098BD8C /* TranslationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89B9995A19B6272E0098BD8C /* TranslationController.m */; };
 		89BC655518A3008D00B27385 /* SFMCTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 89BC655418A3008D00B27385 /* SFMCTableViewCell.m */; };
 		89C5D49C18FD9B8300D89033 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89C5D49B18FD9B8300D89033 /* Social.framework */; };
 		89C8923318D910DE009E3E6B /* SFAboutTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89C8923218D910DE009E3E6B /* SFAboutTableViewController.m */; };
@@ -188,6 +189,8 @@
 		89B9995419B147D00098BD8C /* Film.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Film.m; sourceTree = "<group>"; };
 		89B9995619B21B9C0098BD8C /* SFBaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFBaseTableViewController.h; sourceTree = "<group>"; };
 		89B9995719B21B9C0098BD8C /* SFBaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFBaseTableViewController.m; sourceTree = "<group>"; };
+		89B9995919B6272E0098BD8C /* TranslationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TranslationController.h; sourceTree = "<group>"; };
+		89B9995A19B6272E0098BD8C /* TranslationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TranslationController.m; sourceTree = "<group>"; };
 		89BC655318A3008D00B27385 /* SFMCTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SFMCTableViewCell.h; path = ../SFMCTableViewCell.h; sourceTree = "<group>"; };
 		89BC655418A3008D00B27385 /* SFMCTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SFMCTableViewCell.m; path = ../SFMCTableViewCell.m; sourceTree = "<group>"; };
 		89C5D49B18FD9B8300D89033 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
@@ -391,6 +394,8 @@
 				8949F771188DE1460069E9D4 /* SFTabBarController.m */,
 				89B9995619B21B9C0098BD8C /* SFBaseTableViewController.h */,
 				89B9995719B21B9C0098BD8C /* SFBaseTableViewController.m */,
+				89B9995919B6272E0098BD8C /* TranslationController.h */,
+				89B9995A19B6272E0098BD8C /* TranslationController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -645,6 +650,7 @@
 				892E3A8F18F3581E00640930 /* SynopsisTableViewCell.m in Sources */,
 				8931CF6018A44B1C00A4CFBC /* SFWantedTableViewController.m in Sources */,
 				89B49C5D190B1F7300B8C6D0 /* NetworkController.m in Sources */,
+				89B9995B19B6272E0098BD8C /* TranslationController.m in Sources */,
 				8966AA08198179CF00C9E54F /* FilmHeat.xcdatamodeld in Sources */,
 				895A85FA19B0FE2600AE18C3 /* Actor.m in Sources */,
 				89366F3E18AAFF4600C278DA /* SFTutorialChildViewController.m in Sources */,
