@@ -14,7 +14,11 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
+
         // Initialization code
+//        self.ratingView = [[UIImageView alloc] initWithFrame:CGRectMake(84, 34, self.ratingImage.size.width, self.ratingImage.size.height)];
+//        imageView.frame = CGRectMake(84, 34, self.ratingImage.size.width, self.ratingImage.size.height);
+//        [self addSubview:imageView];
     }
     return self;
 }
@@ -29,30 +33,45 @@
 - (void)setFilm:(Film *)film
 {
     _film = film;
+    if (self.ratingsImageView) {
+        
+    } else {
+        self.ratingsImageView = [[UIImageView alloc] init];
+        [self addSubview:self.ratingsImageView];
+    }
     
     self.filmTitle.text = film.title;
     
-    if (film.ratingValue) {
+    if ([film.interestStatus isEqual:@1]) {
         self.filmCriticsLabel.hidden = TRUE;
-        self.myRatingLabel.text = [NSString stringWithFormat:@"My Rating: %@", film.ratingValue];
-    }
-    
-    if (film.criticRating) {
+        self.filmAudiencesLabel.hidden = TRUE;
+        
+        self.myRatingLabel.hidden = FALSE;
+        self.myRatingLabel.text = [NSString stringWithFormat:@"My Rating: %@", film.userRating];
+    } else {
+        self.myRatingLabel.hidden = TRUE;
+        
         self.filmCriticsLabel.hidden = FALSE;
         self.filmCriticsLabel.text = [NSString stringWithFormat:@"Critics: %@", [film.criticScore stringValue]];
-    }
-    
-    if (film.audienceRating) {
+        
         self.filmAudiencesLabel.hidden = FALSE;
         self.filmAudiencesLabel.text = [NSString stringWithFormat:@"Audiences: %@", [film.audienceScore stringValue]];
     }
     
-    if (!self.ratingImage) {
-//        self.ratingImage = [self getRatingImage:film.ratingValue];
+//    if (film.criticRating) {
+//        self.filmCriticsLabel.hidden = FALSE;
+//        self.filmCriticsLabel.text = [NSString stringWithFormat:@"Critics: %@", [film.criticScore stringValue]];
+//    }
+//    
+//    if (film.audienceRating) {
+//        self.filmAudiencesLabel.hidden = FALSE;
+//        self.filmAudiencesLabel.text = [NSString stringWithFormat:@"Audiences: %@", [film.audienceScore stringValue]];
+//    }
+    
+    if (film.mpaaRating) {
         self.ratingImage = [self ratingImage:film.mpaaRating];
-        UIImageView *imageView = [[UIImageView alloc] initWithImage:self.ratingImage];
-        imageView.frame = CGRectMake(84, 34, self.ratingImage.size.width, self.ratingImage.size.height);
-        [self addSubview:imageView];
+        self.ratingsImageView.frame = CGRectMake(84, 34, self.ratingImage.size.width, self.ratingImage.size.height);
+        self.ratingsImageView.image = self.ratingImage;
     }
     
     if (!film.thumbnailPosterLocation) {
@@ -103,28 +122,6 @@
         UIImage *image = [UIImage imageNamed:@"PG 13"];
         return image;
     } else if ([mpaaRating isEqualToString:@"R"]) {
-        UIImage *image = [UIImage imageNamed:@"R"];
-        return image;
-    } else {
-        UIImage *image = [UIImage imageNamed:@"NC 17"];
-        return image;
-    }
-    
-}
-
--(UIImage *)getRatingImage:(NSNumber *)rating
-{
-    
-    if ([rating integerValue] == 1) {
-        UIImage *image = [UIImage imageNamed:@"G"];
-        return image;
-    } else if ([rating integerValue] == 2){
-        UIImage *image = [UIImage imageNamed:@"PG"];
-        return image;
-    } else if ([rating integerValue] == 3) {
-        UIImage *image = [UIImage imageNamed:@"PG 13"];
-        return image;
-    } else if ([rating integerValue] == 4) {
         UIImage *image = [UIImage imageNamed:@"R"];
         return image;
     } else {

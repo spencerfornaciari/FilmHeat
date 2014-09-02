@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SFMovieDetailViewController.h"
 #import "SFMCTableViewCell.h"
 #import "CoreDataHelper.h"
 #import "Film.h"

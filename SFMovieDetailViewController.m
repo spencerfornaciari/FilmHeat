@@ -49,6 +49,7 @@
 //    UIImageView *imageView2 = [[UIImageView alloc] initWithImage:img2];
 //    imageView2.frame = CGRectMake(250, 200, img2.size.width, img2.size.height);
 //    [self.view addSubview:imageView2];
+    [self.myRatingSliderOutlet addTarget:self action:@selector(saveSliderValue) forControlEvents:UIControlEventTouchUpInside];
     
     self.detailSynopsis.delegate = self;
     self.detailSynopsis.dataSource = self;
@@ -74,27 +75,27 @@
     [self setRatingImage:self.film.mpaaRating];
     
     self.movieSynopsis.text = _film.synopsis;
-    self.moviePoster.image = _film.posterImage;
+    self.moviePoster.image = [UIImage imageWithContentsOfFile:_film.thumbnailPosterLocation];
     self.filmRatingLabel.text = _film.mpaaRating;
     self.filmRuntimeLabel.text = [NSString stringWithFormat:@"%@ min.", [_film.runtime stringValue]];
     
     //Adding critic and audience ratings to detail view controller
-    if (self.film.criticsRating) {
-        if ([self.film.criticsRating integerValue] < 0) {
+    if (_film.criticScore) {
+        if ([_film.criticScore integerValue] < 0) {
             self.criticRatingLabel.text = @"None";
         } else {
-            self.criticRatingLabel.text =  [self.film.criticsRating stringValue];
+            self.criticRatingLabel.text =  [_film.criticScore stringValue];
         }
     } else {
         self.criticsLabel.hidden = TRUE;
         self.criticRatingLabel.hidden = TRUE;
     }
     
-    if (self.film.audienceRating) {
-        if ([self.film.audienceRating integerValue] < 0) {
+    if (_film.audienceScore) {
+        if ([_film.audienceScore integerValue] < 0) {
             self.criticRatingLabel.text = @"None";
         } else {
-            self.audienceRatingLabel.text = [self.film.audienceRating stringValue];
+            self.audienceRatingLabel.text = [_film.audienceScore stringValue];
         }
     } else {
         self.audienceLabel.hidden = TRUE;
@@ -110,18 +111,19 @@
         self.releaseDateLabel.text = @"N/A";
     }
     
-    if (!_film.hasSeen) {
-        self.myRatingSliderOutlet.hidden = TRUE;
-        self.myRatingLabel.hidden = TRUE;
-        self.myRatingTextLabel.hidden = TRUE;
-    } else {
-        if (_film.myRating) {
-            self.myRatingLabel.text = _film.myRating;
-            self.myRatingSliderOutlet.value = [_film.myRating intValue]/ 100.f;
+    if ([_film.interestStatus isEqual: @1]) {
+        if (_film.userRating) {
+            self.myRatingLabel.text = [_film.userRating stringValue];
+            self.myRatingSliderOutlet.value = [_film.userRating intValue]/ 100.f;
         } else {
             self.myRatingLabel.text = @"50";
             self.myRatingSliderOutlet.value = .5;
         }
+
+    } else {
+        self.myRatingSliderOutlet.hidden = TRUE;
+        self.myRatingLabel.hidden = TRUE;
+        self.myRatingTextLabel.hidden = TRUE;
     }
 
 }
@@ -179,7 +181,13 @@
 - (IBAction)ratingsSliderInput:(id)sender {
     int rating = [self.myRatingSliderOutlet value] * 100;
     self.myRatingLabel.text = [[NSNumber numberWithInt:rating] stringValue];
-    _film.myRating = [[NSNumber numberWithInt:rating] stringValue];
+    _film.userRating = [NSNumber numberWithInt:rating];
+ 
+//    [CoreDataHelper saveContext];
+}
+
+-(void)saveSliderValue {
+    [CoreDataHelper saveContext];
 }
 
 - (IBAction)dismissViewController:(id)sender {
@@ -190,7 +198,6 @@
 -(void)setRatingImage:(NSString *)mpaaRating
 {
     UIImage *image;
-
     
     if ([mpaaRating isEqualToString:@"G"]) {
         image = [UIImage imageNamed:@"G"];

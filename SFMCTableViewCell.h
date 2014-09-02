@@ -20,6 +20,8 @@
 @property (strong, nonatomic) IBOutlet UILabel *myRatingLabel;
 @property (strong, nonatomic) IBOutlet UILabel *filmCriticsLabel;
 @property (strong, nonatomic) IBOutlet UILabel *filmAudiencesLabel;
+@property (nonatomic) UIImageView *ratingsImageView;
+
 
 - (void)setFilm:(Film *)film;
 - (UIImage *)ratingImage:(NSString *)mpaaRating;

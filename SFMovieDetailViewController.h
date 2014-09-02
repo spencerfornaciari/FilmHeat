@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import <Social/Social.h>
-#import "FilmModel.h"
+#import "CoreDataHelper.h"
+#import "Film.h"
 #import "Constants.h"
 
 @interface SFMovieDetailViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
@@ -35,7 +36,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *myRatingLabel;
 @property (weak, nonatomic) IBOutlet UISlider *myRatingSliderOutlet;
 
-@property (weak, nonatomic) FilmModel *film;
+@property (weak, nonatomic) Film *film;
 
 - (IBAction)ratingsSliderInput:(id)sender;
 

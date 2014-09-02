@@ -766,7 +766,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SynopsisCell" rowHeight="31" id="Mj0-y8-Z9C" customClass="SynopsisTableViewCell">
-                                <rect key="frame" x="0.0" y="22" width="320" height="31"/>
+                                <rect key="frame" x="0.0" y="86" width="320" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Mj0-y8-Z9C" id="XEO-bW-Z3g">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="31"/>
@@ -875,6 +875,13 @@
                                             <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="My Rating: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jio-Bx-goo">
+                                            <rect key="frame" x="84" y="57" width="123" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
@@ -882,6 +889,8 @@
                                     <outlet property="filmCriticsLabel" destination="uhw-cW-Mu1" id="pob-sp-tx8"/>
                                     <outlet property="filmThumbnailPoster" destination="sA1-cB-paI" id="4O8-CK-Km6"/>
                                     <outlet property="filmTitle" destination="ykH-3G-RzG" id="C9W-gO-bec"/>
+                                    <outlet property="myRatingLabel" destination="Jio-Bx-goo" id="eep-7p-czz"/>
+                                    <segue destination="ls1-BT-5KF" kind="push" identifier="detail" id="73O-aA-5Mv"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -923,7 +932,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="1045" y="-1847"/>
+            <point key="canvasLocation" x="3661" y="-1751"/>
         </scene>
         <!--About Table View Controller - About-->
         <scene sceneID="Kow-Ar-7nL">
@@ -1060,7 +1069,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HvC-CZ-NJK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="519" y="-1847"/>
+            <point key="canvasLocation" x="3203" y="-1647"/>
         </scene>
     </scenes>
     <resources>
@@ -1074,6 +1083,6 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="3Xe-EX-EgX"/>
+        <segue reference="73O-aA-5Mv"/>
     </inferredMetricsTieBreakers>
 </document>

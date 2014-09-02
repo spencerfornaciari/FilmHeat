@@ -37,18 +37,7 @@
 //    self.filmArray = [CoreDataHelper filmsArray];
 //    self.searchArray = [CoreDataHelper filmsArray];
     self.segmentedControl.selectedSegmentIndex = 1;
-    
-    __block NSArray *myArray;
-    
-    [NetworkController movieSearchWithTitle:@"Jack" andCallback:^(NSArray *results) {
-        myArray = results;
-    }];
-    
-    
-    for (NSDictionary *dictionary in myArray) {
-        NSLog(@"%@", dictionary);
-        
-    }
+
 
 //    [NetworkController movieSearchWithTitle:@"Jack"];
     
@@ -61,6 +50,9 @@
 
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    
+    [self.tableView reloadData];
+    
     id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
     
     [tracker send:[[[GAIDictionaryBuilder createAppView] set:@"Base View Controller"
@@ -245,16 +237,31 @@
 }
 */
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:@"detail"]) {
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        
+        if (self.tableView == self.searchDisplayController.searchResultsTableView) {
+            Film *film = self.searchArray[indexPath.row];
+            [(SFMovieDetailViewController *)segue.destinationViewController setFilm:film];
+            //        NSDictionary *dictionary = self.searchArray[indexPath.row];
+            //        cell.textLabel.text = [dictionary objectForKey:@"title"];
+            ////        cell.textLabel.text = film.title;
+        } else {
+            Film *film = self.filmArray[indexPath.row];
+            [(SFMovieDetailViewController *)segue.destinationViewController setFilm:film];
+
+            //        cell.filmTitle.text = film.title;
+            //        cell.r
+        }
+    }
 }
-*/
+
 
 //Filters connections list based on the criteria from the selected scope
 - (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
