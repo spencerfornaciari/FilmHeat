@@ -18,18 +18,13 @@
 
 @implementation SFBaseTableViewController
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [[UIApplication sharedApplication] setStatusBarHidden:FALSE];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    [self.navigationController.navigationBar setTranslucent:YES];
 //    self.searchBar.delegate = self;
     
     self.filmArray = [[CoreDataHelper findCategoryArray:@0] mutableCopy];

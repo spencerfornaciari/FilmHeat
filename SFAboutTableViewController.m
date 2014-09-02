@@ -30,7 +30,10 @@
     [super viewDidLoad];
     
     [[UIApplication sharedApplication] setStatusBarHidden:FALSE];
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];    // Uncomment the following line to preserve selection between presentations.
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    [self.navigationController.navigationBar setTranslucent:YES];
+
+    // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.

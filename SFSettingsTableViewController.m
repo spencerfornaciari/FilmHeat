@@ -29,6 +29,7 @@
     
     [[UIApplication sharedApplication] setStatusBarHidden:FALSE];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    [self.navigationController.navigationBar setTranslucent:YES];
     
     [self.tableView setAllowsSelection:NO];
     
