@@ -149,37 +149,43 @@
     // Setting the default inactive state color to the tableView background color.
     [cell setDefaultColor:self.tableView.backgroundView.backgroundColor];
     
-    // Adding gestures per state basis.
+    //Seen It film
     [cell setSwipeGestureWithView:checkView color:[UIColor navigationBarColor] mode:MCSwipeTableViewCellModeSwitch state:MCSwipeTableViewCellState1 completionBlock:^(MCSwipeTableViewCell *cell, MCSwipeTableViewCellState state, MCSwipeTableViewCellMode mode) {
         film.interestStatus = @1;
-//        [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
 
-        [CoreDataHelper saveContext];
-    }];
-    
-    [cell setSwipeGestureWithView:crossView color:[UIColor navigationBarColor] mode:MCSwipeTableViewCellModeSwitch state:MCSwipeTableViewCellState2 completionBlock:^(MCSwipeTableViewCell *cell, MCSwipeTableViewCellState state, MCSwipeTableViewCellMode mode) {
-        NSLog(@"Did swipe \"List\" cell");
-        film.interestStatus = @2;
-        [CoreDataHelper saveContext];
-        [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-
-//        [CoreDataHelper saveContext];
-    }];
-    
-    [cell setSwipeGestureWithView:clockView color:[UIColor navigationBarColor] mode:MCSwipeTableViewCellModeSwitch state:MCSwipeTableViewCellState3 completionBlock:^(MCSwipeTableViewCell *cell, MCSwipeTableViewCellState state, MCSwipeTableViewCellMode mode) {
-        NSLog(@"Did swipe \"Sad_Face\" cell");
-        film.interestStatus = @3;
-//        [self.tableView reloadData];
         [self.filmArray removeObjectAtIndex:indexPath.row];
         [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
         
         [CoreDataHelper saveContext];
-        [self.tableView reloadData];
     }];
     
+    //Want to See film
+    [cell setSwipeGestureWithView:crossView color:[UIColor navigationBarColor] mode:MCSwipeTableViewCellModeSwitch state:MCSwipeTableViewCellState2 completionBlock:^(MCSwipeTableViewCell *cell, MCSwipeTableViewCellState state, MCSwipeTableViewCellMode mode) {
+        film.interestStatus = @2;
+
+        [self.filmArray removeObjectAtIndex:indexPath.row];
+        [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        
+        [CoreDataHelper saveContext];
+    }];
+    
+    //No Interest film
+    [cell setSwipeGestureWithView:clockView color:[UIColor navigationBarColor] mode:MCSwipeTableViewCellModeSwitch state:MCSwipeTableViewCellState3 completionBlock:^(MCSwipeTableViewCell *cell, MCSwipeTableViewCellState state, MCSwipeTableViewCellMode mode) {
+        NSLog(@"Did swipe \"Sad_Face\" cell");
+        film.interestStatus = @3;
+
+        [self.filmArray removeObjectAtIndex:indexPath.row];
+        [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        
+        [CoreDataHelper saveContext];
+    }];
+    
+    //No Decision film
     [cell setSwipeGestureWithView:listView color:[UIColor navigationBarColor] mode:MCSwipeTableViewCellModeSwitch state:MCSwipeTableViewCellState4 completionBlock:^(MCSwipeTableViewCell *cell, MCSwipeTableViewCellState state, MCSwipeTableViewCellMode mode) {
         film.interestStatus = @0;
-        [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        
+        [self.filmArray removeObjectAtIndex:indexPath.row];
+        [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
         
         [CoreDataHelper saveContext];
     }];
@@ -270,7 +276,7 @@
         [NetworkController movieSearchWithTitle:searchText andCallback:^(NSArray *results) {
             self.searchArray = [TranslationController convertDictionaryArrayToFilmArray:results];
             NSLog(@"Search results: %lu", (unsigned long)self.searchArray.count);
-            [self.tableView reloadData];
+//            [self.tableView reloadData];
         }];
         
     }
@@ -309,20 +315,82 @@ shouldReloadTableForSearchString:(NSString *)searchString
         self.filmArray = [[CoreDataHelper findCategoryArray:@3] mutableCopy];
         [self.tableView reloadData];
     }
+}
+
+#pragma mark - UIActionSheet Delegate Methods
+
+- (IBAction)sortAction:(id)sender {
+    if (self.segmentedControl.selectedSegmentIndex == 0) {
+        UIActionSheet *action = [[UIActionSheet alloc] initWithTitle:@"Sort Options" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"A-Z", @"Z-A", @"Date (Newest)", @"Date (Oldest)", @"My Highest Rating", @"My Lowest Rating", nil];
+        [action showInView:self.view];
+    } else {
+        UIActionSheet *action = [[UIActionSheet alloc] initWithTitle:@"Sort Options" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"A-Z", @"Z-A", @"Date (Newest)", @"Date (Oldest)", @"Variance (Smallest)", @"Variance (Greatest)", nil];
+        [action showInView:self.view];
+    }
+}
+
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    switch (buttonIndex)
+    {
+        case 0:
+        {
+            NSSortDescriptor *nameSorter = [NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES];
+            self.filmArray = [[self.filmArray sortedArrayUsingDescriptors:@[nameSorter]] mutableCopy];
+        }
+            break;
+            
+        case 1:
+        {
+            NSSortDescriptor *nameSorter = [NSSortDescriptor sortDescriptorWithKey:@"title" ascending:NO];
+            self.filmArray = [[self.filmArray sortedArrayUsingDescriptors:@[nameSorter]] mutableCopy];
+        }
+            break;
+            
+        case 2:
+        {
+            NSSortDescriptor *nameSorter = [NSSortDescriptor sortDescriptorWithKey:@"releaseDate" ascending:NO];
+            self.filmArray = [[self.filmArray sortedArrayUsingDescriptors:@[nameSorter]] mutableCopy];
+        }
+            break;
+            
+        case 3:
+        {
+            NSSortDescriptor *nameSorter = [NSSortDescriptor sortDescriptorWithKey:@"releaseDate" ascending:YES];
+            self.filmArray = [[self.filmArray sortedArrayUsingDescriptors:@[nameSorter]] mutableCopy];
+        }
+            break;
+            
+        case 4:
+        {
+            if (self.segmentedControl.selectedSegmentIndex == 0) {
+                NSSortDescriptor *nameSorter = [NSSortDescriptor sortDescriptorWithKey:@"userRating" ascending:NO];
+                self.filmArray = [[self.filmArray sortedArrayUsingDescriptors:@[nameSorter]] mutableCopy];
+            } else {
+                NSSortDescriptor *nameSorter = [NSSortDescriptor sortDescriptorWithKey:@"ratingVariance" ascending:YES];
+                self.filmArray = [[self.filmArray sortedArrayUsingDescriptors:@[nameSorter]] mutableCopy];
+            }
+            
+
+            
+        }
+            break;
+        case 5:
+        {
+            if (self.segmentedControl.selectedSegmentIndex == 0) {
+                NSSortDescriptor *nameSorter = [NSSortDescriptor sortDescriptorWithKey:@"userRating" ascending:YES];
+                self.filmArray = [[self.filmArray sortedArrayUsingDescriptors:@[nameSorter]] mutableCopy];
+            } else {
+                NSSortDescriptor *nameSorter = [NSSortDescriptor sortDescriptorWithKey:@"ratingVariance" ascending:NO];
+                self.filmArray = [[self.filmArray sortedArrayUsingDescriptors:@[nameSorter]] mutableCopy];
+            }
+            
+        }
+            break;
+    }
     
-//    if (self.segmentedControl.selectedSegmentIndex == 0) {
-//        self.filmArray = [CoreDataHelper findCategoryArray:@3];
-//        return self.filmArray.count;
-//    } else if (self.segmentedControl.selectedSegmentIndex == 2) {
-//        self.filmArray = [CoreDataHelper findCategoryArray:@1];
-//        return self.filmArray.count;
-//    } else if (self.segmentedControl.selectedSegmentIndex == 3) {
-//        self.filmArray = [CoreDataHelper findCategoryArray:@2];
-//        return self.filmArray.count;
-//    } else {
-//        self.filmArray = [CoreDataHelper findCategoryArray:@0];
-//        return self.filmArray.count;
-//    }
+    [self.tableView reloadData];
+
 }
 
 #pragma mark - Search Bar Delegate Methods

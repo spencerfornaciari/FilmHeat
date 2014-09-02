@@ -317,7 +317,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uXK-4d-cRY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2536" y="-1860"/>
+            <point key="canvasLocation" x="2498" y="-2178"/>
         </scene>
         <!--Tutorial View Controller - Item-->
         <scene sceneID="odT-GW-Nug">
@@ -914,11 +914,17 @@
                                 <action selector="segmentedAction:" destination="S1L-K1-frt" eventType="valueChanged" id="cjn-Wi-pCI"/>
                             </connections>
                         </segmentedControl>
+                        <barButtonItem key="rightBarButtonItem" title="Sort" id="3NS-dd-1uD">
+                            <connections>
+                                <action selector="sortAction:" destination="S1L-K1-frt" id="XoQ-oV-wVX"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="searchBar" destination="LWe-ll-qr5" id="Zzf-4a-vmf"/>
                         <outlet property="searchDisplayController" destination="5oH-EZ-G4J" id="P96-GJ-elD"/>
                         <outlet property="segmentedControl" destination="OTU-Fw-m0s" id="pRz-xg-2yZ"/>
+                        <outlet property="sortButton" destination="3NS-dd-1uD" id="ZwI-hp-8xD"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hwr-kk-LJY" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -932,7 +938,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="3661" y="-1751"/>
+            <point key="canvasLocation" x="3215" y="-1723"/>
         </scene>
         <!--About Table View Controller - About-->
         <scene sceneID="Kow-Ar-7nL">
@@ -1013,7 +1019,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PkV-kX-jQV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1731" y="-1807"/>
+            <point key="canvasLocation" x="1207" y="-1663"/>
         </scene>
         <!--Navigation Controller - Films-->
         <scene sceneID="6U0-b3-qJd">
@@ -1032,7 +1038,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IwN-K0-zsB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="934" y="-2488"/>
+            <point key="canvasLocation" x="1056" y="-2758"/>
         </scene>
         <!--Navigation Controller - Setting-->
         <scene sceneID="KXp-OQ-5S3">
@@ -1070,7 +1076,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HvC-CZ-NJK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="371" y="-1966"/>
+            <point key="canvasLocation" x="2110" y="-1751"/>
         </scene>
     </scenes>
     <resources>

@@ -15,12 +15,14 @@
 #import "UIColor+SFFilmHeatColors.h"
 #import "TranslationController.h"
 
-@interface SFBaseTableViewController : UITableViewController <UISearchBarDelegate>
+@interface SFBaseTableViewController : UITableViewController <UISearchBarDelegate, UIActionSheetDelegate>
 @property (strong, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
 
 @property (strong, nonatomic) IBOutlet UISearchBar *searchBar;
 
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *sortButton;
 
 - (IBAction)segmentedAction:(id)sender;
+- (IBAction)sortAction:(id)sender;
 
 @end
