@@ -13,6 +13,7 @@
 @property (nonatomic) NSMutableArray *filmArray;
 @property (nonatomic) NSArray *searchArray;
 @property (nonatomic) NSArray *searchResultsArray;
+@property (nonatomic) UIActivityIndicatorView *indicatorView;
 
 @end
 
@@ -25,7 +26,7 @@
     [[UIApplication sharedApplication] setStatusBarHidden:FALSE];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     [self.navigationController.navigationBar setTranslucent:YES];
-//    self.searchBar.delegate = self;
+    self.searchBar.delegate = self;
     
     self.filmArray = [[CoreDataHelper findCategoryArray:@0] mutableCopy];
     
@@ -101,9 +102,10 @@
 
     Film * film;
     // Configure the cell...
-    if (tableView == self.searchDisplayController.searchResultsTableView) {
+    if (self.tableView == self.searchDisplayController.searchResultsTableView) {
         film = self.searchArray[indexPath.row];
         [cell setFilm:film];
+
         
 //        NSDictionary *dictionary = self.searchArray[indexPath.row];
 //        cell.textLabel.text = [dictionary objectForKey:@"title"];
@@ -268,13 +270,27 @@
     if ([scope isEqualToString:@"My Collection"]) {
         self.searchArray = [CoreDataHelper titleSearchWithString:searchText];
     } else {
+
         [NetworkController movieSearchWithTitle:searchText andCallback:^(NSArray *results) {
-            self.searchArray = [TranslationController convertDictionaryArrayToFilmArray:results];
-            NSLog(@"Search results: %lu", (unsigned long)self.searchArray.count);
-//            [self.tableView reloadData];
+
+            
+            [TranslationController convertDictionaryArrayToFilmArray:results andCallback:^(NSArray *convertedArray) {
+                self.searchArray = convertedArray;
+                for (Film *film in self.searchArray) {
+                    NSLog(@"Title: %@", film.title);
+                }
+//                [self.indicatorView stopAnimating];
+                [self.searchDisplayController.searchResultsTableView reloadData];
+            }];
         }];
         
     }
+}
+
+-(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+    [self.indicatorView stopAnimating];
+    self.indicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    [self.indicatorView startAnimating];
 }
 
 //Displaying search controller when user selects it

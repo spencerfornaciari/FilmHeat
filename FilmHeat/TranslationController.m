@@ -83,7 +83,7 @@
     return film;
 }
 
-+(NSArray *)convertDictionaryArrayToFilmArray:(NSArray *)dictionaryArray {
++(void)convertDictionaryArrayToFilmArray:(NSArray *)dictionaryArray andCallback:(void (^)(NSArray *convertedArray))completion {
     NSMutableArray *array = [NSMutableArray new];
     
     for (NSDictionary *dictionary in dictionaryArray) {
@@ -123,10 +123,8 @@
         
         if (rating) {
             film.mpaaRating = rating;
-//                film.ratingValue = [NSNumber numberWithLong:[self setRatingValue:film.mpaaRating]];
         } else {
             film.mpaaRating = @"NR";
-//                film.ratingValue = [NSNumber numberWithInt:0];
         }
         
         //Set film's release date
@@ -140,7 +138,7 @@
         film.synopsis = [dictionary valueForKeyPath:@"synopsis"];
         film.criticalConsensus = [dictionary valueForKeyPath:@"critics_consensus"];
         
-        film.interestStatus = @0;
+        film.interestStatus = @5;
         
         NSArray *castArray = [dictionary valueForKey:@"abridged_cast"];
         
@@ -158,7 +156,7 @@
         [array addObject:film];
     }
 
-    return [array copy];
+    completion(array);
 }
 
 //-(NSInteger)setRatingValue:(NSString *)mpaaRating
