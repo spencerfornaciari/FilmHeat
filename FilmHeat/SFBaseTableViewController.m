@@ -494,7 +494,9 @@ shouldReloadTableForSearchString:(NSString *)searchString
             NSString *thumbnailString = [dictionary valueForKeyPath:@"posters.detailed"];
             
             film.thumbnailPosterURL = [thumbnailString stringByReplacingOccurrencesOfString:@"_tmb" withString:@"_det"];
+            film.thumbnailAvailable = @0;
             film.posterURL = [thumbnailString stringByReplacingOccurrencesOfString:@"_tmb" withString:@"_ori"];
+            film.posterAvailable = @0;
             
             //[dictionary valueForKeyPath:@"posters.original"];
             

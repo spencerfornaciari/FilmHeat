@@ -34,6 +34,8 @@
 @dynamic thumbnailPosterURL;
 @dynamic title;
 @dynamic userRating;
+@dynamic thumbnailAvailable;
+@dynamic posterAvailable;
 @dynamic actors;
 @dynamic genres;
 @dynamic user;

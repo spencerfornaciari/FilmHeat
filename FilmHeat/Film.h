@@ -33,6 +33,8 @@
 @property (nonatomic, retain) NSString * thumbnailPosterURL;
 @property (nonatomic, retain) NSString * title;
 @property (nonatomic, retain) NSNumber * userRating;
+@property (nonatomic, retain) NSNumber * thumbnailAvailable;
+@property (nonatomic, retain) NSNumber * posterAvailable;
 @property (nonatomic, retain) NSOrderedSet *actors;
 @property (nonatomic, retain) NSOrderedSet *genres;
 @property (nonatomic, retain) User *user;

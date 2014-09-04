@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "MCSwipeTableViewCell.h"
+#import "CoreDataHelper.h"
 #import "Film.h"
 
 @interface SFMCTableViewCell : MCSwipeTableViewCell

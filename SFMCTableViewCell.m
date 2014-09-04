@@ -74,7 +74,7 @@
         self.ratingsImageView.image = self.ratingImage;
     }
     
-    if (film.thumbnailPosterLocation) {
+    if ([film.thumbnailAvailable isEqualToNumber:@1]) {
         self.filmThumbnailPoster.image = [UIImage imageWithContentsOfFile:film.thumbnailPosterLocation];
     } else {
         
@@ -88,7 +88,8 @@
         film.thumbnailPosterLocation = posterLocation;
         
         [data writeToFile:film.thumbnailPosterLocation atomically:YES];
-
+        film.thumbnailAvailable = @1;
+        [CoreDataHelper saveContext];
     }
     
 }
