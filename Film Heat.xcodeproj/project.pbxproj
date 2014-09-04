@@ -65,10 +65,10 @@
 		89B49C591909BCB100B8C6D0 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 89B49C581909BCB100B8C6D0 /* libsqlite3.dylib */; };
 		89B49C5D190B1F7300B8C6D0 /* NetworkController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89B49C5C190B1F7300B8C6D0 /* NetworkController.m */; };
 		89B9994F19B10BCB0098BD8C /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89B98A8C18AC16C5006FF961 /* Crashlytics.framework */; };
-		89B9995519B147D00098BD8C /* Film.m in Sources */ = {isa = PBXBuildFile; fileRef = 89B9995419B147D00098BD8C /* Film.m */; };
 		89B9995819B21B9C0098BD8C /* SFBaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89B9995719B21B9C0098BD8C /* SFBaseTableViewController.m */; };
 		89B9995B19B6272E0098BD8C /* TranslationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89B9995A19B6272E0098BD8C /* TranslationController.m */; };
 		89BC655518A3008D00B27385 /* SFMCTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 89BC655418A3008D00B27385 /* SFMCTableViewCell.m */; };
+		89C350A519B914D200EC3329 /* Film.m in Sources */ = {isa = PBXBuildFile; fileRef = 89C350A419B914D200EC3329 /* Film.m */; };
 		89C5D49C18FD9B8300D89033 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89C5D49B18FD9B8300D89033 /* Social.framework */; };
 		89C8923318D910DE009E3E6B /* SFAboutTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89C8923218D910DE009E3E6B /* SFAboutTableViewController.m */; };
 		89EBD9B218EE25E800F9D63D /* SFSettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 89EBD9B118EE25E800F9D63D /* SFSettingsTableViewController.m */; };
@@ -185,14 +185,14 @@
 		89B49C5B190B1F7300B8C6D0 /* NetworkController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NetworkController.h; path = ../NetworkController.h; sourceTree = "<group>"; };
 		89B49C5C190B1F7300B8C6D0 /* NetworkController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NetworkController.m; path = ../NetworkController.m; sourceTree = "<group>"; };
 		89B98A8C18AC16C5006FF961 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
-		89B9995319B147D00098BD8C /* Film.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Film.h; sourceTree = "<group>"; };
-		89B9995419B147D00098BD8C /* Film.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Film.m; sourceTree = "<group>"; };
 		89B9995619B21B9C0098BD8C /* SFBaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFBaseTableViewController.h; sourceTree = "<group>"; };
 		89B9995719B21B9C0098BD8C /* SFBaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFBaseTableViewController.m; sourceTree = "<group>"; };
 		89B9995919B6272E0098BD8C /* TranslationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TranslationController.h; sourceTree = "<group>"; };
 		89B9995A19B6272E0098BD8C /* TranslationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TranslationController.m; sourceTree = "<group>"; };
 		89BC655318A3008D00B27385 /* SFMCTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SFMCTableViewCell.h; path = ../SFMCTableViewCell.h; sourceTree = "<group>"; };
 		89BC655418A3008D00B27385 /* SFMCTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SFMCTableViewCell.m; path = ../SFMCTableViewCell.m; sourceTree = "<group>"; };
+		89C350A319B914D200EC3329 /* Film.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Film.h; sourceTree = "<group>"; };
+		89C350A419B914D200EC3329 /* Film.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Film.m; sourceTree = "<group>"; };
 		89C5D49B18FD9B8300D89033 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		89C8923118D910DE009E3E6B /* SFAboutTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SFAboutTableViewController.h; path = ../SFAboutTableViewController.h; sourceTree = "<group>"; };
 		89C8923218D910DE009E3E6B /* SFAboutTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SFAboutTableViewController.m; path = ../SFAboutTableViewController.m; sourceTree = "<group>"; };
@@ -449,8 +449,8 @@
 				895A85ED19B0FD6300AE18C3 /* Genre.m */,
 				895A85F819B0FE2600AE18C3 /* Actor.h */,
 				895A85F919B0FE2600AE18C3 /* Actor.m */,
-				89B9995319B147D00098BD8C /* Film.h */,
-				89B9995419B147D00098BD8C /* Film.m */,
+				89C350A319B914D200EC3329 /* Film.h */,
+				89C350A419B914D200EC3329 /* Film.m */,
 			);
 			name = "Core Data";
 			sourceTree = "<group>";
@@ -633,7 +633,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				895A85F119B0FD6400AE18C3 /* User.m in Sources */,
-				89B9995519B147D00098BD8C /* Film.m in Sources */,
 				898F4CBB189080D20060E847 /* SFFilmModelDataController.m in Sources */,
 				894DFACB18A0681100806267 /* SFCustomizeViewController.m in Sources */,
 				8931CF5718A44A4200A4CFBC /* SFTheaterTableViewController.m in Sources */,
@@ -644,6 +643,7 @@
 				895A85EE19B0FD6300AE18C3 /* Genre.m in Sources */,
 				89EBD9B218EE25E800F9D63D /* SFSettingsTableViewController.m in Sources */,
 				89EBD9B518F329F400F9D63D /* SynopsisTableViewController.m in Sources */,
+				89C350A519B914D200EC3329 /* Film.m in Sources */,
 				8949F772188DE1460069E9D4 /* SFTabBarController.m in Sources */,
 				8931CF6618A5998E00A4CFBC /* Constants.m in Sources */,
 				8931CF6318A4820100A4CFBC /* SFNoneTableViewController.m in Sources */,

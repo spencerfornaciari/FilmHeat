@@ -74,39 +74,23 @@
         self.ratingsImageView.image = self.ratingImage;
     }
     
-    if (!film.thumbnailPosterLocation) {
-        UIImage *image = [UIImage imageWithContentsOfFile:[NSData dataWithContentsOfFile:film.thumbnailPosterURL]];
-        NSData *posterData = UIImageJPEGRepresentation(image, 1);
+    if (film.thumbnailPosterLocation) {
+        self.filmThumbnailPoster.image = [UIImage imageWithContentsOfFile:film.thumbnailPosterLocation];
+    } else {
         
-        NSString *posterLocation = [NSString stringWithFormat:@"%@/%@.jpg", [self documentsDirectoryPath], [film.title stringByReplacingOccurrencesOfString:@":" withString:@""]];
+        NSURL *url = [NSURL URLWithString:film.thumbnailPosterURL];
+        NSData *data = [NSData dataWithContentsOfURL:url];
+        UIImage *image = [UIImage imageWithData:data];
+        
+        self.filmThumbnailPoster.image = image;
+        
+        NSString *posterLocation = [NSString stringWithFormat:@"%@/%@.jpg", [self documentsDirectoryPath], film.rottenTomatoesID];
         film.thumbnailPosterLocation = posterLocation;
         
-        [posterData writeToFile:film.thumbnailPosterLocation atomically:YES];
+        [data writeToFile:film.thumbnailPosterLocation atomically:YES];
 
-    } else {
-        self.filmThumbnailPoster.image = [UIImage imageWithContentsOfFile:film.thumbnailPosterLocation];
     }
     
-    //UIImage *image = [UIImage imageWithContentsOfFile:[NSData dataWithContentsOfFile:film.posterImagePath]];
-//
-//    if (image) {
-////        self.filmThumbnailPoster.image = image;
-//        NSLog(@"%@: TRUE", film.title);
-//    }
-    
-//    else {
-//        if (!film.isDownloading) {
-//            [film downloadPoster];
-//        }
-//    }
-    
-//    if (!image) {
-//        self.filmThumbnailPoster.image = [UIImage imageNamed:@"Movies.png"];
-//        //[film downloadPoster];
-//       // NSLog(@"%@", film.thumbnailPoster);
-//    } else {
-//        self.filmThumbnailPoster.image = image;
-//    }
 }
 
 -(UIImage *)ratingImage:(NSString *)mpaaRating

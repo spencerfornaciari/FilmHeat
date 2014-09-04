@@ -48,16 +48,15 @@
     NSFetchRequest *request = [NSFetchRequest new];
     [request setEntity:entity];
     
-    
     NSError *error;
-    NSArray *array = [[CoreDataHelper managedContext] executeFetchRequest:request error:&error];
     
-//    NS *worker = array[0];
-//    
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc]
                                         initWithKey:@"title" ascending:YES];
+    [request setSortDescriptors:@[sortDescriptor]];
     
-    return [array sortedArrayUsingDescriptors:@[sortDescriptor]];
+    NSArray *array = [[CoreDataHelper managedContext] executeFetchRequest:request error:&error];
+
+    return array;
 }
 
 +(NSArray *)titleSearchWithString:(NSString *)title {
@@ -103,20 +102,25 @@
 ////
 //    NSPredicate *customPredicate = [NSCompoundPredicate orPredicateWithSubpredicates:@[categoryPredicate, criticPredicate]];
     
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:
-                              @"(interestStatus == %@) AND (ratingValue >= %@) AND (criticScore >= %@) AND (audienceScore >= %@) AND (ratingVariance <= %@)", category, [[NSUserDefaults standardUserDefaults] objectForKey:@"mpaaRatingThreshold"], [[NSUserDefaults standardUserDefaults] objectForKey:@"criticThreshold"], [[NSUserDefaults standardUserDefaults] objectForKey:@"audienceThreshold"], [[NSUserDefaults standardUserDefaults] objectForKey:@"varianceThreshold"]];
+//    NSPredicate *predicate = [NSPredicate predicateWithFormat:
+//                              @"(interestStatus == %@) AND (ratingValue >= %@) AND (criticScore >= %@) AND (audienceScore >= %@) AND (ratingVariance <= %@)", category, [[NSUserDefaults standardUserDefaults] objectForKey:@"mpaaRatingThreshold"], [[NSUserDefaults standardUserDefaults] objectForKey:@"criticThreshold"], [[NSUserDefaults standardUserDefaults] objectForKey:@"audienceThreshold"], [[NSUserDefaults standardUserDefaults] objectForKey:@"varianceThreshold"]];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"interestStatus == %@", category];
     
     [request setPredicate:predicate];
     
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc]
-                                        initWithKey:@"releaseDate" ascending:NO];
-    [request setSortDescriptors:@[sortDescriptor]];
+//    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc]
+//                                        initWithKey:@"releaseDate" ascending:NO];
+//    [request setSortDescriptors:@[sortDescriptor]];
 
     NSError *error;
     NSArray *array = [[CoreDataHelper managedContext] executeFetchRequest:request error:&error];
     
+    NSLog(@"Count: %i", array.count);
+    
     return array;
 }
+
+//+(BOOL)theaterFilms
 
 
 //    for (FilmModel *film in self.strongArray) {
