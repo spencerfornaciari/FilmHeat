@@ -33,6 +33,24 @@
 //    self.filmArray = [CoreDataHelper filmsArray];
 //    self.searchArray = [CoreDataHelper filmsArray];
     self.segmentedControl.selectedSegmentIndex = 1;
+    
+//    NSArray *array = [NetworkController movieSearchWithTitle:@"ghost"];
+//    
+//    for (Film *film in array) {
+//        NSLog(@"Title: %@", film.title);
+//    }
+
+//    [NetworkController movieSearchWithTitle:@"ghost" andCallback:^(NSArray *results) {
+//        
+////        [TranslationController convertDictionaryArrayToFilmArray:results andCallback:^(NSArray *convertedArray) {
+////            self.searchArray = convertedArray;
+////            for (Film *film in self.searchArray) {
+////                NSLog(@"Title: %@", film.title);
+////            }
+////            //                [self.indicatorView stopAnimating];
+////            [self.searchDisplayController.searchResultsTableView reloadData];
+////        }];
+//    }];
 
 
 //    [NetworkController movieSearchWithTitle:@"Jack"];
@@ -104,9 +122,9 @@
     // Configure the cell...
     if (self.tableView == self.searchDisplayController.searchResultsTableView) {
         film = self.searchArray[indexPath.row];
-        [cell setFilm:film];
+//        [cell setFilm:film];
 
-        
+        cell.filmTitle.text = film.title;
 //        NSDictionary *dictionary = self.searchArray[indexPath.row];
 //        cell.textLabel.text = [dictionary objectForKey:@"title"];
 ////        cell.textLabel.text = film.title;
@@ -270,19 +288,20 @@
     if ([scope isEqualToString:@"My Collection"]) {
         self.searchArray = [CoreDataHelper titleSearchWithString:searchText];
     } else {
+        self.searchArray = [NetworkController movieSearchWithTitle:searchText];
 
-        [NetworkController movieSearchWithTitle:searchText andCallback:^(NSArray *results) {
-
-            
-            [TranslationController convertDictionaryArrayToFilmArray:results andCallback:^(NSArray *convertedArray) {
-                self.searchArray = convertedArray;
-                for (Film *film in self.searchArray) {
-                    NSLog(@"Title: %@", film.title);
-                }
-//                [self.indicatorView stopAnimating];
-                [self.searchDisplayController.searchResultsTableView reloadData];
-            }];
-        }];
+//        [NetworkController movieSearchWithTitle:searchText andCallback:^(NSArray *results) {
+//
+//            
+//            [TranslationController convertDictionaryArrayToFilmArray:results andCallback:^(NSArray *convertedArray) {
+//                self.searchArray = convertedArray;
+//                for (Film *film in self.searchArray) {
+//                    NSLog(@"Title: %@", film.title);
+//                }
+////                [self.indicatorView stopAnimating];
+//                [self.searchDisplayController.searchResultsTableView reloadData];
+//            }];
+//        }];
         
     }
 }

@@ -7,9 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "TranslationController.h"
+
 
 @interface NetworkController : NSObject
 
 +(void)movieSearchWithTitle:(NSString *)title andCallback:(void (^)(NSArray *results))completion;
+
++(NSArray *)movieSearchWithTitle:(NSString *)title;
 
 @end

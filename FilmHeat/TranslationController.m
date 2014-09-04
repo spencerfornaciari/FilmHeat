@@ -83,7 +83,7 @@
     return film;
 }
 
-+(void)convertDictionaryArrayToFilmArray:(NSArray *)dictionaryArray andCallback:(void (^)(NSArray *convertedArray))completion {
++(NSArray *)convertDictionaryArrayToFilmArray:(NSArray *)dictionaryArray {
     NSMutableArray *array = [NSMutableArray new];
     
     for (NSDictionary *dictionary in dictionaryArray) {
@@ -156,7 +156,7 @@
         [array addObject:film];
     }
 
-    completion(array);
+    return [array copy];
 }
 
 //-(NSInteger)setRatingValue:(NSString *)mpaaRating

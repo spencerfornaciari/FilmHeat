@@ -37,6 +37,7 @@
 @property (weak, nonatomic) IBOutlet UISlider *myRatingSliderOutlet;
 
 @property (weak, nonatomic) Film *film;
+- (IBAction)shareAction:(id)sender;
 
 - (IBAction)ratingsSliderInput:(id)sender;
 

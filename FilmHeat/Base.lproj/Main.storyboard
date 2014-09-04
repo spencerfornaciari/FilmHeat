@@ -742,7 +742,13 @@
                             <constraint firstItem="kzo-hl-BXd" firstAttribute="leading" secondItem="Alh-Tw-GXz" secondAttribute="leading" constant="20" symbolic="YES" id="yl1-J7-MTn"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="tsl-0Y-8lE"/>
+                    <navigationItem key="navigationItem" id="tsl-0Y-8lE">
+                        <barButtonItem key="rightBarButtonItem" title="Share" id="BOL-Su-WLN">
+                            <connections>
+                                <action selector="shareAction:" destination="ls1-BT-5KF" id="Cb1-O3-xAN"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="detailSynopsis" destination="Bvi-jR-S62" id="dQd-d4-DLV"/>
                         <outlet property="filmRuntimeLabel" destination="Icp-MJ-3oE" id="Zyn-S9-Cmu"/>
@@ -766,7 +772,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SynopsisCell" rowHeight="31" id="Mj0-y8-Z9C" customClass="SynopsisTableViewCell">
-                                <rect key="frame" x="0.0" y="86" width="320" height="31"/>
+                                <rect key="frame" x="0.0" y="22" width="320" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Mj0-y8-Z9C" id="XEO-bW-Z3g">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="31"/>
@@ -1090,6 +1096,6 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="73O-aA-5Mv"/>
+        <segue reference="aOf-RA-ZZi"/>
     </inferredMetricsTieBreakers>
 </document>

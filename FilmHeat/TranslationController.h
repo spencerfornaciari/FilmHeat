@@ -15,6 +15,6 @@
 
 +(Film *)convertDictionaryToFilm:(NSDictionary *)dictionary;
 
-+(void)convertDictionaryArrayToFilmArray:(NSArray *)dictionaryArray andCallback:(void (^)(NSArray *convertedArray))completion;
++(NSArray *)convertDictionaryArrayToFilmArray:(NSArray *)dictionaryArray;
 
 @end

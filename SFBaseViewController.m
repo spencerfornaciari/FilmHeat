@@ -533,8 +533,12 @@
             film.ratingVariance = [NSNumber numberWithLong:variance];
             
             //Grab the URL for the thumbnail of the film's poster
-            film.thumbnailPosterURL = [dictionary valueForKeyPath:@"posters.detailed"];
-            film.posterURL = [dictionary valueForKeyPath:@"posters.original"];
+            NSString *thumbnailString = [dictionary valueForKeyPath:@"posters.detailed"];
+
+            film.thumbnailPosterURL = [thumbnailString stringByReplacingOccurrencesOfString:@"_tmb" withString:@"_det"];
+            film.posterURL = [thumbnailString stringByReplacingOccurrencesOfString:@"_tmb" withString:@"_ori"];
+            
+            //[dictionary valueForKeyPath:@"posters.original"];
             
             //Set the film runtime
             film.runtime = [dictionary valueForKeyPath:@"runtime"];

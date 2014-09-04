@@ -178,6 +178,9 @@
 
 #pragma mark - Button Actions
 
+- (IBAction)shareAction:(id)sender {
+}
+
 - (IBAction)ratingsSliderInput:(id)sender {
     int rating = [self.myRatingSliderOutlet value] * 100;
     self.myRatingLabel.text = [[NSNumber numberWithInt:rating] stringValue];
