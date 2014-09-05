@@ -2,7 +2,7 @@
 //  Film.m
 //  Film Heat
 //
-//  Created by Spencer Fornaciari on 9/4/14.
+//  Created by Spencer Fornaciari on 9/5/14.
 //  Copyright (c) 2014 Spencer Fornaciari. All rights reserved.
 //
 
@@ -23,6 +23,7 @@
 @dynamic imdbID;
 @dynamic interestStatus;
 @dynamic mpaaRating;
+@dynamic posterAvailable;
 @dynamic posterLocation;
 @dynamic posterURL;
 @dynamic ratingVariance;
@@ -30,12 +31,12 @@
 @dynamic rottenTomatoesID;
 @dynamic runtime;
 @dynamic synopsis;
+@dynamic thumbnailAvailable;
 @dynamic thumbnailPosterLocation;
 @dynamic thumbnailPosterURL;
 @dynamic title;
 @dynamic userRating;
-@dynamic thumbnailAvailable;
-@dynamic posterAvailable;
+@dynamic ratingValue;
 @dynamic actors;
 @dynamic genres;
 @dynamic user;

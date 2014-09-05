@@ -2,7 +2,7 @@
 //  Film.h
 //  Film Heat
 //
-//  Created by Spencer Fornaciari on 9/4/14.
+//  Created by Spencer Fornaciari on 9/5/14.
 //  Copyright (c) 2014 Spencer Fornaciari. All rights reserved.
 //
 
@@ -22,6 +22,7 @@
 @property (nonatomic, retain) NSString * imdbID;
 @property (nonatomic, retain) NSNumber * interestStatus;
 @property (nonatomic, retain) NSString * mpaaRating;
+@property (nonatomic, retain) NSNumber * posterAvailable;
 @property (nonatomic, retain) NSString * posterLocation;
 @property (nonatomic, retain) NSString * posterURL;
 @property (nonatomic, retain) NSNumber * ratingVariance;
@@ -29,12 +30,12 @@
 @property (nonatomic, retain) NSString * rottenTomatoesID;
 @property (nonatomic, retain) NSNumber * runtime;
 @property (nonatomic, retain) NSString * synopsis;
+@property (nonatomic, retain) NSNumber * thumbnailAvailable;
 @property (nonatomic, retain) NSString * thumbnailPosterLocation;
 @property (nonatomic, retain) NSString * thumbnailPosterURL;
 @property (nonatomic, retain) NSString * title;
 @property (nonatomic, retain) NSNumber * userRating;
-@property (nonatomic, retain) NSNumber * thumbnailAvailable;
-@property (nonatomic, retain) NSNumber * posterAvailable;
+@property (nonatomic, retain) NSNumber * ratingValue;
 @property (nonatomic, retain) NSOrderedSet *actors;
 @property (nonatomic, retain) NSOrderedSet *genres;
 @property (nonatomic, retain) User *user;

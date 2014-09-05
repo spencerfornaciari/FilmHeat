@@ -88,47 +88,21 @@
     NSFetchRequest *request = [NSFetchRequest new];
     [request setEntity:entity];
     
-//    NSPredicate *categoryPredicate = [NSPredicate predicateWithFormat:@"interestStatus == %@", category];
-//    
-//    NSPredicate *ratingPredicate = [NSPredicate predicateWithFormat:@"ratingValue >= %@", [[NSUserDefaults standardUserDefaults] objectForKey:@"mpaaRatingThreshold"]];
-//    
-//    NSPredicate *criticPredicate = [NSPredicate predicateWithFormat:@"criticScore >= %@", [[NSUserDefaults standardUserDefaults] objectForKey:@"criticThreshold"]];
-//    
-//    NSLog(@"Threshold: %@", [[NSUserDefaults standardUserDefaults] objectForKey:@"criticThreshold"]);
-//    
-//    NSPredicate *audiencePredicate = [NSPredicate predicateWithFormat:@"audienceScore >= %@", [[NSUserDefaults standardUserDefaults] objectForKey:@"audienceThreshold"]];
-////
-//    NSPredicate *variancePredicate = [NSPredicate predicateWithFormat:@"ratingVariance <= %@", [[NSUserDefaults standardUserDefaults] objectForKey:@"varianceThreshold"]];
-////
-//    NSPredicate *customPredicate = [NSCompoundPredicate orPredicateWithSubpredicates:@[categoryPredicate, criticPredicate]];
-    
-//    NSPredicate *predicate = [NSPredicate predicateWithFormat:
-//                              @"(interestStatus == %@) AND (ratingValue >= %@) AND (criticScore >= %@) AND (audienceScore >= %@) AND (ratingVariance <= %@)", category, [[NSUserDefaults standardUserDefaults] objectForKey:@"mpaaRatingThreshold"], [[NSUserDefaults standardUserDefaults] objectForKey:@"criticThreshold"], [[NSUserDefaults standardUserDefaults] objectForKey:@"audienceThreshold"], [[NSUserDefaults standardUserDefaults] objectForKey:@"varianceThreshold"]];
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"interestStatus == %@", category];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:
+                              @"(interestStatus == %@) AND (ratingValue >= %@) AND (criticScore >= %@) AND (audienceScore >= %@) AND (ratingVariance <= %@)", category, [[NSUserDefaults standardUserDefaults] objectForKey:@"mpaaRatingThreshold"], [[NSUserDefaults standardUserDefaults] objectForKey:@"criticThreshold"], [[NSUserDefaults standardUserDefaults] objectForKey:@"audienceThreshold"], [[NSUserDefaults standardUserDefaults] objectForKey:@"varianceThreshold"]];
     
     [request setPredicate:predicate];
     
-//    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc]
-//                                        initWithKey:@"releaseDate" ascending:NO];
-//    [request setSortDescriptors:@[sortDescriptor]];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc]
+                                        initWithKey:@"releaseDate" ascending:NO];
+
+    [request setSortDescriptors:@[sortDescriptor]];
 
     NSError *error;
     NSArray *array = [[CoreDataHelper managedContext] executeFetchRequest:request error:&error];
     
-    NSLog(@"Count: %i", array.count);
-    
     return array;
 }
-
-//+(BOOL)theaterFilms
-
-
-//    for (FilmModel *film in self.strongArray) {
-//        if ([film.ratingValue integerValue] >= [[NSUserDefaults standardUserDefaults] integerForKey:@"mpaaRatingThreshold"] && [film.criticsRating integerValue] >= [[NSUserDefaults standardUserDefaults] integerForKey:@"criticThreshold"] && [film.audienceRating integerValue] >= [[NSUserDefaults standardUserDefaults] integerForKey:@"audienceThreshold"] && [film.ratingVariance integerValue] <= [[NSUserDefaults standardUserDefaults] integerForKey:@"varianceThreshold"]) {
-//            [ratingFilterArray addObject:film];
-//        }
-//    }
-
 
 +(BOOL)doesFilmExist:(NSString *)filmID {
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Film" inManagedObjectContext:[CoreDataHelper managedContext]];
@@ -144,6 +118,23 @@
         return TRUE;
     } else {
         return FALSE;
+    }
+}
+
++(BOOL)doesCoreDataExist {
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Film" inManagedObjectContext:[CoreDataHelper managedContext]];
+    
+    NSFetchRequest *request = [NSFetchRequest new];
+    [request setEntity:entity];
+    [request setFetchLimit:1];
+    
+    NSError *error;
+    NSArray *results = [[CoreDataHelper managedContext] executeFetchRequest:request error:&error];
+    
+    if (results.count == 0) {
+        return NO;
+    } else {
+        return YES;
     }
 }
 

@@ -36,6 +36,12 @@
     [[UITabBar appearance] setTintColor:[UIColor filmHeatComplementaryColor]];
     [[UITabBar appearance] setBarTintColor:[UIColor filmHeatPrimaryColor]];
     
+    
+    if (![[NSUserDefaults standardUserDefaults] objectForKey:@"mpaaRatingThreshold"]) {
+        [[NSUserDefaults standardUserDefaults] setObject:@0 forKey:@"mpaaRatingThreshold"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
+    
     if (![[NSUserDefaults standardUserDefaults] objectForKey:@"criticThreshold"]) {
         [[NSUserDefaults standardUserDefaults] setObject:@0 forKey:@"criticThreshold"];
         [[NSUserDefaults standardUserDefaults] synchronize];

@@ -67,9 +67,10 @@
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    self.filmArray = [[CoreDataHelper findCategoryArray:@0] mutableCopy];
-
-    [self.tableView reloadData];
+    if ([CoreDataHelper doesCoreDataExist]) {
+        self.filmArray = [[CoreDataHelper findCategoryArray:@0] mutableCopy];
+        [self.tableView reloadData];
+    }
     
     id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
     
@@ -507,8 +508,10 @@ shouldReloadTableForSearchString:(NSString *)searchString
             
             if (rating) {
                 film.mpaaRating = rating;
+                film.ratingValue = [self setRatingValue:film.mpaaRating];
             } else {
                 film.mpaaRating = @"NR";
+                film.ratingValue = @0;
             }
             
             //Set film's release date
@@ -544,11 +547,27 @@ shouldReloadTableForSearchString:(NSString *)searchString
     [CoreDataHelper saveContext];
     
     self.filmArray = [[CoreDataHelper findCategoryArray:@0] mutableCopy];
+    [self.tableView reloadData];
 
 //    NSArray *array = [CoreDataHelper findCategoryArray:@2];
 //    NSLog(@"Category: %lu", (unsigned long)array.count);
     
     
+}
+
+-(NSNumber *)setRatingValue:(NSString *)mpaaRating
+{
+    if ([mpaaRating isEqualToString:@"G"]) {
+        return @1;
+    } else if ([mpaaRating isEqualToString:@"PG"]){
+        return @2;
+    } else if ([mpaaRating isEqualToString:@"PG-13"]) {
+        return @3;
+    } else if ([mpaaRating isEqualToString:@"R"]) {
+        return @4;
+    } else {
+        return @5;
+    }
 }
 
 
