@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *myRatingTextLabel;
 
 @property (weak, nonatomic) IBOutlet UITableView *detailSynopsis;
+@property (nonatomic) UIView *selectionView;
 
 
 @end
@@ -36,6 +37,9 @@
     [[UIApplication sharedApplication] setStatusBarHidden:FALSE];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 
+    if ([self.film.interestStatus isEqualToNumber:@0]) {
+        [self loadSelectionInterface];
+    }
     
 //    //get the Image
 //    UIImage *img = [UIImage imageNamed:@"PG 13"];
@@ -238,6 +242,45 @@
         [facebookController setInitialText:[NSString stringWithFormat:@"I think we should go see %@", self.film.title]];
         
         [self presentViewController:facebookController animated:YES completion:nil];
+    }
+}
+
+#pragma mark - Choose Status
+
+-(void)loadSelectionInterface {
+    self.selectionView = [[UIView alloc] initWithFrame:CGRectMake(0, 200, 320, 50)];
+    [self.view addSubview:self.selectionView];
+    
+    UIButton *interestedButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    interestedButton.frame = CGRectMake(0, 0, 160, 60);
+    [interestedButton addTarget:self action:@selector(interestedAction:) forControlEvents:UIControlEventTouchUpInside];
+    [interestedButton setTitle:@"Want to See" forState:UIControlStateNormal];
+    interestedButton.backgroundColor = [UIColor goColor];
+    interestedButton.tag = 0;
+    [self.selectionView addSubview:interestedButton];
+    
+    UIButton *notInterestedButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    notInterestedButton.frame = CGRectMake(160, 0, 160, 60);
+    [notInterestedButton addTarget:self action:@selector(interestedAction:) forControlEvents:UIControlEventTouchUpInside];
+    [notInterestedButton setTitle:@"No Interest" forState:UIControlStateNormal];
+    notInterestedButton.backgroundColor = [UIColor filmHeatPrimaryColor];
+    interestedButton.tag = 1;
+    [self.selectionView addSubview:notInterestedButton];
+    
+}
+
+-(void)interestedAction:(id)sender {
+    UIButton *button = (UIButton *)sender;
+    
+    if (button.tag == 0) {
+        self.film.interestStatus = @2;
+        [CoreDataHelper saveContext];
+        [self.selectionView removeFromSuperview];
+    } else {
+        self.film.interestStatus = @3;
+        [CoreDataHelper saveContext];
+        [self.selectionView removeFromSuperview];
+
     }
 }
 @end

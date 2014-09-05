@@ -19,5 +19,8 @@
 + (UIColor *)filmHeatPrimaryColor;
 + (UIColor *)filmHeatComplementaryColor;
 
++ (UIColor *)goColor;
++ (UIColor *)stopColor;
+
 
 @end

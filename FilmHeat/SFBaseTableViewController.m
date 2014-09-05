@@ -29,7 +29,6 @@
     [self.navigationController.navigationBar setTranslucent:YES];
     self.searchBar.delegate = self;
     
-    self.filmArray = [[CoreDataHelper findCategoryArray:@0] mutableCopy];
     
 //    self.filmArray = [[CoreDataHelper filmsArray] mutableCopy];
 //    self.searchArray = [CoreDataHelper filmsArray];
@@ -68,7 +67,7 @@
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-//    self.filmArray = [[CoreDataHelper findCategoryArray:@0] mutableCopy];
+    self.filmArray = [[CoreDataHelper findCategoryArray:@0] mutableCopy];
 
     [self.tableView reloadData];
     
@@ -544,6 +543,8 @@ shouldReloadTableForSearchString:(NSString *)searchString
     
     [CoreDataHelper saveContext];
     
+    self.filmArray = [[CoreDataHelper findCategoryArray:@0] mutableCopy];
+
 //    NSArray *array = [CoreDataHelper findCategoryArray:@2];
 //    NSLog(@"Category: %lu", (unsigned long)array.count);
     

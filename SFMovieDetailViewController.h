@@ -11,6 +11,7 @@
 #import "CoreDataHelper.h"
 #import "Film.h"
 #import "Constants.h"
+#import "UIColor+SFFilmHeatColors.h"
 
 @interface SFMovieDetailViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 

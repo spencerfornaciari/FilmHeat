@@ -39,4 +39,8 @@
     return [UIColor whiteColor];
 }
 
++ (UIColor *)goColor {
+    return [UIColor colorWithRed:76/255.f green:217/255.f blue:100/255.f alpha:1];
+}
+
 @end
