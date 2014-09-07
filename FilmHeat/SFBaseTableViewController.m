@@ -125,14 +125,11 @@
 
     Film * film;
     // Configure the cell...
-    if (self.tableView == self.searchDisplayController.searchResultsTableView) {
+    
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
         film = self.searchArray[indexPath.row];
-//        [cell setFilm:film];
-
-        cell.filmTitle.text = film.title;
-//        NSDictionary *dictionary = self.searchArray[indexPath.row];
-//        cell.textLabel.text = [dictionary objectForKey:@"title"];
-////        cell.textLabel.text = film.title;
+        [cell setFilm:film];
+        NSLog(@"Film Title: %@", film.mpaaRating);
     } else {
         film = self.filmArray[indexPath.row];
         [cell setFilm:film];
@@ -283,6 +280,8 @@
         
         SFMovieDetailViewController *destViewController = segue.destinationViewController;
         destViewController.film = film;
+        
+        [CoreDataHelper saveContext];
     }
 }
 
@@ -291,9 +290,21 @@
 - (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
 {
     if ([scope isEqualToString:@"My Collection"]) {
+        NSLog(@"Search: %@", searchText);
         self.searchArray = [CoreDataHelper titleSearchWithString:searchText];
+    
+        for (Film *film in self.searchArray) {
+            NSLog(@"Title: %@", film.title);
+        }
+        
+//        [self.searchDisplayController.searchResultsTableView reloadData];
+
     } else {
-        self.searchArray = [NetworkController movieSearchWithTitle:searchText];
+        [NetworkController searchMoviesWithTitle:searchText];
+        self.searchArray = [CoreDataHelper findCategoryArray:@5];
+        
+        [self.searchDisplayController.searchResultsTableView reloadData];
+
 
 //        [NetworkController movieSearchWithTitle:searchText andCallback:^(NSArray *results) {
 //
@@ -309,6 +320,8 @@
 //        }];
         
     }
+    
+
 }
 
 -(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
@@ -350,6 +363,8 @@ shouldReloadTableForSearchString:(NSString *)searchString
         self.filmArray = [[CoreDataHelper findCategoryArray:@3] mutableCopy];
         [self.tableView reloadData];
     }
+    
+    [CoreDataHelper saveContext];
 }
 
 #pragma mark - UIActionSheet Delegate Methods

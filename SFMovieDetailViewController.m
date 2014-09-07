@@ -264,7 +264,7 @@
     [notInterestedButton addTarget:self action:@selector(interestedAction:) forControlEvents:UIControlEventTouchUpInside];
     [notInterestedButton setTitle:@"No Interest" forState:UIControlStateNormal];
     notInterestedButton.backgroundColor = [UIColor filmHeatPrimaryColor];
-    interestedButton.tag = 1;
+    notInterestedButton.tag = 1;
     [self.selectionView addSubview:notInterestedButton];
     
 }

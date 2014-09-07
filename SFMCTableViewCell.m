@@ -89,7 +89,6 @@
         
         [data writeToFile:film.thumbnailPosterLocation atomically:YES];
         film.thumbnailAvailable = @1;
-        [CoreDataHelper saveContext];
     }
     
 }

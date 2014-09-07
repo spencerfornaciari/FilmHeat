@@ -17,4 +17,6 @@
 
 +(NSArray *)convertDictionaryArrayToFilmArray:(NSArray *)dictionaryArray;
 
++(void)convertFilmArray:(NSArray *)dictionaryArray;
+
 @end

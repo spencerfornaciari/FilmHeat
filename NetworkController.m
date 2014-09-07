@@ -57,4 +57,20 @@
     return array;
 }
 
++(void)searchMoviesWithTitle:(NSString *)title {
+    
+    //Returns the top ten movies with a given search title
+    
+    NSString *titleSearchString = [NSString stringWithFormat:@"http://api.rottentomatoes.com/api/public/v1.0/movies.json?apikey=%@&q=%@&page_limit=10", kROTTEN_TOMATOES_API_KEY, title];
+    
+    NSURL *titleUrl = [NSURL URLWithString:titleSearchString];
+    NSData *data = [NSData dataWithContentsOfURL:titleUrl];
+    
+    NSError *error;
+    NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
+    
+    [TranslationController convertDictionaryArrayToFilmArray: [dictionary objectForKey:@"movies"]];
+
+}
+
 @end

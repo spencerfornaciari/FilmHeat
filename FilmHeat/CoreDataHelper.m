@@ -63,21 +63,19 @@
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Film" inManagedObjectContext:[CoreDataHelper managedContext]];
     NSFetchRequest *request = [NSFetchRequest new];
     [request setEntity:entity];
-    
-    NSPredicate *titlePredicate = [NSPredicate predicateWithFormat:@"title BEGINSWITH[cd] %@", title];
+        
+    NSPredicate *titlePredicate = [NSPredicate predicateWithFormat:@"title CONTAINS[cd] %@", title];
     
     [request setPredicate:titlePredicate];
     
-//    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc]
-//                                        initWithKey:@"title" ascending:YES];
-//
-//    [request setSortDescriptors:@[sortDescriptor]];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc]
+                                        initWithKey:@"title" ascending:YES];
+
+    [request setSortDescriptors:@[sortDescriptor]];
     
     
     NSError *error;
     NSArray *array = [[CoreDataHelper managedContext] executeFetchRequest:request error:&error];
-    
-    //
     
     return array;
 }
