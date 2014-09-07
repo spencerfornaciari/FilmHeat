@@ -37,8 +37,9 @@
     [[UIApplication sharedApplication] setStatusBarHidden:FALSE];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 
-    if ([self.film.interestStatus isEqualToNumber:@0]) {
+    if ([self.film.interestStatus isEqualToNumber:@0] || [self.film.interestStatus isEqualToNumber:@5]) {
         [self loadSelectionInterface];
+        
     }
     
 //    //get the Image

@@ -69,7 +69,8 @@
     NSError *error;
     NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
     
-    [TranslationController convertDictionaryArrayToFilmArray: [dictionary objectForKey:@"movies"]];
+//    [TranslationController convertDictionaryArrayToFilmArray: ];
+    [TranslationController convertFilmArray:[dictionary objectForKey:@"movies"]];
 
 }
 

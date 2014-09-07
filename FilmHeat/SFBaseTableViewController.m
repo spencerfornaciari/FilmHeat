@@ -14,6 +14,7 @@
 @property (nonatomic) NSArray *searchArray;
 @property (nonatomic) NSArray *searchResultsArray;
 @property (nonatomic) UIActivityIndicatorView *indicatorView;
+@property (nonatomic) NSInteger selectedIndex;
 
 @end
 
@@ -33,6 +34,7 @@
 //    self.filmArray = [[CoreDataHelper filmsArray] mutableCopy];
 //    self.searchArray = [CoreDataHelper filmsArray];
     self.segmentedControl.selectedSegmentIndex = 1;
+    self.selectedIndex = 0;
     
     [self rottenFilmData];
     
@@ -68,7 +70,8 @@
     [super viewWillAppear:animated];
     
     if ([CoreDataHelper doesCoreDataExist]) {
-        self.filmArray = [[CoreDataHelper findCategoryArray:@0] mutableCopy];
+        NSNumber *selectedNumber = [NSNumber numberWithInteger:self.selectedIndex];
+        self.filmArray = [[CoreDataHelper findCategoryArray:selectedNumber] mutableCopy];
         [self.tableView reloadData];
     }
     
@@ -97,24 +100,9 @@
 {
     // Return the number of rows in the section.
     if (tableView == self.searchDisplayController.searchResultsTableView) {
-        
         return self.searchArray.count;
-//        return 5;
     } else {
         return self.filmArray.count;
-//        if (self.segmentedControl.selectedSegmentIndex == 0) {
-//            self.filmArray = [CoreDataHelper findCategoryArray:@3];
-//            return self.filmArray.count;
-//        } else if (self.segmentedControl.selectedSegmentIndex == 2) {
-//            self.filmArray = [CoreDataHelper findCategoryArray:@1];
-//            return self.filmArray.count;
-//        } else if (self.segmentedControl.selectedSegmentIndex == 3) {
-//            self.filmArray = [CoreDataHelper findCategoryArray:@2];
-//            return self.filmArray.count;
-//        } else {
-//            self.filmArray = [CoreDataHelper findCategoryArray:@0];
-//            return self.filmArray.count;
-//        }
     }
 }
 
@@ -129,7 +117,12 @@
     if (tableView == self.searchDisplayController.searchResultsTableView) {
         film = self.searchArray[indexPath.row];
         [cell setFilm:film];
-        NSLog(@"Film Title: %@", film.mpaaRating);
+//        NSString *string = [dictionary objectForKey:@"title"];
+//        NSLog(@"Film Title: %@", [dictionary objectForKey:@"title"]);
+//        NSDictionary *dictionary = self.searchArray[indexPath.row];
+//        cell.filmTitle.text = film.title;
+//        NSLog(@"Film Title: %@", [dictionary objectForKey:@"title"]);
+
     } else {
         film = self.filmArray[indexPath.row];
         [cell setFilm:film];
@@ -293,17 +286,18 @@
         NSLog(@"Search: %@", searchText);
         self.searchArray = [CoreDataHelper titleSearchWithString:searchText];
     
-        for (Film *film in self.searchArray) {
-            NSLog(@"Title: %@", film.title);
-        }
+//        for (Film *film in self.searchArray) {
+//            NSLog(@"Title: %@", film.title);
+//        }
         
 //        [self.searchDisplayController.searchResultsTableView reloadData];
 
     } else {
-        [NetworkController searchMoviesWithTitle:searchText];
-        self.searchArray = [CoreDataHelper findCategoryArray:@5];
+//        [NetworkController searchMoviesWithTitle:searchText];
+//        self.searchArray = [CoreDataHelper findCategoryArray:@5];
+        self.searchArray = [NetworkController movieSearchWithTitle:searchText];
         
-        [self.searchDisplayController.searchResultsTableView reloadData];
+//        [self.searchDisplayController.searchResultsTableView reloadData];
 
 
 //        [NetworkController movieSearchWithTitle:searchText andCallback:^(NSArray *results) {
@@ -349,18 +343,22 @@ shouldReloadTableForSearchString:(NSString *)searchString
     if (self.segmentedControl.selectedSegmentIndex == 0) {
         NSLog(@"Segment One");
         self.filmArray = [[CoreDataHelper findCategoryArray:@1] mutableCopy];
+        self.selectedIndex = 1;
         [self.tableView reloadData];
     } else if (self.segmentedControl.selectedSegmentIndex == 1) {
         NSLog(@"Segment Two");
         self.filmArray = [[CoreDataHelper findCategoryArray:@0] mutableCopy];
+        self.selectedIndex = 0;
         [self.tableView reloadData];
     } else if (self.segmentedControl.selectedSegmentIndex == 2) {
         NSLog(@"Segment Three");
         self.filmArray = [[CoreDataHelper findCategoryArray:@2] mutableCopy];
+        self.selectedIndex = 2;
         [self.tableView reloadData];
     } else {
         NSLog(@"Segment Four");
         self.filmArray = [[CoreDataHelper findCategoryArray:@3] mutableCopy];
+        self.selectedIndex = 3;
         [self.tableView reloadData];
     }
     
