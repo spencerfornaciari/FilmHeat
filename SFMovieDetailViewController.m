@@ -42,15 +42,16 @@
         
     }
     
-    NSString *urlString = [NSString stringWithFormat:@"http://api.rottentomatoes.com/api/public/v1.0/movies/%@.json?apikey=%@", self.film.rottenTomatoesID, kROTTEN_TOMATOES_API_KEY];
-    
-    NSURL *movieURL = [NSURL URLWithString:urlString];
-    
-    NSData *data = [NSData dataWithContentsOfURL:movieURL];
-    
-    NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
     
     if (self.film.genres.count == 0) {
+        NSString *urlString = [NSString stringWithFormat:@"http://api.rottentomatoes.com/api/public/v1.0/movies/%@.json?apikey=%@", self.film.rottenTomatoesID, kROTTEN_TOMATOES_API_KEY];
+        
+        NSURL *movieURL = [NSURL URLWithString:urlString];
+        
+        NSData *data = [NSData dataWithContentsOfURL:movieURL];
+        
+        NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+        
         NSArray *genreArray = [dictionary valueForKey:@"genres"];
         
         for (NSString *genreString in genreArray) {
@@ -61,10 +62,6 @@
             [self.film addNewGenreObject:genre];
         }
         
-        [CoreDataHelper saveContext];
-    }
-    
-    if (self.film.directors.count == 0) {
         NSArray *directorArray = [dictionary valueForKey:@"abridged_directors"];
         
         for (NSDictionary *directorDictionary in directorArray) {
@@ -75,13 +72,10 @@
             
             [self.film addNewDirectorObject:director];
         }
-        
-        [CoreDataHelper saveContext];
-    }
-    
-    if (self.film.studio == nil) {
+
         self.film.studio = [dictionary valueForKey:@"studio"];
         [CoreDataHelper saveContext];
+        
     }
     
 //    //get the Image
