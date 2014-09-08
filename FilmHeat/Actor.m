@@ -17,4 +17,10 @@
 @dynamic film;
 @dynamic characters;
 
+-(void)addNewCharacterObject:(Character *)value {
+    NSMutableOrderedSet* tempSet = [NSMutableOrderedSet orderedSetWithOrderedSet:self.characters];
+    [tempSet addObject:value];
+    self.characters = tempSet;
+}
+
 @end

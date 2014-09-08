@@ -36,11 +36,11 @@
 @property (nonatomic, retain) NSString * thumbnailPosterURL;
 @property (nonatomic, retain) NSString * title;
 @property (nonatomic, retain) NSNumber * userRating;
+@property (nonatomic, retain) NSString * studio;
 @property (nonatomic, retain) NSOrderedSet *actors;
 @property (nonatomic, retain) NSOrderedSet *genres;
 @property (nonatomic, retain) User *user;
 @property (nonatomic, retain) NSOrderedSet *directors;
-
 @end
 
 @interface Film (CoreDataGeneratedAccessors)

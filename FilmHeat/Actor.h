@@ -31,4 +31,6 @@
 - (void)addCharacters:(NSOrderedSet *)values;
 - (void)removeCharacters:(NSOrderedSet *)values;
 
+-(void)addNewCharacterObject:(Character *)value;
+
 @end

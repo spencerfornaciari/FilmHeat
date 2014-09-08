@@ -50,9 +50,39 @@
     
     NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
     
-    NSArray *genreArray = [dictionary valueForKey:@"genres"];
-    NSArray *directorArray = [dictionary valueForKey:@"abridged_directors"];
-    NSString *studioString = [dictionary valueForKey:@"studio"];
+    if (self.film.genres.count == 0) {
+        NSArray *genreArray = [dictionary valueForKey:@"genres"];
+        
+        for (NSString *genreString in genreArray) {
+            Genre *genre = [NSEntityDescription insertNewObjectForEntityForName:@"Genre" inManagedObjectContext:[CoreDataHelper managedContext]];
+            
+            genre.category = genreString;
+            
+            [self.film addNewGenreObject:genre];
+        }
+        
+        [CoreDataHelper saveContext];
+    }
+    
+    if (self.film.directors.count == 0) {
+        NSArray *directorArray = [dictionary valueForKey:@"abridged_directors"];
+        
+        for (NSDictionary *directorDictionary in directorArray) {
+            
+            Director *director = [NSEntityDescription insertNewObjectForEntityForName:@"Director" inManagedObjectContext:[CoreDataHelper managedContext]];
+            
+            director.name = [directorDictionary valueForKey:@"name"];
+            
+            [self.film addNewDirectorObject:director];
+        }
+        
+        [CoreDataHelper saveContext];
+    }
+    
+    if (self.film.studio == nil) {
+        self.film.studio = [dictionary valueForKey:@"studio"];
+        [CoreDataHelper saveContext];
+    }
     
 //    //get the Image
 //    UIImage *img = [UIImage imageNamed:@"PG 13"];

@@ -47,9 +47,9 @@
 		898BA9B419B1086F002FE66C /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8949F735188DDD090069E9D4 /* CoreData.framework */; };
 		898F4CBB189080D20060E847 /* SFFilmModelDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 898F4CBA189080D20060E847 /* SFFilmModelDataController.m */; };
 		89A17DE119BD7A2D0010E7BE /* Director.m in Sources */ = {isa = PBXBuildFile; fileRef = 89A17DE019BD7A2D0010E7BE /* Director.m */; };
-		89A17DE719BD7A2E0010E7BE /* Film.m in Sources */ = {isa = PBXBuildFile; fileRef = 89A17DE619BD7A2E0010E7BE /* Film.m */; };
 		89A17DEA19BD7A2E0010E7BE /* Character.m in Sources */ = {isa = PBXBuildFile; fileRef = 89A17DE919BD7A2E0010E7BE /* Character.m */; };
 		89A17DED19BD7BA80010E7BE /* Actor.m in Sources */ = {isa = PBXBuildFile; fileRef = 89A17DEC19BD7BA80010E7BE /* Actor.m */; };
+		89A17DF019BD7E6D0010E7BE /* Film.m in Sources */ = {isa = PBXBuildFile; fileRef = 89A17DEF19BD7E6D0010E7BE /* Film.m */; };
 		89A43EE918A935C3009DC814 /* SeenExtraLarge.png in Resources */ = {isa = PBXBuildFile; fileRef = 89A43EE818A935C3009DC814 /* SeenExtraLarge.png */; };
 		89A43EEB18A936B7009DC814 /* WantExtraLarge.png in Resources */ = {isa = PBXBuildFile; fileRef = 89A43EEA18A936B7009DC814 /* WantExtraLarge.png */; };
 		89A43EF118A938EA009DC814 /* TheaterExtraLarge.png in Resources */ = {isa = PBXBuildFile; fileRef = 89A43EEF18A938EA009DC814 /* TheaterExtraLarge.png */; };
@@ -169,12 +169,12 @@
 		898F4CBA189080D20060E847 /* SFFilmModelDataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SFFilmModelDataController.m; path = ../SFFilmModelDataController.m; sourceTree = "<group>"; };
 		89A17DDF19BD7A2D0010E7BE /* Director.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Director.h; sourceTree = "<group>"; };
 		89A17DE019BD7A2D0010E7BE /* Director.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Director.m; sourceTree = "<group>"; };
-		89A17DE519BD7A2E0010E7BE /* Film.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Film.h; sourceTree = "<group>"; };
-		89A17DE619BD7A2E0010E7BE /* Film.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Film.m; sourceTree = "<group>"; };
 		89A17DE819BD7A2E0010E7BE /* Character.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Character.h; sourceTree = "<group>"; };
 		89A17DE919BD7A2E0010E7BE /* Character.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Character.m; sourceTree = "<group>"; };
 		89A17DEB19BD7BA80010E7BE /* Actor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Actor.h; sourceTree = "<group>"; };
 		89A17DEC19BD7BA80010E7BE /* Actor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Actor.m; sourceTree = "<group>"; };
+		89A17DEE19BD7E6D0010E7BE /* Film.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Film.h; sourceTree = "<group>"; };
+		89A17DEF19BD7E6D0010E7BE /* Film.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Film.m; sourceTree = "<group>"; };
 		89A43EE818A935C3009DC814 /* SeenExtraLarge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SeenExtraLarge.png; sourceTree = "<group>"; };
 		89A43EEA18A936B7009DC814 /* WantExtraLarge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WantExtraLarge.png; sourceTree = "<group>"; };
 		89A43EEF18A938EA009DC814 /* TheaterExtraLarge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TheaterExtraLarge.png; sourceTree = "<group>"; };
@@ -455,12 +455,12 @@
 				895A85ED19B0FD6300AE18C3 /* Genre.m */,
 				89A17DDF19BD7A2D0010E7BE /* Director.h */,
 				89A17DE019BD7A2D0010E7BE /* Director.m */,
-				89A17DE519BD7A2E0010E7BE /* Film.h */,
-				89A17DE619BD7A2E0010E7BE /* Film.m */,
 				89A17DE819BD7A2E0010E7BE /* Character.h */,
 				89A17DE919BD7A2E0010E7BE /* Character.m */,
 				89A17DEB19BD7BA80010E7BE /* Actor.h */,
 				89A17DEC19BD7BA80010E7BE /* Actor.m */,
+				89A17DEE19BD7E6D0010E7BE /* Film.h */,
+				89A17DEF19BD7E6D0010E7BE /* Film.m */,
 			);
 			name = "Core Data";
 			sourceTree = "<group>";
@@ -665,8 +665,8 @@
 				89366F3E18AAFF4600C278DA /* SFTutorialChildViewController.m in Sources */,
 				89366F3B18AAFF3500C278DA /* SFTutorialViewController.m in Sources */,
 				89BC655518A3008D00B27385 /* SFMCTableViewCell.m in Sources */,
-				89A17DE719BD7A2E0010E7BE /* Film.m in Sources */,
 				8931CF5A18A44AA800A4CFBC /* SFBaseViewController.m in Sources */,
+				89A17DF019BD7E6D0010E7BE /* Film.m in Sources */,
 				8949F742188DDD090069E9D4 /* SFAppDelegate.m in Sources */,
 				89B9995819B21B9C0098BD8C /* SFBaseTableViewController.m in Sources */,
 				895A860319B1008B00AE18C3 /* CoreDataHelper.m in Sources */,

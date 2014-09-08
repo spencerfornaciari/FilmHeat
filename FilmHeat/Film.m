@@ -38,6 +38,7 @@
 @dynamic thumbnailPosterURL;
 @dynamic title;
 @dynamic userRating;
+@dynamic studio;
 @dynamic actors;
 @dynamic genres;
 @dynamic user;
@@ -61,7 +62,5 @@
     [tempSet addObject:value];
     self.directors = tempSet;
 }
-
-
 
 @end
