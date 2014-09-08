@@ -11,6 +11,8 @@
 #import "SFMCTableViewCell.h"
 #import "CoreDataHelper.h"
 #import "Film.h"
+#import "Character.h"
+#import "Actor.h"
 #import "NetworkController.h"
 #import "UIColor+SFFilmHeatColors.h"
 #import "TranslationController.h"

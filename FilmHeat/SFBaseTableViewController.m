@@ -547,7 +547,12 @@ shouldReloadTableForSearchString:(NSString *)searchString
                 
                 actor.name = [castMember valueForKey:@"name"];
                 NSArray *characterArray = [castMember valueForKey:@"characters"];
-                actor.character = characterArray[0];
+                
+//                for (NSString *characterString in characterArray) {
+//                    Character *character = [NSEntityDescription insertNewObjectForEntityForName:@"Character" inManagedObjectContext:[CoreDataHelper managedContext]];
+//                    character.name = characterString;
+//                    [actor addCharactersObject:character];
+//                }
                 
                 [film addNewActorObject:actor];
             }

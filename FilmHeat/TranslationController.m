@@ -73,7 +73,7 @@
         
         actor.name = [castMember valueForKey:@"name"];
         NSArray *characterArray = [castMember valueForKey:@"characters"];
-        actor.character = characterArray[0];
+//        actor.character = characterArray[0];
         
         [film addNewActorObject:actor];
     }
@@ -152,7 +152,7 @@
                 
                 actor.name = [castMember valueForKey:@"name"];
                 NSArray *characterArray = [castMember valueForKey:@"characters"];
-                actor.character = characterArray[0];
+//                actor.character = characterArray[0];
                 
                 [film addNewActorObject:actor];
             }
@@ -235,7 +235,7 @@
                 
                 actor.name = [castMember valueForKey:@"name"];
                 NSArray *characterArray = [castMember valueForKey:@"characters"];
-                actor.character = characterArray[0];
+//                actor.character = characterArray[0];
                 
                 [film addNewActorObject:actor];
             }

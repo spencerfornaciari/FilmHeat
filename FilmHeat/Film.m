@@ -2,12 +2,13 @@
 //  Film.m
 //  Film Heat
 //
-//  Created by Spencer Fornaciari on 9/5/14.
+//  Created by Spencer Fornaciari on 9/7/14.
 //  Copyright (c) 2014 Spencer Fornaciari. All rights reserved.
 //
 
 #import "Film.h"
 #import "Actor.h"
+#import "Director.h"
 #import "Genre.h"
 #import "User.h"
 
@@ -26,6 +27,7 @@
 @dynamic posterAvailable;
 @dynamic posterLocation;
 @dynamic posterURL;
+@dynamic ratingValue;
 @dynamic ratingVariance;
 @dynamic releaseDate;
 @dynamic rottenTomatoesID;
@@ -36,10 +38,10 @@
 @dynamic thumbnailPosterURL;
 @dynamic title;
 @dynamic userRating;
-@dynamic ratingValue;
 @dynamic actors;
 @dynamic genres;
 @dynamic user;
+@dynamic directors;
 
 //My Methods
 - (void)addNewGenreObject:(Genre *)value {
@@ -53,5 +55,13 @@
     [tempSet addObject:value];
     self.actors = tempSet;
 }
+
+-(void)addNewDirectorObject:(Director *)value {
+    NSMutableOrderedSet* tempSet = [NSMutableOrderedSet orderedSetWithOrderedSet:self.directors];
+    [tempSet addObject:value];
+    self.directors = tempSet;
+}
+
+
 
 @end

@@ -42,6 +42,18 @@
         
     }
     
+    NSString *urlString = [NSString stringWithFormat:@"http://api.rottentomatoes.com/api/public/v1.0/movies/%@.json?apikey=%@", self.film.rottenTomatoesID, kROTTEN_TOMATOES_API_KEY];
+    
+    NSURL *movieURL = [NSURL URLWithString:urlString];
+    
+    NSData *data = [NSData dataWithContentsOfURL:movieURL];
+    
+    NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+    
+    NSArray *genreArray = [dictionary valueForKey:@"genres"];
+    NSArray *directorArray = [dictionary valueForKey:@"abridged_directors"];
+    NSString *studioString = [dictionary valueForKey:@"studio"];
+    
 //    //get the Image
 //    UIImage *img = [UIImage imageNamed:@"PG 13"];
 //    //create a UIImageView
