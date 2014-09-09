@@ -285,31 +285,42 @@
 #pragma mark - Choose Status
 
 -(void)loadSelectionInterface {
-    self.selectionView = [[UIView alloc] initWithFrame:CGRectMake(0, 200, 320, 50)];
+    self.selectionView = [[UIView alloc] initWithFrame:CGRectMake(0, 220, 320, 50)];
     [self.view addSubview:self.selectionView];
     
+    UIButton *seenItButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    seenItButton.frame = CGRectMake(0, 0, 107, 50);
+    [seenItButton addTarget:self action:@selector(interestedAction:) forControlEvents:UIControlEventTouchUpInside];
+    [seenItButton setTitle:@"Seen It" forState:UIControlStateNormal];
+    seenItButton.backgroundColor = [UIColor goColor];
+    seenItButton.tag = 0;
+    [self.selectionView addSubview:seenItButton];
+    
     UIButton *interestedButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    interestedButton.frame = CGRectMake(0, 0, 160, 60);
+    interestedButton.frame = CGRectMake(107, 0, 106, 50);
     [interestedButton addTarget:self action:@selector(interestedAction:) forControlEvents:UIControlEventTouchUpInside];
     [interestedButton setTitle:@"Want to See" forState:UIControlStateNormal];
-    interestedButton.backgroundColor = [UIColor goColor];
-    interestedButton.tag = 0;
+    interestedButton.backgroundColor = [UIColor wantedColor];
+    interestedButton.tag = 1;
     [self.selectionView addSubview:interestedButton];
     
     UIButton *notInterestedButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    notInterestedButton.frame = CGRectMake(160, 0, 160, 60);
+    notInterestedButton.frame = CGRectMake(213, 0, 107, 50);
     [notInterestedButton addTarget:self action:@selector(interestedAction:) forControlEvents:UIControlEventTouchUpInside];
     [notInterestedButton setTitle:@"No Interest" forState:UIControlStateNormal];
     notInterestedButton.backgroundColor = [UIColor filmHeatPrimaryColor];
-    notInterestedButton.tag = 1;
+    notInterestedButton.tag = 2;
     [self.selectionView addSubview:notInterestedButton];
-    
 }
 
 -(void)interestedAction:(id)sender {
     UIButton *button = (UIButton *)sender;
     
     if (button.tag == 0) {
+        self.film.interestStatus = @1;
+        [CoreDataHelper saveContext];
+        [self.selectionView removeFromSuperview];
+    } else if (button.tag == 1) {
         self.film.interestStatus = @2;
         [CoreDataHelper saveContext];
         [self.selectionView removeFromSuperview];

@@ -117,19 +117,21 @@
     if (tableView == self.searchDisplayController.searchResultsTableView) {
         film = self.searchArray[indexPath.row];
         [cell setFilm:film];
-//        NSString *string = [dictionary objectForKey:@"title"];
-//        NSLog(@"Film Title: %@", [dictionary objectForKey:@"title"]);
-//        NSDictionary *dictionary = self.searchArray[indexPath.row];
-//        cell.filmTitle.text = film.title;
-//        NSLog(@"Film Title: %@", [dictionary objectForKey:@"title"]);
-
     } else {
         film = self.filmArray[indexPath.row];
         [cell setFilm:film];
-//        cell.filmTitle.text = film.title;
-//        cell.r
     }
     
+//    if ([film.thumbnailAvailable isEqualToNumber:@1]) {
+//        cell.filmThumbnailPoster.image = [UIImage imageWithContentsOfFile:film.thumbnailPosterLocation];
+//    } else {
+//        [cell downloadPosterFromFilm:film andReturn:^(UIImage *poster) {
+//            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+//                cell.filmThumbnailPoster.image = poster;
+////                [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+//            }];
+//        }];
+//    }
     
 //    if (!cell) {
 //        cell = [[SFMCTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"Cell"];
@@ -586,6 +588,12 @@ shouldReloadTableForSearchString:(NSString *)searchString
     } else {
         return @5;
     }
+}
+
+- (NSString *)documentsDirectoryPath
+{
+    NSURL *documentsURL = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+    return [documentsURL path];
 }
 
 

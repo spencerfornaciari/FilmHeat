@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SFAppDelegate.h"
 #import "MCSwipeTableViewCell.h"
 #import "CoreDataHelper.h"
 #import "Film.h"
@@ -27,5 +28,6 @@
 - (void)setFilm:(Film *)film;
 - (UIImage *)ratingImage:(NSString *)mpaaRating;
 
+-(void)downloadPosterFromFilm:(Film *)film andReturn:(void (^)(UIImage *poster))callbackImage;
 
 @end

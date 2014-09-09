@@ -57,6 +57,7 @@
         [[NSUserDefaults standardUserDefaults] synchronize];
     }
     
+    self.queue = [NSOperationQueue new];
     
     //Instantiate the tutorial view controller if it is their first time running the app
 //    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Main"

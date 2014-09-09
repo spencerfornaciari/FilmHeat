@@ -11,7 +11,7 @@
 @implementation UIColor (SFFilmHeatColors)
 
 + (UIColor *)seenItColor{
-    return [UIColor whiteColor];
+    return [UIColor colorWithRed:0/255.f green:122/255.f blue:255/255.f alpha:1];
 }
 
 + (UIColor *)theaterColor{
@@ -19,7 +19,7 @@
 }
 
 + (UIColor *)wantedColor{
-    return [UIColor whiteColor];
+    return [UIColor colorWithRed:255/255.f green:204/255.f blue:0/255.f alpha:1];
 }
 
 + (UIColor *)noInterestColor{

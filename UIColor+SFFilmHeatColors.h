@@ -20,7 +20,6 @@
 + (UIColor *)filmHeatComplementaryColor;
 
 + (UIColor *)goColor;
-+ (UIColor *)stopColor;
-
+//+ (UIColor *)stopColor;
 
 @end
