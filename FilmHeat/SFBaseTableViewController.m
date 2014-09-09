@@ -11,6 +11,7 @@
 @interface SFBaseTableViewController ()
 
 @property (nonatomic) NSArray *filmArray;
+@property (nonatomic) NSArray *allArray;
 @property (nonatomic) NSArray *searchArray;
 @property (nonatomic) NSArray *searchResultsArray;
 @property (nonatomic) UIActivityIndicatorView *indicatorView;
@@ -29,6 +30,7 @@
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     [self.navigationController.navigationBar setTranslucent:YES];
     self.searchBar.delegate = self;
+
     
     
 //    self.filmArray = [[CoreDataHelper filmsArray] mutableCopy];
@@ -37,6 +39,7 @@
     self.selectedIndex = 0;
     
     [self rottenFilmData];
+    self.allArray = [CoreDataHelper filmsArray];
     
 //    NSArray *array = [NetworkController movieSearchWithTitle:@"ghost"];
 //    
@@ -100,6 +103,7 @@
 {
     // Return the number of rows in the section.
     if (tableView == self.searchDisplayController.searchResultsTableView) {
+        
         return self.searchArray.count;
     } else {
         return self.filmArray.count;
@@ -115,6 +119,7 @@
     // Configure the cell...
     
     if (tableView == self.searchDisplayController.searchResultsTableView) {
+        
         film = self.searchArray[indexPath.row];
         [cell setFilm:film];
     } else {
@@ -286,8 +291,12 @@
 - (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
 {
     if ([scope isEqualToString:@"My Collection"]) {
-        NSLog(@"Search: %@", searchText);
-        self.searchArray = [CoreDataHelper titleSearchWithString:searchText];
+//        NSLog(@"Search: %@", searchText);
+//        NSArray *array = [CoreDataHelper titleSearchWithString:searchText];
+        
+        NSPredicate *titlePredicate = [NSPredicate predicateWithFormat:@"title CONTAINS[cd] %@", searchText];
+        
+        self.searchArray = [self.filmArray filteredArrayUsingPredicate:titlePredicate];
     
 //        for (Film *film in self.searchArray) {
 //            NSLog(@"Title: %@", film.title);
@@ -298,8 +307,8 @@
     } else {
 //        [NetworkController searchMoviesWithTitle:searchText];
 //        self.searchArray = [CoreDataHelper findCategoryArray:@5];
-        NSString *searchString = [searchText stringByReplacingOccurrencesOfString:@" " withString:@"+"];
-        self.searchArray = [NetworkController movieSearchWithTitle:searchString];
+//        NSString *searchString = [searchText stringByReplacingOccurrencesOfString:@" " withString:@"+"];
+//        self.searchArray = [NetworkController movieSearchWithTitle:searchString];
         
 //        [self.searchDisplayController.searchResultsTableView reloadData];
 
@@ -346,22 +355,23 @@ shouldReloadTableForSearchString:(NSString *)searchString
 - (IBAction)segmentedAction:(id)sender {
     if (self.segmentedControl.selectedSegmentIndex == 0) {
         NSLog(@"Segment One");
-        self.filmArray = [[CoreDataHelper findCategoryArray:@1] mutableCopy];
+        self.filmArray = [CoreDataHelper findCategoryArray:@1];
         self.selectedIndex = 1;
         [self.tableView reloadData];
     } else if (self.segmentedControl.selectedSegmentIndex == 1) {
         NSLog(@"Segment Two");
-        self.filmArray = [[CoreDataHelper findCategoryArray:@0] mutableCopy];
+        self.filmArray = [CoreDataHelper findCategoryArray:@0];
         self.selectedIndex = 0;
         [self.tableView reloadData];
     } else if (self.segmentedControl.selectedSegmentIndex == 2) {
         NSLog(@"Segment Three");
-        self.filmArray = [[CoreDataHelper findCategoryArray:@2] mutableCopy];
+        self.filmArray = [CoreDataHelper findCategoryArray:@2];
         self.selectedIndex = 2;
         [self.tableView reloadData];
     } else {
         NSLog(@"Segment Four");
-        self.filmArray = [[CoreDataHelper findCategoryArray:@3] mutableCopy];
+        self.filmArray = [CoreDataHelper findCategoryArray:@3];
+
         self.selectedIndex = 3;
         [self.tableView reloadData];
     }

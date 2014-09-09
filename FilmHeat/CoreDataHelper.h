@@ -13,6 +13,8 @@
 
 //Manage Context
 +(NSManagedObjectContext *)managedContext;
++(NSManagedObjectModel *)managedModel;
+
 
 //User Methods
 +(NSArray *)titleSearchWithString:(NSString *)title;

@@ -16,20 +16,11 @@
     SFAppDelegate *appDelegate = (SFAppDelegate *)[[UIApplication sharedApplication] delegate];
     return appDelegate.managedObjectContext;
 }
-
-//Returns the current user of the database
-//+(Worker *)currentUser {
-//    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Worker" inManagedObjectContext:[CoreDataHelper managedContext]];
-//    NSFetchRequest *request = [NSFetchRequest new];
-//    [request setEntity:entity];
-//    
-//    NSError *error;
-//    NSArray *array = [[CoreDataHelper managedContext] executeFetchRequest:request error:&error];
-//    
-//    Worker *worker = array[0];
-//    
-//    return worker;
-//}
+//Return managed object model
++(NSManagedObjectModel *)managedModel {
+    SFAppDelegate *appDelegate = (SFAppDelegate *)[[UIApplication sharedApplication] delegate];
+    return appDelegate.managedObjectModel;
+}
 
 //Saves the current context of the database
 +(void)saveContext {
