@@ -10,7 +10,7 @@
 
 @interface SFBaseTableViewController ()
 
-@property (nonatomic) NSMutableArray *filmArray;
+@property (nonatomic) NSArray *filmArray;
 @property (nonatomic) NSArray *searchArray;
 @property (nonatomic) NSArray *searchResultsArray;
 @property (nonatomic) UIActivityIndicatorView *indicatorView;
@@ -122,16 +122,17 @@
         [cell setFilm:film];
     }
     
-//    if ([film.thumbnailAvailable isEqualToNumber:@1]) {
-//        cell.filmThumbnailPoster.image = [UIImage imageWithContentsOfFile:film.thumbnailPosterLocation];
-//    } else {
-//        [cell downloadPosterFromFilm:film andReturn:^(UIImage *poster) {
-//            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-//                cell.filmThumbnailPoster.image = poster;
-////                [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-//            }];
-//        }];
-//    }
+    if ([film.thumbnailAvailable isEqualToNumber:@1]) {
+        cell.filmThumbnailPoster.image = [UIImage imageWithContentsOfFile:film.thumbnailPosterLocation];
+    } else {
+        [cell downloadPosterFromFilm:film andReturn:^(UIImage *poster) {
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                cell.filmThumbnailPoster.image = poster;
+                [self.tableView reloadData];
+//                [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+            }];
+        }];
+    }
     
 //    if (!cell) {
 //        cell = [[SFMCTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"Cell"];
@@ -162,20 +163,20 @@
     [cell setDefaultColor:self.tableView.backgroundView.backgroundColor];
     
     //Seen It film
-    [cell setSwipeGestureWithView:checkView color:[UIColor navigationBarColor] mode:MCSwipeTableViewCellModeSwitch state:MCSwipeTableViewCellState1 completionBlock:^(MCSwipeTableViewCell *cell, MCSwipeTableViewCellState state, MCSwipeTableViewCellMode mode) {
+    [cell setSwipeGestureWithView:checkView color:[UIColor seenItColor] mode:MCSwipeTableViewCellModeSwitch state:MCSwipeTableViewCellState1 completionBlock:^(MCSwipeTableViewCell *cell, MCSwipeTableViewCellState state, MCSwipeTableViewCellMode mode) {
         film.interestStatus = @1;
 
-        [self.filmArray removeObjectAtIndex:indexPath.row];
+//        [self.filmArray removeObjectAtIndex:indexPath.row];
         [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
         
         [CoreDataHelper saveContext];
     }];
     
     //Want to See film
-    [cell setSwipeGestureWithView:crossView color:[UIColor navigationBarColor] mode:MCSwipeTableViewCellModeSwitch state:MCSwipeTableViewCellState2 completionBlock:^(MCSwipeTableViewCell *cell, MCSwipeTableViewCellState state, MCSwipeTableViewCellMode mode) {
+    [cell setSwipeGestureWithView:crossView color:[UIColor wantedColor] mode:MCSwipeTableViewCellModeSwitch state:MCSwipeTableViewCellState2 completionBlock:^(MCSwipeTableViewCell *cell, MCSwipeTableViewCellState state, MCSwipeTableViewCellMode mode) {
         film.interestStatus = @2;
 
-        [self.filmArray removeObjectAtIndex:indexPath.row];
+//        [self.filmArray removeObjectAtIndex:indexPath.row];
         [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
         
         [CoreDataHelper saveContext];
@@ -186,7 +187,7 @@
         NSLog(@"Did swipe \"Sad_Face\" cell");
         film.interestStatus = @3;
 
-        [self.filmArray removeObjectAtIndex:indexPath.row];
+//        [self.filmArray removeObjectAtIndex:indexPath.row];
         [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
         
         [CoreDataHelper saveContext];
@@ -196,7 +197,7 @@
     [cell setSwipeGestureWithView:listView color:[UIColor navigationBarColor] mode:MCSwipeTableViewCellModeSwitch state:MCSwipeTableViewCellState4 completionBlock:^(MCSwipeTableViewCell *cell, MCSwipeTableViewCellState state, MCSwipeTableViewCellMode mode) {
         film.interestStatus = @0;
         
-        [self.filmArray removeObjectAtIndex:indexPath.row];
+//        [self.filmArray removeObjectAtIndex:indexPath.row];
         [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
         
         [CoreDataHelper saveContext];
@@ -297,7 +298,8 @@
     } else {
 //        [NetworkController searchMoviesWithTitle:searchText];
 //        self.searchArray = [CoreDataHelper findCategoryArray:@5];
-        self.searchArray = [NetworkController movieSearchWithTitle:searchText];
+        NSString *searchString = [searchText stringByReplacingOccurrencesOfString:@" " withString:@"+"];
+        self.searchArray = [NetworkController movieSearchWithTitle:searchString];
         
 //        [self.searchDisplayController.searchResultsTableView reloadData];
 
@@ -566,7 +568,7 @@ shouldReloadTableForSearchString:(NSString *)searchString
     
     [CoreDataHelper saveContext];
     
-    self.filmArray = [[CoreDataHelper findCategoryArray:@0] mutableCopy];
+    self.filmArray = [CoreDataHelper findCategoryArray:@0];
     [self.tableView reloadData];
 
 //    NSArray *array = [CoreDataHelper findCategoryArray:@2];

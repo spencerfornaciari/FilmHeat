@@ -74,28 +74,28 @@
         self.ratingsImageView.image = self.ratingImage;
     }
     
-    if ([film.thumbnailAvailable isEqualToNumber:@1]) {
-        self.filmThumbnailPoster.image = [UIImage imageWithContentsOfFile:film.thumbnailPosterLocation];
-    } else {
-        NSOperationQueue *queue = [(SFAppDelegate *)[[UIApplication sharedApplication] delegate] queue];
-        
-        [queue addOperationWithBlock:^{
-            NSURL *url = [NSURL URLWithString:film.thumbnailPosterURL];
-            NSData *data = [NSData dataWithContentsOfURL:url];
-            UIImage *image = [UIImage imageWithData:data];
-            NSString *posterLocation = [NSString stringWithFormat:@"%@/%@.jpg", [self documentsDirectoryPath], film.rottenTomatoesID];
-            film.thumbnailPosterLocation = posterLocation;
-            
-            [data writeToFile:film.thumbnailPosterLocation atomically:YES];
-            film.thumbnailAvailable = @1;
-            
-            [CoreDataHelper saveContext];
-            
-            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                self.filmThumbnailPoster.image = image;
-            }];
-        }];
-    }
+//    if ([film.thumbnailAvailable isEqualToNumber:@1]) {
+//        self.filmThumbnailPoster.image = [UIImage imageWithContentsOfFile:film.thumbnailPosterLocation];
+//    } else {
+//        NSOperationQueue *queue = [(SFAppDelegate *)[[UIApplication sharedApplication] delegate] queue];
+//        
+//        [queue addOperationWithBlock:^{
+//            NSURL *url = [NSURL URLWithString:film.thumbnailPosterURL];
+//            NSData *data = [NSData dataWithContentsOfURL:url];
+//            UIImage *image = [UIImage imageWithData:data];
+//            NSString *posterLocation = [NSString stringWithFormat:@"%@/%@.jpg", [self documentsDirectoryPath], film.rottenTomatoesID];
+//            film.thumbnailPosterLocation = posterLocation;
+//            
+//            [data writeToFile:film.thumbnailPosterLocation atomically:YES];
+//            film.thumbnailAvailable = @1;
+//            
+//            [CoreDataHelper saveContext];
+//            
+//            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+//                self.filmThumbnailPoster.image = image;
+//            }];
+//        }];
+//    }
     
 }
 
