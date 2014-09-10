@@ -109,13 +109,13 @@
 //    return 50;
 //}
 
-//-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-//    return 10;
-//}
-
--(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    return CGFLOAT_MIN;
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 30;
 }
+
+//-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+//    return CGFLOAT_MIN;
+//}
 
 //-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 //{
