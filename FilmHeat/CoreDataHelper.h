@@ -15,8 +15,7 @@
 +(NSManagedObjectContext *)managedContext;
 +(NSManagedObjectModel *)managedModel;
 
-
-//User Methods
+//Film Search Methods
 +(NSArray *)titleSearchWithString:(NSString *)title;
 +(NSArray *)filmsArray;
 +(NSArray *)findCategoryArray:(NSNumber *)category;

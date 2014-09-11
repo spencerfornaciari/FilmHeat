@@ -15,7 +15,7 @@
 #import "Constants.h"
 #import "UIColor+SFFilmHeatColors.h"
 
-@interface SFMovieDetailViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@interface SFMovieDetailViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *moviePoster;
 @property (weak, nonatomic) IBOutlet UITextView *movieSynopsis;

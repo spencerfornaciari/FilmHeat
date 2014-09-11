@@ -108,8 +108,10 @@
 //    NSLog(@"%@", similarMovies);
     
     UISwipeGestureRecognizer *recognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(dismissViewController:)];
+    recognizer.delegate = self;
     
     recognizer.direction = UISwipeGestureRecognizerDirectionRight;
+    [self.view addGestureRecognizer:recognizer];
     
 	// Do any additional setup after loading the view.
     self.detailViewTitle.title = _film.title;
@@ -234,9 +236,9 @@
     [CoreDataHelper saveContext];
 }
 
-- (IBAction)dismissViewController:(id)sender {
+- (void)dismissViewController:(id)sender {
     
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(void)setRatingImage:(NSString *)mpaaRating
@@ -330,5 +332,10 @@
         [self.selectionView removeFromSuperview];
 
     }
+}
+
+-(BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
+    
+    return TRUE;
 }
 @end
