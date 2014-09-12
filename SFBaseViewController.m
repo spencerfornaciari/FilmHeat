@@ -9,7 +9,6 @@
 #import "SFBaseViewController.h"
 #import "SFFilmModelDataController.h"
 #import "SFTutorialViewController.h"
-#import "SearchDisplayDataController.h"
 #import "Film.h"
 #import "Actor.h"
 #import "CoreDataHelper.h"
@@ -37,7 +36,6 @@
 
 //@property (weak, nonatomic) IBOutlet UIBarButtonItem *sortButton;
 
-@property (nonatomic) SearchDisplayDataController *searchData;
 
 
 - (IBAction)segmentPicker:(UISegmentedControl *)sender;
@@ -90,20 +88,20 @@
 
 //    [self filmDoesExist];
     
-    self.searchData = [[SearchDisplayDataController alloc] init];
-    
-    self.searchDisplayController.searchResultsDataSource = self.searchData;
-    self.searchDisplayController.searchResultsDelegate = self.searchData;
-    
-    [self.searchData.searchArray addObjectsFromArray:self.theaterController.theaterArray];
-    [self.searchData.searchArray addObjectsFromArray:self.seenController.seenArray];
-    [self.searchData.searchArray addObjectsFromArray:self.wantedController.wantedArray];
-    [self.searchData.searchArray addObjectsFromArray:self.noneController.noneArray];
-//    NSLog(@"Search Array: %@", self.searchData.searchArray);
-    
-    for (FilmModel *model in self.searchData.searchArray) {
-        NSLog(@"%@", model.title);
-    }
+//    self.searchData = [[SearchDisplayDataController alloc] init];
+//    
+//    self.searchDisplayController.searchResultsDataSource = self.searchData;
+//    self.searchDisplayController.searchResultsDelegate = self.searchData;
+//    
+//    [self.searchData.searchArray addObjectsFromArray:self.theaterController.theaterArray];
+//    [self.searchData.searchArray addObjectsFromArray:self.seenController.seenArray];
+//    [self.searchData.searchArray addObjectsFromArray:self.wantedController.wantedArray];
+//    [self.searchData.searchArray addObjectsFromArray:self.noneController.noneArray];
+////    NSLog(@"Search Array: %@", self.searchData.searchArray);
+//    
+//    for (FilmModel *model in self.searchData.searchArray) {
+//        NSLog(@"%@", model.title);
+//    }
     
     [UIApplication sharedApplication].applicationIconBadgeNumber = self.wantedController.wantedArray.count;
     self.tabBarItem.badgeValue = [NSString stringWithFormat:@"%lu", (unsigned long)self.wantedController.wantedArray.count];
@@ -616,15 +614,15 @@
     //        searchResults = [dataNew2.array2 filteredArrayUsingPredicate:resultPredicate];
     //    }
     
-    searchResults = [[self.searchData.searchArray filteredArrayUsingPredicate:resultPredicate] copy];
+//    searchResults = [[self.searchData.searchArray filteredArrayUsingPredicate:resultPredicate] copy];
     
-    for (FilmModel *model in self.searchData.searchArray) {
-        NSLog(@"Pre-Title: %@", model.title);
-    }
-    
-    for (FilmModel *model in searchResults) {
-        NSLog(@"Post-Search: %@", model.title);
-    }
+//    for (FilmModel *model in self.searchData.searchArray) {
+//        NSLog(@"Pre-Title: %@", model.title);
+//    }
+//    
+//    for (FilmModel *model in searchResults) {
+//        NSLog(@"Post-Search: %@", model.title);
+//    }
     
 }
 

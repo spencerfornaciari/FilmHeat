@@ -74,7 +74,7 @@
     
     if ([CoreDataHelper doesCoreDataExist]) {
         NSNumber *selectedNumber = [NSNumber numberWithInteger:self.selectedIndex];
-        self.filmArray = [[CoreDataHelper findCategoryArray:selectedNumber] mutableCopy];
+//        self.filmArray = [[CoreDataHelper findCategoryArray:selectedNumber] mutableCopy];
         [self.tableView reloadData];
     }
     
@@ -119,7 +119,6 @@
     // Configure the cell...
     
     if (tableView == self.searchDisplayController.searchResultsTableView) {
-        
         film = self.searchArray[indexPath.row];
         [cell setFilm:film];
     } else {
@@ -128,13 +127,15 @@
     }
     
     if ([film.thumbnailAvailable isEqualToNumber:@1]) {
+//        NSData *data = [NSData dataWithContentsOfFile:film.thumbnailPosterLocation];
+//        cell.filmThumbnailPoster.image = [UIImage imageWithData:data];
+//        cell.filmThumbnailPoster.backgroundColor = [UIColor redColor];
         cell.filmThumbnailPoster.image = [UIImage imageWithContentsOfFile:film.thumbnailPosterLocation];
     } else {
         [cell downloadPosterFromFilm:film andReturn:^(UIImage *poster) {
             [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                 cell.filmThumbnailPoster.image = poster;
-                [self.tableView reloadData];
-//                [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+                [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
             }];
         }];
     }
@@ -296,7 +297,7 @@
         
         NSPredicate *titlePredicate = [NSPredicate predicateWithFormat:@"title CONTAINS[cd] %@", searchText];
         
-        self.searchArray = [self.filmArray filteredArrayUsingPredicate:titlePredicate];
+        self.searchArray = [self.allArray filteredArrayUsingPredicate:titlePredicate];
     
 //        for (Film *film in self.searchArray) {
 //            NSLog(@"Title: %@", film.title);
@@ -355,7 +356,13 @@ shouldReloadTableForSearchString:(NSString *)searchString
 - (IBAction)segmentedAction:(id)sender {
     if (self.segmentedControl.selectedSegmentIndex == 0) {
         NSLog(@"Segment One");
-        self.filmArray = [CoreDataHelper findCategoryArray:@1];
+//        self.filmArray = [CoreDataHelper findCategoryArray:@1];
+        
+        NSPredicate *titlePredicate = [NSPredicate predicateWithFormat:@"interestStatus = %@", @1];
+        
+        self.filmArray = [self.allArray filteredArrayUsingPredicate:titlePredicate];
+        
+        
         self.selectedIndex = 1;
         [self.tableView reloadData];
     } else if (self.segmentedControl.selectedSegmentIndex == 1) {

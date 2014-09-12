@@ -1,84 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="G4N-FL-vzT">
     <dependencies>
+        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <scenes>
-        <!--Base View Controller-->
-        <scene sceneID="HmZ-R4-vwb">
-            <objects>
-                <viewController storyboardIdentifier="base" id="5v0-mY-CsX" customClass="SFBaseViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Fmf-jp-OaR"/>
-                        <viewControllerLayoutGuide type="bottom" id="f51-f0-Lvo"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="bu3-ls-j2w">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <containerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m18-NA-o6d">
-                                <rect key="frame" x="0.0" y="108" width="320" height="323"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                            </containerView>
-                            <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aWk-T2-VU6">
-                                <rect key="frame" x="0.0" y="64" width="320" height="44"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <outlet property="delegate" destination="5v0-mY-CsX" id="0QZ-eu-hwN"/>
-                                </connections>
-                            </searchBar>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="trailing" secondItem="m18-NA-o6d" secondAttribute="trailing" id="TvI-6d-Gno"/>
-                            <constraint firstAttribute="bottom" secondItem="m18-NA-o6d" secondAttribute="bottom" constant="49" id="fs5-gC-nxu"/>
-                            <constraint firstItem="m18-NA-o6d" firstAttribute="top" secondItem="Fmf-jp-OaR" secondAttribute="bottom" constant="44" id="kBV-h8-kA0"/>
-                            <constraint firstItem="m18-NA-o6d" firstAttribute="leading" secondItem="bu3-ls-j2w" secondAttribute="leading" id="sM7-Iw-3xd"/>
-                        </constraints>
-                    </view>
-                    <toolbarItems/>
-                    <navigationItem key="navigationItem" id="oYZ-nW-p60">
-                        <nil key="title"/>
-                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" segmentControlStyle="bar" selectedSegmentIndex="0" id="wzW-wG-3gW">
-                            <rect key="frame" x="30" y="7" width="243" height="30"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <segments>
-                                <segment title="Seen"/>
-                                <segment title="Theater"/>
-                                <segment title="Want"/>
-                                <segment title="Don't"/>
-                            </segments>
-                            <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                            <connections>
-                                <action selector="segmentPicker:" destination="5v0-mY-CsX" eventType="valueChanged" id="fCp-cG-sLY"/>
-                            </connections>
-                        </segmentedControl>
-                        <barButtonItem key="rightBarButtonItem" title="Sort" id="4OI-nd-kp3">
-                            <connections>
-                                <action selector="buttonAction:" destination="5v0-mY-CsX" id="rc9-c3-VPB"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="movieContainer" destination="m18-NA-o6d" id="ccB-v0-hWi"/>
-                        <outlet property="searchDisplayController" destination="qQE-RJ-Upb" id="fz4-Ca-pJY"/>
-                        <outlet property="segmentOutlet" destination="wzW-wG-3gW" id="xAs-tt-nOD"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="aAj-1y-yQB" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <searchDisplayController id="qQE-RJ-Upb">
-                    <connections>
-                        <outlet property="delegate" destination="5v0-mY-CsX" id="6cg-Lo-zRz"/>
-                        <outlet property="searchBar" destination="aWk-T2-VU6" id="jZo-UG-HM8"/>
-                        <outlet property="searchContentsController" destination="5v0-mY-CsX" id="mb5-Bc-9dY"/>
-                        <outlet property="searchResultsDataSource" destination="5v0-mY-CsX" id="qr7-eP-Rvh"/>
-                        <outlet property="searchResultsDelegate" destination="5v0-mY-CsX" id="AFe-mE-D2d"/>
-                    </connections>
-                </searchDisplayController>
-            </objects>
-            <point key="canvasLocation" x="2081" y="-4168"/>
-        </scene>
         <!--Item-->
         <scene sceneID="odT-GW-Nug">
             <objects>
@@ -126,106 +52,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h5p-Us-h6H" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-131" y="-2522"/>
-        </scene>
-        <!--Settings-->
-        <scene sceneID="2Mv-UL-hpp">
-            <objects>
-                <viewController id="glN-5l-SCP" customClass="SFCustomizeViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="ldX-Z4-RZA"/>
-                        <viewControllerLayoutGuide type="bottom" id="WMF-1X-1eh"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Pup-9o-kfB">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aNG-Bq-ZxB">
-                                <rect key="frame" x="3" y="58" width="320" height="462"/>
-                                <subviews>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Critics Rating Threshold:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ic6-E6-Mtb">
-                                        <rect key="frame" x="26" y="92" width="189" height="21"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                            </view>
-                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.40000000000000002" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="CZ3-xK-FHx">
-                                <rect key="frame" x="18" y="111" width="284" height="31"/>
-                                <connections>
-                                    <action selector="mpaaRatingThresholdSliderAction:" destination="glN-5l-SCP" eventType="valueChanged" id="rHW-9A-1JU"/>
-                                </connections>
-                            </slider>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Film Rating Threshold:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Yc-m5-yw8">
-                                <rect key="frame" x="26" y="82" width="257" height="21"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="PG" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gEV-XV-OJs">
-                                <rect key="frame" x="234" y="82" width="56" height="21"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="yeI-zo-7MU">
-                                <rect key="frame" x="24" y="181" width="278" height="31"/>
-                                <connections>
-                                    <action selector="criticsRatingThresholdSliderAction:" destination="glN-5l-SCP" eventType="valueChanged" id="ZtY-73-Rse"/>
-                                </connections>
-                            </slider>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="50" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jjz-EM-gkb">
-                                <rect key="frame" x="241" y="152" width="42" height="21"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Audience Rating Threshold: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wdz-kF-S2E">
-                                <rect key="frame" x="26" y="222" width="217" height="21"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="50" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OI4-qH-ktv">
-                                <rect key="frame" x="241" y="222" width="42" height="21"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="5SL-jl-tH6">
-                                <rect key="frame" x="24" y="251" width="278" height="31"/>
-                                <connections>
-                                    <action selector="audienceRatingThresholdSliderAction:" destination="glN-5l-SCP" eventType="valueChanged" id="oeh-7y-Qy0"/>
-                                </connections>
-                            </slider>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Rating Variance Threshold:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LYR-0c-G4e">
-                                <rect key="frame" x="26" y="292" width="206" height="21"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="80" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gvY-d5-QC7">
-                                <rect key="frame" x="241" y="292" width="42" height="21"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="17"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.80000000000000004" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="nkI-Y3-6w3">
-                                <rect key="frame" x="24" y="321" width="278" height="31"/>
-                                <connections>
-                                    <action selector="ratingVarianceSliderAction:" destination="glN-5l-SCP" eventType="valueChanged" id="c3g-OJ-9bZ"/>
-                                </connections>
-                            </slider>
-                        </subviews>
-                    </view>
-                    <navigationItem key="navigationItem" title="Settings" id="IhR-Oj-fiI"/>
-                    <connections>
-                        <outlet property="audienceRatingThresholdLabel" destination="OI4-qH-ktv" id="VAx-9t-8MO"/>
-                        <outlet property="audienceRatingThresholdSliderOutlet" destination="5SL-jl-tH6" id="sE5-f8-p64"/>
-                        <outlet property="criticsRatingThresholdLabel" destination="jjz-EM-gkb" id="ncG-8Y-aLK"/>
-                        <outlet property="criticsRatingThresholdSliderOutlet" destination="yeI-zo-7MU" id="Rkn-Bj-64n"/>
-                        <outlet property="mpaaRatingThresholdLabel" destination="gEV-XV-OJs" id="TZR-0A-Suo"/>
-                        <outlet property="mpaaRatingThresholdSliderOutlet" destination="CZ3-xK-FHx" id="8Eg-f7-mZK"/>
-                        <outlet property="ratingVarianceLabel" destination="gvY-d5-QC7" id="1Mc-oG-Lkq"/>
-                        <outlet property="ratingVarianceSliderOutlet" destination="nkI-Y3-6w3" id="sRm-a3-h6l"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="bP4-YP-nac" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2467" y="-4146"/>
         </scene>
         <!--Setting-->
         <scene sceneID="ubh-fo-Xb7">
@@ -726,25 +552,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PkV-kX-jQV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="950" y="-1835"/>
-        </scene>
-        <!--Films-->
-        <scene sceneID="6U0-b3-qJd">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="5Gk-vr-nAD" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Films" image="Movies" id="Ei9-Q1-85n"/>
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="30I-fp-4SM">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="5v0-mY-CsX" kind="relationship" relationship="rootViewController" id="Dxz-b2-xI0"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="IwN-K0-zsB" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1731" y="-4190"/>
         </scene>
         <!--Setting-->
         <scene sceneID="KXp-OQ-5S3">
