@@ -32,20 +32,12 @@
     self.searchBar.delegate = self;
 
     
-    
 //    self.filmArray = [[CoreDataHelper filmsArray] mutableCopy];
 //    self.searchArray = [CoreDataHelper filmsArray];
     self.segmentedControl.selectedSegmentIndex = 1;
-    self.selectedIndex = 0;
     
     [self rottenFilmData];
     self.allArray = [CoreDataHelper filmsArray];
-    
-//    NSArray *array = [NetworkController movieSearchWithTitle:@"ghost"];
-//    
-//    for (Film *film in array) {
-//        NSLog(@"Title: %@", film.title);
-//    }
 
 //    [NetworkController movieSearchWithTitle:@"ghost" andCallback:^(NSArray *results) {
 //        
@@ -58,9 +50,6 @@
 ////            [self.searchDisplayController.searchResultsTableView reloadData];
 ////        }];
 //    }];
-
-
-//    [NetworkController movieSearchWithTitle:@"Jack"];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -73,7 +62,7 @@
     [super viewWillAppear:animated];
     
     if ([CoreDataHelper doesCoreDataExist]) {
-        NSNumber *selectedNumber = [NSNumber numberWithInteger:self.selectedIndex];
+//        NSNumber *selectedNumber = [NSNumber numberWithInteger:self.selectedIndex];
 //        self.filmArray = [[CoreDataHelper findCategoryArray:selectedNumber] mutableCopy];
         [self.tableView reloadData];
     }
@@ -103,7 +92,7 @@
 {
     // Return the number of rows in the section.
     if (tableView == self.searchDisplayController.searchResultsTableView) {
-        
+
         return self.searchArray.count;
     } else {
         return self.filmArray.count;
@@ -113,13 +102,16 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    SFMCTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+//    SFMCTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    SFMCTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"Cell"];
 
     Film * film;
     // Configure the cell...
     
     if (tableView == self.searchDisplayController.searchResultsTableView) {
+        
         film = self.searchArray[indexPath.row];
+        
         [cell setFilm:film];
     } else {
         film = self.filmArray[indexPath.row];
@@ -209,6 +201,7 @@
         [CoreDataHelper saveContext];
     }];
 
+    NSLog(@"the cell is %@", cell);
     
     return cell;
 }
@@ -294,10 +287,11 @@
     if ([scope isEqualToString:@"My Collection"]) {
 //        NSLog(@"Search: %@", searchText);
 //        NSArray *array = [CoreDataHelper titleSearchWithString:searchText];
+        self.searchArray = [CoreDataHelper titleSearchWithString:searchText];
         
-        NSPredicate *titlePredicate = [NSPredicate predicateWithFormat:@"title CONTAINS[cd] %@", searchText];
-        
-        self.searchArray = [self.allArray filteredArrayUsingPredicate:titlePredicate];
+//        NSPredicate *titlePredicate = [NSPredicate predicateWithFormat:@"title CONTAINS[cd] %@", searchText];
+//        
+//        self.searchArray = [self.filmArray filteredArrayUsingPredicate:titlePredicate];
     
 //        for (Film *film in self.searchArray) {
 //            NSLog(@"Title: %@", film.title);
@@ -309,7 +303,7 @@
 //        [NetworkController searchMoviesWithTitle:searchText];
 //        self.searchArray = [CoreDataHelper findCategoryArray:@5];
 //        NSString *searchString = [searchText stringByReplacingOccurrencesOfString:@" " withString:@"+"];
-//        self.searchArray = [NetworkController movieSearchWithTitle:searchString];
+        self.searchArray = [NetworkController movieSearchWithTitle:searchText];
         
 //        [self.searchDisplayController.searchResultsTableView reloadData];
 
@@ -328,15 +322,15 @@
 //        }];
         
     }
-    
+
 
 }
 
--(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
-    [self.indicatorView stopAnimating];
-    self.indicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-    [self.indicatorView startAnimating];
-}
+//-(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+//    [self.indicatorView stopAnimating];
+//    self.indicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+//    [self.indicatorView startAnimating];
+//}
 
 //Displaying search controller when user selects it
 -(BOOL)searchDisplayController:(UISearchDisplayController *)controller
@@ -356,30 +350,24 @@ shouldReloadTableForSearchString:(NSString *)searchString
 - (IBAction)segmentedAction:(id)sender {
     if (self.segmentedControl.selectedSegmentIndex == 0) {
         NSLog(@"Segment One");
-//        self.filmArray = [CoreDataHelper findCategoryArray:@1];
-        
-        NSPredicate *titlePredicate = [NSPredicate predicateWithFormat:@"interestStatus = %@", @1];
-        
-        self.filmArray = [self.allArray filteredArrayUsingPredicate:titlePredicate];
-        
-        
-        self.selectedIndex = 1;
+        self.filmArray = [CoreDataHelper findCategoryArray:@1];
+//
+//        NSPredicate *titlePredicate = [NSPredicate predicateWithFormat:@"interestStatus = %@", @1];
+//        
+//        self.filmArray = [self.allArray filteredArrayUsingPredicate:titlePredicate];
         [self.tableView reloadData];
+        
     } else if (self.segmentedControl.selectedSegmentIndex == 1) {
         NSLog(@"Segment Two");
         self.filmArray = [CoreDataHelper findCategoryArray:@0];
-        self.selectedIndex = 0;
         [self.tableView reloadData];
     } else if (self.segmentedControl.selectedSegmentIndex == 2) {
         NSLog(@"Segment Three");
         self.filmArray = [CoreDataHelper findCategoryArray:@2];
-        self.selectedIndex = 2;
         [self.tableView reloadData];
     } else {
         NSLog(@"Segment Four");
         self.filmArray = [CoreDataHelper findCategoryArray:@3];
-
-        self.selectedIndex = 3;
         [self.tableView reloadData];
     }
     
