@@ -10,7 +10,7 @@
 
 @interface SFBaseTableViewController ()
 
-@property (nonatomic) NSArray *filmArray;
+@property (nonatomic) NSMutableArray *filmArray;
 @property (nonatomic) NSArray *allArray;
 @property (nonatomic) NSArray *searchArray;
 @property (nonatomic) NSArray *searchResultsArray;
@@ -164,7 +164,7 @@
     [cell setSwipeGestureWithView:checkView color:[UIColor seenItColor] mode:MCSwipeTableViewCellModeSwitch state:MCSwipeTableViewCellState1 completionBlock:^(MCSwipeTableViewCell *cell, MCSwipeTableViewCellState state, MCSwipeTableViewCellMode mode) {
         film.interestStatus = @1;
 
-//        [self.filmArray removeObjectAtIndex:indexPath.row];
+        [self.filmArray removeObjectAtIndex:indexPath.row];
         [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
         
         [CoreDataHelper saveContext];
@@ -174,7 +174,7 @@
     [cell setSwipeGestureWithView:crossView color:[UIColor wantedColor] mode:MCSwipeTableViewCellModeSwitch state:MCSwipeTableViewCellState2 completionBlock:^(MCSwipeTableViewCell *cell, MCSwipeTableViewCellState state, MCSwipeTableViewCellMode mode) {
         film.interestStatus = @2;
 
-//        [self.filmArray removeObjectAtIndex:indexPath.row];
+        [self.filmArray removeObjectAtIndex:indexPath.row];
         [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
         
         [CoreDataHelper saveContext];
@@ -185,7 +185,7 @@
         NSLog(@"Did swipe \"Sad_Face\" cell");
         film.interestStatus = @3;
 
-//        [self.filmArray removeObjectAtIndex:indexPath.row];
+        [self.filmArray removeObjectAtIndex:indexPath.row];
         [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
         
         [CoreDataHelper saveContext];
@@ -350,7 +350,7 @@ shouldReloadTableForSearchString:(NSString *)searchString
 - (IBAction)segmentedAction:(id)sender {
     if (self.segmentedControl.selectedSegmentIndex == 0) {
         NSLog(@"Segment One");
-        self.filmArray = [CoreDataHelper findCategoryArray:@1];
+        self.filmArray = [[CoreDataHelper findCategoryArray:@1] mutableCopy];
 //
 //        NSPredicate *titlePredicate = [NSPredicate predicateWithFormat:@"interestStatus = %@", @1];
 //        
@@ -359,15 +359,15 @@ shouldReloadTableForSearchString:(NSString *)searchString
         
     } else if (self.segmentedControl.selectedSegmentIndex == 1) {
         NSLog(@"Segment Two");
-        self.filmArray = [CoreDataHelper findCategoryArray:@0];
+        self.filmArray = [[CoreDataHelper findCategoryArray:@0] mutableCopy];
         [self.tableView reloadData];
     } else if (self.segmentedControl.selectedSegmentIndex == 2) {
         NSLog(@"Segment Three");
-        self.filmArray = [CoreDataHelper findCategoryArray:@2];
+        self.filmArray = [[CoreDataHelper findCategoryArray:@2] mutableCopy];
         [self.tableView reloadData];
     } else {
         NSLog(@"Segment Four");
-        self.filmArray = [CoreDataHelper findCategoryArray:@3];
+        self.filmArray = [[CoreDataHelper findCategoryArray:@3] mutableCopy];
         [self.tableView reloadData];
     }
     
@@ -573,7 +573,7 @@ shouldReloadTableForSearchString:(NSString *)searchString
     
     [CoreDataHelper saveContext];
     
-    self.filmArray = [CoreDataHelper findCategoryArray:@0];
+    self.filmArray = [[CoreDataHelper findCategoryArray:@0] mutableCopy];
     [self.tableView reloadData];
 
 //    NSArray *array = [CoreDataHelper findCategoryArray:@2];
