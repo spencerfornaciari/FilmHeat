@@ -54,8 +54,8 @@
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Film" inManagedObjectContext:[CoreDataHelper managedContext]];
     NSFetchRequest *request = [NSFetchRequest new];
     [request setEntity:entity];
-        
-    NSPredicate *titlePredicate = [NSPredicate predicateWithFormat:@"title CONTAINS[cd] %@", title];
+    
+    NSPredicate *titlePredicate = [NSPredicate predicateWithFormat:@"(title CONTAINS[cd] %@) AND (interestStatus != %@)", title, @5];
     
     [request setPredicate:titlePredicate];
     

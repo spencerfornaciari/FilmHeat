@@ -41,10 +41,11 @@
 }
 
 +(NSArray *)movieSearchWithTitle:(NSString *)title {
+    NSString *encodedString = [title stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     
     //Returns the top ten movies with a given search title
     
-    NSString *titleSearchString = [NSString stringWithFormat:@"http://api.rottentomatoes.com/api/public/v1.0/movies.json?apikey=%@&q=%@&page_limit=10", kROTTEN_TOMATOES_API_KEY, title];
+    NSString *titleSearchString = [NSString stringWithFormat:@"http://api.rottentomatoes.com/api/public/v1.0/movies.json?apikey=%@&q=%@&page_limit=10", kROTTEN_TOMATOES_API_KEY, encodedString];
     
     NSURL *titleUrl = [NSURL URLWithString:titleSearchString];
     NSData *data = [NSData dataWithContentsOfURL:titleUrl];
