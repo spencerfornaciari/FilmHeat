@@ -152,10 +152,10 @@
     
     
     // Configuring the views and colors.
-    UIView *checkView = [self viewWithImageName:@"SeenExtraLarge"];
-    UIView *crossView = [self viewWithImageName:@"WantExtraLarge"];
-    UIView *clockView = [self viewWithImageName:@"DontExtraLarge"];
-    UIView *listView = [self viewWithImageName:@"TheaterExtraLarge"];
+    UIView *checkView = [self viewWithImageName:@"check"];
+    UIView *crossView = [self viewWithImageName:@"add"];
+    UIView *clockView = [self viewWithImageName:@"delete"];
+//    UIView *listView = [self viewWithImageName:@"TheaterExtraLarge"];
     
     // Setting the default inactive state color to the tableView background color.
     [cell setDefaultColor:self.tableView.backgroundView.backgroundColor];
@@ -192,14 +192,14 @@
     }];
     
     //No Decision film
-    [cell setSwipeGestureWithView:listView color:[UIColor navigationBarColor] mode:MCSwipeTableViewCellModeSwitch state:MCSwipeTableViewCellState4 completionBlock:^(MCSwipeTableViewCell *cell, MCSwipeTableViewCellState state, MCSwipeTableViewCellMode mode) {
-        film.interestStatus = @0;
-        
-//        [self.filmArray removeObjectAtIndex:indexPath.row];
-        [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-        
-        [CoreDataHelper saveContext];
-    }];
+//    [cell setSwipeGestureWithView:listView color:[UIColor navigationBarColor] mode:MCSwipeTableViewCellModeSwitch state:MCSwipeTableViewCellState4 completionBlock:^(MCSwipeTableViewCell *cell, MCSwipeTableViewCellState state, MCSwipeTableViewCellMode mode) {
+//        film.interestStatus = @0;
+//        
+////        [self.filmArray removeObjectAtIndex:indexPath.row];
+//        [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+//        
+//        [CoreDataHelper saveContext];
+//    }];
 
     NSLog(@"the cell is %@", cell);
     
