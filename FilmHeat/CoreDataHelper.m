@@ -110,6 +110,23 @@
     }
 }
 
++(Film *)getFilmInfo:(NSString *)filmID {
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Film" inManagedObjectContext:[CoreDataHelper managedContext]];
+    
+    NSFetchRequest *request = [NSFetchRequest new];
+    [request setEntity:entity];
+    [request setPredicate:[NSPredicate predicateWithFormat:@"rottenTomatoesID == %@", filmID]];
+    
+    NSError *error;
+    NSArray *filmArray = [[CoreDataHelper managedContext] executeFetchRequest:request error:&error];
+    
+    if (filmArray.count > 0) {
+        return filmArray[0];
+    } else {
+        return nil;
+    }
+}
+
 +(BOOL)doesCoreDataExist {
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"Film" inManagedObjectContext:[CoreDataHelper managedContext]];
     

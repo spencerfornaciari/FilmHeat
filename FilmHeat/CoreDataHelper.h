@@ -20,6 +20,7 @@
 +(NSArray *)filmsArray;
 +(NSArray *)findCategoryArray:(NSNumber *)category;
 +(BOOL)doesFilmExist:(NSString *)filmID;
++(Film *)getFilmInfo:(NSString *)filmID;
 +(BOOL)doesCoreDataExist;
 
 //Save Context

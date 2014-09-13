@@ -305,7 +305,7 @@
 //        NSString *searchString = [searchText stringByReplacingOccurrencesOfString:@" " withString:@"+"];
         self.searchArray = [NetworkController movieSearchWithTitle:searchText];
         
-//        [self.searchDisplayController.searchResultsTableView reloadData];
+        [self.searchDisplayController.searchResultsTableView reloadData];
 
 
 //        [NetworkController movieSearchWithTitle:searchText andCallback:^(NSArray *results) {
