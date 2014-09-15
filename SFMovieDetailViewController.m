@@ -42,6 +42,11 @@
         
     }
     
+    NSArray *actorArray = [self.film.actors array];
+    for (Actor *actor in actorArray) {
+        NSArray *characterArray = [actor.characters array];
+        NSLog(@"Actor: %@, Character: %@", actor.name, [characterArray[0] name]);
+    }
     
     if (self.film.genres.count == 0) {
         NSString *urlString = [NSString stringWithFormat:@"http://api.rottentomatoes.com/api/public/v1.0/movies/%@.json?apikey=%@", self.film.rottenTomatoesID, kROTTEN_TOMATOES_API_KEY];

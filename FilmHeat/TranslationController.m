@@ -40,7 +40,7 @@
     film.posterURL = [dictionary valueForKeyPath:@"posters.original"];
     
     //Set the film runtime
-    film.runtime = [dictionary valueForKeyPath:@"runtime"];
+//    film.runtime = [dictionary valueForKeyPath:@"runtime"];
     
     //Set the film's MPAA rating
     NSString *rating = [dictionary valueForKeyPath:@"mpaa_rating"];
@@ -125,7 +125,7 @@
             film.posterURL = [dictionary valueForKeyPath:@"posters.original"];
             
             //Set the film runtime
-            film.runtime = [dictionary valueForKeyPath:@"runtime"];
+//            film.runtime = [dictionary valueForKeyPath:@"runtime"];
             
             //Set the film's MPAA rating
             NSString *rating = [dictionary valueForKeyPath:@"mpaa_rating"];

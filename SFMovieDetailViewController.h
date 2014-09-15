@@ -10,6 +10,8 @@
 #import <Social/Social.h>
 #import "CoreDataHelper.h"
 #import "Film.h"
+#import "Actor.h"
+#import "Character.h"
 #import "Director.h"
 #import "Genre.h"
 #import "Constants.h"
