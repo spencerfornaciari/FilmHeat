@@ -350,7 +350,7 @@ shouldReloadTableForSearchString:(NSString *)searchString
 - (IBAction)segmentedAction:(id)sender {
     if (self.segmentedControl.selectedSegmentIndex == 0) {
         NSLog(@"Segment One");
-        self.filmArray = [[CoreDataHelper findCategoryArray:@1] mutableCopy];
+        self.filmArray = [[CoreDataHelper findCategoryArray:@3] mutableCopy];
 //
 //        NSPredicate *titlePredicate = [NSPredicate predicateWithFormat:@"interestStatus = %@", @1];
 //        
@@ -363,11 +363,11 @@ shouldReloadTableForSearchString:(NSString *)searchString
         [self.tableView reloadData];
     } else if (self.segmentedControl.selectedSegmentIndex == 2) {
         NSLog(@"Segment Three");
-        self.filmArray = [[CoreDataHelper findCategoryArray:@2] mutableCopy];
+        self.filmArray = [[CoreDataHelper findCategoryArray:@1] mutableCopy];
         [self.tableView reloadData];
     } else {
         NSLog(@"Segment Four");
-        self.filmArray = [[CoreDataHelper findCategoryArray:@3] mutableCopy];
+        self.filmArray = [[CoreDataHelper findCategoryArray:@2] mutableCopy];
         [self.tableView reloadData];
     }
     

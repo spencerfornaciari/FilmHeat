@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="G4N-FL-vzT">
     <dependencies>
+        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
     </dependencies>
     <scenes>
@@ -436,10 +437,10 @@
                             <rect key="frame" x="82.5" y="7" width="155" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <segments>
-                                <segment title="" image="check"/>
-                                <segment title="" image="masks"/>
-                                <segment title="" image="add"/>
                                 <segment title="" image="delete"/>
+                                <segment title="" image="masks"/>
+                                <segment title="" image="check"/>
+                                <segment title="" image="add"/>
                             </segments>
                             <connections>
                                 <action selector="segmentedAction:" destination="S1L-K1-frt" eventType="valueChanged" id="cjn-Wi-pCI"/>
