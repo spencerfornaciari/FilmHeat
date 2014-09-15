@@ -10,6 +10,7 @@
 #import "CoreDataHelper.h"
 #import "Film.h"
 #import "Actor.h"
+#import "Character.h"
 
 @interface TranslationController : NSObject
 

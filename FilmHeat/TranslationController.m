@@ -47,10 +47,10 @@
     
     if (rating) {
         film.mpaaRating = rating;
-//        film.ratingValue = [NSNumber numberWithLong:[self setRatingValue:film.mpaaRating]];
+        film.ratingValue = [TranslationController setRatingValue:film.mpaaRating];
     } else {
         film.mpaaRating = @"NR";
-//        film.ratingValue = [NSNumber numberWithInt:0];
+        film.ratingValue = [NSNumber numberWithInt:0];
     }
     
     //Set film's release date
@@ -73,7 +73,12 @@
         
         actor.name = [castMember valueForKey:@"name"];
         NSArray *characterArray = [castMember valueForKey:@"characters"];
-//        actor.character = characterArray[0];
+        
+        Character *character = [NSEntityDescription insertNewObjectForEntityForName:@"Character" inManagedObjectContext:[CoreDataHelper managedContext]];
+        
+        character.name = characterArray[0];
+        
+        [actor addNewCharacterObject:character];
         
         [film addNewActorObject:actor];
     }
@@ -120,18 +125,18 @@
             film.posterURL = [dictionary valueForKeyPath:@"posters.original"];
             
             //Set the film runtime
-//            film.runtime = [dictionary valueForKeyPath:@"runtime"];
-//            
-//            //Set the film's MPAA rating
-//            NSString *rating = [dictionary valueForKeyPath:@"mpaa_rating"];
-//            
-//            if (rating) {
-//                film.mpaaRating = rating;
-//                film.ratingValue = [TranslationController setRatingValue:film.mpaaRating];
-//            } else {
-//                film.mpaaRating = @"NR";
-//                film.ratingValue = @0;
-//            }
+            film.runtime = [dictionary valueForKeyPath:@"runtime"];
+            
+            //Set the film's MPAA rating
+            NSString *rating = [dictionary valueForKeyPath:@"mpaa_rating"];
+            
+            if (rating) {
+                film.mpaaRating = rating;
+                film.ratingValue = [TranslationController setRatingValue:film.mpaaRating];
+            } else {
+                film.mpaaRating = @"NR";
+                film.ratingValue = @0;
+            }
             
             //Set film's release date
             NSDictionary *releaseDictionary = [dictionary valueForKeyPath:@"release_dates"];
@@ -153,7 +158,12 @@
                 
                 actor.name = [castMember valueForKey:@"name"];
                 NSArray *characterArray = [castMember valueForKey:@"characters"];
-//                actor.character = characterArray[0];
+                
+                Character *character = [NSEntityDescription insertNewObjectForEntityForName:@"Character" inManagedObjectContext:[CoreDataHelper managedContext]];
+                
+                character.name = characterArray[0];
+                
+                [actor addNewCharacterObject:character];
                 
                 [film addNewActorObject:actor];
             }
@@ -236,7 +246,12 @@
                 
                 actor.name = [castMember valueForKey:@"name"];
                 NSArray *characterArray = [castMember valueForKey:@"characters"];
-//                actor.character = characterArray[0];
+                
+                Character *character = [NSEntityDescription insertNewObjectForEntityForName:@"Character" inManagedObjectContext:[CoreDataHelper managedContext]];
+                
+                character.name = characterArray[0];
+                
+                [actor addNewCharacterObject:character];
                 
                 [film addNewActorObject:actor];
             }
